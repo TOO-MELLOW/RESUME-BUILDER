@@ -27,9 +27,9 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: "Prompt too long" });
   }
 
-  const apiKey = process.env.GROQ_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    console.error("GROQ_API_KEY is not set in Vercel environment variables");
+    console.error("GEMINI_API_KEY is not set in Vercel environment variables");
     return res.status(500).json({ error: "AI service not configured" });
   }
 
@@ -46,15 +46,14 @@ module.exports = async (req, res) => {
                           "\n\n[CV text truncated due to length. Focus on the most recent roles.]";
     }
 
-    // ----- FIX 2: The actual API call (with WAY more output room) -----
-    const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    const groqRes = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",  
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: "openai/gpt-oss-120b", // Keep your existing model
+        model: "gemini-2.0-flash",
         messages: [
           {
             role: "system",
