@@ -1,0 +1,17 @@
+const fs = require('fs');
+const path = require('path');
+const root = path.resolve(__dirname, '..');
+const source = fs.readFileSync(path.join(root, 'public', 'js', 'template-system.js'), 'utf8');
+const match = source.match(/const definitions = (\[.*?\]);/s);
+if (!match) throw new Error('Template registry could not be parsed.');
+const definitions = JSON.parse(match[1]);
+if (definitions.length !== 95) throw new Error(`Expected 95 templates, found ${definitions.length}.`);
+const ids = new Set(definitions.map(d => d.id));
+if (ids.size !== definitions.length) throw new Error('Duplicate template IDs detected.');
+if (definitions.some(d => d.rendererKind === 'html-shell')) throw new Error('HTML-shell renderer kinds remain in runtime registry.');
+if (definitions.filter(d => d.rendererKind === 'legacy').length !== 95) throw new Error('Not all templates use the unified legacy renderer path.');
+const reactTemplates = fs.readFileSync(path.join(root, 'src', 'data', 'templates.js'), 'utf8');
+if (!reactTemplates.includes('"id": "modern-01"') || !reactTemplates.includes('"id": "sa-youth-portfolio"')) throw new Error('React template registry is incomplete.');
+if (fs.existsSync(path.join(root,'src','data','shells.js'))) throw new Error('Obsolete embedded shell registry remains.');
+if (fs.existsSync(path.join(root,'public','templates-html'))) throw new Error('Obsolete HTML-shell directory remains.');
+console.log(`template registry validated: ${definitions.length} templates, unified legacy renderer for all templates`);

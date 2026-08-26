@@ -1,0 +1,109 @@
+/* paywall-modal.css — link this in index.html's <head> */
+
+#paywall-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(27, 42, 74, .55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.pw-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface, #fff);
+  border-radius: var(--r12, 12px);
+  box-shadow: var(--sh-lg, 0 20px 40px rgba(0,0,0,.15));
+  padding: 28px 24px 24px;
+  position: relative;
+  animation: pw-in .18s ease-out;
+}
+@keyframes pw-in {
+  from { opacity: 0; transform: translateY(6px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.pw-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: none; cursor: pointer;
+  color: var(--t3, #8A94A6); transition: background .15s, color .15s;
+}
+.pw-close:hover { background: var(--surface-2, #F7F8FA); color: var(--t1, #1B2A4A); }
+.pw-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent, #2F7A6E); margin: 0 0 8px;
+}
+.pw-title {
+  font-size: 21px; font-weight: 600; line-height: 1.25;
+  color: var(--brand, #1B2A4A); margin: 0 0 8px;
+}
+.pw-body {
+  font-size: 13.5px; line-height: 1.55; color: var(--t2, #4A5568); margin: 0 0 18px;
+}
+.pw-body strong { color: var(--t1, #1B2A4A); }
+.pw-f { margin-bottom: 6px; }
+.pw-f label { display: block; font-size: 11px; font-weight: 600; color: var(--t2, #4A5568); margin-bottom: 4px; }
+.pw-f input {
+  width: 100%; font-family: inherit; font-size: 15px; padding: 10px 12px;
+  border: 1px solid var(--border, #E2E5EA); border-radius: 6px; background: var(--surface-2, #F7F8FA);
+  color: var(--t1, #1B2A4A); transition: border-color .15s; -webkit-appearance: none; appearance: none;
+}
+.pw-f input:focus { outline: none; border-color: var(--accent, #2F7A6E); background: #fff; }
+.pw-otp-input { letter-spacing: .5em; font-weight: 700; text-align: center; font-size: 20px !important; }
+.pw-err {
+  display: none; font-size: 12px; color: #B42318; background: #FEF3F2;
+  border: 1px solid #FDA29B; border-radius: 6px; padding: 7px 10px; margin: 8px 0 0;
+}
+.pw-err.show { display: block; }
+.pw-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.pw-actions .btn { width: 100%; }
+.pw-actions button.btn-primary {
+  padding: 10px 16px; border-radius: 6px; border: none; cursor: pointer;
+  background: var(--accent, #2F7A6E); color: #fff; font-size: 14px; font-weight: 600;
+}
+.pw-actions button.btn-primary:disabled { opacity: .6; cursor: default; }
+.pw-link {
+  display: block; text-align: center; font-size: 12.5px; color: var(--t3, #8A94A6);
+  text-decoration: none; margin-top: 4px; cursor: pointer; background: none; border: none;
+  font-family: inherit; width: 100%; padding: 4px;
+}
+.pw-link:hover { color: var(--accent, #2F7A6E); }
+.pw-link:disabled { color: #C4C9D4; cursor: default; }
+.pw-step { display: none; }
+.pw-step.active { display: block; }
+.pw-credit-badge {
+  display: inline-flex; align-items: center; gap: 6px; background: #E8F3F1;
+  color: var(--accent, #2F7A6E); font-size: 13px; font-weight: 700; padding: 8px 14px;
+  border-radius: 100px; margin-bottom: 16px;
+}
+.pw-pkg { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+.pw-pkg-opt {
+  display: flex; justify-content: space-between; align-items: center;
+  border: 1.5px solid var(--border, #E2E5EA); border-radius: 8px; padding: 12px 14px;
+  cursor: pointer; transition: border-color .15s, background .15s;
+}
+.pw-pkg-opt:hover { border-color: #C4C9D4; background: var(--surface-2, #F7F8FA); }
+.pw-pkg-opt.selected { border-color: var(--accent, #2F7A6E); background: #E8F3F1; }
+.pw-pkg-name { font-size: 13.5px; font-weight: 600; color: var(--t1, #1B2A4A); }
+.pw-pkg-sub { font-size: 11.5px; color: var(--t3, #8A94A6); }
+.pw-pkg-price { font-size: 15px; font-weight: 700; color: var(--brand, #1B2A4A); }
+
+/* Persistent header credit-balance badge — shown once a user is verified,
+   so they always know their balance without triggering a download attempt. */
+.credit-badge {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  background: #E8F3F1;
+  color: var(--accent, #2F7A6E);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}

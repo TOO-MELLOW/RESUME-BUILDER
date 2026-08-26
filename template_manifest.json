@@ -1,0 +1,242 @@
+[
+  {
+    "source_file": "01-luxury-editorial.html",
+    "template_id": "luxury-editorial-01",
+    "pack": "Ultimate",
+    "shell_file": "luxury-editorial-01.html"
+  },
+  {
+    "source_file": "02-black-champagne-executive.html",
+    "template_id": "black-champagne-executive-02",
+    "pack": "Ultimate",
+    "shell_file": "black-champagne-executive-02.html"
+  },
+  {
+    "source_file": "03-architectural-grid.html",
+    "template_id": "architectural-grid-03",
+    "pack": "Ultimate",
+    "shell_file": "architectural-grid-03.html"
+  },
+  {
+    "source_file": "04-modern-swiss.html",
+    "template_id": "modern-swiss-04",
+    "pack": "Ultimate",
+    "shell_file": "modern-swiss-04.html"
+  },
+  {
+    "source_file": "05-fashion-editorial-portrait.html",
+    "template_id": "fashion-editorial-portrait-05",
+    "pack": "Ultimate",
+    "shell_file": "fashion-editorial-portrait-05.html"
+  },
+  {
+    "source_file": "06-dark-executive.html",
+    "template_id": "dark-executive-06",
+    "pack": "Ultimate",
+    "shell_file": "dark-executive-06.html"
+  },
+  {
+    "source_file": "07-european-minimal.html",
+    "template_id": "european-minimal-07",
+    "pack": "Ultimate",
+    "shell_file": "european-minimal-07.html"
+  },
+  {
+    "source_file": "08-burgundy-heritage.html",
+    "template_id": "burgundy-heritage-08",
+    "pack": "Ultimate",
+    "shell_file": "burgundy-heritage-08.html"
+  },
+  {
+    "source_file": "09-technology-executive.html",
+    "template_id": "technology-executive-09",
+    "pack": "Ultimate",
+    "shell_file": "technology-executive-09.html"
+  },
+  {
+    "source_file": "10-portrait-luxury.html",
+    "template_id": "portrait-luxury-10",
+    "pack": "Ultimate",
+    "shell_file": "portrait-luxury-10.html"
+  },
+  {
+    "source_file": "11-contemporary-public-sector.html",
+    "template_id": "contemporary-public-sector-11",
+    "pack": "Ultimate",
+    "shell_file": "contemporary-public-sector-11.html"
+  },
+  {
+    "source_file": "12-finance-executive.html",
+    "template_id": "finance-executive-12",
+    "pack": "Ultimate",
+    "shell_file": "finance-executive-12.html"
+  },
+  {
+    "source_file": "13-creative-director.html",
+    "template_id": "creative-director-13",
+    "pack": "Ultimate",
+    "shell_file": "creative-director-13.html"
+  },
+  {
+    "source_file": "14-magazine-column-portrait.html",
+    "template_id": "magazine-column-portrait-14",
+    "pack": "Ultimate",
+    "shell_file": "magazine-column-portrait-14.html"
+  },
+  {
+    "source_file": "15-monochrome-gallery.html",
+    "template_id": "monochrome-gallery-15",
+    "pack": "Ultimate",
+    "shell_file": "monochrome-gallery-15.html"
+  },
+  {
+    "source_file": "16-modernist-geometry.html",
+    "template_id": "modernist-geometry-16",
+    "pack": "Ultimate",
+    "shell_file": "modernist-geometry-16.html"
+  },
+  {
+    "source_file": "17-forest-estate.html",
+    "template_id": "forest-estate-17",
+    "pack": "Ultimate",
+    "shell_file": "forest-estate-17.html"
+  },
+  {
+    "source_file": "18-sapphire-executive-portrait.html",
+    "template_id": "sapphire-executive-portrait-18",
+    "pack": "Ultimate",
+    "shell_file": "sapphire-executive-portrait-18.html"
+  },
+  {
+    "source_file": "19-premium-consultant.html",
+    "template_id": "premium-consultant-19",
+    "pack": "Ultimate",
+    "shell_file": "premium-consultant-19.html"
+  },
+  {
+    "source_file": "20-editorial-portrait.html",
+    "template_id": "editorial-portrait-20",
+    "pack": "Ultimate",
+    "shell_file": "editorial-portrait-20.html"
+  },
+  {
+    "source_file": "21-asymmetric-architecture.html",
+    "template_id": "asymmetric-architecture-21",
+    "pack": "Ultimate",
+    "shell_file": "asymmetric-architecture-21.html"
+  },
+  {
+    "source_file": "22-luxury-portfolio.html",
+    "template_id": "luxury-portfolio-22",
+    "pack": "Ultimate",
+    "shell_file": "luxury-portfolio-22.html"
+  },
+  {
+    "source_file": "23-slate-copper.html",
+    "template_id": "slate-copper-23",
+    "pack": "Ultimate",
+    "shell_file": "slate-copper-23.html"
+  },
+  {
+    "source_file": "24-modern-academic.html",
+    "template_id": "modern-academic-24",
+    "pack": "Ultimate",
+    "shell_file": "modern-academic-24.html"
+  },
+  {
+    "source_file": "25-high-end-minimal.html",
+    "template_id": "high-end-minimal-25",
+    "pack": "Ultimate",
+    "shell_file": "high-end-minimal-25.html"
+  },
+  {
+    "source_file": "26-vertical-navigation.html",
+    "template_id": "vertical-navigation-26",
+    "pack": "Ultimate",
+    "shell_file": "vertical-navigation-26.html"
+  },
+  {
+    "source_file": "27-art-directed-corporate.html",
+    "template_id": "art-directed-corporate-27",
+    "pack": "Ultimate",
+    "shell_file": "art-directed-corporate-27.html"
+  },
+  {
+    "source_file": "28-dark-editorial.html",
+    "template_id": "dark-editorial-28",
+    "pack": "Ultimate",
+    "shell_file": "dark-editorial-28.html"
+  },
+  {
+    "source_file": "29-modern-european.html",
+    "template_id": "modern-european-29",
+    "pack": "Ultimate",
+    "shell_file": "modern-european-29.html"
+  },
+  {
+    "source_file": "30-signature-executive.html",
+    "template_id": "signature-executive-30",
+    "pack": "Ultimate",
+    "shell_file": "signature-executive-30.html"
+  },
+  {
+    "source_file": "01-graphite-sidebar.html",
+    "template_id": "graphite-sidebar-01",
+    "pack": "Sidebar",
+    "shell_file": "graphite-sidebar-01.html"
+  },
+  {
+    "source_file": "02-ivory-editorial-sidebar.html",
+    "template_id": "ivory-editorial-sidebar-02",
+    "pack": "Sidebar",
+    "shell_file": "ivory-editorial-sidebar-02.html"
+  },
+  {
+    "source_file": "03-navy-vertical-rail.html",
+    "template_id": "navy-vertical-rail-03",
+    "pack": "Sidebar",
+    "shell_file": "navy-vertical-rail-03.html"
+  },
+  {
+    "source_file": "04-burgundy-two-page.html",
+    "template_id": "burgundy-two-page-04",
+    "pack": "Sidebar",
+    "shell_file": "burgundy-two-page-04.html"
+  },
+  {
+    "source_file": "05-forest-profile-sidebar.html",
+    "template_id": "forest-profile-sidebar-05",
+    "pack": "Sidebar",
+    "shell_file": "forest-profile-sidebar-05.html"
+  },
+  {
+    "source_file": "06-black-copper-executive.html",
+    "template_id": "black-copper-executive-06",
+    "pack": "Sidebar",
+    "shell_file": "black-copper-executive-06.html"
+  },
+  {
+    "source_file": "07-slate-portfolio.html",
+    "template_id": "slate-portfolio-07",
+    "pack": "Sidebar",
+    "shell_file": "slate-portfolio-07.html"
+  },
+  {
+    "source_file": "08-sand-modern-two-page.html",
+    "template_id": "sand-modern-two-page-08",
+    "pack": "Sidebar",
+    "shell_file": "sand-modern-two-page-08.html"
+  },
+  {
+    "source_file": "09-indigo-cards.html",
+    "template_id": "indigo-cards-09",
+    "pack": "Sidebar",
+    "shell_file": "indigo-cards-09.html"
+  },
+  {
+    "source_file": "10-teal-command-two-page.html",
+    "template_id": "teal-command-two-page-10",
+    "pack": "Sidebar",
+    "shell_file": "teal-command-two-page-10.html"
+  }
+]

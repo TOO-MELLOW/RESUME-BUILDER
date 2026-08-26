@@ -1,0 +1,376 @@
+<!--
+  procv-paywall-modal.html
+
+  Drop this whole block in once, right before </body> in ProCV_fixed__2_.html,
+  AFTER these two script tags are already present:
+
+    <!-- Supabase is supplied by the main Vite app in normal operation. -->
+    <script src="js/procv-download-gate.js"></script>
+
+  Styling reuses the app's existing design tokens (--brand, --accent, --r12,
+  --sh-lg, Fraunces/Inter) and the existing .btn/.f input classes — nothing
+  new is introduced, this is meant to look like it was always part of the app.
+
+  Wire-up: replace the app's existing download button handlers
+    onclick="window.print()"              ->  onclick="attemptDownload('cv', currentTemplateId)"
+    onclick="downloadWord()"               ->  onclick="attemptDownload('cv', currentTemplateId)"
+  (attemptDownload is defined in procv-download-gate.js and calls the
+  original renderer once the gate passes — see renderAndDownload() there.)
+-->
+
+<style>
+  #paywall-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(27, 42, 74, .55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .pw-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--surface);
+    border-radius: var(--r12);
+    box-shadow: var(--sh-lg);
+    padding: 28px 24px 24px;
+    position: relative;
+    animation: pw-in .18s ease-out;
+  }
+  @keyframes pw-in {
+    from { opacity: 0; transform: translateY(6px) scale(.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .pw-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; border: none; cursor: pointer;
+    color: var(--t3); transition: background .15s, color .15s;
+  }
+  .pw-close:hover { background: var(--surface-2); color: var(--t1); }
+  .pw-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 8px;
+  }
+  .pw-title {
+    font-family: 'Fraunces', serif; font-size: 21px; font-weight: 600; line-height: 1.25;
+    color: var(--brand); margin: 0 0 8px;
+  }
+  .pw-body {
+    font-size: 13.5px; line-height: 1.55; color: var(--t2); margin: 0 0 18px;
+  }
+  .pw-body strong { color: var(--t1); }
+  .pw-f { margin-bottom: 6px; }
+  .pw-f label { display: block; font-size: 11px; font-weight: 600; color: var(--t2); margin-bottom: 4px; }
+  .pw-f input {
+    width: 100%; font-family: inherit; font-size: 15px; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: var(--r4); background: var(--surface-2);
+    color: var(--t1); transition: border-color .15s; -webkit-appearance: none; appearance: none;
+  }
+  .pw-f input:focus { outline: none; border-color: var(--accent); background: #fff; }
+  .pw-otp-input { letter-spacing: .5em; font-weight: 700; text-align: center; font-size: 20px !important; }
+  .pw-err {
+    display: none; font-size: 12px; color: #B42318; background: #FEF3F2;
+    border: 1px solid #FDA29B; border-radius: var(--r4); padding: 7px 10px; margin: 8px 0 0;
+  }
+  .pw-err.show { display: block; }
+  .pw-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .pw-actions .btn { width: 100%; }
+  .pw-link {
+    display: block; text-align: center; font-size: 12.5px; color: var(--t3);
+    text-decoration: none; margin-top: 4px; cursor: pointer; background: none; border: none;
+    font-family: inherit;
+  }
+  .pw-link:hover { color: var(--accent); }
+  .pw-link:disabled { color: var(--t4); cursor: default; }
+  .pw-step { display: none; }
+  .pw-step.active { display: block; }
+  .pw-credit-badge {
+    display: inline-flex; align-items: center; gap: 6px; background: var(--accent-bg);
+    color: var(--accent); font-size: 13px; font-weight: 700; padding: 8px 14px;
+    border-radius: 100px; margin-bottom: 16px;
+  }
+  .pw-pkg { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+  .pw-pkg-opt {
+    display: flex; justify-content: space-between; align-items: center;
+    border: 1.5px solid var(--border); border-radius: var(--r8); padding: 12px 14px;
+    cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .pw-pkg-opt:hover { border-color: var(--border-2); background: var(--surface-2); }
+  .pw-pkg-opt.selected { border-color: var(--accent); background: var(--accent-bg); }
+  .pw-pkg-name { font-size: 13.5px; font-weight: 600; color: var(--t1); }
+  .pw-pkg-sub { font-size: 11.5px; color: var(--t3); }
+  .pw-pkg-price { font-size: 15px; font-weight: 700; color: var(--brand); }
+</style>
+
+<div id="paywall-modal" role="dialog" aria-modal="true" aria-labelledby="pw-title-text">
+  <div class="pw-card">
+    <button class="pw-close" onclick="hidePaywall()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Step 1: gate / email entry -->
+    <div class="pw-step active" data-pw-step="gate">
+      <p class="pw-eyebrow">One free download used</p>
+      <h2 class="pw-title" id="pw-title-text">Keep downloading with your email</h2>
+      <p class="pw-body">Enter your email and we'll send you a code. <strong>Already paid before?</strong> This also unlocks any credits you have left, on this device.</p>
+      <div class="pw-f">
+        <label for="pw-email">Email address</label>
+        <input id="pw-email" type="email" inputmode="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <p class="pw-err" id="pw-gate-err"></p>
+      <div class="pw-actions">
+        <button class="btn btn-primary" id="pw-send-btn" onclick="pwHandleSendCode()">Send code</button>
+      </div>
+    </div>
+
+    <!-- Step 2: OTP entry -->
+    <div class="pw-step" data-pw-step="otp">
+      <p class="pw-eyebrow">Check your messages</p>
+      <h2 class="pw-title">Enter the 6-digit code</h2>
+      <p class="pw-body">We sent a code to <strong id="pw-otp-email-display"></strong>.</p>
+      <div class="pw-f">
+        <label for="pw-otp">Verification code</label>
+        <input id="pw-otp" class="pw-otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="000000" autocomplete="one-time-code">
+      </div>
+      <p class="pw-err" id="pw-otp-err"></p>
+      <div class="pw-actions">
+        <button class="btn btn-primary" id="pw-verify-btn" onclick="pwHandleVerifyCode()">Verify</button>
+        <button class="pw-link" id="pw-resend-btn" onclick="pwHandleResend()">Resend code</button>
+        <button class="pw-link" onclick="pwGoToStep('gate')">Use a different email</button>
+      </div>
+    </div>
+
+    <!-- Step 3a: unlocked, credits available -->
+    <div class="pw-step" data-pw-step="unlocked">
+      <p class="pw-eyebrow">Verified</p>
+      <h2 class="pw-title">You're unlocked on this device</h2>
+      <div class="pw-credit-badge" id="pw-credit-badge">— credits remaining</div>
+      <p class="pw-body">Your downloads are ready to go.</p>
+      <div class="pw-actions">
+        <button class="btn btn-primary" id="pw-download-now-btn" onclick="pwHandleDownloadNow()">Download now</button>
+      </div>
+    </div>
+
+    <!-- Step 3b: verified, no credits — package picker (payment wiring lands in the next step of this build) -->
+    <div class="pw-step" data-pw-step="buy">
+      <p class="pw-eyebrow">Verified</p>
+      <h2 class="pw-title">Choose how many downloads you need</h2>
+      <p class="pw-body">Your number is confirmed. Pick a package to continue.</p>
+      <div class="pw-pkg" id="pw-pkg-list">
+        <!-- populated by pwRenderPackages() -->
+      </div>
+      <p class="pw-err" id="pw-buy-err"></p>
+      <div class="pw-actions">
+        <button class="btn btn-primary" id="pw-continue-payment-btn" onclick="pwHandleContinueToPayment()">Continue to payment</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- Package definitions (server-side lookup table lives in the payment
+  // Edge Function once built — Section 4.1 explicitly says never trust a
+  // frontend-computed price. This list is DISPLAY ONLY; the payment
+  // function re-resolves package -> price -> credits itself.) ---
+  const PW_PACKAGES = [
+    { id: "3_credits",       name: "3 downloads",  sub: "Most popular for one application round", price: "R49"  },
+    { id: "5_credits",       name: "5 downloads",  sub: "Cover letter + CV, a few rounds",         price: "R79"  },
+    { id: "unlimited_30d",   name: "Unlimited for 30 days", sub: "Actively job hunting",            price: "R149" },
+  ];
+
+  let pwSelectedPackage = null;
+  let pwPendingEmail = null;
+  let pwPendingDocType = "cv";
+  let pwPendingTemplateId = null;
+  let pwResendCooldownUntil = 0;
+
+  function pwGoToStep(step) {
+    document.querySelectorAll(".pw-step").forEach(el => el.classList.remove("active"));
+    const target = document.querySelector(`[data-pw-step="${step}"]`);
+    if (target) target.classList.add("active");
+    document.querySelectorAll(".pw-err").forEach(el => el.classList.remove("show"));
+  }
+
+  function pwShowError(id, message) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add("show");
+  }
+
+  function pwSetLoading(btnId, loading, loadingLabel, defaultLabel) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.disabled = loading;
+    btn.textContent = loading ? loadingLabel : defaultLabel;
+  }
+
+  // Called by attemptDownload() in procv-download-gate.js when the free
+  // gate refuses the download — remembers what the user was trying to
+  // download so we can resume it after verification.
+  function pwOpenForDownload(documentType, templateId) {
+    pwPendingDocType = documentType;
+    pwPendingTemplateId = templateId;
+    pwGoToStep("gate");
+    document.getElementById("pw-email").value = "";
+    showPaywall();
+  }
+
+  async function pwHandleSendCode() {
+    const email = document.getElementById("pw-email").value.trim();
+    pwSetLoading("pw-send-btn", true, "Sending…", "Send code");
+    const result = await requestOtp(email); // from procv-download-gate.js
+    pwSetLoading("pw-send-btn", false, "Sending…", "Send code");
+
+    if (!result.ok) {
+      pwShowError("pw-gate-err", result.error);
+      return;
+    }
+    pwTrack("otp_requested");
+    pwPendingEmail = result.normalizedEmail;
+    document.getElementById("pw-otp-email-display").textContent = pwPendingEmail;
+    document.getElementById("pw-otp").value = "";
+    pwResendCooldownUntil = Date.now() + 30000;
+    pwTickResendCooldown();
+    pwGoToStep("otp");
+  }
+
+  function pwTickResendCooldown() {
+    const btn = document.getElementById("pw-resend-btn");
+    const remaining = Math.ceil((pwResendCooldownUntil - Date.now()) / 1000);
+    if (remaining > 0) {
+      btn.disabled = true;
+      btn.textContent = `Resend code (${remaining}s)`;
+      setTimeout(pwTickResendCooldown, 1000);
+    } else {
+      btn.disabled = false;
+      btn.textContent = "Resend code";
+    }
+  }
+
+  async function pwHandleResend() {
+    if (Date.now() < pwResendCooldownUntil) return;
+    pwSetLoading("pw-resend-btn", true, "Sending…", "Resend code");
+    const result = await requestOtp(pwPendingEmail);
+    pwSetLoading("pw-resend-btn", false, "Sending…", "Resend code");
+    if (!result.ok) {
+      pwShowError("pw-otp-err", result.error);
+      return;
+    }
+    pwResendCooldownUntil = Date.now() + 30000;
+    pwTickResendCooldown();
+  }
+
+  async function pwHandleVerifyCode() {
+    const code = document.getElementById("pw-otp").value.trim();
+    if (!/^\d{6}$/.test(code)) {
+      pwShowError("pw-otp-err", "Enter the 6-digit code.");
+      return;
+    }
+    pwSetLoading("pw-verify-btn", true, "Verifying…", "Verify");
+    const result = await confirmOtp(pwPendingEmail, code); // from procv-download-gate.js
+    pwSetLoading("pw-verify-btn", false, "Verifying…", "Verify");
+
+    if (!result.ok) {
+      pwShowError("pw-otp-err", result.error);
+      return;
+    }
+
+    pwTrack("otp_verified");
+
+    if (result.unlocked) {
+      // confirmOtp already re-checked session-status; fetch it once more
+      // here just for display purposes (credit count in the badge).
+      const { data: { session } } = await supabase.auth.getSession();
+      const status = session ? await checkSessionStatus(session.access_token) : null;
+      const n = status ? status.credits_remaining : "";
+      document.getElementById("pw-credit-badge").textContent = `${n} ${n === 1 ? "credit" : "credits"} remaining`;
+      pwGoToStep("unlocked");
+    } else {
+      pwRenderPackages();
+      pwGoToStep("buy");
+    }
+  }
+
+  function pwHandleDownloadNow() {
+    hidePaywall();
+    attemptDownload(pwPendingDocType, pwPendingTemplateId);
+  }
+
+  function pwRenderPackages() {
+    const list = document.getElementById("pw-pkg-list");
+    list.innerHTML = PW_PACKAGES.map(p => `
+      <div class="pw-pkg-opt ${pwSelectedPackage === p.id ? "selected" : ""}" onclick="pwSelectPackage('${p.id}')">
+        <div>
+          <div class="pw-pkg-name">${p.name}</div>
+          <div class="pw-pkg-sub">${p.sub}</div>
+        </div>
+        <div class="pw-pkg-price">${p.price}</div>
+      </div>
+    `).join("");
+    if (!pwSelectedPackage) pwSelectedPackage = PW_PACKAGES[0].id;
+    pwRenderPackages_updateSelection();
+  }
+
+  function pwSelectPackage(id) {
+    pwSelectedPackage = id;
+    document.querySelectorAll(".pw-pkg-opt").forEach((el, i) => {
+      el.classList.toggle("selected", PW_PACKAGES[i].id === id);
+    });
+  }
+
+  function pwRenderPackages_updateSelection() {
+    document.querySelectorAll(".pw-pkg-opt").forEach((el, i) => {
+      el.classList.toggle("selected", PW_PACKAGES[i].id === pwSelectedPackage);
+    });
+  }
+
+  async function pwHandleContinueToPayment() {
+    if (!pwSelectedPackage) {
+      pwShowError("pw-buy-err", "Choose a package first.");
+      return;
+    }
+    pwTrack("payment_initiated", { package: pwSelectedPackage });
+    pwSetLoading("pw-continue-payment-btn", true, "Redirecting…", "Continue to payment");
+
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      pwSetLoading("pw-continue-payment-btn", false, "Redirecting…", "Continue to payment");
+      pwShowError("pw-buy-err", "Your session expired — please verify your number again.");
+      pwGoToStep("gate");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/payment-initiate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ package: pwSelectedPackage }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.redirect_url) {
+        throw new Error(data.error || "unknown_error");
+      }
+      // Full-page redirect to PayFast's hosted payment page. The user
+      // returns to APP_RETURN_URL afterwards, but crediting itself only
+      // happens via the server-to-server webhook, not this redirect.
+      window.location.href = data.redirect_url;
+    } catch (e) {
+      console.error("payment initiate failed", e);
+      pwSetLoading("pw-continue-payment-btn", false, "Redirecting…", "Continue to payment");
+      pwShowError("pw-buy-err", "Could not start payment. Please try again.");
+    }
+  }
+
+  window.pwOpenForDownload = pwOpenForDownload;
+  window.pwGoToStep = pwGoToStep;
+</script>

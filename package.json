@@ -1,0 +1,51 @@
+{
+  "name": "mellow-cv-factory-react",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18 <25"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "qa:syntax": "node tests/react-engine-syntax.cjs",
+    "qa:templates": "node tests/template-registry-check.cjs",
+    "server": "node server.cjs",
+    "qa:startup": "node tests/startup-path-check.cjs",
+    "qa:a4": "node tests/a4-page-stack-check.cjs",
+    "qa:page-contracts": "node tests/template-page-contracts.cjs",
+    "qa:contract-activation": "node tests/template-contract-activation.cjs",
+    "qa:pagination-no-shrink": "node tests/pagination-no-shrink.cjs",
+    "qa:overflow-reflow": "node tests/rendered-overflow-reflow.cjs",
+    "qa:all": "npm run qa:syntax && npm run qa:dead-code && npm run qa:template-identity-scope && npm run qa:templates && npm run qa:unified-templates && npm run qa:template-wiring && npm run qa:template-system-sync && npm run qa:startup && npm run qa:a4 && npm run qa:page-contracts && npm run qa:contract-activation && npm run qa:pagination-no-shrink && npm run qa:overflow-reflow && npm run qa:empty-pages && npm run qa:pagination-structure && npm run qa:premium-root-structure && npm run qa:mobile-a4 && npm run qa:strict-mobile-a4 && npm run qa:thumbnail-parity && npm run qa:thumbnail-mobile && npm run qa:card-compactness && npm run qa:history && npm run qa:section-coverage",
+    "qa:mobile-a4": "node tests/mobile-a4-preview-check.cjs",
+    "qa:strict-mobile-a4": "node tests/strict-mobile-a4-contract.cjs",
+    "qa:unified-templates": "node tests/unified-template-renderer.cjs",
+    "qa:pagination-structure": "node tests/pagination-structural-regression.cjs",
+    "qa:premium-root-structure": "node tests/premium-root-structure.cjs",
+    "qa:empty-pages": "node tests/empty-page-regression.cjs",
+    "qa:dead-code": "node tests/dead-code-regression.cjs",
+    "qa:template-identity-scope": "node tests/template-identity-scope.cjs",
+    "qa:template-wiring": "node tests/template-wiring-parity.cjs",
+    "qa:template-system-sync": "node tests/template-system-sync.cjs",
+    "qa:thumbnail-parity": "node tests/template-thumbnail-parity.cjs",
+    "qa:thumbnail-mobile": "node tests/thumbnail-mobile-a4.cjs",
+    "qa:card-compactness": "node tests/template-card-compactness.cjs",
+    "qa:history": "node tests/editor-history-contract.cjs",
+    "qa:section-coverage": "node tests/template-section-coverage.cjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.5"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/gallery", "destination": "/index.html" },
+    { "source": "/manager", "destination": "/index.html" },
+    { "source": "/builder", "destination": "/index.html" },
+    { "source": "/cover-letter", "destination": "/index.html" }
+  ],
+  "functions": { "api/export-pdf.js": { "maxDuration": 30, "memory": 1024 } }
+}
