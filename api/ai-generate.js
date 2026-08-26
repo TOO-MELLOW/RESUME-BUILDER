@@ -46,8 +46,8 @@ module.exports = async (req, res) => {
                           "\n\n[CV text truncated due to length. Focus on the most recent roles.]";
     }
 
-    const groqRes = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",  
-      method: "POST",
+    const groqRes = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
+  method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`
