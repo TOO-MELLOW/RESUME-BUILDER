@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     // Groq's context window is ~8k tokens. If the input is huge, 
     // the AI runs out of room to output the full JSON.
     let processedPrompt = prompt;
-    const MAX_PROMPT_CHARS = 6000;
+    const MAX_PROMPT_CHARS = 14000;  
     if (processedPrompt.length > MAX_PROMPT_CHARS) {
         // Truncate gracefully. Assumes the raw CV text is at the end of the prompt.
         // If you just send the raw text as the prompt, this cuts it directly.
@@ -67,7 +67,7 @@ module.exports = async (req, res) => {
         // ----- THE FIX: Increased max_tokens drastically for JSON -----
         // 6000 tokens is enough for a 3-page CV full of bullet points.
         // 800 tokens is plenty for a simple text tip.
-        max_tokens: json ? 2000 : 400
+        max_tokens: json ? 8000 : 800
       })
     });
     
