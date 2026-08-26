@@ -53,7 +53,7 @@ module.exports = async (req, res) => {
         Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: "gemini-2.0-flash",
+        model: "gemini-3.6-flash",
         messages: [
           {
             role: "system",
