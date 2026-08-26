@@ -30,6 +30,18 @@
     box-shadow: none !important;
   }
 
+  /* Defensive re-assertion of the page background.
+     Several per-template print blocks in styles.css historically zeroed out
+     the page background (`background:none`) under @media print, which is
+     invisible on screen but strips the tint from every server-exported PDF.
+     This file loads last and wins the cascade, so restoring `--bg` here
+     guarantees the intended color survives regardless of what any current
+     or future template-specific print rule does. Safe no-op for templates
+     that never set --bg. */
+  [data-template] {
+    background: var(--bg, #fff) !important;
+  }
+
   [data-template] .cv,
   [data-template] .page {
     width: 210mm !important;
@@ -63,6 +75,29 @@
   [data-template] .p2grid > * {
     height: 100% !important;
     min-height: 0 !important;
+  }
+
+  /* Explicit safety net for sidebar/main region elements. The generic
+     "direct child of a known grid container" rule above only stretches
+     immediate children, so a sidebar/rail nested one level deeper (or
+     inside a container class outside that fixed list) never gets the
+     full-height treatment. Target the same region selectors the
+     pagination engine itself uses (see REGION_ELEMENT_SELECTORS in
+     src/engine/ResumeDocument.jsx) so a colored sidebar always stretches
+     to the full page height instead of stopping where its content ends. */
+  [data-template] [data-role="sidebar"],
+  [data-template] .sidebar,
+  [data-template] .side,
+  [data-template] .rail,
+  [data-template] .facet-sidebar,
+  [data-template] .duo-sidebar,
+  [data-template] .split-rail,
+  [data-template] [data-role="main"],
+  [data-template] .main,
+  [data-template] .facet-main,
+  [data-template] .duo-main {
+    height: 100% !important;
+    min-height: 100% !important;
   }
 
   /* Keep atomic entries together */
