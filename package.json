@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run qa:print-background",
+    "prebuild": "npm run qa:print-background && npm run qa:react-engine-export-parity",
     "build": "vite build",
     "preview": "vite preview",
     "qa:syntax": "node tests/react-engine-syntax.cjs",
@@ -20,7 +20,7 @@
     "qa:contract-activation": "node tests/template-contract-activation.cjs",
     "qa:pagination-no-shrink": "node tests/pagination-no-shrink.cjs",
     "qa:overflow-reflow": "node tests/rendered-overflow-reflow.cjs",
-    "qa:all": "npm run qa:syntax && npm run qa:dead-code && npm run qa:template-identity-scope && npm run qa:templates && npm run qa:unified-templates && npm run qa:template-wiring && npm run qa:template-system-sync && npm run qa:startup && npm run qa:a4 && npm run qa:page-contracts && npm run qa:contract-activation && npm run qa:pagination-no-shrink && npm run qa:overflow-reflow && npm run qa:empty-pages && npm run qa:pagination-structure && npm run qa:premium-root-structure && npm run qa:mobile-a4 && npm run qa:strict-mobile-a4 && npm run qa:thumbnail-parity && npm run qa:thumbnail-mobile && npm run qa:card-compactness && npm run qa:history && npm run qa:section-coverage && npm run qa:print-background",
+    "qa:all": "npm run qa:syntax && npm run qa:dead-code && npm run qa:template-identity-scope && npm run qa:templates && npm run qa:unified-templates && npm run qa:template-wiring && npm run qa:template-system-sync && npm run qa:startup && npm run qa:a4 && npm run qa:page-contracts && npm run qa:contract-activation && npm run qa:pagination-no-shrink && npm run qa:overflow-reflow && npm run qa:empty-pages && npm run qa:pagination-structure && npm run qa:premium-root-structure && npm run qa:mobile-a4 && npm run qa:strict-mobile-a4 && npm run qa:thumbnail-parity && npm run qa:thumbnail-mobile && npm run qa:card-compactness && npm run qa:history && npm run qa:section-coverage && npm run qa:print-background && npm run qa:react-engine-export-parity",
     "qa:mobile-a4": "node tests/mobile-a4-preview-check.cjs",
     "qa:strict-mobile-a4": "node tests/strict-mobile-a4-contract.cjs",
     "qa:unified-templates": "node tests/unified-template-renderer.cjs",
@@ -36,7 +36,8 @@
     "qa:card-compactness": "node tests/template-card-compactness.cjs",
     "qa:history": "node tests/editor-history-contract.cjs",
     "qa:section-coverage": "node tests/template-section-coverage.cjs",
-    "qa:print-background": "node tests/print-background-regression.cjs"
+    "qa:print-background": "node tests/print-background-regression.cjs",
+    "qa:react-engine-export-parity": "node tests/react-engine-export-parity.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",
