@@ -3304,12 +3304,26 @@ async function getPdfGlobalStyles() {
      * The template renderer already embeds each shell template's scoped CSS
      * inside its returned markup. Legacy templates use the global styles.css.
      *
-     * Keep the two stylesheets separate: template shell <style> blocks are
-     * inside pageHtml, so pdf-export.css must be appended AFTER pageHtml to
-     * become the final pagination authority.
+     * The live preview also depends on src/styles/react-engine.css — the
+     * React A4 engine's own stylesheet (page geometry, sidebar/main region
+     * stretching, pagination breaks, backgrounds). That file only ever
+     * reaches the browser through main.jsx's `import './styles/react-engine.css'`,
+     * a Vite-processed import with no stable URL, so the export document used
+     * to be built from styles.css + pdf-export.css alone and silently missed
+     * every rule that lived only in the engine stylesheet. That gap — not any
+     * single template's CSS — was the real cause of preview/export mismatches
+     * (wiped backgrounds, unstretched sidebars, wrong pagination) that kept
+     * resurfacing one template at a time. public/css/react-engine.css is a
+     * byte-for-byte static copy of that same file at a stable, fetchable URL
+     * (kept in sync by tests/react-engine-export-parity.cjs), so the export
+     * document now gets the identical engine rules the preview renders with.
+     *
+     * Keep pdf-export.css separate from the rest: template shell <style>
+     * blocks are inside pageHtml, so pdf-export.css must be appended AFTER
+     * pageHtml to remain the final pagination authority.
      */
-    const [baseCss, exportCss] = await Promise.all(
-        ['/css/styles.css', '/css/pdf-export.css'].map(async url => {
+    const [baseCss, engineCss, exportCss] = await Promise.all(
+        ['/css/styles.css', '/css/react-engine.css', '/css/pdf-export.css'].map(async url => {
             try {
                 const res = await fetch(url, { credentials: 'same-origin' });
                 if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
@@ -3321,7 +3335,7 @@ async function getPdfGlobalStyles() {
         })
     );
 
-    return { baseCss, exportCss };
+    return { baseCss: `${baseCss}\n${engineCss}`, exportCss };
 }
 
 function buildServerPdfDocument(root, documentType, styles) {
