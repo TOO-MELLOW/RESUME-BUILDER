@@ -30,18 +30,6 @@
     box-shadow: none !important;
   }
 
-  /* Defensive re-assertion of the page background.
-     Several per-template print blocks in styles.css historically zeroed out
-     the page background (`background:none`) under @media print, which is
-     invisible on screen but strips the tint from every server-exported PDF.
-     This file loads last and wins the cascade, so restoring `--bg` here
-     guarantees the intended color survives regardless of what any current
-     or future template-specific print rule does. Safe no-op for templates
-     that never set --bg. */
-  [data-template] {
-    background: var(--bg, #fff) !important;
-  }
-
   [data-template] .cv,
   [data-template] .page {
     width: 210mm !important;
