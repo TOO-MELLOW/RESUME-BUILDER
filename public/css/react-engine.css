@@ -1,0 +1,108 @@
+/*
+ * EXPORT-PIPELINE COPY of src/styles/react-engine.css.
+ *
+ * WHY THIS FILE EXISTS:
+ * The live app never loads this file — it loads the real one via
+ * `import './styles/react-engine.css'` in src/main.jsx, processed by Vite.
+ * That import path has no stable, fetchable URL (dev serves it through the
+ * Vite transform pipeline; a production build emits it as a hashed asset),
+ * so the server PDF export — which assembles a standalone HTML document and
+ * fetches its stylesheets by plain URL in getPdfGlobalStyles() — could never
+ * reach it. That gap was the actual root cause of every "preview looks right,
+ * export doesn't" bug this template set has hit: page geometry, sidebar
+ * stretching, backgrounds, and pagination breaks all live in this file, and
+ * NONE of them applied during export.
+ *
+ * This static copy under public/css/ gives the export pipeline a stable URL
+ * (/css/react-engine.css) to fetch, so the exported document uses the exact
+ * same engine rules as the live preview instead of a hand-maintained subset.
+ *
+ * KEEP THIS FILE BYTE-FOR-BYTE IDENTICAL TO src/styles/react-engine.css.
+ * tests/react-engine-export-parity.cjs enforces this on every `npm run qa:all`
+ * — if you edit one, edit the other, or the build fails.
+ */
+
+/* Canonical renderer geometry. All templates use this exact page frame. */
+#cv-root { position:relative; width:210mm; min-width:210mm; background:transparent; }
+.rf-resume-document { width:210mm; max-width:210mm; margin:0; padding:0; background:transparent; }
+.resume-pages { display:flex; flex-direction:column; gap:28px; align-items:center; }
+.rf-a4-page {
+  position:relative; width:210mm; height:297mm; min-width:210mm; min-height:297mm;
+  max-width:210mm; max-height:297mm; margin:0; padding:0; background:#fff; box-sizing:border-box;
+  overflow:hidden; break-after:page; page-break-after:always;
+  print-color-adjust:exact; -webkit-print-color-adjust:exact;
+  box-shadow:0 4px 22px rgba(0,0,0,.12);
+}
+.rf-a4-page:last-child { break-after:auto; page-break-after:auto; }
+.rf-page-content { position:relative; width:100%; min-height:100%; transform:none !important; transform-origin:top left; }
+.rf-page-content > .page[data-rf-template-page="true"] {
+  width:100%; max-width:100%; min-height:100% !important; height:auto !important; max-height:none !important;
+  margin:0 !important; overflow:visible !important; box-sizing:border-box;
+  break-after:auto !important; page-break-after:auto !important; box-shadow:none;
+}
+.rf-measure-context .rf-page-content,
+.rf-measure-context > .page,
+.rf-measure-context .page,
+.rf-measure-context .a4-page,
+.rf-measure-context .cv,
+.rf-measure-context [data-role="page"],
+.rf-measure-context .rf-page-content > .page[data-rf-template-page="true"] {
+  height:auto !important; min-height:0 !important; max-height:none !important; overflow:visible !important;
+}
+.rf-page-content [data-rf-continuation="true"] header,
+.rf-page-content [data-rf-continuation="true"] [data-rf-region="header"],
+.rf-page-content [data-rf-continuation="true"] [data-rf-hidden-continuation="true"] {
+  display:none !important;
+}
+@media screen and (max-width:850px) { #cv-root,.rf-resume-document,.rf-a4-page { width:210mm; } }
+@media print { .rf-a4-page { box-shadow:none !important; } }
+
+/* Section-coverage safety net. A template may style its own section markup,
+   but a visible section must never disappear just because a template forgot
+   to place it. */
+.rf-fallback-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rf-fallback-section {
+  box-sizing: border-box;
+  width: 100%;
+  break-inside: auto;
+  page-break-inside: auto;
+}
+.rf-fallback-section > * {
+  box-sizing: border-box;
+}
+.rf-fallback-section .entry,
+.rf-fallback-section .side-item,
+.rf-fallback-section .ref-item,
+.rf-fallback-section .skill-tag,
+.rf-fallback-section .strength-chip {
+  box-sizing: border-box;
+}
+
+@media print {
+  .rf-a4-page {
+    break-after: page;
+    page-break-after: always;
+  }
+  .rf-a4-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+  .rf-page-content [data-rf-section-type] {
+    box-sizing: border-box;
+  }
+  .rf-page-content .entry,
+  .rf-page-content .experience-item,
+  .rf-page-content .education-item,
+  .rf-page-content .project-item,
+  .rf-page-content .custom-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

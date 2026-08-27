@@ -105,8 +105,29 @@
     page-break-before: always !important;
   }
 
-  [data-template] .page:last-child,
-  [data-template] .page-break:last-child {
+  /* Unconditional, correct page-to-page break. Do not base this on
+     `.page[data-template]:last-child` — every rendered `.page` is the sole
+     child of its own per-page `.rf-page-content` wrapper (see
+     src/styles/react-engine.css), so `:last-child` matches EVERY page, not
+     just the actual final one. Since `:last-child` outranks a bare
+     class/attribute selector in specificity, that always-matching rule
+     silently cancelled any `break-after: page` a template set on `.page`,
+     on every page — not only the last one — so multi-page resumes never
+     actually broke where intended.
+
+     `.rf-a4-page` is the reliable boundary instead: each one is a true DOM
+     sibling directly inside `.resume-pages` (ResumeDocument.jsx renders one
+     <PageFrame> per page, all as siblings), so `:last-child` on it always
+     resolves to exactly the real last page. react-engine.css already
+     enforces this same contract for the live preview; restating it here
+     makes pdf-export.css the correct, unconditional authority on its own,
+     independent of whether the engine stylesheet also loaded. */
+  .resume-pages > .rf-a4-page {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  .resume-pages > .rf-a4-page:last-child {
     break-after: auto !important;
     page-break-after: auto !important;
   }
