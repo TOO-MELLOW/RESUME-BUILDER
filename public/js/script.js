@@ -696,10 +696,13 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const strengthsHtml=strengthsSec&&strengthsSec.items.some(it=>it.value&&it.value.trim())?`<section class="main-section" data-rf-section-type="strengths"><div class="strengths-row">${strengthsSec.items.filter(it=>it.value&&it.value.trim()).map(it=>`<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></section>`:"";
         const skillsSec=vis.find(s=>s.type==="skills");
         const skillsHtml=skillsSec?`<div class="main-section"><p class="starter-sec-title">${escHtml(skillsSec.title)}</p>${skillsSec.items.length?skillsSec.items.map(it=>{const pct=SKILL_LEVEL_PCT[it.level]||55;return`<div class="skillbar-row"><div class="skillbar-lbl">${escHtml(it.name)}</div><div class="skillbar-track"><div class="skillbar-fill" style="width:${pct}%"></div></div><span class="skillbar-pct">${pct}%</span></div>`;}).join(""):`<p class="empty-note">None added.</p>`}</div>`:"";
-        // personal-info has no dedicated block in this template (unlike modern/split/etc,
-        // which call renderPersonalInfoAfterSummary) - it must fall through to the
-        // generic SR-based restSecs renderer below, not be filtered out entirely.
-        const restSecs=vis.filter(s=>s!==strengthsSec&&s.type!=="skills");
+        
+        const restSecs = vis.filter(
+    s => s !== strengthsSec &&
+         s.type !== "skills" &&
+         s.type !== "experience" &&
+         s.type !== "personal-info"
+);
         const restHtml=restSecs.map(s=>{const inner=SR[s.type]?SR[s.type](s):"";return `<div class="main-section"><p class="starter-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}</div>`;}).join("");
         const photoEl=p.photo?`<div class="starter-photo"><img src="${p.photo}" alt="Photo"></div>`:'';
         return `<div class="starter-header">${photoEl}<div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div></div><div class="starter-contact-row">${atsContactLine(p)}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${strengthsHtml}${skillsHtml}${restHtml}</div>`;
