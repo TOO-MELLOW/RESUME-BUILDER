@@ -28,6 +28,14 @@
   height:auto; max-height:none; overflow:visible;
 }
 
+/* --- NEW RULE: ensure premium root fills the A4 page width without clipping --- */
+[data-rf-template-root="true"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
 /* Sidebar premium shells contain an authored .cv layout frame. Its source
    CSS historically declared 210mm because it expected to be the document
    itself. Inside the canonical outer page it must instead fill the available
