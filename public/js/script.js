@@ -152,6 +152,7 @@ const BLANK = {
           else if(templateId==='sand-modern-two-page-08'){body+=rr(0,0,100,10,0,a,null);body+=txt(8,24,9,'#4A4038','JANE MOKOENA','start');body+=line(8,29,84,1,'#C8B8A5',.8);body+=rr(8,39,21,83,0,'#E9E0D4',null);for(let j=0;j<5;j++)body+=line(35,43+j*16,55,3,'#665A50',.25)}
           else if(templateId==='indigo-cards-09'){body+=txt(8,16,4,a,'PROFILE 09','start');body+=txt(8,27,10,'#25243B','JANE','start');body+=txt(8,36,10,'#25243B','MOKOENA','start');for(let j=0;j<5;j++){body+=rr(39,28+j*20,52,15,2,'#fff',1);body+=line(43,34+j*20,38,2,a,.3)}}
           else if(templateId==='teal-command-two-page-10'){body+=rr(0,0,100,18,0,a,null);body+=txt(8,13,5,'#fff','COMMAND / 10','start');body+=txt(8,29,9,'#204E4B','JANE MOKOENA','start');body+=rr(8,39,25,83,0,'#DCEDEA',null);for(let j=0;j<5;j++)body+=line(39,43+j*16,53,3,'#526A68',.24)}
+          else if(templateId==='executive-01'){body+=rr(0,0,100,31,0,'#1B2A4A',null);body+=txt(8,12,3.5,'#C9D5E6','EXECUTIVE PROFILE','start');body+=txt(8,24,8,'#FFFFFF','JANE MOKOENA','start');body+=txt(8,28,3.4,'#B8C9DF','EXECUTIVE LEADER','start');body+=line(70,38,22,2,'#C9A84C',.8);body+=line(8,46,84,2,'#526276',.2);for(let j=0;j<4;j++){body+=rr(8,54+j*16,54,12,1,'#FFFFFF',1);body+=line(12,59+j*16,39,2,'#1B2A4A',.28)}body+=rr(67,54,25,54,1,'#EEF1F5',1);for(let j=0;j<4;j++)body+=line(71,60+j*10,16,2,'#1B2A4A',.26)}
           return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
         }
         // Never return the old blank fallback. Remaining templates receive a
@@ -380,7 +381,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     const SR = {
         experience(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         education(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
-        projects(s){ const h=s.items.map(it=>`<div class="entry"><div$ class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div><span class="entry-date">${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
+        projects(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div><span class="entry-date">${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         custom(s){ const h=s.items.map(it=>`<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         "personal-info"(s){ const h=s.items.map(it=>`<div class="side-item">${escHtml(it.label)}: <span class="meta">${escHtml(it.value)}</span></div>`).join(""); return wrapSide(s.title,h,s.type); },
         skills(s){ return wrapSide(s.title,s.items.map(it=>`<span class="skill-tag">${escHtml(it.name)}</span>`).join(""),s.type); },
@@ -473,11 +474,11 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         }).join("");
         const frame=tid==='split-01'?'split-ledger':tid==='split-02'?'split-bracket':tid==='split-03'?'split-corner':'split-frame';
         const intro = tid==='split-03'
-            ? `<div class="split-header split-header-corner"><div><p class="job-title">${escHtml(p.jobTitle)}</p><p class="name">${escHtml(p.fullName)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
+            ? `<div class="split-header split-header-corner" data-rf-region="header"><div><p class="job-title">${escHtml(p.jobTitle)}</p><p class="name">${escHtml(p.fullName)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
             : tid==='split-04'
-            ? `<div class="split-header split-header-frame"><div class="nameblock"><p class="eyebrow">PROFESSIONAL PROFILE</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
-            : `<div class="split-header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`;
-        return `<div class="split-shell ${frame}"><div class="main">${intro}<hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div><div class="sidebar">${railHtml}</div></div>`;
+            ? `<div class="split-header split-header-frame" data-rf-region="header"><div class="nameblock"><p class="eyebrow">PROFESSIONAL PROFILE</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
+            : `<div class="split-header" data-rf-region="header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`;
+        return `<div class="split-shell ${frame}"><div class="main"><div class="ledger-header-zone">${intro}</div><hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div><div class="sidebar">${railHtml}</div></div>`;
     }
     function renderTimeline(data, tid) {
         const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
@@ -487,7 +488,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
           ? `<div class="tl-mast"><span class="tl-index">CV</span><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`
           : tid==='timeline-03'
           ? `<div class="tl-mast tl-mast-journey"><div><p class="eyebrow">CAREER JOURNEY</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`
-          : `<div class="tl-mast"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`;
+          : `<div class="tl-mast" data-rf-region="header"><div><p class="eyebrow">CAREER PATH</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`;
         return `<div class="main ${cls}">${head}<hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
     }
     const SKILL_LEVEL_PCT={"Beginner":35,"Basic":35,"Intermediate":60,"Proficient":75,"Advanced":90,"Expert":95,"Native":100,"Fluent":95,"Conversational":65};
