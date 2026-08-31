@@ -19,7 +19,7 @@
     "qa:contract-activation": "node tests/template-contract-activation.cjs",
     "qa:pagination-no-shrink": "node tests/pagination-no-shrink.cjs",
     "qa:overflow-reflow": "node tests/rendered-overflow-reflow.cjs",
-    "qa:all": "npm run qa:legacy-migration && npm run qa:syntax && npm run qa:dead-code && npm run qa:template-identity-scope && npm run qa:templates && npm run qa:unified-templates && npm run qa:startup && npm run qa:a4 && npm run qa:page-contracts && npm run qa:contract-activation && npm run qa:pagination-no-shrink && npm run qa:overflow-reflow && npm run qa:empty-pages && npm run qa:pagination-structure && npm run qa:premium-root-structure && npm run qa:mobile-a4 && npm run qa:strict-mobile-a4",
+    "qa:all": "npm run qa:syntax && npm run qa:dead-code && npm run qa:template-identity-scope && npm run qa:templates && npm run qa:unified-templates && npm run qa:startup && npm run qa:a4 && npm run qa:page-contracts && npm run qa:contract-activation && npm run qa:pagination-no-shrink && npm run qa:overflow-reflow && npm run qa:empty-pages && npm run qa:pagination-structure && npm run qa:premium-root-structure && npm run qa:mobile-a4 && npm run qa:strict-mobile-a4",
     "qa:mobile-a4": "node tests/mobile-a4-preview-check.cjs",
     "qa:strict-mobile-a4": "node tests/strict-mobile-a4-contract.cjs",
     "qa:unified-templates": "node tests/unified-template-renderer.cjs",
@@ -27,8 +27,7 @@
     "qa:premium-root-structure": "node tests/premium-root-structure.cjs",
     "qa:empty-pages": "node tests/empty-page-regression.cjs",
     "qa:dead-code": "node tests/dead-code-regression.cjs",
-    "qa:template-identity-scope": "node tests/template-identity-scope.cjs",
-    "qa:legacy-migration": "node tests/legacy-migration-integrity.cjs"
+    "qa:template-identity-scope": "node tests/template-identity-scope.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",

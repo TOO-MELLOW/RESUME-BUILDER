@@ -1,103 +1,583 @@
-{
-  "templateCount": 83,
-  "templateIds": [
-    "luxury-editorial-01",
-    "black-champagne-executive-02",
-    "architectural-grid-03",
-    "modern-swiss-04",
-    "fashion-editorial-portrait-05",
-    "dark-executive-06",
-    "european-minimal-07",
-    "burgundy-heritage-08",
-    "technology-executive-09",
-    "portrait-luxury-10",
-    "contemporary-public-sector-11",
-    "finance-executive-12",
-    "creative-director-13",
-    "magazine-column-portrait-14",
-    "monochrome-gallery-15",
-    "modernist-geometry-16",
-    "forest-estate-17",
-    "sapphire-executive-portrait-18",
-    "premium-consultant-19",
-    "editorial-portrait-20",
-    "asymmetric-architecture-21",
-    "luxury-portfolio-22",
-    "slate-copper-23",
-    "modern-academic-24",
-    "high-end-minimal-25",
-    "vertical-navigation-26",
-    "art-directed-corporate-27",
-    "dark-editorial-28",
-    "modern-european-29",
-    "signature-executive-30",
-    "graphite-sidebar-01",
-    "ivory-editorial-sidebar-02",
-    "navy-vertical-rail-03",
-    "burgundy-two-page-04",
-    "forest-profile-sidebar-05",
-    "black-copper-executive-06",
-    "slate-portfolio-07",
-    "sand-modern-two-page-08",
-    "indigo-cards-09",
-    "teal-command-two-page-10",
-    "modern-01",
-    "modern-02",
-    "modern-03",
-    "ats-01",
-    "ats-02",
-    "ats-03",
-    "ats-04",
-    "executive-01",
-    "executive-02",
-    "creative-01",
-    "split-01",
-    "split-02",
-    "split-03",
-    "split-04",
-    "timeline-01",
-    "timeline-02",
-    "timeline-03",
-    "combined-01",
-    "combined-02",
-    "combined-03",
-    "combined-04",
-    "practical-01",
-    "practical-02",
-    "practical-03",
-    "functional-01",
-    "functional-02",
-    "functional-03",
-    "trade-01",
-    "trade-02",
-    "trade-03",
-    "starter-01",
-    "starter-02",
-    "starter-03",
-    "mono-01",
-    "mono-02",
-    "mono-03",
-    "facet-01",
-    "facet-02",
-    "facet-03",
-    "facet-04",
-    "duo-01",
-    "duo-02",
-    "duo-03"
-  ],
-  "categories": {
-    "premium": 30,
-    "premium-sidebar": 10,
-    "modern": 6,
-    "ats": 5,
-    "executive": 4,
-    "creative": 2,
-    "student": 10,
-    "career-change": 3,
-    "trade": 3,
-    "elegant": 10
+[
+  {
+    "template_id": "modern-01",
+    "name": "Classic",
+    "category": "modern",
+    "source": "legacy",
+    "order": 1
   },
-  "projectsSectionRemoved": true,
-  "legacySource": "RESUME-BUILDER-main.zip (first 43 non-South-African templates)",
-  "premiumSource": "RESUME-BUILDER-PREMIUM-ONLY-FINAL(1).zip"
-}
+  {
+    "template_id": "modern-02",
+    "name": "Inverse",
+    "category": "modern",
+    "source": "legacy",
+    "order": 2
+  },
+  {
+    "template_id": "modern-03",
+    "name": "Accent",
+    "category": "modern",
+    "source": "legacy",
+    "order": 3
+  },
+  {
+    "template_id": "ats-01",
+    "name": "Clean",
+    "category": "ats",
+    "source": "legacy",
+    "order": 4
+  },
+  {
+    "template_id": "ats-02",
+    "name": "Split",
+    "category": "ats",
+    "source": "legacy",
+    "order": 5
+  },
+  {
+    "template_id": "ats-03",
+    "name": "Compact",
+    "category": "ats",
+    "source": "legacy",
+    "order": 6
+  },
+  {
+    "template_id": "ats-04",
+    "name": "Caps",
+    "category": "ats",
+    "source": "legacy",
+    "order": 7
+  },
+  {
+    "template_id": "executive-01",
+    "name": "Prestige",
+    "category": "executive",
+    "source": "legacy",
+    "order": 8
+  },
+  {
+    "template_id": "executive-02",
+    "name": "Formal",
+    "category": "executive",
+    "source": "legacy",
+    "order": 9
+  },
+  {
+    "template_id": "creative-01",
+    "name": "Vivid",
+    "category": "creative",
+    "source": "legacy",
+    "order": 10
+  },
+  {
+    "template_id": "split-01",
+    "name": "Ledger",
+    "category": "modern",
+    "source": "legacy",
+    "order": 11
+  },
+  {
+    "template_id": "split-02",
+    "name": "Bracket",
+    "category": "modern",
+    "source": "legacy",
+    "order": 12
+  },
+  {
+    "template_id": "split-03",
+    "name": "Corner",
+    "category": "creative",
+    "source": "legacy",
+    "order": 13
+  },
+  {
+    "template_id": "split-04",
+    "name": "Frame",
+    "category": "executive",
+    "source": "legacy",
+    "order": 14
+  },
+  {
+    "template_id": "timeline-01",
+    "name": "Pathway",
+    "category": "modern",
+    "source": "legacy",
+    "order": 15
+  },
+  {
+    "template_id": "timeline-02",
+    "name": "Milestone",
+    "category": "ats",
+    "source": "legacy",
+    "order": 16
+  },
+  {
+    "template_id": "timeline-03",
+    "name": "Journey",
+    "category": "executive",
+    "source": "legacy",
+    "order": 17
+  },
+  {
+    "template_id": "combined-01",
+    "name": "All Together",
+    "category": "student",
+    "source": "legacy",
+    "order": 18
+  },
+  {
+    "template_id": "combined-02",
+    "name": "One Story",
+    "category": "student",
+    "source": "legacy",
+    "order": 19
+  },
+  {
+    "template_id": "combined-03",
+    "name": "Steady Path",
+    "category": "student",
+    "source": "legacy",
+    "order": 20
+  },
+  {
+    "template_id": "combined-04",
+    "name": "Groundwork",
+    "category": "student",
+    "source": "legacy",
+    "order": 21
+  },
+  {
+    "template_id": "practical-01",
+    "name": "Ready to Work",
+    "category": "student",
+    "source": "legacy",
+    "order": 22
+  },
+  {
+    "template_id": "practical-02",
+    "name": "On Call",
+    "category": "student",
+    "source": "legacy",
+    "order": 23
+  },
+  {
+    "template_id": "practical-03",
+    "name": "Hands On",
+    "category": "student",
+    "source": "legacy",
+    "order": 24
+  },
+  {
+    "template_id": "functional-01",
+    "name": "Strong Suit",
+    "category": "career-change",
+    "source": "legacy",
+    "order": 25
+  },
+  {
+    "template_id": "functional-02",
+    "name": "New Direction",
+    "category": "career-change",
+    "source": "legacy",
+    "order": 26
+  },
+  {
+    "template_id": "functional-03",
+    "name": "Turning Point",
+    "category": "career-change",
+    "source": "legacy",
+    "order": 27
+  },
+  {
+    "template_id": "trade-01",
+    "name": "On the Tools",
+    "category": "trade",
+    "source": "legacy",
+    "order": 28
+  },
+  {
+    "template_id": "trade-02",
+    "name": "Certified",
+    "category": "trade",
+    "source": "legacy",
+    "order": 29
+  },
+  {
+    "template_id": "trade-03",
+    "name": "Skilled Hands",
+    "category": "trade",
+    "source": "legacy",
+    "order": 30
+  },
+  {
+    "template_id": "starter-01",
+    "name": "Starter Classic",
+    "category": "student",
+    "source": "legacy",
+    "order": 31
+  },
+  {
+    "template_id": "starter-02",
+    "name": "Starter Warm",
+    "category": "student",
+    "source": "legacy",
+    "order": 32
+  },
+  {
+    "template_id": "starter-03",
+    "name": "Starter Cool",
+    "category": "student",
+    "source": "legacy",
+    "order": 33
+  },
+  {
+    "template_id": "mono-01",
+    "name": "Stonewood",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 34
+  },
+  {
+    "template_id": "mono-02",
+    "name": "Sagebrook",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 35
+  },
+  {
+    "template_id": "mono-03",
+    "name": "Slateview",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 36
+  },
+  {
+    "template_id": "facet-01",
+    "name": "Terraline",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 37
+  },
+  {
+    "template_id": "facet-02",
+    "name": "Deepwater",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 38
+  },
+  {
+    "template_id": "facet-03",
+    "name": "Plumline",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 39
+  },
+  {
+    "template_id": "facet-04",
+    "name": "Brasswork",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 40
+  },
+  {
+    "template_id": "duo-01",
+    "name": "Rosemere",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 41
+  },
+  {
+    "template_id": "duo-02",
+    "name": "Willowgreen",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 42
+  },
+  {
+    "template_id": "duo-03",
+    "name": "Warmstone",
+    "category": "elegant",
+    "source": "legacy",
+    "order": 43
+  },
+  {
+    "template_id": "luxury-editorial-01",
+    "name": "Luxury Editorial",
+    "category": "premium",
+    "source": "premium",
+    "order": 44
+  },
+  {
+    "template_id": "black-champagne-executive-02",
+    "name": "Black Champagne Executive",
+    "category": "premium",
+    "source": "premium",
+    "order": 45
+  },
+  {
+    "template_id": "architectural-grid-03",
+    "name": "Architectural Grid",
+    "category": "premium",
+    "source": "premium",
+    "order": 46
+  },
+  {
+    "template_id": "modern-swiss-04",
+    "name": "Modern Swiss",
+    "category": "premium",
+    "source": "premium",
+    "order": 47
+  },
+  {
+    "template_id": "fashion-editorial-portrait-05",
+    "name": "Fashion Editorial Portrait",
+    "category": "premium",
+    "source": "premium",
+    "order": 48
+  },
+  {
+    "template_id": "dark-executive-06",
+    "name": "Dark Executive",
+    "category": "premium",
+    "source": "premium",
+    "order": 49
+  },
+  {
+    "template_id": "european-minimal-07",
+    "name": "European Minimal",
+    "category": "premium",
+    "source": "premium",
+    "order": 50
+  },
+  {
+    "template_id": "burgundy-heritage-08",
+    "name": "Burgundy Heritage",
+    "category": "premium",
+    "source": "premium",
+    "order": 51
+  },
+  {
+    "template_id": "technology-executive-09",
+    "name": "Technology Executive",
+    "category": "premium",
+    "source": "premium",
+    "order": 52
+  },
+  {
+    "template_id": "portrait-luxury-10",
+    "name": "Portrait Luxury",
+    "category": "premium",
+    "source": "premium",
+    "order": 53
+  },
+  {
+    "template_id": "contemporary-public-sector-11",
+    "name": "Contemporary Public Sector",
+    "category": "premium",
+    "source": "premium",
+    "order": 54
+  },
+  {
+    "template_id": "finance-executive-12",
+    "name": "Finance Executive",
+    "category": "premium",
+    "source": "premium",
+    "order": 55
+  },
+  {
+    "template_id": "creative-director-13",
+    "name": "Creative Director",
+    "category": "premium",
+    "source": "premium",
+    "order": 56
+  },
+  {
+    "template_id": "magazine-column-portrait-14",
+    "name": "Magazine Column Portrait",
+    "category": "premium",
+    "source": "premium",
+    "order": 57
+  },
+  {
+    "template_id": "monochrome-gallery-15",
+    "name": "Monochrome Gallery",
+    "category": "premium",
+    "source": "premium",
+    "order": 58
+  },
+  {
+    "template_id": "modernist-geometry-16",
+    "name": "Modernist Geometry",
+    "category": "premium",
+    "source": "premium",
+    "order": 59
+  },
+  {
+    "template_id": "forest-estate-17",
+    "name": "Forest Estate",
+    "category": "premium",
+    "source": "premium",
+    "order": 60
+  },
+  {
+    "template_id": "sapphire-executive-portrait-18",
+    "name": "Sapphire Executive Portrait",
+    "category": "premium",
+    "source": "premium",
+    "order": 61
+  },
+  {
+    "template_id": "premium-consultant-19",
+    "name": "Premium Consultant",
+    "category": "premium",
+    "source": "premium",
+    "order": 62
+  },
+  {
+    "template_id": "editorial-portrait-20",
+    "name": "Editorial Portrait",
+    "category": "premium",
+    "source": "premium",
+    "order": 63
+  },
+  {
+    "template_id": "asymmetric-architecture-21",
+    "name": "Asymmetric Architecture",
+    "category": "premium",
+    "source": "premium",
+    "order": 64
+  },
+  {
+    "template_id": "luxury-portfolio-22",
+    "name": "Luxury Portfolio",
+    "category": "premium",
+    "source": "premium",
+    "order": 65
+  },
+  {
+    "template_id": "slate-copper-23",
+    "name": "Slate Copper",
+    "category": "premium",
+    "source": "premium",
+    "order": 66
+  },
+  {
+    "template_id": "modern-academic-24",
+    "name": "Modern Academic",
+    "category": "premium",
+    "source": "premium",
+    "order": 67
+  },
+  {
+    "template_id": "high-end-minimal-25",
+    "name": "High End Minimal",
+    "category": "premium",
+    "source": "premium",
+    "order": 68
+  },
+  {
+    "template_id": "vertical-navigation-26",
+    "name": "Vertical Navigation",
+    "category": "premium",
+    "source": "premium",
+    "order": 69
+  },
+  {
+    "template_id": "art-directed-corporate-27",
+    "name": "Art Directed Corporate",
+    "category": "premium",
+    "source": "premium",
+    "order": 70
+  },
+  {
+    "template_id": "dark-editorial-28",
+    "name": "Dark Editorial",
+    "category": "premium",
+    "source": "premium",
+    "order": 71
+  },
+  {
+    "template_id": "modern-european-29",
+    "name": "Modern European",
+    "category": "premium",
+    "source": "premium",
+    "order": 72
+  },
+  {
+    "template_id": "signature-executive-30",
+    "name": "Signature Executive",
+    "category": "premium",
+    "source": "premium",
+    "order": 73
+  },
+  {
+    "template_id": "graphite-sidebar-01",
+    "name": "Graphite Sidebar",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 74
+  },
+  {
+    "template_id": "ivory-editorial-sidebar-02",
+    "name": "Ivory Editorial Sidebar",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 75
+  },
+  {
+    "template_id": "navy-vertical-rail-03",
+    "name": "Navy Vertical Rail",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 76
+  },
+  {
+    "template_id": "burgundy-two-page-04",
+    "name": "Burgundy Two Page",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 77
+  },
+  {
+    "template_id": "forest-profile-sidebar-05",
+    "name": "Forest Profile Sidebar",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 78
+  },
+  {
+    "template_id": "black-copper-executive-06",
+    "name": "Black Copper Executive",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 79
+  },
+  {
+    "template_id": "slate-portfolio-07",
+    "name": "Slate Portfolio",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 80
+  },
+  {
+    "template_id": "sand-modern-two-page-08",
+    "name": "Sand Modern Two Page",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 81
+  },
+  {
+    "template_id": "indigo-cards-09",
+    "name": "Indigo Cards",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 82
+  },
+  {
+    "template_id": "teal-command-two-page-10",
+    "name": "Teal Command Two Page",
+    "category": "premium-sidebar",
+    "source": "premium",
+    "order": 83
+  }
+]
