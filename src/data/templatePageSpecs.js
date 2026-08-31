@@ -1,5 +1,2941 @@
 export const templatePageSpecs = [
   {
+    "id": "luxury-editorial-01",
+    "name": "Luxury Editorial",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "div.hero"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "template-specific continuation frame; never clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; content flows into the same frame geometry",
+      "hidePage1ChromeSelectors": [
+        "div.hero"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "black-champagne-executive-02",
+    "name": "Black Champagne Executive",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "architectural-grid-03",
+    "name": "Architectural Grid",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "modern-swiss-04",
+    "name": "Modern Swiss",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "fashion-editorial-portrait-05",
+    "name": "Fashion Editorial Portrait",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "div.hero"
+      ],
+      "photo": [
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "dark-executive-06",
+    "name": "Dark Executive",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "european-minimal-07",
+    "name": "European Minimal",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "burgundy-heritage-08",
+    "name": "Burgundy Heritage",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "technology-executive-09",
+    "name": "Technology Executive",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "portrait-luxury-10",
+    "name": "Portrait Luxury",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": "[data-template=\"portrait-luxury-10\"]",
+      "layout": "two-column",
+      "header": [],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {},
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        "[data-template=\"portrait-luxury-10\"]",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "contemporary-public-sector-11",
+    "name": "Contemporary Public Sector",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "finance-executive-12",
+    "name": "Finance Executive",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "creative-director-13",
+    "name": "Creative Director",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [
+        "div.page.standard.creative-photo",
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "magazine-column-portrait-14",
+    "name": "Magazine Column Portrait",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [
+        "div.page.standard.magazine-photo",
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "monochrome-gallery-15",
+    "name": "Monochrome Gallery",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "modernist-geometry-16",
+    "name": "Modernist Geometry",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "forest-estate-17",
+    "name": "Forest Estate",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "sapphire-executive-portrait-18",
+    "name": "Sapphire Executive Portrait",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [
+        "div.page.standard.portrait2",
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "premium-consultant-19",
+    "name": "Premium Consultant",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "editorial-portrait-20",
+    "name": "Editorial Portrait",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "div.hero"
+      ],
+      "photo": [
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "asymmetric-architecture-21",
+    "name": "Asymmetric Architecture",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "luxury-portfolio-22",
+    "name": "Luxury Portfolio",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [
+        "div.page.standard.portfolio-photo",
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "slate-copper-23",
+    "name": "Slate Copper",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "modern-academic-24",
+    "name": "Modern Academic",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "high-end-minimal-25",
+    "name": "High End Minimal",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "vertical-navigation-26",
+    "name": "Vertical Navigation",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [
+        "div.page.standard.vertical-photo",
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "art-directed-corporate-27",
+    "name": "Art Directed Corporate",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [
+        "div.page.standard.corporate-photo",
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "dark-editorial-28",
+    "name": "Dark Editorial",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "modern-european-29",
+    "name": "Modern European",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top",
+        "div.topline",
+        "div.identity"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "signature-executive-30",
+    "name": "Signature Executive",
+    "category": "premium",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [],
+      "photo": [
+        "div.photo.portrait"
+      ],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "graphite-sidebar-01",
+    "name": "Graphite Sidebar",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".cv",
+      "layout": "two-column",
+      "header": [
+        "header.hero"
+      ],
+      "photo": [],
+      "footer": [
+        "div.footer"
+      ],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".cv",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]",
+        "div.footer"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "ivory-editorial-sidebar-02",
+    "name": "Ivory Editorial Sidebar",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "navy-vertical-rail-03",
+    "name": "Navy Vertical Rail",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".cv",
+      "layout": "two-column",
+      "header": [
+        "header.header"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "sidebar": [
+          "div"
+        ],
+        "contact": [
+          "div.contact"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".cv",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "burgundy-two-page-04",
+    "name": "Burgundy Two Page",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 2,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.hero"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "forest-profile-sidebar-05",
+    "name": "Forest Profile Sidebar",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".cv",
+      "layout": "two-column",
+      "header": [
+        "header.header"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".cv",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "black-copper-executive-06",
+    "name": "Black Copper Executive",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".cv",
+      "layout": "two-column",
+      "header": [
+        "header.top"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".cv",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "slate-portfolio-07",
+    "name": "Slate Portfolio",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".cv",
+      "layout": "two-column",
+      "header": [
+        "header.header"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "main": [
+          "div"
+        ],
+        "sidebar": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".cv",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "sand-modern-two-page-08",
+    "name": "Sand Modern Two Page",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 2,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.header"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "indigo-cards-09",
+    "name": "Indigo Cards",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".cv",
+      "layout": "two-column",
+      "header": [
+        "header.hero"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "main": [
+          "div"
+        ],
+        "sidebar": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".cv",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "teal-command-two-page-10",
+    "name": "Teal Command Two Page",
+    "category": "premium-sidebar",
+    "layout": "two-column",
+    "sourceRenderer": "legacy",
+    "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 2,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "header": [
+        "header.top"
+      ],
+      "photo": [],
+      "footer": [],
+      "contentRoles": {
+        "contact": [
+          "div.contact"
+        ],
+        "sidebar": [
+          "div"
+        ],
+        "main": [
+          "div"
+        ]
+      },
+      "contentRegions": {
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "continuation": {
+      "design": "same template shell and content regions; no separate art-directed continuation",
+      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
+      "hidePage1ChromeSelectors": [
+        "[data-rf-region=\"header\"]"
+      ],
+      "preserveSelectors": [
+        ".page",
+        "[data-role=\"sidebar\"]",
+        "[data-role=\"main\"]"
+      ],
+      "photo": "never on continuation unless a template explicitly declares it",
+      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
+      "pageNumber": "template footer/page-number area when supported",
+      "specialContinuationHeader": null,
+      "preserveRegions": {
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengthscustom",
+        "main": "experience/education"
+      }
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
     "id": "modern-01",
     "name": "Classic",
     "category": "modern",
@@ -21,8 +2957,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/custom"
       }
     },
     "continuation": {
@@ -35,8 +2971,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -52,7 +2988,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -82,8 +3017,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/custom"
       }
     },
     "continuation": {
@@ -96,8 +3031,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -113,7 +3048,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -166,7 +3100,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -202,7 +3135,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -227,7 +3159,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -249,7 +3180,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -285,7 +3215,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -310,7 +3239,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -332,7 +3260,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -368,7 +3295,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -393,7 +3319,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -415,7 +3340,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -451,7 +3375,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -476,7 +3399,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -498,7 +3420,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -533,7 +3454,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -557,7 +3477,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -579,7 +3498,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -609,8 +3527,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/personal-info/experience/education/custom"
       }
     },
     "continuation": {
@@ -623,8 +3541,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/personal-info/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -640,7 +3558,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -678,7 +3595,6 @@ export const templatePageSpecs = [
           "references",
           "interests",
           "strengths",
-          "projects",
           "custom",
           "personal-info"
         ]
@@ -702,7 +3618,6 @@ export const templatePageSpecs = [
           "references",
           "interests",
           "strengths",
-          "projects",
           "custom",
           "personal-info"
         ]
@@ -721,7 +3636,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -749,8 +3663,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       }
     },
     "continuation": {
@@ -761,8 +3675,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -778,7 +3692,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -806,8 +3719,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       }
     },
     "continuation": {
@@ -818,8 +3731,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -835,7 +3748,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -863,8 +3775,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       }
     },
     "continuation": {
@@ -875,8 +3787,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -892,7 +3804,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -920,8 +3831,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       }
     },
     "continuation": {
@@ -932,8 +3843,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "summary/personal-info/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -949,7 +3860,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -987,7 +3897,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1014,7 +3923,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1036,7 +3944,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1074,7 +3981,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1101,7 +4007,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1123,7 +4028,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1161,7 +4065,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1188,7 +4091,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1210,7 +4112,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1237,7 +4138,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1247,7 +4148,7 @@ export const templatePageSpecs = [
         ".combined-header"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1263,7 +4164,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1290,7 +4190,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1300,7 +4200,7 @@ export const templatePageSpecs = [
         ".combined-header"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1316,7 +4216,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1343,7 +4242,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1353,7 +4252,7 @@ export const templatePageSpecs = [
         ".combined-header"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1369,7 +4268,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1396,7 +4294,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1406,7 +4304,7 @@ export const templatePageSpecs = [
         ".combined-header"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1422,7 +4320,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1450,7 +4347,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1461,7 +4358,7 @@ export const templatePageSpecs = [
         ".practical-rule"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1477,7 +4374,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1505,8 +4401,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -1517,8 +4413,8 @@ export const templatePageSpecs = [
         ".practical-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1534,7 +4430,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1562,7 +4457,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1573,7 +4468,7 @@ export const templatePageSpecs = [
         ".practical-rule"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1589,7 +4484,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1616,7 +4510,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1626,7 +4520,7 @@ export const templatePageSpecs = [
         ".functional-header"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1642,7 +4536,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1669,7 +4562,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1679,7 +4572,7 @@ export const templatePageSpecs = [
         ".functional-header"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1695,7 +4588,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1722,7 +4614,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1732,7 +4624,7 @@ export const templatePageSpecs = [
         ".functional-header"
       ],
       "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1748,7 +4640,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1775,7 +4666,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+        "main": "experience/education/skills/certificates/languages/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1785,7 +4676,7 @@ export const templatePageSpecs = [
         ".trade-header"
       ],
       "preserveRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+        "main": "experience/education/skills/certificates/languages/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1801,7 +4692,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1828,8 +4718,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "certificates/skills/languages/interests/strengths/references/projects/custom",
-        "main": "experience/education"
+        "sidebar": "certificates/skills/languages/interests/strengths/references",
+        "main": "experience/education/custom"
       }
     },
     "continuation": {
@@ -1839,8 +4729,8 @@ export const templatePageSpecs = [
         ".trade2-header"
       ],
       "preserveRegions": {
-        "sidebar": "certificates/skills/languages/interests/strengths/references/projects/custom",
-        "main": "experience/education"
+        "sidebar": "certificates/skills/languages/interests/strengths/references",
+        "main": "experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1856,7 +4746,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1883,7 +4772,7 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+        "main": "experience/education/skills/certificates/languages/references/interests/strengths/custom"
       }
     },
     "continuation": {
@@ -1893,7 +4782,7 @@ export const templatePageSpecs = [
         ".trade-header"
       ],
       "preserveRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+        "main": "experience/education/skills/certificates/languages/references/interests/strengths/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1909,7 +4798,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -1944,7 +4832,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1968,7 +4855,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -1990,7 +4876,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2025,7 +4910,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -2049,7 +4933,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -2071,7 +4954,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2106,7 +4988,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -2130,7 +5011,6 @@ export const templatePageSpecs = [
           "skills",
           "languages",
           "certifications",
-          "projects",
           "references",
           "interests",
           "strengths",
@@ -2152,7 +5032,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2179,8 +5058,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "main": "summary/experience/education",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
+        "main": "summary/experience/education/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
       }
     },
     "continuation": {
@@ -2190,8 +5069,8 @@ export const templatePageSpecs = [
         ".mono-top"
       ],
       "preserveRegions": {
-        "main": "summary/experience/education",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
+        "main": "summary/experience/education/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2207,7 +5086,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2234,8 +5112,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "main": "summary/experience/education",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
+        "main": "summary/experience/education/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
       }
     },
     "continuation": {
@@ -2245,8 +5123,8 @@ export const templatePageSpecs = [
         ".mono-top"
       ],
       "preserveRegions": {
-        "main": "summary/experience/education",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
+        "main": "summary/experience/education/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2262,7 +5140,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2289,8 +5166,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "main": "summary/experience/education",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
+        "main": "summary/experience/education/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
       }
     },
     "continuation": {
@@ -2300,8 +5177,8 @@ export const templatePageSpecs = [
         ".mono-top"
       ],
       "preserveRegions": {
-        "main": "summary/experience/education",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
+        "main": "summary/experience/education/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2317,7 +5194,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2348,8 +5224,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -2363,8 +5239,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2380,7 +5256,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2411,8 +5286,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -2426,8 +5301,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2443,7 +5318,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2474,8 +5348,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -2489,8 +5363,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2506,7 +5380,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2537,8 +5410,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -2552,8 +5425,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2569,7 +5442,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2600,8 +5472,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -2615,8 +5487,8 @@ export const templatePageSpecs = [
         ".duo-main > .summary"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2632,7 +5504,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2663,8 +5534,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -2678,8 +5549,8 @@ export const templatePageSpecs = [
         ".duo-main > .summary"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2695,7 +5566,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -2726,8 +5596,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       }
     },
     "continuation": {
@@ -2741,8 +5611,8 @@ export const templatePageSpecs = [
         ".duo-main > .summary"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
-        "main": "summary/experience/education"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2758,3715 +5628,6 @@ export const templatePageSpecs = [
       "keepTogether": [
         "experience-item",
         "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "luxury-editorial-01",
-    "name": "Luxury Editorial",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "div.hero"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "template-specific continuation frame; never clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; content flows into the same frame geometry",
-      "hidePage1ChromeSelectors": [
-        "div.hero"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "black-champagne-executive-02",
-    "name": "Black Champagne Executive",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "architectural-grid-03",
-    "name": "Architectural Grid",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "modern-swiss-04",
-    "name": "Modern Swiss",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "fashion-editorial-portrait-05",
-    "name": "Fashion Editorial Portrait",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "div.hero"
-      ],
-      "photo": [
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "dark-executive-06",
-    "name": "Dark Executive",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "european-minimal-07",
-    "name": "European Minimal",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "burgundy-heritage-08",
-    "name": "Burgundy Heritage",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "technology-executive-09",
-    "name": "Technology Executive",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "portrait-luxury-10",
-    "name": "Portrait Luxury",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": "[data-template=\"portrait-luxury-10\"]",
-      "layout": "two-column",
-      "header": [],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {},
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        "[data-template=\"portrait-luxury-10\"]",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "contemporary-public-sector-11",
-    "name": "Contemporary Public Sector",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "finance-executive-12",
-    "name": "Finance Executive",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "creative-director-13",
-    "name": "Creative Director",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [
-        "div.page.standard.creative-photo",
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "magazine-column-portrait-14",
-    "name": "Magazine Column Portrait",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [
-        "div.page.standard.magazine-photo",
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "monochrome-gallery-15",
-    "name": "Monochrome Gallery",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "modernist-geometry-16",
-    "name": "Modernist Geometry",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "forest-estate-17",
-    "name": "Forest Estate",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sapphire-executive-portrait-18",
-    "name": "Sapphire Executive Portrait",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [
-        "div.page.standard.portrait2",
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "premium-consultant-19",
-    "name": "Premium Consultant",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "editorial-portrait-20",
-    "name": "Editorial Portrait",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "div.hero"
-      ],
-      "photo": [
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "asymmetric-architecture-21",
-    "name": "Asymmetric Architecture",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "luxury-portfolio-22",
-    "name": "Luxury Portfolio",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [
-        "div.page.standard.portfolio-photo",
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "slate-copper-23",
-    "name": "Slate Copper",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "modern-academic-24",
-    "name": "Modern Academic",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "high-end-minimal-25",
-    "name": "High End Minimal",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "vertical-navigation-26",
-    "name": "Vertical Navigation",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [
-        "div.page.standard.vertical-photo",
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "art-directed-corporate-27",
-    "name": "Art Directed Corporate",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [
-        "div.page.standard.corporate-photo",
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "dark-editorial-28",
-    "name": "Dark Editorial",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "modern-european-29",
-    "name": "Modern European",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "signature-executive-30",
-    "name": "Signature Executive",
-    "category": "premium",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [],
-      "photo": [
-        "div.photo.portrait"
-      ],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "graphite-sidebar-01",
-    "name": "Graphite Sidebar",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".cv",
-      "layout": "two-column",
-      "header": [
-        "header.hero"
-      ],
-      "photo": [],
-      "footer": [
-        "div.footer"
-      ],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".cv",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]",
-        "div.footer"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "ivory-editorial-sidebar-02",
-    "name": "Ivory Editorial Sidebar",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "navy-vertical-rail-03",
-    "name": "Navy Vertical Rail",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".cv",
-      "layout": "two-column",
-      "header": [
-        "header.header"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "sidebar": [
-          "div"
-        ],
-        "contact": [
-          "div.contact"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".cv",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "burgundy-two-page-04",
-    "name": "Burgundy Two Page",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 2,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.hero"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "forest-profile-sidebar-05",
-    "name": "Forest Profile Sidebar",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".cv",
-      "layout": "two-column",
-      "header": [
-        "header.header"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".cv",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "black-copper-executive-06",
-    "name": "Black Copper Executive",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".cv",
-      "layout": "two-column",
-      "header": [
-        "header.top"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".cv",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "slate-portfolio-07",
-    "name": "Slate Portfolio",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".cv",
-      "layout": "two-column",
-      "header": [
-        "header.header"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "main": [
-          "div"
-        ],
-        "sidebar": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".cv",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sand-modern-two-page-08",
-    "name": "Sand Modern Two Page",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 2,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.header"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "indigo-cards-09",
-    "name": "Indigo Cards",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".cv",
-      "layout": "two-column",
-      "header": [
-        "header.hero"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "main": [
-          "div"
-        ],
-        "sidebar": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".cv",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "teal-command-two-page-10",
-    "name": "Teal Command Two Page",
-    "category": "premium-sidebar",
-    "layout": "two-column",
-    "sourceRenderer": "legacy",
-    "sourceConfidence": "migrated-from-source-shell",
-    "pageCountSeed": 2,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "header": [
-        "header.top"
-      ],
-      "photo": [],
-      "footer": [],
-      "contentRoles": {
-        "contact": [
-          "div.contact"
-        ],
-        "sidebar": [
-          "div"
-        ],
-        "main": [
-          "div"
-        ]
-      },
-      "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "continuation": {
-      "design": "same template shell and content regions; no separate art-directed continuation",
-      "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
-      "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
-      ],
-      "preserveSelectors": [
-        ".page",
-        "[data-role=\"sidebar\"]",
-        "[data-role=\"main\"]"
-      ],
-      "photo": "never on continuation unless a template explicitly declares it",
-      "identity": "never repeat full name/job-title/contact masthead unless explicitly declared",
-      "pageNumber": "template footer/page-number area when supported",
-      "specialContinuationHeader": null,
-      "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
-        "main": "experience/education"
-      }
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-retail-admin",
-    "name": "Retail to Admin",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-matric-first",
-    "name": "Matric First Job",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-graduate-launch",
-    "name": "Graduate Launch",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-tvet-technical",
-    "name": "TVET Technical",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-call-centre",
-    "name": "Call Centre Ready",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-learnership",
-    "name": "Learnership Applicant",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-hospitality",
-    "name": "Hospitality to Office",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-general-worker",
-    "name": "General Worker",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-admin-starter",
-    "name": "Admin Starter",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-security-office",
-    "name": "Security to Office",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-care-domestic",
-    "name": "Care & Domestic",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "sa-youth-portfolio",
-    "name": "Youth Portfolio",
-    "category": "south-african",
-    "layout": "single-column",
-    "sourceRenderer": "modern-fallback",
-    "sourceConfidence": "source-gap-template-has-no-dedicated-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern-fallback",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "project-item",
         "custom-item"
       ],
       "allowSplitInsideItem": [
@@ -6476,4 +5637,4 @@ export const templatePageSpecs = [
   }
 ];
 
-export const templatePageSpecById = Object.fromEntries(templatePageSpecs.map(spec => [spec.id, spec]));
+export const templatePageSpecById = Object.fromEntries(templatePageSpecs.map(s => [s.id,s]));
