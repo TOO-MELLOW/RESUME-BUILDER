@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { templateById } from '../data/templates';
 import { templatePageSpecs } from '../data/templatePageSpecs';
 
-const SIDEBAR_TYPES = new Set(['personal-info','skills','languages','certificates','references','interests','strengths']);
+const SIDEBAR_TYPES = new Set(['personal-info','skills','languages','certificates','references','interests','strengths','projects','custom']);
 
 function clone(value) { return JSON.parse(JSON.stringify(value)); }
 function escapeAttr(value) {
@@ -38,17 +38,6 @@ function sectionRegion(spec, type) {
   return 'main';
 }
 
-// Helper: restore sidebar-before-main ordering in two‑column layouts
-function reorderTwoColumnSections(sections, templateId) {
-  const spec = getPageSpec(templateId);
-  const layout = spec?.layout || templateById[templateId]?.layout || 'single-column';
-  if (layout !== 'two-column') return sections;
-  return [
-    ...sections.filter(s => sectionRegion(spec, s.type) === 'sidebar'),
-    ...sections.filter(s => sectionRegion(spec, s.type) === 'main')
-  ];
-}
-
 function applyContinuationContract(html, templateId, isContinuation, pageNumber, pageCount) {
   if (!isContinuation) return html;
   const spec = getPageSpec(templateId);
@@ -61,8 +50,13 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   // contract selectors for template-specific chrome, then enforce the
   // semantic <header> rule as a final safety net so a selector typo or legacy
   // contract can never leave a header-sized blank block on page 2+.
-  const selectors = spec.continuation.hidePage1ChromeSelectors || [];
-  for (const selector of selectors) {
+  // Use both the continuation contract and the page-1 header contract. Keeping
+  // both lists active makes a selector omission in one contract harmless.
+  const selectors = [
+    ...(spec.page1?.headerSelectors || []),
+    ...(spec.continuation.hidePage1ChromeSelectors || [])
+  ];
+  for (const selector of [...new Set(selectors)]) {
     try {
       root.querySelectorAll(selector).forEach(node => {
         node.setAttribute('data-rf-hidden-continuation', 'true');
@@ -70,6 +64,12 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
       });
     } catch (_) {}
   }
+  // Personal summary is page-1 identity/profile chrome. It must never reappear
+  // as an empty or duplicated block on a continuation page.
+  root.querySelectorAll('[data-bind="personalDetails.summary"]').forEach(node => {
+    node.setAttribute('data-rf-hidden-continuation', 'true');
+    node.style.setProperty('display', 'none', 'important');
+  });
   root.querySelectorAll('header, [data-rf-region="header"]').forEach(node => {
     node.setAttribute('data-rf-hidden-continuation', 'true');
     node.style.setProperty('display', 'none', 'important');
@@ -103,7 +103,7 @@ function measureItemChunk(data, templateId, section, itemsForSection, firstPage)
   return measureNaturalHeight(data, templateId, [candidate], firstPage);
 }
 
-function splitTextIntoMeasuredChunks(data, templateId, section, item, key, text, firstPage, available) {
+function splitTextIntoMeasuredChunks(data, templateId, section, item, key, text, firstPage) {
   if (!text || typeof text !== 'string' || text.length < 80) return null;
   const words = text.split(/\s+/).filter(Boolean);
   if (words.length < 12) return null;
@@ -147,7 +147,7 @@ function splitOversizedItem(data, templateId, section, item, firstPage, availabl
   }
 
   for (const key of ['notes','description','summary','details']) {
-    const chunks = splitTextIntoMeasuredChunks(data, templateId, section, base, key, base[key], firstPage, available);
+    const chunks = splitTextIntoMeasuredChunks(data, templateId, section, base, key, base[key], firstPage);
     if (chunks) return chunks;
   }
 
@@ -305,25 +305,60 @@ function partitionSections(data, templateId, sections, firstPage, available) {
   return pages;
 }
 
+function isPremiumTemplate(templateId) {
+  return !!(typeof window !== 'undefined' && window.__RF_PREMIUM_TEMPLATES__?.[templateId]);
+}
+
+function normalizePremiumFragment(fragment, templateId) {
+  const doc = new DOMParser().parseFromString(`<div id="__rf_premium_src">${fragment}</div>`, 'text/html');
+  const source = doc.getElementById('__rf_premium_src');
+  // Preserve the authored premium-shell contract. The premium stylesheet is
+  // written around an outer [data-template="..."] canvas and, for the 10
+  // sidebar variants, a descendant `.cv` layout frame. Making the `.cv` itself
+  // the data-template root changes selectors like `[data-template="X"] .cv`
+  // from matching to non-matching and destroys the sidebar grid. Always give
+  // premium HTML a single neutral wrapper that owns the template identity,
+  // while keeping the source DOM (including any `.cv` frame) intact inside it.
+  const root = doc.createElement('div');
+  root.className = 'rf-premium-root';
+  while (source.firstChild) root.appendChild(source.firstChild);
+
+  // The 10 sidebar source shells historically include data-template on their
+  // inner `.cv`, but the authored CSS expects data-template to identify the
+  // outer canvas and `.cv` to be a descendant (`[data-template="X"] .cv`).
+  // Strip any source-level identity attributes before assigning the single
+  // renderer-owned template identity to the wrapper. This prevents the A4
+  // canvas padding/min-height rules from being applied twice.
+  root.querySelectorAll('[data-template]').forEach(node => node.removeAttribute('data-template'));
+  root.setAttribute('data-template', templateId);
+  root.setAttribute('data-rf-template-root', 'true');
+
+  // Every premium shell uses a real <header>. Mark that structural chrome so
+  // continuation pages can remove it reliably.
+  root.querySelectorAll('header').forEach(node => {
+    node.setAttribute('data-rf-region', 'header');
+  });
+
+  if (root.querySelector('.footer')) {
+    root.setAttribute('data-rf-has-footer', 'true');
+  }
+
+  return root.outerHTML;
+}
 
 function renderPageHtml(data, templateId, pageIndex, pageCount, firstPage) {
   const definition = templateById[templateId] || { rendererKind: 'legacy' };
   const spec = getPageSpec(templateId);
   if (typeof window.__RF_RENDER_TEMPLATE__ === 'function') {
-    const fragment = window.__RF_RENDER_TEMPLATE__(data, templateId)
-      || '<p class="empty-note">Unable to render template.</p>';
-    let html = `<div class="page" data-template="${escapeAttr(templateId)}" data-rf-layout="${escapeAttr(spec?.layout || definition.layout || 'single-column')}" data-rf-template-page="true">${fragment}</div>`;
+    const fragment = window.__RF_RENDER_TEMPLATE__(data, templateId) || '<p class="empty-note">Unable to render template.</p>';
+    const premium = isPremiumTemplate(templateId);
+    const rendered = premium ? normalizePremiumFragment(fragment, templateId) : fragment;
+    const pageDataAttr = premium ? '' : ` data-template="${escapeAttr(templateId)}"`;
+    let html = `<div class="page"${pageDataAttr} data-rf-layout="${escapeAttr(spec?.layout || definition.layout || 'single-column')}" data-rf-template-page="true">${rendered}</div>`;
     if (data.sections.some(section => section?.__rfContinuation)) {
-      // Robustly remove empty sidebar/main label elements of any tag, including
-      // those containing &nbsp;, <br>, or whitespace only.
-      html = html.replace(
-        /<([a-z0-9]+)\s+[^>]*class="[^"]*(?:side-label|main-label)[^"]*"[^>]*>\s*(?:&nbsp;|&#160;|<br\s*\/?>)*\s*<\/\1>/gi,
-        ''
-      );
+      html = html.replace(/<p class="(?:side-label|main-label)">\s*<\/p>/g, '');
     }
-    return markTemplatePageFrames(
-      applyContinuationContract(html, templateId, !firstPage, pageIndex, pageCount)
-    );
+    return markTemplatePageFrames(applyContinuationContract(html, templateId, !firstPage, pageIndex, pageCount));
   }
   return '<p class="empty-note">Template engine is still loading…</p>';
 }
@@ -359,14 +394,14 @@ function measureNaturalHeight(data, templateId, sections, firstPage) {
   // premium roots that live one level deeper than .rf-page-content. The old
   // pass only matched the outer .page, so the premium root kept its A4-sized
   // min-height and every section could falsely measure as a full page.
-  page.querySelectorAll('.page, .a4-page, [data-role="page"], [data-rf-template-page="true"], .cv').forEach(node => {
+  page.querySelectorAll('.page, .a4-page, [data-role="page"], [data-rf-template-root="true"], [data-rf-template-page="true"], .cv').forEach(node => {
     node.style.setProperty('height','auto','important');
     node.style.setProperty('min-height','0','important');
     node.style.setProperty('max-height','none','important');
     node.style.setProperty('overflow','visible','important');
     node.style.setProperty('margin-bottom','0','important');
   });
-  const candidates = [page, ...page.querySelectorAll('.page, .a4-page, [data-role="page"], .cv')];
+  const candidates = [page, ...page.querySelectorAll('.page, .a4-page, [data-role="page"], [data-rf-template-root="true"], .cv')];
   const height = Math.max(...candidates.map(node => Math.max(node.scrollHeight || 0, node.getBoundingClientRect().height || 0)));
   holder.remove();
   return height;
@@ -401,64 +436,20 @@ function getActualPageOverflow(root) {
   return Math.max(0, ...getPageOverflowDetails(root).map(item => item.overflow));
 }
 
-// Sidebar and main render as parallel CSS Grid columns (page height = max of
-// the two, not a sum). Before trimming anything off an overflowing page we
-// need to know which column is actually too tall - the flat sections array
-// lists sidebar sections before main ones (see partitionSections), so
-// blindly trimming the last entry always hits main even when the sidebar is
-// the one running long.
-const REGION_ELEMENT_SELECTORS = {
-  sidebar: ['[data-role="sidebar"]', '.sidebar', '.side', '.rail', '.facet-sidebar', '.duo-sidebar', '.split-rail'],
-  main: ['[data-role="main"]', '.main', '.facet-main', '.duo-main']
-};
-
-function locateRegionElement(pageEl, region) {
-  for (const selector of REGION_ELEMENT_SELECTORS[region] || []) {
-    const found = pageEl.querySelector(selector);
-    if (found) return found;
-  }
-  return null;
-}
-
-function findOverflowingRegion(root, pageIndex) {
-  const pages = Array.from(root.querySelectorAll(':scope .rf-a4-page[data-rf-page="true"]'));
-  const page = pages[pageIndex];
-  if (!page) return 'main';
-  const sideEl = locateRegionElement(page, 'sidebar');
-  const mainEl = locateRegionElement(page, 'main');
-  const sideHeight = sideEl ? Math.max(sideEl.scrollHeight || 0, sideEl.getBoundingClientRect().height || 0) : 0;
-  const mainHeight = mainEl ? Math.max(mainEl.scrollHeight || 0, mainEl.getBoundingClientRect().height || 0) : 0;
-  return sideHeight >= mainHeight ? 'sidebar' : 'main';
-}
-
-function lastIndexOfRegion(sections, spec, region) {
-  for (let i = sections.length - 1; i >= 0; i--) {
-    if (sectionRegion(spec, sections[i].type) === region) return i;
-  }
-  return -1;
-}
-
-function moveOverflowFromPage(plan, pageIndex, templateId, region) {
+function moveOverflowFromPage(plan, pageIndex) {
   if (!Array.isArray(plan) || pageIndex < 0 || pageIndex >= plan.length) return plan;
   const next = plan.map(page => ({ ...page, sections: [...(page.sections || [])] }));
   const page = next[pageIndex];
   if (!page?.sections?.length) return next;
 
-  const spec = getPageSpec(templateId);
-  const layout = spec?.layout || templateById[templateId]?.layout || 'single-column';
-  const regionIndex = layout === 'two-column' ? lastIndexOfRegion(page.sections, spec, region) : -1;
-  const moveIndex = regionIndex >= 0 ? regionIndex : page.sections.length - 1;
+  const moveIndex = page.sections.length - 1;
   const moved = page.sections[moveIndex];
   page.sections.splice(moveIndex, 1);
 
   if (pageIndex + 1 >= next.length) {
     next.push({ sections: [moved], firstPage: false });
   } else {
-    // Prepend and then restore correct two‑column ordering
-    next[pageIndex + 1].sections = reorderTwoColumnSections(
-      [moved, ...(next[pageIndex + 1].sections || [])],
-      templateId
-    );
+    next[pageIndex + 1].sections = [moved, ...(next[pageIndex + 1].sections || [])];
   }
 
   // Never leave an empty page behind. When the first/only section overflows,
@@ -469,12 +460,9 @@ function moveOverflowFromPage(plan, pageIndex, templateId, region) {
   return next;
 }
 
-function splitLastSectionForOverflow(data, templateId, page, firstPage, available, region) {
+function splitLastSectionForOverflow(data, templateId, page, firstPage, available) {
   if (!page?.sections?.length) return null;
-  const spec = getPageSpec(templateId);
-  const layout = spec?.layout || templateById[templateId]?.layout || 'single-column';
-  const regionIndex = layout === 'two-column' ? lastIndexOfRegion(page.sections, spec, region) : -1;
-  const index = regionIndex >= 0 ? regionIndex : page.sections.length - 1;
+  const index = page.sections.length - 1;
   const section = page.sections[index];
   const items = sectionItems(section);
   if (items.length <= 1) return null;
@@ -520,21 +508,16 @@ async function reflowRenderedOverflow(root, initialPlan, data, templateId) {
 
     const firstPage = !!page.firstPage;
     const available = 1122.5;
-    const region = findOverflowingRegion(root, overflowed.pageIndex);
-    const split = splitLastSectionForOverflow(data, templateId, page, firstPage, available, region);
+    const split = splitLastSectionForOverflow(data, templateId, page, firstPage, available);
     if (split && split.headHeight <= available + 2 && split.tailHeight > 0) {
       page.sections.splice(split.index, 1, split.head);
       if (overflowed.pageIndex + 1 >= plan.length) {
         plan.push({ sections: [split.tail], firstPage: false });
       } else {
-        // Prepend tail and restore correct two‑column ordering
-        plan[overflowed.pageIndex + 1].sections = reorderTwoColumnSections(
-          [split.tail, ...(plan[overflowed.pageIndex + 1].sections || [])],
-          templateId
-        );
+        plan[overflowed.pageIndex + 1].sections = [split.tail, ...(plan[overflowed.pageIndex + 1].sections || [])];
       }
     } else {
-      plan = moveOverflowFromPage(plan, overflowed.pageIndex, templateId, region);
+      plan = moveOverflowFromPage(plan, overflowed.pageIndex);
     }
 
     const rootNode = document.getElementById('cv-root');
