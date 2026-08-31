@@ -28,76 +28,136 @@ const BLANK = {
 
  const allTemplateIds = TEMPLATE_CONFIGS.map(t => t.id);
 
-    function generateThumbnailSVG(templateId) {
-        const idx = Math.max(1, allTemplateIds.indexOf(templateId) + 1);
-        const a = getTemplateDefaultColor(templateId);
-        const esc = v => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
-        const rr = (x,y,w,h,r,fill,op) => `<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${w.toFixed(2)}" height="${h.toFixed(2)}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
-        const ln = (x,y,w,h,fill,op=0.32,r=0.7) => rr(x,y,w,h,r,fill,op);
-        const tx = (x,y,fs,fill,text,anchor='start',weight='700') => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}" text-anchor="${anchor}" font-weight="${weight}">${esc(text)}</text>`;
-        const hash = (idx*7919)%997;
-        const bgPalette=['#FBFAF7','#F3F6F8','#F7F2EA','#F1F5EF','#F5F1F7','#F3F4F8','#FAF6ED','#F0F7F6'];
-        const bg=bgPalette[(idx-1)%bgPalette.length];
-        const paper='#FFFFFF';
-        let body=rr(0,0,100,141,1.5,bg,1);
-        // Unique macro-composition derived from the template index.
-        const split=(idx%5)+1;
-        const railW=16+((idx*7)%23);
-        const topH=12+((idx*5)%22);
-        const gap=5+((idx*3)%9);
-        const accent2 = idx%2 ? '#252525' : '#5B6670';
-        if(split===1){
-            body+=rr(0,0,railW,141,0,a,.95);
-            body+=tx(railW/2,12,4,'#fff',String(idx).padStart(2,'0'),'middle');
-            for(let j=0;j<6;j++) body+=ln(4,26+j*15,Math.max(5,railW-8),2,'#fff',.28);
-            body+=tx(railW+7,16,7,accent2,'JANE MOKOENA');
-            body+=tx(railW+7,23,3.4,a,'PROFESSIONAL PROFILE');
-            for(let j=0;j<5;j++){ const y=36+j*(19+(hash%3)); body+=ln(railW+7,y,58-(j*3%15),3,'#3F464B',.22); body+=ln(railW+7,y+5,47-(j*2),2,'#777',.24); }
-        } else if(split===2){
-            body+=rr(0,0,100,topH,0,a,.94);
-            body+=tx(7,9,3.5,'#fff','PROFILE / '+String(idx).padStart(2,'0'));
-            body+=tx(7,topH+11,9,'#202428','JANE'); body+=tx(7,topH+20,9,'#202428','MOKOENA');
-            body+=ln(7,topH+25,86,1,a,.65);
-            for(let j=0;j<5;j++){const x=7+(j%2)*46,y=topH+35+Math.floor(j/2)*27;body+=rr(x,y,41,20,idx%4,paper,0.95);body+=ln(x+4,y+6,29-(j*3),2,a,.22);body+=ln(x+4,y+11,22+(j*2),2,'#666',.25);}
-        } else if(split===3){
-            body+=tx(7,12,4,a,'CURRICULUM / '+String(idx).padStart(2,'0'));
-            body+=tx(7,24,10,'#202020','JANE MOKOENA');
-            body+=ln(7,29,86,1,'#4B4B4B',.7);
-            const rail=24+((idx*5)%22);
-            body+=rr(7,37,rail,86,0,a,.12);
-            body+=rr(rail+12,37,59,86,0,paper,.92);
-            for(let j=0;j<6;j++){ body+=ln(rail+16,43+j*13,47-(j%3)*5,2,'#4B4B4B',.28); }
-            body+=tx(11,45,3.2,a,'ABOUT');
-            body+=ln(11,51,Math.max(8,rail-7),2,a,.45);
-        } else if(split===4){
-            body+=rr(7,7,86,topH,idx%5,a,.15);
-            body+=tx(11,18,7,'#2A2A2A','JANE MOKOENA');
-            body+=tx(11,24,3.6,a,'ROLE / FIELD / IMPACT');
-            const cx=10+((idx*11)%24), cy=38+((idx*7)%18);
-            for(let j=0;j<4;j++){
-                const x=cx+(j%2)*42, y=cy+Math.floor(j/2)*32;
-                body+=rr(x,y,34,24,idx%6===0?6:idx%6,paper,.98);
-                body+=ln(x+4,y+6,24-(j*2),2,a,.3); body+=ln(x+4,y+12,19+j*2,2,'#777',.25);
-            }
+    function generateLegacyThumbnailSVG(templateId, accent) {
+        // Deterministic, content-shaped thumbnail for templates that previously
+        // fell through to the blank fallback. Geometry changes by template ID;
+        // it is intentionally recognizable as a CV rather than a placeholder.
+        const seed = parseInt(hashString(templateId).slice(0, 8), 16);
+        const bg = PAPER_COLORS[seed % PAPER_COLORS.length];
+        const left = 18 + (seed % 24);
+        const right = 100 - left;
+        const mode = (seed >>> 5) % 8;
+        const line = (x,y,w,h,fill,op=.32) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="1" fill="${fill}" opacity="${op}"/>`;
+        const rr = (x,y,w,h,r,fill,op) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
+        const txt = (x,y,fs,fill,content,anchor='start') => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}" text-anchor="${anchor}" font-weight="700">${content}</text>`;
+        let body = rr(0,0,100,141,2,bg,null);
+        const dark = '#23303A';
+        if (mode===0) {
+            body += rr(0,0,left,141,0,accent,.92);
+            body += txt(left+5,15,7,dark,'JANE MOKOENA');
+            for(let j=0;j<7;j++) body += line(6,30+j*13,left-9,2,'#fff',.34);
+            for(let j=0;j<6;j++) body += line(left+5,32+j*17,right-9,3,dark,.24);
+        } else if (mode===1) {
+            body += rr(0,0,100,25,0,accent,.9);
+            body += txt(8,12,7,'#fff','JANE MOKOENA');
+            body += txt(8,19,4,'#fff','PROFESSIONAL PROFILE');
+            for(let j=0;j<6;j++){ body += line(8,34+j*16,84,2,dark,.25); body += line(8,38+j*16,55,2,accent,.35); }
+        } else if (mode===2) {
+            body += txt(8,15,10,dark,'JANE MOKOENA');
+            body += txt(8,22,5,accent,'CAREER PROFILE');
+            body += rr(8,30,24,93,0,accent,.12);
+            for(let j=0;j<6;j++) body += line(38,34+j*15,54,3,dark,.26);
+        } else if (mode===3) {
+            body += rr(8,8,84,28,3,'#fff',1);
+            body += rr(8,8,5,28,0,accent,.9);
+            body += txt(18,19,8,dark,'JANE');
+            body += txt(18,27,7,dark,'MOKOENA');
+            for(let j=0;j<4;j++) body += rr(8,43+j*20,84,14,2,'#fff',1);
+            for(let j=0;j<4;j++) body += line(13,49+j*20,55,3,accent,.22);
+        } else if (mode===4) {
+            body += rr(0,0,14,141,0,accent,.94);
+            body += txt(21,17,8,dark,'JANE MOKOENA');
+            for(let j=0;j<7;j++) body += line(21,31+j*14,69,2,dark,.27);
+            body += rr(73,31,18,58,2,accent,.14);
+        } else if (mode===5) {
+            body += rr(0,0,100,14,0,accent,.9);
+            body += txt(8,26,9,dark,'JANE MOKOENA');
+            body += line(8,31,84,2,accent,.6);
+            for(let j=0;j<5;j++){ body += txt(8,46+j*18,4,accent,'SECTION'); body += line(26,43+j*18,60,3,dark,.22); }
+        } else if (mode===6) {
+            body += rr(8,8,31,22,2,accent,.16);
+            body += txt(11,20,8,dark,'PROFILE');
+            body += txt(47,18,8,dark,'JANE MOKOENA');
+            for(let j=0;j<5;j++) body += rr(8,37+j*19,84,14,2,'#fff',1);
+            for(let j=0;j<5;j++) body += line(12,43+j*19,48,2,accent,.3);
         } else {
-            const x0=8+((idx*3)%14);
-            body+=ln(x0,8,92-x0,2,a,.85);
-            body+=tx(x0,19,8,'#202225','JANE');
-            body+=tx(x0,28,8,'#202225','MOKOENA');
-            const colW=(84-(gap))/2;
-            body+=rr(x0,37,colW,86,0,paper,.95);
-            body+=rr(x0+colW+gap,37,colW,86,0,'#EDF1F3',.95);
-            for(let j=0;j<5;j++){
-                body+=ln(x0+4,43+j*14,colW-10,2,a,.22);
-                body+=ln(x0+colW+gap+4,43+j*14,colW-10,2,'#5C656C',.22);
-            }
+            body += rr(0,0,100,33,0,'#fff',1);
+            body += txt(8,15,8,dark,'JANE MOKOENA');
+            body += txt(8,23,4,accent,'CURRICULUM VITAE');
+            body += rr(8,41,26,83,0,accent,.13);
+            for(let j=0;j<6;j++) body += line(40,45+j*13,51,2,dark,.25);
         }
-        // Unique geometric micro-fingerprint: diagonals/dots move with index.
-        const mx=(idx*17)%76+12, my=(idx*29)%108+18;
-        body+=rr(mx,my,idx%4===0?8:4,idx%3===0?8:4,2,a,.15);
-        body+=`<path d="M ${(mx+6).toFixed(1)} ${my+10} L ${(mx+22+(idx%17)).toFixed(1)} ${my+5}" stroke="${a}" stroke-width="0.8" opacity="0.55"/>`;
-        body+=`<circle cx="${(94-((idx*9)%12)).toFixed(1)}" cy="${(7+(idx*11)%18).toFixed(1)}" r="${(1+(idx%4)*0.45).toFixed(2)}" fill="${a}" opacity="0.55"/>`;
-        return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg" data-template="${esc(templateId)}" data-fingerprint="u${String(idx).padStart(3,'0')}">${body}</svg>`;
+        return body;
+    }
+
+    function hashString(value) {
+        let h = 2166136261;
+        for (let i = 0; i < value.length; i++) h = Math.imul(h ^ value.charCodeAt(i), 16777619);
+        return (h >>> 0).toString(16).padStart(8, '0');
+    }
+
+    function generateThumbnailSVG(templateId) {
+        const a = getTemplateDefaultColor(templateId);
+        const rr = (x,y,w,h,r,fill,op) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
+        const line = (x,y,w,h,fill,op) => rr(x,y,w,h,1,fill,op!=null?op:0.4);
+        const txt = (x,y,fs,fill,content,anchor) => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}"${anchor?` text-anchor="${anchor}"`:''} font-weight="700">${content}</text>`;
+        let body='';
+        const named = {
+          'combined-01':['#F4F8F5',a,'PROFILE'], 'combined-02':['#FBF3EE',a,'ONE STORY'], 'combined-03':['#F4F6FB',a,'STEADY PATH'], 'combined-04':['#F7F7F2',a,'ALL TOGETHER'],
+          'practical-01':['#F8FAF8',a,'READY TO WORK'], 'practical-02':['#F2F5F8',a,'ON CALL'], 'practical-03':['#F7F4EF',a,'HANDS ON'],
+          'functional-01':['#F7FAF8',a,'STRONG SUIT'], 'functional-02':['#F5F7FB',a,'NEW DIRECTION'], 'functional-03':['#FCF7F1',a,'TURNING POINT'],
+          'trade-01':['#F2F5F7',a,'ON THE TOOLS'], 'trade-02':['#2A211C',a,'CERTIFIED'], 'trade-03':['#F3F3F3',a,'SKILLED HANDS'],
+          'starter-01':['#FBFCFB',a,'STARTER CLASSIC'], 'starter-02':['#F6F8FA',a,'STARTER WARM'], 'starter-03':['#FBF8F2',a,'STARTER COOL'],
+          'mono-01':['#F9F7F1',a,'STONEWOOD'], 'mono-02':['#F4F7F1',a,'SAGEBROOK'], 'mono-03':['#F4F6FB',a,'SLATEVIEW'],
+          'facet-01':['#FFFFFF',a,'TERRALINE'], 'facet-02':['#F8FBFA',a,'DEEPWATER'], 'facet-03':['#FBF8FC',a,'PLUMLINE'], 'facet-04':['#FCFAF5',a,'FACET 04'],
+          'duo-01':['#FCFBF9',a,'ROSEMERE'], 'duo-02':['#F7FAF6',a,'WILLOWGREEN'], 'duo-03':['#F7F6F3',a,'WARMSTONE'], 'graphite-sidebar-01':['#F2F4F5',a,'GRAPHITE'], 'ivory-editorial-sidebar-02':['#FBF7EF',a,'EDITORIAL'], 'navy-vertical-rail-03':['#EEF3F8',a,'VERTICAL RAIL'], 'burgundy-two-page-04':['#F8F0F1',a,'HERITAGE'], 'forest-profile-sidebar-05':['#F1F5EF',a,'FIELD + OFFICE'], 'black-copper-executive-06':['#F1EFEB',a,'EXECUTIVE'], 'slate-portfolio-07':['#F0F3F6',a,'PORTFOLIO'], 'sand-modern-two-page-08':['#F6F0E7',a,'SAND MODERN'], 'indigo-cards-09':['#F2F1FB',a,'INDIGO CARDS'], 'teal-command-two-page-10':['#EEF8F7',a,'COMMAND']
+        };
+        if(named[templateId]){
+          const [bg,accent,label]=named[templateId];
+          body+=rr(0,0,100,141,2,bg,null);
+          const i=parseInt((templateId.match(/(\\d+)$/)||['1','1'])[1],10);
+          if(templateId==='combined-01'){ body+=rr(0,0,24,141,0,accent,.95); body+=txt(12,16,6,'#fff','PROFILE','middle'); for(let j=0;j<7;j++)body+=line(6,28+j*13,13,2,'#fff',.35); body+=txt(31,15,8,'#222','JANE MOKOENA','start'); for(let j=0;j<5;j++){body+=line(31,28+j*20,60,3,'#333',.25);body+=line(31,34+j*20,48,2,'#888',.25)} }
+          else if(templateId==='combined-02'){ body+=rr(0,0,100,11,0,accent,null); body+=txt(8,27,10,'#2B2623','JANE','start'); body+=txt(8,35,10,'#2B2623','MOKOENA','start'); body+=line(8,40,84,1,'#D8C5BA',.8); for(let j=0;j<4;j++){body+=txt(8,51+j*22,5,accent,'SECTION','start');body+=line(8,56+j*22,70,2,'#555',.25)} }
+          else if(templateId==='combined-03'){ body+=rr(0,0,100,31,0,'#E7ECF7',null);body+=txt(7,15,9,'#26344F','JANE MOKOENA','start');body+=rr(7,40,22,86,0,'#DDE5F3',null);for(let j=0;j<5;j++){body+=line(34,43+j*17,57,3,'#26344F',.25);body+=line(34,49+j*17,45,2,'#777',.3)} }
+          else if(templateId==='combined-04'){ body+=txt(8,15,5,accent,'04 / START','start');body+=txt(8,29,10,'#26301F','JANE MOKOENA','start');for(let j=0;j<6;j++){const x=8+(j%2)*44,y=38+Math.floor(j/2)*28;body+=rr(x,y,40,20,2,j%2?accent:'#fff',j%2?.18:1);body+=line(x+3,y+7,30,2,'#555',.25)} }
+          else if(templateId==='practical-01'){body+=rr(7,8,86,18,2,accent,.85);body+=txt(12,20,6,'#fff',label,'start');for(let j=0;j<6;j++){body+=rr(9,34+j*15,8,8,2,'#fff',1);body+=line(21,36+j*15,59,2,accent,.35);body+=line(21,40+j*15,45,2,'#888',.3)} }
+          else if(templateId==='practical-02'){body+=rr(0,0,33,141,0,'#DCE5EF',null);body+=txt(7,15,6,'#1B2A4A','AVAILABILITY','start');for(let j=0;j<6;j++)body+=line(7,25+j*12,20,2,accent,.55);body+=txt(41,15,8,'#1B2A4A','JANE MOKOENA','start');for(let j=0;j<6;j++){body+=line(41,28+j*17,50,3,'#1B2A4A',.22)} }
+          else if(templateId==='practical-03'){body+=txt(8,17,9,'#332A23','JANE MOKOENA','start');body+=txt(8,24,5,accent,'WORK-READY PROFILE','start');for(let j=0;j<5;j++){body+=rr(8,31+j*20,84,14,1,'#fff',1);body+=rr(8,31+j*20,3,14,0,accent,.75);body+=line(15,36+j*20,55,2,'#777',.3)} }
+          else if(templateId==='functional-01'){body+=rr(8,23,84,18,0,'#E2EEE8',null);body+=txt(12,35,6,accent,'CORE SKILLS','start');for(let j=0;j<5;j++){body+=line(8,50+j*15,20,2,accent,.7);body+=line(32,50+j*15,54,2,'#444',.3);body+=rr(73,47+j*15,18,5,2,accent,.18)} }
+          else if(templateId==='functional-02'){body+=rr(0,0,9,141,0,accent,null);body+=txt(15,16,8,'#222',label,'start');for(let j=0;j<5;j++){body+=rr(15,31+j*20,9,9,5,accent,.8);body+=line(29,34+j*20,56,2,'#444',.28)} }
+          else if(templateId==='functional-03'){body+=rr(7,7,86,24,2,'#F4E5D0',null);body+=txt(11,22,8,'#5A3C20',label,'start');for(let j=0;j<4;j++){body+=rr(8,39+j*22,38,15,2,'#fff',1);body+=line(52,42+j*22,36,2,accent,.38)} }
+          else if(templateId==='trade-01'){body+=rr(0,0,100,24,0,'#1B3A4B',null);body+=txt(8,15,8,'#fff',label,'start');for(let j=0;j<6;j++){body+=rr(8,32+j*16,18,6,1,accent,.2);body+=line(31,34+j*16,59,2,'#555',.3)} }
+          else if(templateId==='trade-02'){body+=rr(0,0,34,141,0,'#33251D',null);body+=txt(8,17,6,'#fff','CERTS','start');for(let j=0;j<6;j++)body+=line(7,29+j*13,19,2,accent,.6);body+=txt(41,18,9,'#fff',label,'start');for(let j=0;j<5;j++)body+=line(41,30+j*19,48,3,'#fff',.22)}
+          else if(templateId==='trade-03'){body+=rr(7,7,86,20,0,'#3D3D3D',null);body+=txt(12,20,7,'#fff',label,'start');for(let j=0;j<5;j++){body+=rr(8,34+j*19,84,13,0,'#fff',1);body+=txt(12,43+j*19,5,'#444','QUALIFICATION','start')}}
+          else if(templateId==='starter-01'){body+=txt(8,17,9,'#213229','JANE MOKOENA','start');body+=txt(8,24,5,accent,label,'start');body+=line(8,31,84,2,accent,.6);for(let j=0;j<5;j++){body+=line(8,43+j*17,24,3,accent,.3);body+=line(38,43+j*17,50,2,'#777',.3)}}
+          else if(templateId==='starter-02'){body+=rr(0,0,17,141,0,'#2E5E88',null);body+=txt(24,17,8,'#20394F','STARTER','start');for(let j=0;j<6;j++)body+=line(24,30+j*16,62,2,'#555',.28)}
+          else if(templateId==='starter-03'){body+=rr(65,0,35,141,0,'#F1E5D4',null);body+=txt(8,17,9,'#4B3826','STARTER COOL','start');for(let j=0;j<5;j++){body+=rr(8,28+j*19,50,12,2,'#fff',1);body+=line(11,33+j*19,37,2,'#777',.28)}}
+          else if(templateId==='mono-01'){body+=rr(0,0,100,32,0,'#F0EAE0',null);body+=rr(8,39,25,25,12,accent,.8);body+=txt(20.5,55,9,'#fff','JM','middle');body+=txt(40,47,8,'#29231E','JANE MOKOENA','start');for(let j=0;j<5;j++)body+=line(40,54+j*14,51,2,'#777',.3)}
+          else if(templateId==='mono-02'){body+=rr(0,0,18,141,0,'#E7EEE2',null);body+=txt(9,17,6,accent,'JM','middle');body+=txt(25,17,8,'#243022','JANE MOKOENA','start');for(let j=0;j<6;j++)body+=line(25,33+j*16,62,2,'#555',.27)}
+          else if(templateId==='mono-03'){body+=txt(8,17,8,'#20283A','JANE MOKOENA','start');body+=line(8,23,84,2,accent,.7);for(let j=0;j<5;j++){body+=txt(8,43+j*18,5,accent,'SECTION','start');body+=line(27,41+j*18,62,2,'#555',.28)}}
+          else if(templateId==='facet-01'){body+=rr(0,0,32,141,0,accent,null);body+=txt(16,17,7,'#fff','PROFILE','middle');body+=rr(7,27,18,18,9,'#fff',.15);body+=txt(40,17,9,'#222','JANE','start');for(let j=0;j<5;j++)body+=line(40,30+j*20,51,3,accent,.22)}
+          else if(templateId==='facet-02'){body+=rr(0,0,26,141,0,accent,null);body+=txt(33,15,8,'#22342D','DEEPWATER','start');for(let j=0;j<6;j++)body+=line(33,32+j*16,56,2,'#555',.3)}
+          else if(templateId==='facet-03'){body+=rr(0,0,100,20,0,'#F0E5F4',null);body+=txt(8,14,7,'#4A245D','PLUMLINE','start');body+=rr(8,29,23,96,0,accent,.9);for(let j=0;j<5;j++)body+=line(39,34+j*17,50,2,'#555',.3)}
+          else if(templateId==='facet-04'){body+=rr(8,8,84,22,0,'#EDE5CF',null);body+=txt(12,22,7,'#5B4B21','FACET / 04','start');body+=rr(8,38,27,86,0,accent,.75);for(let j=0;j<5;j++)body+=line(42,42+j*16,48,3,'#555',.28)}
+          else if(templateId==='duo-01'){body+=rr(0,0,38,141,0,'#F0E6E3',null);body+=txt(19,19,7,'#563B37','ROSEMERE','middle');for(let j=0;j<6;j++)body+=line(7,33+j*12,24,2,accent,.4);body+=txt(46,17,8,'#2A2520','JANE MOKOENA','start');for(let j=0;j<5;j++)body+=line(46,30+j*20,44,2,'#555',.3)}
+          else if(templateId==='duo-02'){body+=rr(0,0,42,141,0,'#EEF2EA',null);body+=rr(8,9,26,26,13,accent,.8);body+=txt(21,26,9,'#fff','JM','middle');body+=txt(49,17,8,'#243022','WILLOWGREEN','start');for(let j=0;j<5;j++)body+=rr(49,29+j*20,41,4,1,accent,.2)}
+          else if(templateId==='duo-03'){body+=rr(0,0,45,141,0,'#EDEBE6',null);body+=txt(22,17,7,'#3E3B35','WARMSTONE','middle');for(let j=0;j<5;j++)body+=line(8,31+j*14,29,2,accent,.35);body+=txt(52,17,8,'#2F2D29','JANE MOKOENA','start');for(let j=0;j<5;j++)body+=line(52,31+j*20,39,2,'#555',.3)}
+          else if(templateId==='graphite-sidebar-01'){body+=rr(0,0,27,141,0,a,.92);body+=txt(13,18,5,'#fff','CV','middle');for(let j=0;j<7;j++)body+=line(6,32+j*12,14,2,'#fff',.32);body+=txt(33,16,8,'#1F282D','JANE MOKOENA','start');body+=line(33,22,58,2,a,.7);for(let j=0;j<5;j++)body+=line(33,34+j*19,51,3,'#444',.25)}
+          else if(templateId==='ivory-editorial-sidebar-02'){body+=txt(8,15,4,a,'02','start');body+=txt(20,19,9,'#2C2926','JANE MOKOENA','start');body+=line(20,25,70,1,'#CFC4B8',.8);body+=rr(8,34,22,91,0,'#F0E8DC',null);for(let j=0;j<6;j++)body+=line(38,37+j*14,52,2,'#555',.28)}
+          else if(templateId==='navy-vertical-rail-03'){body+=rr(0,0,23,141,0,a,.95);body+=txt(11.5,15,7,'#fff','03','middle');for(let j=0;j<7;j++)body+=line(6,37+j*12,12,2,'#fff',.3);body+=txt(29,16,8,'#22344A','JANE MOKOENA','start');line(29,23,62,2,a,.6);for(let j=0;j<5;j++)body+=line(29,37+j*18,57,3,'#555',.25)}
+          else if(templateId==='burgundy-two-page-04'){body+=rr(7,8,86,24,0,'#F3E4E6',null);body+=txt(11,23,8,'#66323E','HERITAGE','start');body+=rr(7,39,25,83,0,'#E9D1D6',null);for(let j=0;j<5;j++)body+=line(38,43+j*16,53,2,a,.32);body+=txt(11,16,4,a,'04','start')}
+          else if(templateId==='forest-profile-sidebar-05'){body+=rr(0,0,100,23,0,a,null);body+=txt(7,15,7,'#fff','FIELD + OFFICE','start');body+=rr(7,31,22,92,0,'#DCE8D8',null);for(let j=0;j<6;j++)body+=line(35,35+j*14,55,2,'#52644F',.3);body+=txt(35,18,7,'#233B29','JANE MOKOENA','start')}
+          else if(templateId==='black-copper-executive-06'){body+=rr(0,0,100,27,0,'#171717',null);body+=rr(69,0,31,27,0,a,.9);body+=txt(8,15,7,'#fff','EXECUTIVE','start');for(let j=0;j<5;j++)body+=line(8,39+j*18,84,3,'#555',.25)}
+          else if(templateId==='slate-portfolio-07'){body+=rr(8,8,20,20,3,a,.25);body+=txt(18,22,6,'#344351','SP','middle');body+=txt(34,18,8,'#27343E','JANE MOKOENA','start');body+=line(34,24,52,1,a,.7);for(let j=0;j<4;j++){body+=rr(8,36+j*22,84,15,2,'#fff',1);body+=line(12,42+j*22,52,2,'#596674',.3)}}
+          else if(templateId==='sand-modern-two-page-08'){body+=rr(0,0,100,10,0,a,null);body+=txt(8,24,9,'#4A4038','JANE MOKOENA','start');body+=line(8,29,84,1,'#C8B8A5',.8);body+=rr(8,39,21,83,0,'#E9E0D4',null);for(let j=0;j<5;j++)body+=line(35,43+j*16,55,3,'#665A50',.25)}
+          else if(templateId==='indigo-cards-09'){body+=txt(8,16,4,a,'PROFILE 09','start');body+=txt(8,27,10,'#25243B','JANE','start');body+=txt(8,36,10,'#25243B','MOKOENA','start');for(let j=0;j<5;j++){body+=rr(39,28+j*20,52,15,2,'#fff',1);body+=line(43,34+j*20,38,2,a,.3)}}
+          else if(templateId==='teal-command-two-page-10'){body+=rr(0,0,100,18,0,a,null);body+=txt(8,13,5,'#fff','COMMAND / 10','start');body+=txt(8,29,9,'#204E4B','JANE MOKOENA','start');body+=rr(8,39,25,83,0,'#DCEDEA',null);for(let j=0;j<5;j++)body+=line(39,43+j*16,53,3,'#526A68',.24)}
+          return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+        }
+        // Never return the old blank fallback. Remaining templates receive a
+        // deterministic, populated CV thumbnail based on their identity.
+        body = generateLegacyThumbnailSVG(templateId, a);
+        return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
     }
 
     const SVGS = {};
@@ -128,24 +188,7 @@ const BLANK = {
     else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
     else html = renderModern(data, tid);
 
-    html = enforceSectionCoverage(data, tid, html);
-    return applyTemplateUniquenessShell(tid, html);
-}
-
-function applyTemplateUniquenessShell(templateId, html) {
-    const n = Math.max(1, allTemplateIds.indexOf(templateId) + 1);
-    const safeId = String(templateId).replace(/[^a-zA-Z0-9_-]/g, '-');
-    // The marker intentionally varies its HTML tag sequence per template. It is
-    // absolutely positioned and has no effect on content flow/pagination.
-    const tags = ['i','b','u','small','mark','label','span'];
-    const code = n - 1;
-    const markers = [];
-    let value = code;
-    for (let j = 0; j < 7; j++) {
-        markers.push(`<${tags[value % tags.length]} data-ux-mark="${j}"></${tags[value % tags.length]}>`);
-        value = Math.floor(value / tags.length);
-    }
-    return `<div class="rf-ux-shell rf-ux-${safeId}" data-ux-template="${escHtml(templateId)}" data-ux-index="${n}">${markers.join('')}<div class="rf-ux-content">${html}</div></div>`;
+    return enforceSectionCoverage(data, tid, html);
 }
 
 function getVisibleSections(data) {
@@ -295,6 +338,16 @@ function renderTemplateMarkup(data, raw) {
         const value = getP(data, el.getAttribute('data-bind'));
         el.textContent = value || '';
     });
+    wrapper.querySelectorAll('[data-bind-src]').forEach(el => {
+        const value = getP(data, el.getAttribute('data-bind-src'));
+        if (value) {
+            el.setAttribute('src', value);
+            el.hidden = false;
+        } else {
+            el.removeAttribute('src');
+            el.hidden = true;
+        }
+    });
     wrapper.querySelectorAll('[data-role="contact"]').forEach(el => {
         el.innerHTML = contactListHtml(p);
     });
@@ -313,21 +366,6 @@ function renderTemplateMarkup(data, raw) {
     wrapper.querySelectorAll('[data-page-number]').forEach(el => {
         el.textContent = String(data.__rfPageNumber || 1);
     });
-
-    // Phase 7C: activate the per-template composition system. The template
-    // definitions intentionally keep their slot markup declarative; the stage
-    // is added here so every template uses the same safe rendering contract
-    // while its own CSS controls the actual geometry/order.
-    wrapper.querySelectorAll('.r7-template').forEach(cv => {
-        if (cv.querySelector(':scope > .r7-stage')) return;
-        const slots = Array.from(cv.children).filter(el => el.classList?.contains('r7-slot'));
-        if (!slots.length) return;
-        const stage = document.createElement('div');
-        stage.className = 'r7-stage';
-        slots.forEach(slot => stage.appendChild(slot));
-        cv.appendChild(stage);
-    });
-
     return wrapper.innerHTML;
 }
 
@@ -342,7 +380,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     const SR = {
         experience(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         education(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
-        projects(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div><span class="entry-date">${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
+        projects(s){ const h=s.items.map(it=>`<div class="entry"><div$ class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div><span class="entry-date">${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         custom(s){ const h=s.items.map(it=>`<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         "personal-info"(s){ const h=s.items.map(it=>`<div class="side-item">${escHtml(it.label)}: <span class="meta">${escHtml(it.value)}</span></div>`).join(""); return wrapSide(s.title,h,s.type); },
         skills(s){ return wrapSide(s.title,s.items.map(it=>`<span class="skill-tag">${escHtml(it.name)}</span>`).join(""),s.type); },
@@ -1256,9 +1294,6 @@ function renderCoverLetterPreview() {
     const root = document.getElementById('cl-preview-root');
     if (!root || !clData) return;
     root.innerHTML = renderCoverLetter(clData, clData.meta.templateId);
-  root.querySelectorAll('[data-role="photo"]').forEach((el) => {
-    if (data?.photo) { const img=document.createElement('img'); img.src=data.photo; img.alt='Profile photo'; img.className='r7-photo-img'; el.appendChild(img); }
-  });
 }
 
 function renderCoverLetter(data, tid) {
