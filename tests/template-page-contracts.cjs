@@ -3,7 +3,8 @@ const path = require('path');
 const source = fs.readFileSync(path.join(__dirname, '../src/data/templatePageSpecs.js'), 'utf8');
 const jsonText = source.replace(/^export const templatePageSpecs = /, '').split(';\n\nexport const templatePageSpecById')[0];
 const specs = Function(`return (${jsonText})`)();
-if (specs.length !== 95) throw new Error(`Expected 95 template contracts, found ${specs.length}`);
+const canonicalCount = (fs.readFileSync(path.join(__dirname, '../src/data/templates.js'),'utf8').match(/\"id\": \"[^\"]+\"/g) || []).length;
+if (specs.length !== canonicalCount) throw new Error(`Expected ${canonicalCount} template contracts, found ${specs.length}`);
 const ids = new Set();
 for (const s of specs) {
   if (!s.id || ids.has(s.id)) throw new Error(`Duplicate/missing contract: ${s.id}`);

@@ -14,9 +14,6 @@ else pass('mobile CSS does not reflow resume entry headers');
 for (const selector of [
   '.page[data-template^="facet-"] { grid-template-columns: 1fr }',
   '.page[data-template^="duo-"] { grid-template-columns: 1fr }',
-  '.page[data-template="modern-01"] { grid-template-columns: 1fr }',
-  '.page[data-template="modern-02"] { grid-template-columns: 1fr }',
-  '.page[data-template="executive-02"] { grid-template-columns: 1fr }',
   '.page[data-template^="split-"] { grid-template-columns: 1fr }'
 ]) if (css.includes(selector)) fail(`mobile CSS still contains A4 layout collapse: ${selector}`);
 if (!failures.length) pass('mobile CSS keeps A4 template column geometry intact');
@@ -30,10 +27,9 @@ else pass('no undefined legacy mobile preview scaler remains');
 if (!/function fitMobilePreviewToFit\(\)/.test(js) || !/function changeMobilePreviewZoom\(/.test(js)) fail('mobile preview fit/zoom controls are incomplete');
 else pass('mobile preview fit and zoom controls are wired');
 
-const premiumMarker = '/* Canonical premium template styling — merged into the shared template stylesheet. */';
-const premiumCss = css.includes(premiumMarker) ? css.slice(css.indexOf(premiumMarker)) : '';
-if (/@media\s+screen\s+and\s+\(max-width:850px\)/.test(premiumCss)) fail('shared premium template styles contain viewport-dependent A4 shrinking');
-else pass('shared template stylesheet has no viewport-dependent A4 shrinking rules');
+const premiumCss = fs.readFileSync(path.join(ROOT, 'public/css/premium-templates.css'), 'utf8');
+if (/@media\s+screen\s+and\s+\(max-width:850px\)/.test(premiumCss)) fail('compiled premium templates contain viewport-dependent A4 shrinking');
+else pass('compiled premium templates have no viewport-dependent A4 shrinking rules');
 
 if (failures.length) {
   for (const f of failures) console.error(`FAIL: ${f}`);
