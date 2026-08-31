@@ -1,4 +1,4 @@
-/* Canonical renderer geometry. All templates use this exact page frame. */
+/* Canonical renderer geometry. The outer A4 sheet is the only page boundary. */
 #cv-root { position:relative; width:210mm; min-width:210mm; background:transparent; }
 .rf-resume-document { width:210mm; max-width:210mm; margin:0; padding:0; background:transparent; }
 .resume-pages { display:flex; flex-direction:column; gap:28px; align-items:center; }
@@ -10,88 +10,56 @@
   box-shadow:0 4px 22px rgba(0,0,0,.12);
 }
 .rf-a4-page:last-child { break-after:auto; page-break-after:auto; }
-/* height:100% (not just min-height:100%) is required here: a box whose
-   height comes only from min-height is not a "definite" height for CSS
-   percentage-resolution purposes, so any descendant relying on its own
-   min-height:100% (every legacy template's .page, and .sidebar in
-   templates like executive-02's dark rail) silently fails to fill the
-   page whenever the page's content is shorter than a full page — the
-   background then stops exactly where the content ends instead of
-   covering the rest of the page. This is most visible on short
-   continuation pages (e.g. page 2 of a 2-page resume). min-height:100%
-   is kept alongside it as a floor for the rare case content is taller
-   than one page; .rf-a4-page's overflow:hidden clips that overflow at
-   the same boundary either way, so this doesn't change overflow
-   behavior — verified with a real Chromium render before landing this. */
-.rf-page-content { position:relative; width:100%; height:100%; min-height:100%; transform:none !important; transform-origin:top left; }
+.rf-page-content { position:relative; width:100%; min-height:100%; transform:none !important; transform-origin:top left; }
+
+/* Legacy renderer pages keep their natural height so the outer A4 sheet can
+   detect overflow. Premium roots are excluded from this rule. */
 .rf-page-content > .page[data-rf-template-page="true"] {
-  width:100%; max-width:100%; min-height:100% !important; height:auto !important; max-height:none !important;
+  width:210mm; max-width:210mm; min-height:0; height:auto !important; max-height:none !important;
   margin:0 !important; overflow:visible !important; box-sizing:border-box;
   break-after:auto !important; page-break-after:auto !important; box-shadow:none;
 }
+
+/* Premium templates own their internal spacing and visual styling. The
+   renderer supplies only the outer A4 width; it must never overwrite a
+   template's padding, background, min-height, or internal .cv width. */
+.rf-page-content > [data-rf-template-root="true"] {
+  display:block; width:210mm; max-width:210mm; box-sizing:border-box;
+  height:auto; max-height:none; overflow:visible;
+}
+
+/* Sidebar premium shells contain an authored .cv layout frame. Its source
+   CSS historically declared 210mm because it expected to be the document
+   itself. Inside the canonical outer page it must instead fill the available
+   content width; otherwise it overflows the 210mm canvas after root padding. */
+.rf-page-content > [data-rf-template-root="true"] .cv {
+  width:100% !important; max-width:100% !important; box-sizing:border-box; margin:0;
+}
+
+/* During natural-height measurement all page-like frames must collapse to
+   content height. This is deliberately scoped to the measurement tree so the
+   visual A4 surface retains its authored geometry. */
 .rf-measure-context .rf-page-content,
 .rf-measure-context > .page,
+.rf-measure-context [data-rf-template-root="true"],
+.rf-measure-context [data-rf-template-page="true"],
 .rf-measure-context .page,
 .rf-measure-context .a4-page,
 .rf-measure-context .cv,
-.rf-measure-context [data-role="page"],
-.rf-measure-context .rf-page-content > .page[data-rf-template-page="true"] {
-  height:auto !important; min-height:0 !important; max-height:none !important; overflow:visible !important;
+.rf-measure-context [data-role="page"] {
+  height:auto !important; min-height:0 !important; max-height:none !important;
+  overflow:visible !important;
 }
+
+
+/* Continuation pages never repeat page-1 identity chrome. Hiding the actual
+   semantic header also covers templates whose old contract used a different
+   marker. */
 .rf-page-content [data-rf-continuation="true"] header,
 .rf-page-content [data-rf-continuation="true"] [data-rf-region="header"],
 .rf-page-content [data-rf-continuation="true"] [data-rf-hidden-continuation="true"] {
   display:none !important;
 }
+
 @media screen and (max-width:850px) { #cv-root,.rf-resume-document,.rf-a4-page { width:210mm; } }
 @media print { .rf-a4-page { box-shadow:none !important; } }
-
-/* Section-coverage safety net. A template may style its own section markup,
-   but a visible section must never disappear just because a template forgot
-   to place it. */
-.rf-fallback-sections {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.rf-fallback-section {
-  box-sizing: border-box;
-  width: 100%;
-  break-inside: auto;
-  page-break-inside: auto;
-}
-.rf-fallback-section > * {
-  box-sizing: border-box;
-}
-.rf-fallback-section .entry,
-.rf-fallback-section .side-item,
-.rf-fallback-section .ref-item,
-.rf-fallback-section .skill-tag,
-.rf-fallback-section .strength-chip {
-  box-sizing: border-box;
-}
-
-@media print {
-  .rf-a4-page {
-    break-after: page;
-    page-break-after: always;
-  }
-  .rf-a4-page:last-child {
-    break-after: auto;
-    page-break-after: auto;
-  }
-  .rf-page-content [data-rf-section-type] {
-    box-sizing: border-box;
-  }
-  .rf-page-content .entry,
-  .rf-page-content .experience-item,
-  .rf-page-content .education-item,
-  .rf-page-content .project-item,
-  .rf-page-content .custom-item {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-}
