@@ -127,7 +127,7 @@
     // #gallery-grid, so newly-added .g-thumb nodes get observed.
     window.initGalleryThumbs = function initGalleryThumbs() {
         const obs = ensureObserver();
-        const nodes = document.querySelectorAll('.g-thumb[data-thumb-id], .tmpl-mini-t[data-thumb-id], .sc-thumb[data-thumb-id]');
+        const nodes = document.querySelectorAll('.g-thumb[data-thumb-id]');
         if (!obs) {
             // No IntersectionObserver support — just render everything eagerly.
             nodes.forEach(el => { if (el.dataset.rendered !== '1') renderThumbInto(el, el.getAttribute('data-thumb-id')); });

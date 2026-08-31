@@ -1269,7 +1269,7 @@ const PAGE_META = {
   },
   gallery: {
     title: 'Resume Templates | Mellow CV Factory',
-    description: 'Browse 83 professional resume templates — modern, ATS-friendly, executive, creative, student, and trade layouts.',
+    description: 'Browse 43 professional resume templates — modern, ATS-friendly, executive, creative, student, and trade layouts.',
     url: 'https://resume-factory-brown.vercel.app/gallery',
   },
   manager: {
@@ -1703,7 +1703,7 @@ function setStep(n) {
     currentStep = n;
     document.querySelectorAll('.ep-tab').forEach(t => t.classList.toggle('active', +t.dataset.step === n));
     document.getElementById('ep-body').innerHTML = stepContent(n);
-    if (n === 5 && typeof initGalleryThumbs === 'function') requestAnimationFrame(initGalleryThumbs);
+    if (n === 5 && typeof initTemplatePickerThumbs === 'function') requestAnimationFrame(initTemplatePickerThumbs);
     wireStepEvents();
     const tipsModal = document.getElementById('tips-modal');
     if (tipsModal && tipsModal.classList.contains('open')) renderTipsModal();
