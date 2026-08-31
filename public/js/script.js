@@ -28,74 +28,6 @@ const BLANK = {
 
  const allTemplateIds = TEMPLATE_CONFIGS.map(t => t.id);
 
-    function generateLegacyThumbnailSVG(templateId, accent) {
-        // Deterministic, content-shaped thumbnail for templates that previously
-        // fell through to the blank fallback. Geometry changes by template ID;
-        // it is intentionally recognizable as a CV rather than a placeholder.
-        const seed = parseInt(hashString(templateId).slice(0, 8), 16);
-        const bg = PAPER_COLORS[seed % PAPER_COLORS.length];
-        const left = 18 + (seed % 24);
-        const right = 100 - left;
-        const mode = (seed >>> 5) % 8;
-        const line = (x,y,w,h,fill,op=.32) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="1" fill="${fill}" opacity="${op}"/>`;
-        const rr = (x,y,w,h,r,fill,op) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
-        const txt = (x,y,fs,fill,content,anchor='start') => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}" text-anchor="${anchor}" font-weight="700">${content}</text>`;
-        let body = rr(0,0,100,141,2,bg,null);
-        const dark = '#23303A';
-        if (mode===0) {
-            body += rr(0,0,left,141,0,accent,.92);
-            body += txt(left+5,15,7,dark,'JANE MOKOENA');
-            for(let j=0;j<7;j++) body += line(6,30+j*13,left-9,2,'#fff',.34);
-            for(let j=0;j<6;j++) body += line(left+5,32+j*17,right-9,3,dark,.24);
-        } else if (mode===1) {
-            body += rr(0,0,100,25,0,accent,.9);
-            body += txt(8,12,7,'#fff','JANE MOKOENA');
-            body += txt(8,19,4,'#fff','PROFESSIONAL PROFILE');
-            for(let j=0;j<6;j++){ body += line(8,34+j*16,84,2,dark,.25); body += line(8,38+j*16,55,2,accent,.35); }
-        } else if (mode===2) {
-            body += txt(8,15,10,dark,'JANE MOKOENA');
-            body += txt(8,22,5,accent,'CAREER PROFILE');
-            body += rr(8,30,24,93,0,accent,.12);
-            for(let j=0;j<6;j++) body += line(38,34+j*15,54,3,dark,.26);
-        } else if (mode===3) {
-            body += rr(8,8,84,28,3,'#fff',1);
-            body += rr(8,8,5,28,0,accent,.9);
-            body += txt(18,19,8,dark,'JANE');
-            body += txt(18,27,7,dark,'MOKOENA');
-            for(let j=0;j<4;j++) body += rr(8,43+j*20,84,14,2,'#fff',1);
-            for(let j=0;j<4;j++) body += line(13,49+j*20,55,3,accent,.22);
-        } else if (mode===4) {
-            body += rr(0,0,14,141,0,accent,.94);
-            body += txt(21,17,8,dark,'JANE MOKOENA');
-            for(let j=0;j<7;j++) body += line(21,31+j*14,69,2,dark,.27);
-            body += rr(73,31,18,58,2,accent,.14);
-        } else if (mode===5) {
-            body += rr(0,0,100,14,0,accent,.9);
-            body += txt(8,26,9,dark,'JANE MOKOENA');
-            body += line(8,31,84,2,accent,.6);
-            for(let j=0;j<5;j++){ body += txt(8,46+j*18,4,accent,'SECTION'); body += line(26,43+j*18,60,3,dark,.22); }
-        } else if (mode===6) {
-            body += rr(8,8,31,22,2,accent,.16);
-            body += txt(11,20,8,dark,'PROFILE');
-            body += txt(47,18,8,dark,'JANE MOKOENA');
-            for(let j=0;j<5;j++) body += rr(8,37+j*19,84,14,2,'#fff',1);
-            for(let j=0;j<5;j++) body += line(12,43+j*19,48,2,accent,.3);
-        } else {
-            body += rr(0,0,100,33,0,'#fff',1);
-            body += txt(8,15,8,dark,'JANE MOKOENA');
-            body += txt(8,23,4,accent,'CURRICULUM VITAE');
-            body += rr(8,41,26,83,0,accent,.13);
-            for(let j=0;j<6;j++) body += line(40,45+j*13,51,2,dark,.25);
-        }
-        return body;
-    }
-
-    function hashString(value) {
-        let h = 2166136261;
-        for (let i = 0; i < value.length; i++) h = Math.imul(h ^ value.charCodeAt(i), 16777619);
-        return (h >>> 0).toString(16).padStart(8, '0');
-    }
-
     function generateThumbnailSVG(templateId) {
         const a = getTemplateDefaultColor(templateId);
         const rr = (x,y,w,h,r,fill,op) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
@@ -103,6 +35,7 @@ const BLANK = {
         const txt = (x,y,fs,fill,content,anchor) => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}"${anchor?` text-anchor="${anchor}"`:''} font-weight="700">${content}</text>`;
         let body='';
         const named = {
+          'modern-01':['#F8F5EF',a,'PROFILE RAIL'], 'ats-01':['#F7F7F3',a,'ATS EDITORIAL'], 'executive-01':['#F5F3EE',a,'EXECUTIVE'], 'creative-01':['#F6EFF5',a,'ASYMMETRIC'], 'split-01':['#F2F6F4',a,'LEDGER'], 'timeline-01':['#F4F6F7',a,'PATHWAY'],
           'combined-01':['#F4F8F5',a,'PROFILE'], 'combined-02':['#FBF3EE',a,'ONE STORY'], 'combined-03':['#F4F6FB',a,'STEADY PATH'], 'combined-04':['#F7F7F2',a,'ALL TOGETHER'],
           'practical-01':['#F8FAF8',a,'READY TO WORK'], 'practical-02':['#F2F5F8',a,'ON CALL'], 'practical-03':['#F7F4EF',a,'HANDS ON'],
           'functional-01':['#F7FAF8',a,'STRONG SUIT'], 'functional-02':['#F5F7FB',a,'NEW DIRECTION'], 'functional-03':['#FCF7F1',a,'TURNING POINT'],
@@ -116,7 +49,13 @@ const BLANK = {
           const [bg,accent,label]=named[templateId];
           body+=rr(0,0,100,141,2,bg,null);
           const i=parseInt((templateId.match(/(\\d+)$/)||['1','1'])[1],10);
-          if(templateId==='combined-01'){ body+=rr(0,0,24,141,0,accent,.95); body+=txt(12,16,6,'#fff','PROFILE','middle'); for(let j=0;j<7;j++)body+=line(6,28+j*13,13,2,'#fff',.35); body+=txt(31,15,8,'#222','JANE MOKOENA','start'); for(let j=0;j<5;j++){body+=line(31,28+j*20,60,3,'#333',.25);body+=line(31,34+j*20,48,2,'#888',.25)} }
+          if(templateId==='modern-01'){body+=rr(0,0,100,141,0,bg,null);body+=rr(0,0,30,141,0,a,.10);body+=rr(7,9,16,16,8,a,.78);body+=txt(15,20,5,'#fff','JM','middle');body+=txt(36,18,8,'#1E2B28','JANE MOKOENA','start');body+=line(36,23,48,1,a,.65);for(let j=0;j<6;j++){body+=txt(8,40+j*15,4,a,'SECTION','start');body+=line(8,44+j*15,15,2,a,.35);body+=line(36,41+j*15,53,2,'#555',.28)}}
+          else if(templateId==='ats-01'){body+=rr(0,0,100,141,0,bg,null);body+=txt(7,10,5,a,'01','start');body+=txt(14,18,9,'#202522','JANE MOKOENA','start');body+=txt(14,24,4,a,'PROFESSIONAL PROFILE','start');body+=line(7,29,86,1,'#222',.8);body+=rr(7,34,23,19,0,a,.10);body+=txt(10,46,4,a,'SUMMARY','start');for(let j=0;j<5;j++)body+=line(7,61+j*11,84,2,'#555',.25);body+=rr(7,121,86,1,0,'#222',.7)}
+          else if(templateId==='executive-01'){body+=rr(0,0,100,141,0,'#F5F3EE',null);body+=txt(50,19,4,a,'EXECUTIVE PROFILE','middle');body+=txt(50,31,11,'#1D2521','JANE MOKOENA','middle');body+=txt(50,38,5,a,'OPERATIONS LEADER','middle');body+=line(42,43,16,2,a,.75);body+=rr(8,53,84,18,0,'#fff',1);for(let j=0;j<4;j++)body+=line(11+j*21,58,14,2,a,.25);for(let j=0;j<5;j++){body+=txt(8,82+j*11,4,a,'SECTION','start');body+=line(29,80+j*11,62,2,'#555',.24)}}
+          else if(templateId==='creative-01'){body+=rr(0,0,100,141,0,'#F6EFF5',null);body+=rr(69,-8,45,45,8,a,.22);body+=txt(8,16,4,a,'CREATIVE PRACTICE','start');body+=txt(8,29,11,'#2B2430','JANE','start');body+=txt(8,40,11,'#2B2430','MOKOENA','start');body+=line(8,47,24,2,a,.85);for(let j=0;j<4;j++){body+=rr(8,55+j*17,53,12,2,'#fff',1);body+=line(12,61+j*17,40,2,'#444',.25)}body+=rr(72,55,20,55,0,a,.8);body+=txt(82,67,5,'#fff','02','middle');body+=txt(82,80,4,'#fff','PROFILE','middle')}
+          else if(templateId==='split-01'){body+=rr(0,0,100,141,0,'#F2F6F4',null);body+=rr(0,0,100,18,0,a,.92);body+=txt(8,12,7,'#fff','LEDGER','start');body+=txt(31,29,10,'#23312D','JANE MOKOENA','start');body+=txt(31,35,5,a,'WORK LEDGER','start');body+=rr(8,44,59,14,2,'#fff',1);body+=rr(72,44,20,78,0,'#E2ECE7',null);for(let j=0;j<5;j++){body+=line(11,64+j*14,56,2,'#444',.25);body+=txt(75,56+j*12,4,a,'INDEX','start')}}
+          else if(templateId==='timeline-01'){body+=rr(0,0,100,141,0,'#F4F6F7',null);body+=rr(0,0,100,25,0,'#22343A',null);body+=rr(8,7,11,11,6,a,.9);body+=txt(13.5,14,4,'#fff','JM','middle');body+=txt(24,13,7,'#fff','JANE MOKOENA','start');body+=txt(24,19,4,'#CBD7DB','CAREER PATH','start');body+=line(31,35,1,82,a,.65);for(let j=0;j<5;j++){body+=rr(28,40+j*16,7,7,4,'#fff',1);body+=rr(34,40+j*16,48,11,2,'#fff',1);body+=line(38,44+j*16,35,2,'#444',.25)}body+=rr(8,118,18,13,0,a,.10);txt(9,126,4,a,'PROFILE','start')}
+          else if(templateId==='combined-01'){ body+=rr(0,0,24,141,0,accent,.95); body+=txt(12,16,6,'#fff','PROFILE','middle'); for(let j=0;j<7;j++)body+=line(6,28+j*13,13,2,'#fff',.35); body+=txt(31,15,8,'#222','JANE MOKOENA','start'); for(let j=0;j<5;j++){body+=line(31,28+j*20,60,3,'#333',.25);body+=line(31,34+j*20,48,2,'#888',.25)} }
           else if(templateId==='combined-02'){ body+=rr(0,0,100,11,0,accent,null); body+=txt(8,27,10,'#2B2623','JANE','start'); body+=txt(8,35,10,'#2B2623','MOKOENA','start'); body+=line(8,40,84,1,'#D8C5BA',.8); for(let j=0;j<4;j++){body+=txt(8,51+j*22,5,accent,'SECTION','start');body+=line(8,56+j*22,70,2,'#555',.25)} }
           else if(templateId==='combined-03'){ body+=rr(0,0,100,31,0,'#E7ECF7',null);body+=txt(7,15,9,'#26344F','JANE MOKOENA','start');body+=rr(7,40,22,86,0,'#DDE5F3',null);for(let j=0;j<5;j++){body+=line(34,43+j*17,57,3,'#26344F',.25);body+=line(34,49+j*17,45,2,'#777',.3)} }
           else if(templateId==='combined-04'){ body+=txt(8,15,5,accent,'04 / START','start');body+=txt(8,29,10,'#26301F','JANE MOKOENA','start');for(let j=0;j<6;j++){const x=8+(j%2)*44,y=38+Math.floor(j/2)*28;body+=rr(x,y,40,20,2,j%2?accent:'#fff',j%2?.18:1);body+=line(x+3,y+7,30,2,'#555',.25)} }
@@ -154,10 +93,7 @@ const BLANK = {
           else if(templateId==='teal-command-two-page-10'){body+=rr(0,0,100,18,0,a,null);body+=txt(8,13,5,'#fff','COMMAND / 10','start');body+=txt(8,29,9,'#204E4B','JANE MOKOENA','start');body+=rr(8,39,25,83,0,'#DCEDEA',null);for(let j=0;j<5;j++)body+=line(39,43+j*16,53,3,'#526A68',.24)}
           return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
         }
-        // Never return the old blank fallback. Remaining templates receive a
-        // deterministic, populated CV thumbnail based on their identity.
-        body = generateLegacyThumbnailSVG(templateId, a);
-        return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+        return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${rr(0,0,100,141,2,'#fff',null)}</svg>`;
     }
 
     const SVGS = {};
@@ -338,18 +274,16 @@ function renderTemplateMarkup(data, raw) {
         const value = getP(data, el.getAttribute('data-bind'));
         el.textContent = value || '';
     });
-    wrapper.querySelectorAll('[data-bind-src]').forEach(el => {
-        const value = getP(data, el.getAttribute('data-bind-src'));
-        if (value) {
-            el.setAttribute('src', value);
-            el.hidden = false;
-        } else {
-            el.removeAttribute('src');
-            el.hidden = true;
-        }
-    });
     wrapper.querySelectorAll('[data-role="contact"]').forEach(el => {
         el.innerHTML = contactListHtml(p);
+    });
+    wrapper.querySelectorAll('[data-role="photo"]').forEach(el => {
+        if (p.photo) {
+            el.innerHTML = `<img src="${escHtml(p.photo)}" alt="Photo">`;
+        } else {
+            const initials = String(p.fullName || 'CV').trim().split(/\s+/).filter(Boolean).slice(0,2).map(v => v[0]).join('').toUpperCase() || 'CV';
+            el.textContent = initials;
+        }
     });
     wrapper.querySelectorAll('[data-role="sidebar"]').forEach(el => {
         el.innerHTML = vis
