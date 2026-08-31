@@ -1,7 +1,7 @@
 # Release QA — Premium pagination cleanup
 
 ## Verified source changes
-- One renderer-owned `data-template` root for all 40 premium templates.
+- One renderer-owned `data-template` root for all 40 premium/premium-sidebar templates.
 - Sidebar templates retain their authored outer-template -> `.cv` selector contract.
 - Nested premium `.cv` frames are normalized to the available root width.
 - Renderer no longer overrides premium-authored padding or forces a premium root to `min-height:100%`.
