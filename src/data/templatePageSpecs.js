@@ -1,5 +1,2772 @@
 export const templatePageSpecs = [
   {
+    "id": "modern-01",
+    "name": "Classic",
+    "category": "modern",
+    "layout": "two-column",
+    "sourceRenderer": "modern",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "modern",
+      "headerSelectors": [
+        ".sidebar > .cv-photo",
+        ".sidebar > .name",
+        ".sidebar > .job-title",
+        ".sidebar > .contact-list"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".sidebar > .cv-photo",
+        ".sidebar > .name",
+        ".sidebar > .job-title",
+        ".sidebar > .contact-list"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "modern-02",
+    "name": "Inverse",
+    "category": "modern",
+    "layout": "two-column",
+    "sourceRenderer": "modern",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "modern",
+      "headerSelectors": [
+        ".sidebar > .cv-photo",
+        ".sidebar > .name",
+        ".sidebar > .job-title",
+        ".sidebar > .contact-list"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".sidebar > .cv-photo",
+        ".sidebar > .name",
+        ".sidebar > .job-title",
+        ".sidebar > .contact-list"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "modern-03",
+    "name": "Accent",
+    "category": "modern",
+    "layout": "single-column",
+    "sourceRenderer": "modern",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "modern",
+      "headerSelectors": [
+        ".modern-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".modern-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "ats-01",
+    "name": "Clean",
+    "category": "ats",
+    "layout": "single-column",
+    "sourceRenderer": "ats",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "ats",
+      "headerSelectors": [
+        ".ats-header",
+        ".ats-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".ats-header",
+        ".ats-rule"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "ats-02",
+    "name": "Split",
+    "category": "ats",
+    "layout": "single-column",
+    "sourceRenderer": "ats",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "ats",
+      "headerSelectors": [
+        ".ats-header-row",
+        ".ats-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".ats-header-row",
+        ".ats-rule"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "ats-03",
+    "name": "Compact",
+    "category": "ats",
+    "layout": "single-column",
+    "sourceRenderer": "ats",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "ats",
+      "headerSelectors": [
+        ".ats-header",
+        ".ats-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".ats-header",
+        ".ats-rule"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "ats-04",
+    "name": "Caps",
+    "category": "ats",
+    "layout": "single-column",
+    "sourceRenderer": "ats",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "ats",
+      "headerSelectors": [
+        ".ats-header",
+        ".ats-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".ats-header",
+        ".ats-rule"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "executive-01",
+    "name": "Prestige",
+    "category": "executive",
+    "layout": "single-column",
+    "sourceRenderer": "executive",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "executive",
+      "headerSelectors": [
+        ".exec-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".exec-header"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "executive-02",
+    "name": "Formal",
+    "category": "executive",
+    "layout": "two-column",
+    "sourceRenderer": "executive-02",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "executive-02",
+      "headerSelectors": [
+        ".sidebar > .cv-photo",
+        ".sidebar > .name",
+        ".sidebar > .job-title",
+        ".sidebar > .contact-list"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".sidebar > .cv-photo",
+        ".sidebar > .name",
+        ".sidebar > .job-title",
+        ".sidebar > .contact-list"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "creative-01",
+    "name": "Vivid",
+    "category": "creative",
+    "layout": "two-column",
+    "sourceRenderer": "creative",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "creative",
+      "headerSelectors": [
+        ".creative-band"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "main": [
+          "experience",
+          "education"
+        ],
+        "sidebar": [
+          "skills",
+          "languages",
+          "certifications",
+          "references",
+          "interests",
+          "strengths",
+          "projects",
+          "custom",
+          "personal-info"
+        ]
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".creative-band"
+      ],
+      "preserveRegions": {
+        "main": [
+          "experience",
+          "education"
+        ],
+        "sidebar": [
+          "skills",
+          "languages",
+          "certifications",
+          "references",
+          "interests",
+          "strengths",
+          "projects",
+          "custom",
+          "personal-info"
+        ]
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "split-01",
+    "name": "Ledger",
+    "category": "modern",
+    "layout": "two-column",
+    "sourceRenderer": "split",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "split",
+      "headerSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "split-02",
+    "name": "Bracket",
+    "category": "modern",
+    "layout": "two-column",
+    "sourceRenderer": "split",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "split",
+      "headerSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "split-03",
+    "name": "Corner",
+    "category": "creative",
+    "layout": "two-column",
+    "sourceRenderer": "split",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "split",
+      "headerSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "split-04",
+    "name": "Frame",
+    "category": "executive",
+    "layout": "two-column",
+    "sourceRenderer": "split",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "split",
+      "headerSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".split-header",
+        ".split-rule"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths",
+        "main": "summary/personal-info/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "timeline-01",
+    "name": "Pathway",
+    "category": "modern",
+    "layout": "timeline",
+    "sourceRenderer": "timeline",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "timeline",
+      "rendererGroup": "timeline",
+      "headerSelectors": [
+        ".main > .name",
+        ".main > .job-title",
+        ".main > .ats-contact-line",
+        ".tl-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".main > .name",
+        ".main > .job-title",
+        ".main > .ats-contact-line",
+        ".tl-rule"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "timeline-02",
+    "name": "Milestone",
+    "category": "ats",
+    "layout": "single-column",
+    "sourceRenderer": "timeline",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "timeline",
+      "headerSelectors": [
+        ".main > .name",
+        ".main > .job-title",
+        ".main > .ats-contact-line",
+        ".tl-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".main > .name",
+        ".main > .job-title",
+        ".main > .ats-contact-line",
+        ".tl-rule"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "timeline-03",
+    "name": "Journey",
+    "category": "executive",
+    "layout": "timeline",
+    "sourceRenderer": "timeline",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "timeline",
+      "rendererGroup": "timeline",
+      "headerSelectors": [
+        ".main > .name",
+        ".main > .job-title",
+        ".main > .ats-contact-line",
+        ".tl-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".main > .name",
+        ".main > .job-title",
+        ".main > .ats-contact-line",
+        ".tl-rule"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "personal-info",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "combined-01",
+    "name": "All Together",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "combined",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "combined",
+      "headerSelectors": [
+        ".combined-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".combined-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "combined-02",
+    "name": "One Story",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "combined",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "combined",
+      "headerSelectors": [
+        ".combined-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".combined-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "combined-03",
+    "name": "Steady Path",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "combined",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "combined",
+      "headerSelectors": [
+        ".combined-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".combined-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "combined-04",
+    "name": "Groundwork",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "combined",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "combined",
+      "headerSelectors": [
+        ".combined-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".combined-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "practical-01",
+    "name": "Ready to Work",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "practical",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "practical",
+      "headerSelectors": [
+        ".practical-header",
+        ".practical-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".practical-header",
+        ".practical-rule"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "practical-02",
+    "name": "On Call",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "practical",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "practical",
+      "headerSelectors": [
+        ".practical-header",
+        ".practical-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".practical-header",
+        ".practical-rule"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "practical-03",
+    "name": "Hands On",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "practical",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "practical",
+      "headerSelectors": [
+        ".practical-header",
+        ".practical-rule"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".practical-header",
+        ".practical-rule"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "functional-01",
+    "name": "Strong Suit",
+    "category": "career-change",
+    "layout": "skills-first",
+    "sourceRenderer": "functional",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "skills-first",
+      "rendererGroup": "functional",
+      "headerSelectors": [
+        ".functional-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".functional-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "functional-02",
+    "name": "New Direction",
+    "category": "career-change",
+    "layout": "skills-first",
+    "sourceRenderer": "functional",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "skills-first",
+      "rendererGroup": "functional",
+      "headerSelectors": [
+        ".functional-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".functional-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "functional-03",
+    "name": "Turning Point",
+    "category": "career-change",
+    "layout": "skills-first",
+    "sourceRenderer": "functional",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "skills-first",
+      "rendererGroup": "functional",
+      "headerSelectors": [
+        ".functional-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".functional-header"
+      ],
+      "preserveRegions": {
+        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "trade-01",
+    "name": "On the Tools",
+    "category": "trade",
+    "layout": "skills-first",
+    "sourceRenderer": "trade",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "skills-first",
+      "rendererGroup": "trade",
+      "headerSelectors": [
+        ".trade-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".trade-header"
+      ],
+      "preserveRegions": {
+        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "trade-02",
+    "name": "Certified",
+    "category": "trade",
+    "layout": "skills-first",
+    "sourceRenderer": "trade",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "skills-first",
+      "rendererGroup": "trade",
+      "headerSelectors": [
+        ".trade2-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "sidebar": "certificates/skills/languages/interests/strengths/references",
+        "main": "experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".trade2-header"
+      ],
+      "preserveRegions": {
+        "sidebar": "certificates/skills/languages/interests/strengths/references",
+        "main": "experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "trade-03",
+    "name": "Skilled Hands",
+    "category": "trade",
+    "layout": "skills-first",
+    "sourceRenderer": "trade",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "skills-first",
+      "rendererGroup": "trade",
+      "headerSelectors": [
+        ".trade-header"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".trade-header"
+      ],
+      "preserveRegions": {
+        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "starter-01",
+    "name": "Starter Classic",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "starter",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "starter",
+      "headerSelectors": [
+        ".starter-header",
+        ".starter-contact-row"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".starter-header",
+        ".starter-contact-row"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "starter-02",
+    "name": "Starter Warm",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "starter",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "starter",
+      "headerSelectors": [
+        ".starter-header",
+        ".starter-contact-row"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".starter-header",
+        ".starter-contact-row"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "starter-03",
+    "name": "Starter Cool",
+    "category": "student",
+    "layout": "single-column",
+    "sourceRenderer": "starter",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": false,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "starter",
+      "headerSelectors": [
+        ".starter-header",
+        ".starter-contact-row"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": false,
+      "contentRegions": {
+        "main": [
+          "summary",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".starter-header",
+        ".starter-contact-row"
+      ],
+      "preserveRegions": {
+        "main": [
+          "summary",
+          "experience",
+          "education",
+          "skills",
+          "languages",
+          "certifications",
+          "projects",
+          "references",
+          "interests",
+          "strengths",
+          "custom"
+        ],
+        "sidebar": []
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "mono-01",
+    "name": "Stonewood",
+    "category": "elegant",
+    "layout": "single-column",
+    "sourceRenderer": "monogram",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "monogram",
+      "headerSelectors": [
+        ".mono-top"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "main": "summary/experience/education/projects/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".mono-top"
+      ],
+      "preserveRegions": {
+        "main": "summary/experience/education/projects/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "mono-02",
+    "name": "Sagebrook",
+    "category": "elegant",
+    "layout": "single-column",
+    "sourceRenderer": "monogram",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "monogram",
+      "headerSelectors": [
+        ".mono-top"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "main": "summary/experience/education/projects/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".mono-top"
+      ],
+      "preserveRegions": {
+        "main": "summary/experience/education/projects/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "mono-03",
+    "name": "Slateview",
+    "category": "elegant",
+    "layout": "single-column",
+    "sourceRenderer": "monogram",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "single-column",
+      "rendererGroup": "monogram",
+      "headerSelectors": [
+        ".mono-top"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "main": "summary/experience/education/projects/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".mono-top"
+      ],
+      "preserveRegions": {
+        "main": "summary/experience/education/projects/custom",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "facet-01",
+    "name": "Terraline",
+    "category": "elegant",
+    "layout": "two-column",
+    "sourceRenderer": "facet",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "facet",
+      "headerSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "facet-02",
+    "name": "Deepwater",
+    "category": "elegant",
+    "layout": "two-column",
+    "sourceRenderer": "facet",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "facet",
+      "headerSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "facet-03",
+    "name": "Plumline",
+    "category": "elegant",
+    "layout": "two-column",
+    "sourceRenderer": "facet",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "facet",
+      "headerSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "facet-04",
+    "name": "Brasswork",
+    "category": "elegant",
+    "layout": "two-column",
+    "sourceRenderer": "facet",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "facet",
+      "headerSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "photoActual": true,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".facet-main > .name",
+        ".facet-main > .job-title",
+        ".facet-main > .summary",
+        ".facet-sidebar > .facet-badge",
+        ".facet-sidebar > .facet-contact-mini"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "duo-01",
+    "name": "Rosemere",
+    "category": "elegant",
+    "layout": "two-column",
+    "sourceRenderer": "duotone",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "duotone",
+      "headerSelectors": [
+        ".duo-sidebar > .name",
+        ".duo-sidebar > .job-title",
+        ".duo-sidebar > .duo-gold-rule",
+        ".duo-sidebar > .contact-list",
+        ".duo-main > .summary"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".duo-sidebar > .name",
+        ".duo-sidebar > .job-title",
+        ".duo-sidebar > .duo-gold-rule",
+        ".duo-sidebar > .contact-list",
+        ".duo-main > .summary"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "duo-02",
+    "name": "Willowgreen",
+    "category": "elegant",
+    "layout": "two-column",
+    "sourceRenderer": "duotone",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "duotone",
+      "headerSelectors": [
+        ".duo-sidebar > .name",
+        ".duo-sidebar > .job-title",
+        ".duo-sidebar > .duo-gold-rule",
+        ".duo-sidebar > .contact-list",
+        ".duo-main > .summary"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".duo-sidebar > .name",
+        ".duo-sidebar > .job-title",
+        ".duo-sidebar > .duo-gold-rule",
+        ".duo-sidebar > .contact-list",
+        ".duo-main > .summary"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
+    "id": "duo-03",
+    "name": "Warmstone",
+    "category": "elegant",
+    "layout": "two-column",
+    "sourceRenderer": "duotone",
+    "sourceConfidence": "verified-from-source-renderer",
+    "pageCountSeed": 1,
+    "photoSupport": true,
+    "page1": {
+      "frame": ".page",
+      "layout": "two-column",
+      "rendererGroup": "duotone",
+      "headerSelectors": [
+        ".duo-sidebar > .name",
+        ".duo-sidebar > .job-title",
+        ".duo-sidebar > .duo-gold-rule",
+        ".duo-sidebar > .contact-list",
+        ".duo-main > .summary"
+      ],
+      "photoActual": false,
+      "photoMetadataEnabled": true,
+      "contentRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      }
+    },
+    "continuation": {
+      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
+      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
+      "hidePage1ChromeSelectors": [
+        ".duo-sidebar > .name",
+        ".duo-sidebar > .job-title",
+        ".duo-sidebar > .duo-gold-rule",
+        ".duo-sidebar > .contact-list",
+        ".duo-main > .summary"
+      ],
+      "preserveRegions": {
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
+        "main": "summary/experience/education/projects/custom"
+      },
+      "photo": "never on continuation",
+      "identity": "never repeat full name/job-title/contact header",
+      "pageNumber": "no new styling unless source renderer already defines it"
+    },
+    "pagination": {
+      "minPages": 1,
+      "maxPages": null,
+      "allowNaturalExpansion": true,
+      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
+      "neverClip": true,
+      "neverScaleToFitPage": true,
+      "keepTogether": [
+        "experience-item",
+        "education-item",
+        "project-item",
+        "custom-item"
+      ],
+      "allowSplitInsideItem": [
+        "bullet-list"
+      ]
+    }
+  },
+  {
     "id": "luxury-editorial-01",
     "name": "Luxury Editorial",
     "category": "premium",
@@ -2934,2731 +5701,7 @@ export const templatePageSpecs = [
         "bullet-list"
       ]
     }
-  },
-  {
-    "id": "modern-01",
-    "name": "Classic",
-    "category": "modern",
-    "layout": "two-column",
-    "sourceRenderer": "modern",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "modern",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "modern-02",
-    "name": "Inverse",
-    "category": "modern",
-    "layout": "two-column",
-    "sourceRenderer": "modern",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "modern",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "modern-03",
-    "name": "Accent",
-    "category": "modern",
-    "layout": "single-column",
-    "sourceRenderer": "modern",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "modern",
-      "headerSelectors": [
-        ".modern-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".modern-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "ats-01",
-    "name": "Clean",
-    "category": "ats",
-    "layout": "single-column",
-    "sourceRenderer": "ats",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "ats",
-      "headerSelectors": [
-        ".ats-header",
-        ".ats-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".ats-header",
-        ".ats-rule"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "ats-02",
-    "name": "Split",
-    "category": "ats",
-    "layout": "single-column",
-    "sourceRenderer": "ats",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "ats",
-      "headerSelectors": [
-        ".ats-header-row",
-        ".ats-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".ats-header-row",
-        ".ats-rule"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "ats-03",
-    "name": "Compact",
-    "category": "ats",
-    "layout": "single-column",
-    "sourceRenderer": "ats",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "ats",
-      "headerSelectors": [
-        ".ats-header",
-        ".ats-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".ats-header",
-        ".ats-rule"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "ats-04",
-    "name": "Caps",
-    "category": "ats",
-    "layout": "single-column",
-    "sourceRenderer": "ats",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "ats",
-      "headerSelectors": [
-        ".ats-header",
-        ".ats-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".ats-header",
-        ".ats-rule"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "executive-01",
-    "name": "Prestige",
-    "category": "executive",
-    "layout": "single-column",
-    "sourceRenderer": "executive",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "executive",
-      "headerSelectors": [
-        ".exec-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".exec-header"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "executive-02",
-    "name": "Formal",
-    "category": "executive",
-    "layout": "two-column",
-    "sourceRenderer": "executive-02",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "executive-02",
-      "headerSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".sidebar > .cv-photo",
-        ".sidebar > .name",
-        ".sidebar > .job-title",
-        ".sidebar > .contact-list"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "creative-01",
-    "name": "Vivid",
-    "category": "creative",
-    "layout": "two-column",
-    "sourceRenderer": "creative",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "creative",
-      "headerSelectors": [
-        ".creative-band"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "main": [
-          "experience",
-          "education"
-        ],
-        "sidebar": [
-          "skills",
-          "languages",
-          "certifications",
-          "references",
-          "interests",
-          "strengths",
-          "projects",
-          "custom",
-          "personal-info"
-        ]
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".creative-band"
-      ],
-      "preserveRegions": {
-        "main": [
-          "experience",
-          "education"
-        ],
-        "sidebar": [
-          "skills",
-          "languages",
-          "certifications",
-          "references",
-          "interests",
-          "strengths",
-          "projects",
-          "custom",
-          "personal-info"
-        ]
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "split-01",
-    "name": "Ledger",
-    "category": "modern",
-    "layout": "two-column",
-    "sourceRenderer": "split",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "split",
-      "headerSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "split-02",
-    "name": "Bracket",
-    "category": "modern",
-    "layout": "two-column",
-    "sourceRenderer": "split",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "split",
-      "headerSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "split-03",
-    "name": "Corner",
-    "category": "creative",
-    "layout": "two-column",
-    "sourceRenderer": "split",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "split",
-      "headerSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "split-04",
-    "name": "Frame",
-    "category": "executive",
-    "layout": "two-column",
-    "sourceRenderer": "split",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "split",
-      "headerSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".split-header",
-        ".split-rule"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "timeline-01",
-    "name": "Pathway",
-    "category": "modern",
-    "layout": "timeline",
-    "sourceRenderer": "timeline",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "timeline",
-      "rendererGroup": "timeline",
-      "headerSelectors": [
-        ".main > .name",
-        ".main > .job-title",
-        ".main > .ats-contact-line",
-        ".tl-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".main > .name",
-        ".main > .job-title",
-        ".main > .ats-contact-line",
-        ".tl-rule"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "timeline-02",
-    "name": "Milestone",
-    "category": "ats",
-    "layout": "single-column",
-    "sourceRenderer": "timeline",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "timeline",
-      "headerSelectors": [
-        ".main > .name",
-        ".main > .job-title",
-        ".main > .ats-contact-line",
-        ".tl-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".main > .name",
-        ".main > .job-title",
-        ".main > .ats-contact-line",
-        ".tl-rule"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "timeline-03",
-    "name": "Journey",
-    "category": "executive",
-    "layout": "timeline",
-    "sourceRenderer": "timeline",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "timeline",
-      "rendererGroup": "timeline",
-      "headerSelectors": [
-        ".main > .name",
-        ".main > .job-title",
-        ".main > .ats-contact-line",
-        ".tl-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".main > .name",
-        ".main > .job-title",
-        ".main > .ats-contact-line",
-        ".tl-rule"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "personal-info",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "combined-01",
-    "name": "All Together",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "combined",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "combined",
-      "headerSelectors": [
-        ".combined-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".combined-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "combined-02",
-    "name": "One Story",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "combined",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "combined",
-      "headerSelectors": [
-        ".combined-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".combined-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "combined-03",
-    "name": "Steady Path",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "combined",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "combined",
-      "headerSelectors": [
-        ".combined-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".combined-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "combined-04",
-    "name": "Groundwork",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "combined",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "combined",
-      "headerSelectors": [
-        ".combined-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".combined-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "practical-01",
-    "name": "Ready to Work",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "practical",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "practical",
-      "headerSelectors": [
-        ".practical-header",
-        ".practical-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".practical-header",
-        ".practical-rule"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "practical-02",
-    "name": "On Call",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "practical",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "practical",
-      "headerSelectors": [
-        ".practical-header",
-        ".practical-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".practical-header",
-        ".practical-rule"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "practical-03",
-    "name": "Hands On",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "practical",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "practical",
-      "headerSelectors": [
-        ".practical-header",
-        ".practical-rule"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".practical-header",
-        ".practical-rule"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "functional-01",
-    "name": "Strong Suit",
-    "category": "career-change",
-    "layout": "skills-first",
-    "sourceRenderer": "functional",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "skills-first",
-      "rendererGroup": "functional",
-      "headerSelectors": [
-        ".functional-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".functional-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "functional-02",
-    "name": "New Direction",
-    "category": "career-change",
-    "layout": "skills-first",
-    "sourceRenderer": "functional",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "skills-first",
-      "rendererGroup": "functional",
-      "headerSelectors": [
-        ".functional-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".functional-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "functional-03",
-    "name": "Turning Point",
-    "category": "career-change",
-    "layout": "skills-first",
-    "sourceRenderer": "functional",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "skills-first",
-      "rendererGroup": "functional",
-      "headerSelectors": [
-        ".functional-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".functional-header"
-      ],
-      "preserveRegions": {
-        "main": "summary/personal-info/experience/education/skills/languages/certificates/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "trade-01",
-    "name": "On the Tools",
-    "category": "trade",
-    "layout": "skills-first",
-    "sourceRenderer": "trade",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "skills-first",
-      "rendererGroup": "trade",
-      "headerSelectors": [
-        ".trade-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".trade-header"
-      ],
-      "preserveRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "trade-02",
-    "name": "Certified",
-    "category": "trade",
-    "layout": "skills-first",
-    "sourceRenderer": "trade",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "skills-first",
-      "rendererGroup": "trade",
-      "headerSelectors": [
-        ".trade2-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "sidebar": "certificates/skills/languages/interests/strengths/references",
-        "main": "experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".trade2-header"
-      ],
-      "preserveRegions": {
-        "sidebar": "certificates/skills/languages/interests/strengths/references",
-        "main": "experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "trade-03",
-    "name": "Skilled Hands",
-    "category": "trade",
-    "layout": "skills-first",
-    "sourceRenderer": "trade",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "skills-first",
-      "rendererGroup": "trade",
-      "headerSelectors": [
-        ".trade-header"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".trade-header"
-      ],
-      "preserveRegions": {
-        "main": "experience/education/skills/certificates/languages/projects/references/interests/strengths/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "starter-01",
-    "name": "Starter Classic",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "starter",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "starter",
-      "headerSelectors": [
-        ".starter-header",
-        ".starter-contact-row"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".starter-header",
-        ".starter-contact-row"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "starter-02",
-    "name": "Starter Warm",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "starter",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "starter",
-      "headerSelectors": [
-        ".starter-header",
-        ".starter-contact-row"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".starter-header",
-        ".starter-contact-row"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "starter-03",
-    "name": "Starter Cool",
-    "category": "student",
-    "layout": "single-column",
-    "sourceRenderer": "starter",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": false,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "starter",
-      "headerSelectors": [
-        ".starter-header",
-        ".starter-contact-row"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": false,
-      "contentRegions": {
-        "main": [
-          "summary",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".starter-header",
-        ".starter-contact-row"
-      ],
-      "preserveRegions": {
-        "main": [
-          "summary",
-          "experience",
-          "education",
-          "skills",
-          "languages",
-          "certifications",
-          "projects",
-          "references",
-          "interests",
-          "strengths",
-          "custom"
-        ],
-        "sidebar": []
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "mono-01",
-    "name": "Stonewood",
-    "category": "elegant",
-    "layout": "single-column",
-    "sourceRenderer": "monogram",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "monogram",
-      "headerSelectors": [
-        ".mono-top"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".mono-top"
-      ],
-      "preserveRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "mono-02",
-    "name": "Sagebrook",
-    "category": "elegant",
-    "layout": "single-column",
-    "sourceRenderer": "monogram",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "monogram",
-      "headerSelectors": [
-        ".mono-top"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".mono-top"
-      ],
-      "preserveRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "mono-03",
-    "name": "Slateview",
-    "category": "elegant",
-    "layout": "single-column",
-    "sourceRenderer": "monogram",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "single-column",
-      "rendererGroup": "monogram",
-      "headerSelectors": [
-        ".mono-top"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".mono-top"
-      ],
-      "preserveRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "facet-01",
-    "name": "Terraline",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "facet",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "facet",
-      "headerSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "facet-02",
-    "name": "Deepwater",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "facet",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "facet",
-      "headerSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "facet-03",
-    "name": "Plumline",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "facet",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "facet",
-      "headerSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "facet-04",
-    "name": "Brasswork",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "facet",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "facet",
-      "headerSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "photoActual": true,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".facet-main > .name",
-        ".facet-main > .job-title",
-        ".facet-main > .summary",
-        ".facet-sidebar > .facet-badge",
-        ".facet-sidebar > .facet-contact-mini"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "duo-01",
-    "name": "Rosemere",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "duotone",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "duotone",
-      "headerSelectors": [
-        ".duo-sidebar > .name",
-        ".duo-sidebar > .job-title",
-        ".duo-sidebar > .duo-gold-rule",
-        ".duo-sidebar > .contact-list",
-        ".duo-main > .summary"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".duo-sidebar > .name",
-        ".duo-sidebar > .job-title",
-        ".duo-sidebar > .duo-gold-rule",
-        ".duo-sidebar > .contact-list",
-        ".duo-main > .summary"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "duo-02",
-    "name": "Willowgreen",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "duotone",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "duotone",
-      "headerSelectors": [
-        ".duo-sidebar > .name",
-        ".duo-sidebar > .job-title",
-        ".duo-sidebar > .duo-gold-rule",
-        ".duo-sidebar > .contact-list",
-        ".duo-main > .summary"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".duo-sidebar > .name",
-        ".duo-sidebar > .job-title",
-        ".duo-sidebar > .duo-gold-rule",
-        ".duo-sidebar > .contact-list",
-        ".duo-main > .summary"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
-  },
-  {
-    "id": "duo-03",
-    "name": "Warmstone",
-    "category": "elegant",
-    "layout": "two-column",
-    "sourceRenderer": "duotone",
-    "sourceConfidence": "verified-from-source-renderer",
-    "pageCountSeed": 1,
-    "photoSupport": true,
-    "page1": {
-      "frame": ".page",
-      "layout": "two-column",
-      "rendererGroup": "duotone",
-      "headerSelectors": [
-        ".duo-sidebar > .name",
-        ".duo-sidebar > .job-title",
-        ".duo-sidebar > .duo-gold-rule",
-        ".duo-sidebar > .contact-list",
-        ".duo-main > .summary"
-      ],
-      "photoActual": false,
-      "photoMetadataEnabled": true,
-      "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      }
-    },
-    "continuation": {
-      "design": "explicit continuation composition from source renderer; do not clone page-1 identity chrome",
-      "pageBreakRule": "new A4 sheet; preserve original renderer CSS and content-region geometry",
-      "hidePage1ChromeSelectors": [
-        ".duo-sidebar > .name",
-        ".duo-sidebar > .job-title",
-        ".duo-sidebar > .duo-gold-rule",
-        ".duo-sidebar > .contact-list",
-        ".duo-main > .summary"
-      ],
-      "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
-      },
-      "photo": "never on continuation",
-      "identity": "never repeat full name/job-title/contact header",
-      "pageNumber": "no new styling unless source renderer already defines it"
-    },
-    "pagination": {
-      "minPages": 1,
-      "maxPages": null,
-      "allowNaturalExpansion": true,
-      "overflowPolicy": "move complete content units to next page; split oversized bullet collections only when necessary",
-      "neverClip": true,
-      "neverScaleToFitPage": true,
-      "keepTogether": [
-        "experience-item",
-        "education-item",
-        "custom-item"
-      ],
-      "allowSplitInsideItem": [
-        "bullet-list"
-      ]
-    }
   }
 ];
 
-export const templatePageSpecById = Object.fromEntries(templatePageSpecs.map(spec => [spec.id, spec]));
+export const templatePageSpecById = Object.fromEntries(templatePageSpecs.map(s => [s.id, s]));
