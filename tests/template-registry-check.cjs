@@ -5,7 +5,7 @@ const source = fs.readFileSync(path.join(root, 'public', 'js', 'template-system.
 const match = source.match(/const definitions = (\[.*?\]);/s);
 if (!match) throw new Error('Template registry could not be parsed.');
 const definitions = JSON.parse(match[1]);
-if (definitions.length !== 83) throw new Error(`Expected 83 templates, found ${definitions.length}.`);
+if (definitions.length !== 83) throw new Error(`Expected 40 retained templates, found ${definitions.length}.`);
 const ids = new Set(definitions.map(d => d.id));
 if (ids.size !== definitions.length) throw new Error('Duplicate template IDs detected.');
 if (definitions.some(d => d.rendererKind === 'html-shell')) throw new Error('HTML-shell renderer kinds remain in runtime registry.');
@@ -14,6 +14,7 @@ const reactTemplates = fs.readFileSync(path.join(root, 'src', 'data', 'templates
 if (!reactTemplates.includes('\"id\": \"luxury-editorial-01\"') || !reactTemplates.includes('\"id\": \"teal-command-two-page-10\"')) throw new Error('Retained premium registry is incomplete.');
 if (fs.existsSync(path.join(root,'src','data','shells.js'))) throw new Error('Obsolete embedded shell registry remains.');
 if (fs.existsSync(path.join(root,'public','templates-html'))) throw new Error('Obsolete HTML-shell directory remains.');
-const allowed = new Set(['premium','premium-sidebar','modern','ats','executive','creative','split','timeline','combined','practical','functional','trade','starter','mono','facet','duo','student','career-change','elegant']);
-if (definitions.some(d => !allowed.has(d.category))) throw new Error('Unexpected template category in runtime registry.');
+if (definitions.filter(d => ['premium','premium-sidebar'].includes(d.category)).length !== 40 || definitions.filter(d => d.category !== 'premium' && d.category !== 'premium-sidebar').length !== 43)
+  throw new Error('Expected exactly 40 premium/premium-sidebar and 43 legacy templates.');
+if (definitions.some(d => !['premium','premium-sidebar','modern','ats','executive','creative','trade','student','elegant','career-change'].includes(d.category))) throw new Error('Non-premium template remains in runtime registry.');
 console.log(`template registry validated: ${definitions.length} retained templates, unified legacy renderer for all templates`);

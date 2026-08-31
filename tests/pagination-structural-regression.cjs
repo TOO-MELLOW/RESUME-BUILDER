@@ -10,6 +10,8 @@ const premiumCss = fs.readFileSync(path.join(root, 'public/css/premium-templates
 
 const premiumCount = (canonical.match(/"category":\s*"premium(?:-sidebar)?"/g) || []).length;
 if (premiumCount !== 40) throw new Error(`Expected 40 premium templates in canonical registry, found ${premiumCount}`);
+const totalCount = (canonical.match(/"id":\s*"[^"]+"/g) || []).length;
+if (totalCount !== 83) throw new Error(`Expected 83 total templates in canonical registry, found ${totalCount}`);
 
 for (const token of [
   'function normalizePremiumFragment',

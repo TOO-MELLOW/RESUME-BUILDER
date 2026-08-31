@@ -30,7 +30,7 @@ if(!engine.includes("const root = doc.createElement('div');")) throw new Error('
 if(!engine.includes("root.className = 'rf-premium-root';")) throw new Error('Premium renderer wrapper class is missing');
 if(engine.includes("elements.length === 1 && elements[0].classList.contains('cv')")) throw new Error('Renderer incorrectly reuses sidebar .cv as the data-template root');
 if(!engine.includes('while (source.firstChild) root.appendChild(source.firstChild);')) throw new Error('Premium renderer no longer preserves source DOM inside wrapper');
-console.log('PASS: 40 premium/premium-sidebar roots audited');
+console.log('PASS: 40 premium/premium-sidebar roots audited (83 total registry includes 43 legacy templates)');
 console.log('PASS: exactly 10 sidebar .cv shells audited');
 console.log('PASS: renderer owns the single template identity wrapper');
 console.log('PASS: all canonical premium/premium-sidebar templates contain a semantic header');

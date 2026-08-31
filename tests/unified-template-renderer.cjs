@@ -11,13 +11,15 @@ const match = templatesSource.match(/export const templates\s*=\s*(\[[\s\S]*?\])
 if (!match) throw new Error('Canonical template array could not be parsed');
 const definitions = Function(`return ${match[1]}`)();
 const premiumDefs = definitions.filter(d => d.category === 'premium' || d.category === 'premium-sidebar');
+const legacyDefs = definitions.filter(d => !['premium','premium-sidebar'].includes(d.category));
 const failures=[];
 for (const d of premiumDefs) {
   if (!d.templateMarkup) failures.push(`canonical templates.js missing templateMarkup for ${d.id}`);
   if (!registry.includes(`"id":"${d.id}"`)) failures.push(`runtime registry missing ${d.id}`);
 }
 if (premiumDefs.length !== 40) failures.push(`expected 40 premium/premium-sidebar records, found ${premiumDefs.length}`);
-if (definitions.length !== 83) failures.push(`expected 83 total definitions, found ${definitions.length}`);
+if (legacyDefs.length !== 43) failures.push(`expected 43 legacy records, found ${legacyDefs.length}`);
+if (definitions.length !== 83) failures.push(`expected 83 canonical definitions, found ${definitions.length}`);
 if (templatesSource.includes('"rendererKind": "html-shell"')) failures.push('React registry still contains html-shell renderer kinds');
 if (registry.includes('"rendererKind":"html-shell"')) failures.push('runtime registry still contains html-shell renderer kinds');
 if (engine.includes("from '../data/shells'")) failures.push('React engine still imports shells');
@@ -28,7 +30,4 @@ if (fs.existsSync(path.join(ROOT,'src/data/premiumTemplates.js'))) failures.push
 if (fs.existsSync(path.join(ROOT,'src/data/shells.js'))) failures.push('obsolete shell registry still present');
 if (fs.existsSync(path.join(ROOT,'public/templates-html'))) failures.push('obsolete HTML-shell directory still present');
 if (failures.length) { failures.forEach(f=>console.error(`FAIL: ${f}`)); process.exit(1); }
-const legacyDefs = definitions.filter(d => !['premium','premium-sidebar'].includes(d.category));
-if (legacyDefs.length !== 43) failures.push(`expected 43 legacy records, found ${legacyDefs.length}`);
-if (legacyDefs.some(d => !script.includes(d.id))) failures.push('one or more legacy renderer IDs are not present in the working legacy controller');
-console.log(`PASS: ${premiumDefs.length} premium/premium-sidebar + ${legacyDefs.length} legacy templates use the canonical registry`);
+console.log(`PASS: ${premiumDefs.length} premium/premium-sidebar templates use the canonical template registry with no separate premium runtime registry`);

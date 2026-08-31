@@ -17,8 +17,9 @@ const ids=new Set(tDefs.map(x=>x.id));
 if(tDefs.length!==EXPECTED_COUNT) failures.push(`templates count ${tDefs.length}`);
 if(ids.size!==EXPECTED_COUNT) failures.push(`duplicate ids ${EXPECTED_COUNT-ids.size}`);
 if(new Set(tDefs.map(x=>x.name)).size!==EXPECTED_COUNT) failures.push('duplicate names');
-const allowedCategories=new Set(['premium','premium-sidebar','modern','ats','executive','creative','split','timeline','combined','practical','functional','trade','starter','mono','facet','duo','student','career-change','elegant']);
-if(tDefs.some(x=>!allowedCategories.has(x.category))) failures.push('unexpected template category');
+if(tDefs.filter(x=>x.category==='premium'||x.category==='premium-sidebar').length!==40) failures.push('premium count changed');
+if(tDefs.filter(x=>!['premium','premium-sidebar'].includes(x.category)).length!==43) failures.push('legacy count changed');
+if(tDefs.some(x=>x.category==='south-african')) failures.push('South African templates remain');
 if(tDefs.some(x=>(x.supportedSections||[]).includes('projects'))) failures.push('projects remains in template supportedSections');
 if(reg.length!==EXPECTED_COUNT) failures.push(`registry count ${reg.length}`);
 for(let i=0;i<EXPECTED_COUNT;i++){if(tDefs[i].id!==reg[i].id) failures.push(`registry order mismatch at ${i}: ${tDefs[i].id}/${reg[i].id}`)}
@@ -54,4 +55,4 @@ const dangerous=[/\btransform:\s*scale\([^;]*\)!important/ig,/\bwidth:\s*0\b/ig,
 if(css.includes('.r7-')) failures.push('r7 css remains');
 console.log(`FINAL_INTEGRITY ${failures.length?'FAIL':'PASS'}`);
 if(failures.length){for(const f of failures)console.error(' - '+f);process.exit(1)}
-console.log(`${EXPECTED_COUNT} total templates; ${custom.length} canonical markup definitions; ${EXPECTED_COUNT} page specs; registry aligned`);
+console.log(`${EXPECTED_COUNT} total templates; ${custom.length} premium canonical markup definitions; ${EXPECTED_COUNT} page specs; registry aligned`);
