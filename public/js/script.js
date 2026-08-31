@@ -569,9 +569,8 @@ function renderTemplateMarkup(data, raw) {
     return wrapper.innerHTML;
 }
 
-
 const SIDEBAR_TEMPLATE_IDS = new Set(
-    TEMPLATE_DEFINITIONS.filter(def => def.layout === 'two-column').map(def => def.id)
+    TEMPLATE_CONFIGS.filter(def => def.layout === 'two-column').map(def => def.id)
 );
 
     function wrapMain(title,inner,type=""){ return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="main-label">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`; }
