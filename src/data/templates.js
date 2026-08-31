@@ -12,7 +12,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "legacy",
+    "rendererKind": "markup",
     "supportedSections": [
       "personal",
       "summary",
@@ -28,7 +28,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "templateMarkup": "<div class=\"lu-page lu-modern-01\"><header class=\"lu-modern-01-head\"><div><p class=\"eyebrow\">CLASSIC SYSTEM</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-modern-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-modern-01-body\"><aside class=\"lu-modern-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-modern-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-modern-01-foot\"><span>CLASSIC SYSTEM</span><span data-page-number>01</span></footer></div>"
+    "templateMarkup": "<div class=\"cv p8-photo-rail\"><header class=\"p8-pr-head\"><div class=\"p8-pr-id\"><div class=\"p8-pr-avatar\" data-role=\"photo\"></div><div><p class=\"p8-eyebrow\">PROFILE • PROFESSIONAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p8-pr-rule\"></div><div class=\"p8-pr-body\"><aside class=\"p8-pr-side\"><p class=\"p8-side-kicker\">AT A GLANCE</p><div data-role=\"sidebar\"></div></aside><main class=\"p8-pr-main\"><p class=\"p8-main-kicker\">CAREER RECORD</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"main\"></div></main></div><footer class=\"p8-pr-foot\"><span>CLASSIC / PROFILE RAIL</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "modern-02",
@@ -58,8 +58,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Tech, marketing & general professional roles",
-    "templateMarkup": "<div class=\"lu-page lu-modern-02\"><header class=\"lu-modern-02-head lu-modern-02-split\"><div><div class=\"lu-modern-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-modern-02-body\"><main class=\"lu-modern-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-modern-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-modern-02-foot\"><span>INVERSE PROFILE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Tech, marketing & general professional roles"
   },
   {
     "id": "modern-03",
@@ -89,8 +88,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Tech, marketing & general professional roles",
-    "templateMarkup": "<div class=\"lu-page lu-modern-03\"><header class=\"lu-modern-03-head\"><p class=\"eyebrow\">ACCENT EDITION</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div><div class=\"lu-modern-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div></header><div class=\"lu-modern-03-body\"><section class=\"lu-modern-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-modern-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-modern-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-modern-03-foot\"><span>ACCENT EDITION</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Tech, marketing & general professional roles"
   },
   {
     "id": "ats-01",
@@ -105,7 +103,7 @@ export const templates = [
     "accentColor": "#222222",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "legacy",
+    "rendererKind": "markup",
     "supportedSections": [
       "personal",
       "summary",
@@ -121,7 +119,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Corporate, government & high-volume applications",
-    "templateMarkup": "<div class=\"lu-page lu-ats-01\"><header class=\"lu-ats-01-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">ATS STANDARD</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-01-body\"><main class=\"lu-ats-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-ats-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-ats-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-ats-01-foot\"><span>ATS STANDARD</span><span data-page-number>01</span></footer></div>"
+    "templateMarkup": "<div class=\"cv p8-ats-editorial\"><header class=\"p8-ae-head\"><div class=\"p8-ae-number\">01</div><div class=\"p8-ae-title\"><p class=\"p8-eyebrow\">PROFESSIONAL PROFILE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p8-ae-summary\"><p class=\"p8-ae-label\">SUMMARY</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"p8-ae-deck\"><aside class=\"p8-ae-side\"><p class=\"p8-ae-label\">DETAILS</p><div data-role=\"sidebar\"></div></aside><main class=\"p8-ae-main\"><p class=\"p8-ae-label\">EXPERIENCE &amp; EDUCATION</p><div data-role=\"main\"></div></main></div><footer class=\"p8-ae-foot\"><span>ATS / CLEAN EDITORIAL</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "ats-02",
@@ -151,8 +149,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Corporate, government & high-volume applications",
-    "templateMarkup": "<div class=\"lu-page lu-ats-02\"><header class=\"lu-ats-02-head\"><p class=\"eyebrow\">ATS CONTACT SHEET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-02-body\"><section class=\"lu-ats-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-ats-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-ats-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-ats-02-foot\"><span>ATS CONTACT SHEET</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Corporate, government & high-volume applications"
   },
   {
     "id": "ats-03",
@@ -182,8 +179,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Corporate, government & high-volume applications",
-    "templateMarkup": "<div class=\"lu-page lu-ats-03\"><header class=\"lu-ats-03-head\"><div class=\"brand-mark\">ATS</div><div><p class=\"eyebrow\">ATS COMPACT</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-03-body\"><aside class=\"lu-ats-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-ats-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-ats-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-ats-03-foot\"><span>ATS COMPACT</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Corporate, government & high-volume applications"
   },
   {
     "id": "ats-04",
@@ -213,8 +209,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Corporate, government & high-volume applications",
-    "templateMarkup": "<div class=\"lu-page lu-ats-04\"><header class=\"lu-ats-04-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">ATS SMALL CAPS</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-04-body\"><main class=\"lu-ats-04-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-ats-04-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-ats-04-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-ats-04-foot\"><span>ATS SMALL CAPS</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Corporate, government & high-volume applications"
   },
   {
     "id": "executive-01",
@@ -229,7 +224,7 @@ export const templates = [
     "accentColor": "#1B2A4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "legacy",
+    "rendererKind": "markup",
     "supportedSections": [
       "personal",
       "summary",
@@ -245,7 +240,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Senior leadership & management positions",
-    "templateMarkup": "<div class=\"lu-page lu-executive-01\"><header class=\"lu-executive-01-head\"><p class=\"eyebrow\">EXECUTIVE BRIEF</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-executive-01-body\"><section class=\"lu-executive-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-executive-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-executive-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-executive-01-foot\"><span>EXECUTIVE BRIEF</span><span data-page-number>01</span></footer></div>"
+    "templateMarkup": "<div class=\"cv p8-executive\"><header class=\"p8-ex-head\"><p class=\"p8-ex-overline\">EXECUTIVE PROFILE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div><div class=\"p8-ex-line\"></div></header><section class=\"p8-ex-intro\"><p class=\"p8-ex-label\">LEADERSHIP SUMMARY</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"p8-ex-body\"><main><div data-role=\"main\"></div></main><aside><p class=\"p8-ex-label\">CREDENTIALS</p><div data-role=\"sidebar\"></div></aside></div><footer class=\"p8-ex-foot\"><span>PRESTIGE / EXECUTIVE EDITION</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "executive-02",
@@ -275,8 +270,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Senior leadership & management positions",
-    "templateMarkup": "<div class=\"lu-page lu-executive-02\"><header class=\"lu-executive-02-head lu-executive-02-center\"><div><p class=\"eyebrow\">EXECUTIVE FORMAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-executive-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-executive-02-body\"><aside class=\"lu-executive-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-executive-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-executive-02-foot\"><span>EXECUTIVE FORMAL</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Senior leadership & management positions"
   },
   {
     "id": "creative-01",
@@ -291,7 +285,7 @@ export const templates = [
     "accentColor": "#C1447E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "legacy",
+    "rendererKind": "markup",
     "supportedSections": [
       "personal",
       "summary",
@@ -307,7 +301,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Design, media & creative industries",
-    "templateMarkup": "<div class=\"lu-page lu-creative-01\"><header class=\"lu-creative-01-head lu-creative-01-center\"><div><p class=\"eyebrow\">CREATIVE STUDIO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-creative-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-creative-01-body\"><main class=\"lu-creative-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-creative-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-creative-01-foot\"><span>CREATIVE STUDIO</span><span data-page-number>01</span></footer></div>"
+    "templateMarkup": "<div class=\"cv p8-asym\"><div class=\"p8-asym-shape\"></div><header class=\"p8-as-head\"><div><p class=\"p8-as-kicker\">CREATIVE PRACTICE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p8-as-summary\"><p class=\"p8-as-label\">THE SHORT STORY</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"p8-as-grid\"><main><div class=\"p8-as-marker\">01</div><div data-role=\"main\"></div></main><aside><div class=\"p8-as-marker\">02</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"p8-as-foot\"><span>VIVID / ASYMMETRIC EDITION</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "split-01",
@@ -322,7 +316,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "legacy",
+    "rendererKind": "markup",
     "supportedSections": [
       "personal",
       "summary",
@@ -338,7 +332,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "templateMarkup": "<div class=\"lu-page lu-split-01\"><header class=\"lu-split-01-head lu-split-01-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">LEDGER / CASE FILE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-01-body\"><aside class=\"lu-split-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-split-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-split-01-foot\"><span>LEDGER / CASE FILE</span><span data-page-number>01</span></footer></div>"
+    "templateMarkup": "<div class=\"cv p8-split-ledger\"><header class=\"p8-sl-head\"><div class=\"p8-sl-brand\"><span class=\"p8-sl-box\">L</span><div><p class=\"p8-sl-kicker\">WORK LEDGER</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p8-sl-strip\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"p8-sl-body\"><main><div class=\"p8-sl-main-label\">WORK HISTORY</div><div data-role=\"main\"></div></main><aside><div class=\"p8-sl-rail-label\">PROFILE INDEX</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"p8-sl-foot\"><span>LEDGER / CARD INDEX</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "split-02",
@@ -368,8 +362,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Tech, marketing & general professional roles",
-    "templateMarkup": "<div class=\"lu-page lu-split-02\"><header class=\"lu-split-02-head lu-split-02-split\"><div><div class=\"lu-split-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-02-body\"><main class=\"lu-split-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-split-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-split-02-foot\"><span>BRACKET / PROFILE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Tech, marketing & general professional roles"
   },
   {
     "id": "split-03",
@@ -399,8 +392,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Design, media & creative industries",
-    "templateMarkup": "<div class=\"lu-page lu-split-03\"><header class=\"lu-split-03-head lu-split-03-center\"><div><p class=\"eyebrow\">CORNER / PORTFOLIO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-split-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-03-body\"><aside class=\"lu-split-03-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-split-03-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-split-03-foot\"><span>CORNER / PORTFOLIO</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Design, media & creative industries"
   },
   {
     "id": "split-04",
@@ -430,8 +422,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Senior leadership & management positions",
-    "templateMarkup": "<div class=\"lu-page lu-split-04\"><header class=\"lu-split-04-head\"><div><p class=\"eyebrow\">FRAME / EXECUTIVE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-split-04-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-04-body\"><main class=\"lu-split-04-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-split-04-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-split-04-foot\"><span>FRAME / EXECUTIVE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Senior leadership & management positions"
   },
   {
     "id": "timeline-01",
@@ -446,7 +437,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "legacy",
+    "rendererKind": "markup",
     "supportedSections": [
       "personal",
       "summary",
@@ -462,7 +453,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "templateMarkup": "<div class=\"lu-page lu-timeline-01\"><header class=\"lu-timeline-01-head\"><div class=\"timeline-pin\">01</div><div><p class=\"eyebrow\">PATHWAY / PROGRESSION</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-timeline-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"lu-timeline-01-intro\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"lu-timeline-01-track\"><aside><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"lu-timeline-01-foot\"><span>PATHWAY / PROGRESSION</span><span data-page-number>01</span></footer></div>"
+    "templateMarkup": "<div class=\"cv p8-timeline\"><header class=\"p8-tl-head\"><div class=\"p8-tl-monogram\" data-role=\"photo\"></div><div><p class=\"p8-tl-kicker\">CAREER PATH</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p8-tl-summary\"><p class=\"p8-tl-label\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"p8-tl-layout\"><main><div class=\"p8-tl-axis\"></div><div data-role=\"main\"></div></main><aside><p class=\"p8-tl-label\">AT A GLANCE</p><div data-role=\"sidebar\"></div></aside></div><footer class=\"p8-tl-foot\"><span>PATHWAY / TIMELINE EDITION</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "timeline-02",
@@ -492,8 +483,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Corporate, government & high-volume applications",
-    "templateMarkup": "<div class=\"lu-page lu-timeline-02\"><header class=\"lu-timeline-02-head\"><div class=\"timeline-pin\">01</div><div><p class=\"eyebrow\">MILESTONE / RECORD</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-timeline-02-matrix\"><main><div class=\"section-intro\">PROGRESSION</div><div data-role=\"main\"></div></main><aside><div class=\"summary\" data-bind=\"personalDetails.summary\"></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-timeline-02-foot\"><span>MILESTONE / RECORD</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Corporate, government & high-volume applications"
   },
   {
     "id": "timeline-03",
@@ -523,8 +513,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Senior leadership & management positions",
-    "templateMarkup": "<div class=\"lu-page lu-timeline-03\"><header class=\"lu-timeline-03-head\"><div class=\"timeline-pin\">01</div><div><p class=\"eyebrow\">JOURNEY / LEADERSHIP</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-timeline-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"lu-timeline-03-summary\"><p class=\"section-kicker\">JOURNEY</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-timeline-03-main\"><div data-role=\"main\"></div></main><aside class=\"lu-timeline-03-side\"><div data-role=\"sidebar\"></div></aside><footer class=\"lu-timeline-03-foot\"><span>JOURNEY / LEADERSHIP</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Senior leadership & management positions"
   },
   {
     "id": "combined-01",
@@ -554,8 +543,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-combined-01\"><header class=\"lu-combined-01-head\"><div class=\"brand-mark\">JOURNAL</div><div><p class=\"eyebrow\">ALL TOGETHER / JOURNAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-01-body\"><section class=\"lu-combined-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-combined-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-combined-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-combined-01-foot\"><span>ALL TOGETHER / JOURNAL</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "combined-02",
@@ -585,8 +573,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-combined-02\"><header class=\"lu-combined-02-head\"><p class=\"eyebrow\">ONE STORY / EDITORIAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-02-body\"><main class=\"lu-combined-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-combined-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-combined-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-combined-02-foot\"><span>ONE STORY / EDITORIAL</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "combined-03",
@@ -616,8 +603,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-combined-03\"><header class=\"lu-combined-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">STEADY PATH / LEDGER</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-03-body\"><aside class=\"lu-combined-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-combined-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-combined-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-combined-03-foot\"><span>STEADY PATH / LEDGER</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "combined-04",
@@ -647,8 +633,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-combined-04\"><header class=\"lu-combined-04-head\"><div class=\"brand-mark\">FIELD</div><div><p class=\"eyebrow\">GROUNDWORK / FIELD NOTES</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-04-body\"><section class=\"lu-combined-04-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-combined-04-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-combined-04-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-combined-04-foot\"><span>GROUNDWORK / FIELD NOTES</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "practical-01",
@@ -678,8 +663,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-practical-01\"><header class=\"lu-practical-01-head\"><div class=\"brand-mark\">READY</div><div><p class=\"eyebrow\">READY TO WORK / PRACTICAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-practical-01-body\"><section class=\"lu-practical-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-practical-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-practical-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-practical-01-foot\"><span>READY TO WORK / PRACTICAL</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "practical-02",
@@ -709,8 +693,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-practical-02\"><header class=\"lu-practical-02-head lu-practical-02-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">ON CALL / SERVICE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-practical-02-body\"><aside class=\"lu-practical-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-practical-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-practical-02-foot\"><span>ON CALL / SERVICE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "practical-03",
@@ -740,8 +723,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-practical-03\"><header class=\"lu-practical-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">HANDS ON / EXPERIENCE</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-practical-03-body\"><main class=\"lu-practical-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-practical-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-practical-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-practical-03-foot\"><span>HANDS ON / EXPERIENCE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "functional-01",
@@ -771,8 +753,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Career changers highlighting transferable skills",
-    "templateMarkup": "<div class=\"lu-page lu-functional-01\"><header class=\"lu-functional-01-head\"><div><p class=\"eyebrow\">STRONG SUIT / SKILLS</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-functional-01-body\"><aside class=\"lu-functional-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-functional-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-functional-01-foot\"><span>STRONG SUIT / SKILLS</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Career changers highlighting transferable skills"
   },
   {
     "id": "functional-02",
@@ -802,8 +783,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Career changers highlighting transferable skills",
-    "templateMarkup": "<div class=\"lu-page lu-functional-02\"><header class=\"lu-functional-02-head\"><p class=\"eyebrow\">NEW DIRECTION / TRANSFERABLE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-functional-02-body\"><aside class=\"lu-functional-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-functional-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-functional-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-functional-02-foot\"><span>NEW DIRECTION / TRANSFERABLE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Career changers highlighting transferable skills"
   },
   {
     "id": "functional-03",
@@ -833,8 +813,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Career changers highlighting transferable skills",
-    "templateMarkup": "<div class=\"lu-page lu-functional-03\"><header class=\"lu-functional-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">TURNING POINT / RESULTS</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-functional-03-body\"><section class=\"lu-functional-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-functional-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-functional-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-functional-03-foot\"><span>TURNING POINT / RESULTS</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Career changers highlighting transferable skills"
   },
   {
     "id": "trade-01",
@@ -864,8 +843,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Skilled trades, apprenticeships & artisans",
-    "templateMarkup": "<div class=\"lu-page lu-trade-01\"><header class=\"lu-trade-01-head lu-trade-01-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">ON THE TOOLS / FIELD</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-trade-01-body\"><aside class=\"lu-trade-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-trade-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-trade-01-foot\"><span>ON THE TOOLS / FIELD</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Skilled trades, apprenticeships & artisans"
   },
   {
     "id": "trade-02",
@@ -895,8 +873,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Skilled trades, apprenticeships & artisans",
-    "templateMarkup": "<div class=\"lu-page lu-trade-02\"><header class=\"lu-trade-02-head\"><div class=\"brand-mark\">CERT</div><div><p class=\"eyebrow\">CERTIFIED / CREDENTIALS</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-trade-02-body\"><aside class=\"lu-trade-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-trade-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-trade-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-trade-02-foot\"><span>CERTIFIED / CREDENTIALS</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Skilled trades, apprenticeships & artisans"
   },
   {
     "id": "trade-03",
@@ -926,8 +903,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Skilled trades, apprenticeships & artisans",
-    "templateMarkup": "<div class=\"lu-page lu-trade-03\"><header class=\"lu-trade-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">SKILLED HANDS / TRADE</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-trade-03-body\"><main class=\"lu-trade-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-trade-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-trade-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-trade-03-foot\"><span>SKILLED HANDS / TRADE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Skilled trades, apprenticeships & artisans"
   },
   {
     "id": "starter-01",
@@ -957,8 +933,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-starter-01\"><header class=\"lu-starter-01-head\"><div class=\"brand-mark\">START</div><div><p class=\"eyebrow\">STARTER CLASSIC / FIRST ROLE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-starter-01-body\"><section class=\"lu-starter-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-starter-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-starter-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-starter-01-foot\"><span>STARTER CLASSIC / FIRST ROLE</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "starter-02",
@@ -988,8 +963,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-starter-02\"><header class=\"lu-starter-02-head\"><div><p class=\"eyebrow\">STARTER WARM / FIRST STEP</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-starter-02-body\"><main class=\"lu-starter-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-starter-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-starter-02-foot\"><span>STARTER WARM / FIRST STEP</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "starter-03",
@@ -1019,8 +993,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "First jobs, students & recent graduates",
-    "templateMarkup": "<div class=\"lu-page lu-starter-03\"><header class=\"lu-starter-03-head\"><p class=\"eyebrow\">STARTER COOL / BEGINNING</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-starter-03-body\"><aside class=\"lu-starter-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-starter-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-starter-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-starter-03-foot\"><span>STARTER COOL / BEGINNING</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "First jobs, students & recent graduates"
   },
   {
     "id": "mono-01",
@@ -1050,8 +1023,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-mono-01\"><header class=\"lu-mono-01-head\"><p class=\"eyebrow\">STONEWOOD / MONO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div><div class=\"lu-mono-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div></header><div class=\"lu-mono-01-body\"><section class=\"lu-mono-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-mono-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-mono-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-mono-01-foot\"><span>STONEWOOD / MONO</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "mono-02",
@@ -1081,8 +1053,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-mono-02\"><header class=\"lu-mono-02-head\"><div class=\"brand-mark\">SAGE</div><div><p class=\"eyebrow\">SAGEBROOK / MONO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-mono-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-mono-02-body\"><main class=\"lu-mono-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-mono-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-mono-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-mono-02-foot\"><span>SAGEBROOK / MONO</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "mono-03",
@@ -1112,8 +1083,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-mono-03\"><header class=\"lu-mono-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">SLATEVIEW / MONO</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-mono-03-body\"><aside class=\"lu-mono-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-mono-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-mono-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-mono-03-foot\"><span>SLATEVIEW / MONO</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "facet-01",
@@ -1143,8 +1113,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-facet-01\"><header class=\"lu-facet-01-head lu-facet-01-center\"><div><p class=\"eyebrow\">TERRALINE / FACET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-facet-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-01-body\"><aside class=\"lu-facet-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-facet-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-facet-01-foot\"><span>TERRALINE / FACET</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "facet-02",
@@ -1174,8 +1143,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-facet-02\"><header class=\"lu-facet-02-head lu-facet-02-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">DEEPWATER / FACET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-02-body\"><main class=\"lu-facet-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-facet-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-facet-02-foot\"><span>DEEPWATER / FACET</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "facet-03",
@@ -1205,8 +1173,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-facet-03\"><header class=\"lu-facet-03-head lu-facet-03-split\"><div><div class=\"lu-facet-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-03-body\"><aside class=\"lu-facet-03-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-facet-03-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-facet-03-foot\"><span>PLUMLINE / FACET</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "facet-04",
@@ -1236,8 +1203,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-facet-04\"><header class=\"lu-facet-04-head\"><div><p class=\"eyebrow\">BRASSWORK / FACET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-facet-04-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-04-body\"><main class=\"lu-facet-04-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-facet-04-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-facet-04-foot\"><span>BRASSWORK / FACET</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "duo-01",
@@ -1267,8 +1233,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-duo-01\"><header class=\"lu-duo-01-head lu-duo-01-center\"><div><p class=\"eyebrow\">ROSEMERE / DUO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-duo-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-duo-01-body\"><aside class=\"lu-duo-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-duo-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-duo-01-foot\"><span>ROSEMERE / DUO</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "duo-02",
@@ -1298,8 +1263,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-duo-02\"><header class=\"lu-duo-02-head\"><div><p class=\"eyebrow\">WILLOWGREEN / DUO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-duo-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-duo-02-body\"><main class=\"lu-duo-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-duo-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-duo-02-foot\"><span>WILLOWGREEN / DUO</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "duo-03",
@@ -1329,8 +1293,7 @@ export const templates = [
       "strengths",
       "custom"
     ],
-    "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"lu-page lu-duo-03\"><header class=\"lu-duo-03-head lu-duo-03-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">WARMSTONE / DUO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-duo-03-body\"><aside class=\"lu-duo-03-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-duo-03-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-duo-03-foot\"><span>WARMSTONE / DUO</span><span data-page-number>01</span></footer></div>"
+    "bestFor": "Editorial, luxury & personal-brand roles"
   },
   {
     "id": "luxury-editorial-01",
