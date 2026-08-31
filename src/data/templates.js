@@ -1,5 +1,3 @@
-// Canonical unified template registry: 40 premium/premium-sidebar + 43 legacy.
-// Projects are intentionally excluded from the supported section contract.
 export const templates = [
   {
     "id": "luxury-editorial-01",
@@ -2449,5 +2447,5 @@ export const templates = [
     "bestFor": "Editorial, luxury & personal-brand roles"
   }
 ];
-export const templateById = Object.fromEntries(templates.map(t => [t.id,t]));
-export const shellTemplateIds = new Set(templates.filter(t => t.rendererKind === "html-shell").map(t => t.id));
+
+export const templateById = Object.fromEntries(templates.map(template => [template.id, template]));
