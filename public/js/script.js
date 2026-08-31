@@ -1504,7 +1504,9 @@ function hashToView(hash) {
     return NAV_VIEWS.includes(v) ? v : 'landing';
 }
 
-// ─── Page meta config ────────────────────────────────────────────────────────
+/* ==========================================================================
+   PAGE META / NAVIGATION
+   -------------------------------------------------------------------------- */
 
 const PAGE_META = {
   landing: {
@@ -1578,8 +1580,6 @@ function updatePageMeta(view) {
   canonical.href = meta.url;
 }
 
-// ─── navigate() ──────────────────────────────────────────────────────────────
-
 function navigate(view, opts = {}) {
   closeMobilePreview();
   document.body.setAttribute('data-view', view);
@@ -1616,8 +1616,6 @@ function navigate(view, opts = {}) {
   updatePageMeta(view);
 }
 
-// ─── Back / forward button support ───────────────────────────────────────────
-
 window.addEventListener('popstate', (e) => {
   const view = (e.state && e.state.view)
     ? e.state.view
@@ -1625,19 +1623,13 @@ window.addEventListener('popstate', (e) => {
   navigate(view, { skipHistory: true });
 });
 
-// ─── On first load: resolve view from URL path ────────────────────────────────
-
+// On first load: resolve view from URL path
 (function initViewFromURL() {
   const view = PATH_TO_VIEW[window.location.pathname] || 'landing';
   document.body.setAttribute('data-view', view);
   updatePageMeta(view);
   history.replaceState({ view }, '', window.location.pathname);
 })();
-
-window.addEventListener('popstate', (e) => {
-    const view = (e.state && e.state.view) || hashToView(location.hash);
-    navigate(view, { skipHistory: true });
-});
 
 // Categorized tips per editor step.
 const TIPS_CONTENT = {
@@ -1864,7 +1856,7 @@ function updateMobilePreview() {
     if (isMobilePreviewOpen) renderMobilePreview();
 }
 
-
+// Preview scaling (desktop)
 let previewZoom = null;
 function getPreviewDocument() {
     return document.querySelector('#cv-root .rf-resume-document');
@@ -1907,28 +1899,14 @@ function scalePreviewToFit() {
 }
 
 function renderPreview(pageEl) {
-    const el = pageEl || document.getElementById('cv-root');
-    if (!el) return;
-    const tid = currentTemplateId;
-    el.setAttribute('data-template', tid);
-
-    const ov = cvData.meta.themeOverrides || {};
-    const accentColor = ov.primaryColor || getTemplateDefaultColor(tid);
-    el.style.setProperty('--color-accent', accentColor);
-    if (ov.paperColor) el.style.setProperty('--color-paper', ov.paperColor);
-    else el.style.removeProperty('--color-paper');
-    el.style.setProperty('--scale', ov.fontSizeScale || 1);
-    el.style.setProperty('--spacing', ov.spacingScale || 1);
-
+    // Update React state if the engine is ready; otherwise do nothing.
+    // React will read the initial state via __RF_GET_STATE__ when it mounts.
     if (typeof window.__RF_SET_PREVIEW__ === 'function') {
-        window.__RF_SET_PREVIEW__(cvData, tid);
-    } else {
-        el.innerHTML = `<div class="a4-page rf-a4-page"><div class="rf-page-content"><div class="page" data-template="${escHtml(tid)}">${renderTemplateContent(cvData, tid)}</div></div></div>`;
+        window.__RF_SET_PREVIEW__(cvData, currentTemplateId);
     }
-
-    updateMobilePreview();
+    // Keep status bar and mobile preview in sync (they read from cvData/DOM)
     updateStatusBar();
-    requestAnimationFrame(() => requestAnimationFrame(scalePreviewToFit));
+    updateMobilePreview();
 }
 
 function getTemplateDefaultColor(tid) {
