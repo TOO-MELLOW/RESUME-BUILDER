@@ -21,8 +21,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -35,8 +35,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -82,8 +82,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -96,8 +96,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -609,8 +609,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -623,8 +623,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -749,8 +749,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -761,8 +761,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -806,8 +806,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -818,8 +818,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -863,8 +863,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -875,8 +875,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -920,8 +920,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -932,8 +932,8 @@ export const templatePageSpecs = [
         ".split-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1505,8 +1505,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -1517,8 +1517,8 @@ export const templatePageSpecs = [
         ".practical-rule"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -1828,8 +1828,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "certificates/skills/languages/interests/strengths/references",
-        "main": "experience/education/projects/custom"
+        "sidebar": "certificates/skills/languages/interests/strengths/references/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -1839,8 +1839,8 @@ export const templatePageSpecs = [
         ".trade2-header"
       ],
       "preserveRegions": {
-        "sidebar": "certificates/skills/languages/interests/strengths/references",
-        "main": "experience/education/projects/custom"
+        "sidebar": "certificates/skills/languages/interests/strengths/references/projects/custom",
+        "main": "experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2179,8 +2179,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+        "main": "summary/experience/education",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
       }
     },
     "continuation": {
@@ -2190,8 +2190,8 @@ export const templatePageSpecs = [
         ".mono-top"
       ],
       "preserveRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+        "main": "summary/experience/education",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2234,8 +2234,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+        "main": "summary/experience/education",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
       }
     },
     "continuation": {
@@ -2245,8 +2245,8 @@ export const templatePageSpecs = [
         ".mono-top"
       ],
       "preserveRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+        "main": "summary/experience/education",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2289,8 +2289,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+        "main": "summary/experience/education",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
       }
     },
     "continuation": {
@@ -2300,8 +2300,8 @@ export const templatePageSpecs = [
         ".mono-top"
       ],
       "preserveRegions": {
-        "main": "summary/experience/education/projects/custom",
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references"
+        "main": "summary/experience/education",
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2348,8 +2348,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -2363,8 +2363,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2411,8 +2411,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -2426,8 +2426,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2474,8 +2474,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -2489,8 +2489,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2537,8 +2537,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -2552,8 +2552,8 @@ export const templatePageSpecs = [
         ".facet-sidebar > .facet-contact-mini"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2600,8 +2600,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -2615,8 +2615,8 @@ export const templatePageSpecs = [
         ".duo-main > .summary"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2663,8 +2663,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -2678,8 +2678,8 @@ export const templatePageSpecs = [
         ".duo-main > .summary"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2726,8 +2726,8 @@ export const templatePageSpecs = [
       "photoActual": false,
       "photoMetadataEnabled": true,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       }
     },
     "continuation": {
@@ -2741,8 +2741,8 @@ export const templatePageSpecs = [
         ".duo-main > .summary"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references",
-        "main": "summary/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/interests/personal-info/strengths/references/projects/custom",
+        "main": "summary/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -2797,8 +2797,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -2818,8 +2818,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -2869,8 +2869,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -2890,8 +2890,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -2945,8 +2945,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -2966,8 +2966,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3021,8 +3021,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3042,8 +3042,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3097,8 +3097,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3118,8 +3118,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3169,8 +3169,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3190,8 +3190,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3245,8 +3245,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3266,8 +3266,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3321,8 +3321,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3342,8 +3342,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3397,8 +3397,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3418,8 +3418,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3457,8 +3457,8 @@ export const templatePageSpecs = [
       "footer": [],
       "contentRoles": {},
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3477,8 +3477,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3532,8 +3532,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3553,8 +3553,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3608,8 +3608,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3629,8 +3629,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3687,8 +3687,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3708,8 +3708,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3766,8 +3766,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3787,8 +3787,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3842,8 +3842,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3863,8 +3863,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3918,8 +3918,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -3939,8 +3939,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -3994,8 +3994,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4015,8 +4015,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4073,8 +4073,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4094,8 +4094,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4149,8 +4149,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4170,8 +4170,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4225,8 +4225,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4246,8 +4246,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4301,8 +4301,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4322,8 +4322,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4380,8 +4380,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4401,8 +4401,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4456,8 +4456,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4477,8 +4477,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4532,8 +4532,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4553,8 +4553,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4608,8 +4608,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4629,8 +4629,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4687,8 +4687,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4708,8 +4708,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4766,8 +4766,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4787,8 +4787,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4838,8 +4838,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4859,8 +4859,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4914,8 +4914,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -4935,8 +4935,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -4988,8 +4988,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5009,8 +5009,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5041,7 +5041,7 @@ export const templatePageSpecs = [
     "pageCountSeed": 1,
     "photoSupport": true,
     "page1": {
-      "frame": ".page",
+      "frame": ".cv",
       "layout": "two-column",
       "header": [
         "header.hero"
@@ -5062,8 +5062,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5083,8 +5083,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5132,8 +5132,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5152,8 +5152,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5184,7 +5184,7 @@ export const templatePageSpecs = [
     "pageCountSeed": 1,
     "photoSupport": true,
     "page1": {
-      "frame": ".page",
+      "frame": ".cv",
       "layout": "two-column",
       "header": [
         "header.header"
@@ -5203,8 +5203,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5223,8 +5223,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5252,6 +5252,7 @@ export const templatePageSpecs = [
     "layout": "two-column",
     "sourceRenderer": "legacy",
     "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 2,
     "photoSupport": true,
     "page1": {
       "frame": ".page",
@@ -5273,8 +5274,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5293,8 +5294,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5325,7 +5326,7 @@ export const templatePageSpecs = [
     "pageCountSeed": 1,
     "photoSupport": true,
     "page1": {
-      "frame": ".page",
+      "frame": ".cv",
       "layout": "two-column",
       "header": [
         "header.header"
@@ -5344,8 +5345,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5364,8 +5365,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5396,7 +5397,7 @@ export const templatePageSpecs = [
     "pageCountSeed": 1,
     "photoSupport": true,
     "page1": {
-      "frame": ".page",
+      "frame": ".cv",
       "layout": "two-column",
       "header": [
         "header.top"
@@ -5415,8 +5416,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5435,8 +5436,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5467,7 +5468,7 @@ export const templatePageSpecs = [
     "pageCountSeed": 1,
     "photoSupport": true,
     "page1": {
-      "frame": ".page",
+      "frame": ".cv",
       "layout": "two-column",
       "header": [
         "header.header"
@@ -5486,8 +5487,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5506,8 +5507,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5535,6 +5536,7 @@ export const templatePageSpecs = [
     "layout": "two-column",
     "sourceRenderer": "legacy",
     "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 2,
     "photoSupport": true,
     "page1": {
       "frame": ".page",
@@ -5556,8 +5558,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5576,8 +5578,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5608,7 +5610,7 @@ export const templatePageSpecs = [
     "pageCountSeed": 1,
     "photoSupport": true,
     "page1": {
-      "frame": ".page",
+      "frame": ".cv",
       "layout": "two-column",
       "header": [
         "header.hero"
@@ -5627,8 +5629,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5647,8 +5649,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5676,6 +5678,7 @@ export const templatePageSpecs = [
     "layout": "two-column",
     "sourceRenderer": "legacy",
     "sourceConfidence": "migrated-from-source-shell",
+    "pageCountSeed": 2,
     "photoSupport": true,
     "page1": {
       "frame": ".page",
@@ -5697,8 +5700,8 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "continuation": {
@@ -5717,8 +5720,8 @@ export const templatePageSpecs = [
       "pageNumber": "template footer/page-number area when supported",
       "specialContinuationHeader": null,
       "preserveRegions": {
-        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths",
-        "main": "experience/education/projects/custom"
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/projects/custom",
+        "main": "experience/education"
       }
     },
     "pagination": {
@@ -5761,8 +5764,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -5775,8 +5778,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -5822,8 +5825,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -5836,8 +5839,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -5883,8 +5886,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -5897,8 +5900,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -5944,8 +5947,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -5958,8 +5961,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6005,8 +6008,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6019,8 +6022,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6066,8 +6069,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6080,8 +6083,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6127,8 +6130,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6141,8 +6144,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6188,8 +6191,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6202,8 +6205,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6249,8 +6252,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6263,8 +6266,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6310,8 +6313,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6324,8 +6327,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6371,8 +6374,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6385,8 +6388,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
@@ -6432,8 +6435,8 @@ export const templatePageSpecs = [
       "photoActual": true,
       "photoMetadataEnabled": false,
       "contentRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       }
     },
     "continuation": {
@@ -6446,8 +6449,8 @@ export const templatePageSpecs = [
         ".sidebar > .contact-list"
       ],
       "preserveRegions": {
-        "sidebar": "skills/languages/certificates/references/interests/strengths/personal-info",
-        "main": "summary/personal-info/experience/education/projects/custom"
+        "sidebar": "skills/languages/certificates/references/interests/strengths/projects/custom/personal-info",
+        "main": "summary/personal-info/experience/education"
       },
       "photo": "never on continuation",
       "identity": "never repeat full name/job-title/contact header",
