@@ -9,14 +9,13 @@ const PAPER_COLORS = [
     "#E4EAD8","#E7DFD7","#F3DEDA","#FFFDF9","#F0EDE8"
 ];
 
-const SIDEBAR_TYPES = new Set(["personal-info","skills","languages","certificates","references","interests","strengths","projects","custom"]);
+const SIDEBAR_TYPES = new Set(["personal-info","skills","languages","certificates","references","interests","strengths","custom"]);
 const MAIN_TYPES    = new Set(["experience","education"]);
 
 const BLANK = {
     "personal-info": () => ({ id: genId("pi"),   label: "", value: "" }),
     experience:      () => ({ id: genId("exp"),  role: "", company: "", location: "", startDate: "", endDate: "", current: false, bullets: [] }),
     education:       () => ({ id: genId("edu"),  qualification: "", institution: "", location: "", startDate: "", endDate: "", current: false, notes: "" }),
-    projects:        () => ({ id: genId("prj"),  name: "", url: "", bullets: [] }),
     custom:          () => ({ id: genId("cus"),  title: "", bullets: [] }),
     skills:          () => ({ id: genId("skl"),  name: "", level: "" }),
     languages:       () => ({ id: genId("lng"),  name: "", level: "" }),
@@ -311,7 +310,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     const SR = {
         experience(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         education(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
-        projects(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         custom(s){ const h=s.items.map(it=>`<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         "personal-info"(s){ const h=s.items.map(it=>`<div class="side-item">${escHtml(it.label)}: <span class="meta">${escHtml(it.value)}</span></div>`).join(""); return wrapSide(s.title,h,s.type); },
         skills(s){ return wrapSide(s.title,s.items.map(it=>`<span class="skill-tag">${escHtml(it.name)}</span>`).join(""),s.type); },
@@ -399,8 +397,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
             else if(s.type==="languages")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)} — ${escHtml(it.level)}</div>`).join("");
             else if(s.type==="certificates")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
             else if(s.type==="references")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}${it.title?` — ${escHtml(it.title)}`:""}</div>`).join("");
-            else if(s.type==="projects")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
-            else if(s.type==="custom")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.title||"")}</div>`).join("");
+                else if(s.type==="custom")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.title||"")}</div>`).join("");
             else if(s.type==="strengths")ih=s.items.filter(it=>it.value&&it.value.trim()).map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value)}</div>`).join("");
             else ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value||it.name)}</div>`).join("");
             return `<div class="split-rail-block"><p class="side-label">${escHtml(s.title)}</p>${ih||`<p class="empty-note">None added.</p>`}</div>`;
@@ -448,12 +445,11 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     }
     function renderCombined(data) {
         const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const SRC=new Set(["experience","projects","custom"]);
+        const SRC=new Set(["experience","custom"]);
         const entries=[];
         vis.filter(s=>SRC.has(s.type)).forEach(s=>{
             s.items.forEach(it=>{
                 if(s.type==="experience")entries.push({sourceType:s.type,tag:"Job",title:it.role,sub:[it.company,it.location].filter(Boolean).join(" · "),start:it.startDate,end:it.endDate,current:it.current,bullets:it.bullets||[]});
-                else if(s.type==="projects")entries.push({sourceType:s.type,tag:"Project",title:it.name,sub:it.url||"",start:it.startDate,end:it.endDate,current:false,bullets:it.bullets||[]});
                 else entries.push({sourceType:s.type,tag:s.title||"Activity",title:it.title||s.title,sub:"",start:"",end:"",current:false,bullets:it.bullets||[]});
             });
         });
@@ -474,7 +470,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
 
         if (tid === "practical-02") {
-            const sideTypes = new Set(["skills","languages","certificates","references","interests","strengths","personal-info","projects","custom"]);
+            const sideTypes = new Set(["skills","languages","certificates","references","interests","strengths","personal-info","custom"]);
             const sideSecs = vis.filter(s => sideTypes.has(s.type));
             const mainSecs = vis.filter(s => s.type === "experience" || s.type === "education");
             const sideHtml = sideSecs.map(s => {
@@ -484,7 +480,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
                 if (s.type === "certificates") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p></div>`;
                 if (s.type === "interests") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.value)).join(" · ") : `<span class="empty-note">None added.</span>`}</p></div>`;
                 if (s.type === "references") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}<br><span class="meta">${escHtml(it.title)}</span></div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
-                if (s.type === "projects") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
                 if (s.type === "custom") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.title || "")}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
                 return "";
             }).join("");
@@ -626,11 +621,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const piSec    = vis.find(s => s.type === "personal-info");
         const refSec   = vis.find(s => s.type === "references");
         const strSec   = vis.find(s => s.type === "strengths");
-        // mainHtml's mapper below already has working branches for "projects" and
-        // "custom" - but this filter only ever let "experience"/"education" through,
-        // so those branches were dead code and both section types were silently
-        // dropped from the render entirely (not even by the empty-items check).
-        const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type) || s.type === "projects" || s.type === "custom");
+        const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type) || s.type === "custom");
 
         const badgeEl = p.photo
             ? `<div class="mono-badge"><img src="${p.photo}" alt="Photo"></div>`
@@ -679,7 +670,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const mainHtml = mainSecs.map(s => {
             if (s.type === "experience") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><div class="entry-header"><div><p class="entry-title" style="font-size:12px">${escHtml(it.role)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date" style="font-size:10px">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
             if (s.type === "education") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.qualification)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.institution)} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10px;color:#777;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
-            if (s.type === "projects") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.name)}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
             if (s.type === "custom") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
             return "";
         }).join("");
@@ -696,7 +686,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const piSec    = vis.find(s => s.type === "personal-info");
         const strSec   = vis.find(s => s.type === "strengths");
         const refSec   = vis.find(s => s.type === "references");
-        const projSec  = vis.find(s => s.type === "projects");
         const customSec= vis.find(s => s.type === "custom");
         const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
 
@@ -742,7 +731,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
 
         const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
 
-        return `<div class="facet-sidebar">${badgeEl}<div class="facet-contact-mini">${contactMini}</div>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="facet-main"><p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p>${p.summary ? `<p class="summary" style="margin:8px 0 12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}</div>`;
+        return `<div class="facet-sidebar">${badgeEl}<div class="facet-contact-mini">${contactMini}</div>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${customHtml}</div><div class="facet-main"><p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p>${p.summary ? `<p class="summary" style="margin:8px 0 12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}</div>`;
     }
 
     function renderDuotone(data) {
@@ -754,7 +743,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const piSec    = vis.find(s => s.type === "personal-info");
         const strSec   = vis.find(s => s.type === "strengths");
         const refSec   = vis.find(s => s.type === "references");
-        const projSec  = vis.find(s => s.type === "projects");
         const customSec= vis.find(s => s.type === "custom");
         const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
 
@@ -788,7 +776,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
 
         const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
 
-        return `<div class="duo-sidebar"><p class="name" style="font-size:22px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:12px">${escHtml(p.jobTitle)}</p><div class="duo-gold-rule"></div><ul class="contact-list" style="font-size:10px">${contactListHtml(p)}</ul>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="duo-main"><p class="summary" style="margin:0 0 12px">${escHtml(p.summary)}</p>${mainHtml}</div>`;
+        return `<div class="duo-sidebar"><p class="name" style="font-size:22px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:12px">${escHtml(p.jobTitle)}</p><div class="duo-gold-rule"></div><ul class="contact-list" style="font-size:10px">${contactListHtml(p)}</ul>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${customHtml}</div><div class="duo-main"><p class="summary" style="margin:0 0 12px">${escHtml(p.summary)}</p>${mainHtml}</div>`;
     }
 
 function generateSectionItems(sec) {
@@ -796,16 +784,6 @@ function generateSectionItems(sec) {
     switch (sec.type) {
         case 'experience':
         case 'education':
-        case 'projects':
-        case 'custom':
-            inner = sec.items.map(it => {
-                if (sec.type === 'experience') return `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`;
-                if (sec.type === 'education') return `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`;
-                if (sec.type === 'projects') return `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,false)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`;
-                if (sec.type === 'custom') return `<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`;
-                return '';
-            }).join('');
-            break;
         case 'skills':
             inner = sec.items.map(it => `<span class="skill-tag">${escHtml(it.name)}</span>`).join('');
             break;
@@ -837,7 +815,7 @@ function generateSectionItems(sec) {
     return inner;
 }
 
-let cvData, currentTemplateId = "modern-01", currentStep = 0,
+let cvData, currentTemplateId = "luxury-editorial-01", currentStep = 0,
     atsPanelOpen = false, targetJD = "", usingDemoData = true;
 let allResumes = {}, currentCvId = null, isMobilePreviewOpen = false;
 
@@ -845,7 +823,7 @@ let allResumes = {}, currentCvId = null, isMobilePreviewOpen = false;
 // retains the canonical lexical editor state.
 window.applyEditorHistoryState = function (state) {
     cvData = state;
-    currentTemplateId = (state && state.meta && state.meta.templateId) || currentTemplateId || "modern-01";
+    currentTemplateId = (state && state.meta && state.meta.templateId) || currentTemplateId || "luxury-editorial-01";
 };
 window.getEditorStep = function () { return currentStep; };
 let _saveToastTimer = null;
@@ -961,7 +939,7 @@ function setCurrentResume(cvId) {
     if (allResumes[cvId]) {
         if (typeof editorHistoryClear === 'function') editorHistoryClear();
         currentCvId = cvId; cvData = allResumes[cvId];
-        currentTemplateId = cvData.meta.templateId || 'modern-01';
+        currentTemplateId = cvData.meta.templateId || 'luxury-editorial-01';
         usingDemoData = false;
         renderPreview(); setStep(currentStep); updatePaLabel(); autoSave(); navigate('builder');
     }
@@ -972,11 +950,11 @@ function loadData() {
     if (ids.length) {
         currentCvId = ids[0]; cvData = allResumes[currentCvId];
         if (typeof editorHistoryClear === 'function') editorHistoryClear();
-        currentTemplateId = cvData.meta.templateId || 'modern-01'; usingDemoData = false;
+        currentTemplateId = cvData.meta.templateId || 'luxury-editorial-01'; usingDemoData = false;
     } else {
         const def = JSON.parse(document.getElementById('cv-data').textContent);
         currentCvId = def.meta.cvId; allResumes[currentCvId] = def; saveAllResumes();
-        cvData = def; currentTemplateId = def.meta.templateId || 'modern-01'; usingDemoData = true;
+        cvData = def; currentTemplateId = def.meta.templateId || 'luxury-editorial-01'; usingDemoData = true;
     }
 }
 let lastSavedAt = null;
@@ -1031,8 +1009,8 @@ function renderManager() {
     grid.innerHTML = ids.map(id => {
         const r = allResumes[id];
         const name = r.personalDetails.fullName || 'Untitled';
-        const tmpl = r.meta.templateId || 'modern-01';
-        const svg  = SVGS[tmpl] || generateThumbnailSVG('modern-01');
+        const tmpl = r.meta.templateId || 'luxury-editorial-01';
+        const svg  = SVGS[tmpl] || generateThumbnailSVG('luxury-editorial-01');
         const isCurrent = (id===currentCvId);
         return `<div class="resume-card" style="${isCurrent?'border:2px solid var(--accent);':''}">
             <div class="thumb">${svg}</div>
@@ -1291,7 +1269,7 @@ const PAGE_META = {
   },
   gallery: {
     title: 'Resume Templates | Mellow CV Factory',
-    description: 'Browse 43 professional resume templates — modern, ATS-friendly, executive, creative, student, and trade layouts.',
+    description: 'Browse 83 professional resume templates — modern, ATS-friendly, executive, creative, student, and trade layouts.',
     url: 'https://resume-factory-brown.vercel.app/gallery',
   },
   manager: {
@@ -1452,10 +1430,9 @@ const TIPS_CONTENT = {
             "Avoid vague numbers-free claims when a real number is available — even an estimate is more convincing than none."
         ]}
     ]},
-    2: { title: "Education & Projects", groups: [
+    2: { title: "Education", groups: [
         { cat: "Writing", tips: [
-            "Only include coursework or projects that are relevant to the role you're targeting.",
-            "For projects, briefly say what you built and what impact or result it had."
+            "Only include coursework or modules that are relevant to the role you're targeting.",
         ]},
         { cat: "Formatting", tips: [
             "List your most recent qualification first."
@@ -1726,7 +1703,7 @@ function setStep(n) {
     currentStep = n;
     document.querySelectorAll('.ep-tab').forEach(t => t.classList.toggle('active', +t.dataset.step === n));
     document.getElementById('ep-body').innerHTML = stepContent(n);
-    if (n === 5 && typeof initTemplatePickerThumbs === 'function') requestAnimationFrame(initTemplatePickerThumbs);
+    if (n === 5 && typeof initGalleryThumbs === 'function') requestAnimationFrame(initGalleryThumbs);
     wireStepEvents();
     const tipsModal = document.getElementById('tips-modal');
     if (tipsModal && tipsModal.classList.contains('open')) renderTipsModal();
@@ -1736,7 +1713,7 @@ function stepContent(n) {
     switch (n) {
         case 0: return stepPersonal(cvData.personalDetails);
         case 1: return stepSection("experience");
-        case 2: return stepSection("education") + stepSection("projects");
+        case 2: return stepSection("education");
         case 3: return stepSection("skills") + stepSection("languages") + stepSection("certificates");
         case 4: return stepSection("custom") + stepSection("strengths") + stepSection("interests") + stepSection("references") + stepSection("personal-info");
         case 5: return stepDesign();
@@ -1794,7 +1771,6 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
         let itemsHtml = "";
         if (type === "experience")    itemsHtml = sec.items.map((it, i) => expCard(it, i)).join("");
         if (type === "education")     itemsHtml = sec.items.map((it, i) => eduCard(it, i)).join("");
-        if (type === "projects")      itemsHtml = sec.items.map((it, i) => projCard(it, i)).join("");
         if (type === "custom")        itemsHtml = sec.items.map((it, i) => customCard(it, i)).join("");
         if (type === "skills")        itemsHtml = sec.items.map((it, i) => skillCard(it, i)).join("");
         if (type === "languages")     itemsHtml = sec.items.map((it, i) => langCard(it, i)).join("");
@@ -1818,7 +1794,7 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
     }
 
     function humanType(t) {
-        const m = { experience:"Experience", education:"Education", projects:"Project", custom:"Activity", skills:"Skill", languages:"Language", certificates:"Certificate", references:"Reference", interests:"Interests", strengths:"Strength", "personal-info":"Info" };
+        const m = { experience:"Experience", education:"Education", custom:"Activity", skills:"Skill", languages:"Language", certificates:"Certificate", references:"Reference", interests:"Interests", strengths:"Strength", "personal-info":"Info" };
         return m[t] || t;
     }
 
@@ -1893,34 +1869,7 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
             <div class="f"><label>Notes (honours, distinctions, coursework)</label><textarea rows="2" oninput="updateItem('education',${i},'notes',this.value)">${escHtml(it.notes)}</textarea></div>
         </div>`;
     }
-
-    function projCard(it, i) {
-    return `
-    <div class="icard" draggable="true" data-type="projects" data-idx="${i}">
-        <div class="icard-top">
-            <span class="icard-lbl">${escHtml(it.name || "New Project")}</span>
-            <div class="icard-ctrls">
-                <button class="btn-ico" onclick="moveItem('projects',${i},-1)" title="Move up">↑</button>
-                <button class="btn-ico" onclick="moveItem('projects',${i},1)" title="Move down">↓</button>
-                <button class="btn-del" onclick="delItem('projects',${i})">Delete</button>
-            </div>
-        </div>
-        <div class="f"><label>Project Name</label><input value="${escHtml(it.name)}" oninput="updateItem('projects',${i},'name',this.value)"></div>
-        <div class="f"><label>URL (optional)</label><input value="${escHtml(it.url)}" oninput="updateItem('projects',${i},'url',this.value)" placeholder="https://"></div>
-        <div class="f-row">
-           
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0 4px">
-            <label style="font-size:11px;font-weight:600;color:var(--t2)">Bullet Points</label>
-            <button class="btn-ai" onclick="aiImproveInline('projects',${i},this)" ${(it.bullets||[]).length ? "" : "disabled"}>✨ AI Improve</button>
-        </div>
-        <div class="bullet-list" id="bullets-projects-${i}">${(it.bullets || []).map((b, j) => bulletRow(b, j, "projects", i, (it.bullets||[]).length)).join("")}</div>
-        <button class="btn-add" style="margin-top:0" onclick="addBullet('projects',${i})">+ Add bullet</button>
-        <div class="ai-inline-panel" id="ai-panel-projects-${i}"></div>
-    </div>`;
-}
-
-function customCard(it, i) {
+    function customCard(it, i) {
     return `
     <div class="icard" draggable="true" data-type="custom" data-idx="${i}">
         <div class="icard-top">
@@ -2815,8 +2764,8 @@ async function handleImportFile(input) {
     callmellowJSON(buildImportPrompt(text), status, (parsed) => finalizeImportedResume(parsed, truncated), null);
 }
 
-const IMPORT_SECTION_ORDER  = ["experience","education","projects","skills","languages","certificates","references","interests","custom"];
-const IMPORT_SECTION_TITLES = { experience:"Experience", education:"Education", projects:"Projects", skills:"Skills", languages:"Languages", certificates:"Certificates", references:"References", interests:"Interests", custom:"Additional Information" };
+const IMPORT_SECTION_ORDER  = ["experience","education","skills","languages","certificates","references","interests","custom"];
+const IMPORT_SECTION_TITLES = { experience:"Experience", education:"Education", skills:"Skills", languages:"Languages", certificates:"Certificates", references:"References", interests:"Interests", custom:"Additional Information" };
 
 function buildImportPrompt(text) {
     return `You are extracting structured CV data from raw resume text. Return ONLY valid JSON (no markdown fences, no commentary) matching exactly this shape:
@@ -2825,7 +2774,6 @@ function buildImportPrompt(text) {
   "sections": {
     "experience":   [ { "role": "", "company": "", "location": "", "startDate": "YYYY-MM or YYYY or empty", "endDate": "YYYY-MM or YYYY or empty", "current": false, "bullets": [] } ],
     "education":    [ { "qualification": "", "institution": "", "location": "", "startDate": "", "endDate": "", "current": false, "notes": "" } ],
-    "projects":     [ { "name": "", "url": "", "startDate": "", "endDate": "", "bullets": [] } ],
     "skills":       [ { "name": "", "level": "" } ],
     "languages":    [ { "name": "", "level": "" } ],
     "certificates": [ { "name": "" } ],
@@ -2867,7 +2815,7 @@ function finalizeImportedResume(parsed, truncated) {
     if (typeof editorHistoryClear === 'function') editorHistoryClear();
     const pd = (parsed && parsed.personalDetails) || {};
     const newCvData = {
-        meta: { cvId: 'cv_' + Date.now().toString(36), templateId: 'modern-01', themeOverrides: {} },
+        meta: { cvId: 'cv_' + Date.now().toString(36), templateId: 'luxury-editorial-01', themeOverrides: {} },
         personalDetails: {
             fullName: importStr(pd.fullName), jobTitle: importStr(pd.jobTitle), email: importStr(pd.email),
             phone: importStr(pd.phone), location: importStr(pd.location), photo: null, links: [],
@@ -3335,10 +3283,10 @@ function updateTemplateCatalogCount() {
 function renderHeroCv() {
     const inner = document.getElementById('hero-cv-inner'); if (!inner) return;
     const page = document.createElement('div');
-    page.className = 'page'; page.setAttribute('data-template','modern-01');
+    page.className = 'page'; page.setAttribute('data-template','luxury-editorial-01');
     page.style.cssText = 'width:794px;min-height:1123px;'; page.style.setProperty('--color-accent','#2F6F63');
     const heroData = JSON.parse(document.getElementById('cv-data').textContent);
-    page.innerHTML = renderTemplateContent(heroData, 'modern-01');
+    page.innerHTML = renderTemplateContent(heroData, 'luxury-editorial-01');
     inner.innerHTML = ''; inner.appendChild(page);
 }
 function renderShowcaseStrip() {
