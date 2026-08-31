@@ -65,29 +65,6 @@
     min-height: 0 !important;
   }
 
-  /* Explicit safety net for sidebar/main region elements. The generic
-     "direct child of a known grid container" rule above only stretches
-     immediate children, so a sidebar/rail nested one level deeper (or
-     inside a container class outside that fixed list) never gets the
-     full-height treatment. Target the same region selectors the
-     pagination engine itself uses (see REGION_ELEMENT_SELECTORS in
-     src/engine/ResumeDocument.jsx) so a colored sidebar always stretches
-     to the full page height instead of stopping where its content ends. */
-  [data-template] [data-role="sidebar"],
-  [data-template] .sidebar,
-  [data-template] .side,
-  [data-template] .rail,
-  [data-template] .facet-sidebar,
-  [data-template] .duo-sidebar,
-  [data-template] .split-rail,
-  [data-template] [data-role="main"],
-  [data-template] .main,
-  [data-template] .facet-main,
-  [data-template] .duo-main {
-    height: 100% !important;
-    min-height: 100% !important;
-  }
-
   /* Keep atomic entries together */
   [data-template] .job,
   [data-template] .entry,
@@ -105,29 +82,8 @@
     page-break-before: always !important;
   }
 
-  /* Unconditional, correct page-to-page break. Do not base this on
-     `.page[data-template]:last-child` — every rendered `.page` is the sole
-     child of its own per-page `.rf-page-content` wrapper (see
-     src/styles/react-engine.css), so `:last-child` matches EVERY page, not
-     just the actual final one. Since `:last-child` outranks a bare
-     class/attribute selector in specificity, that always-matching rule
-     silently cancelled any `break-after: page` a template set on `.page`,
-     on every page — not only the last one — so multi-page resumes never
-     actually broke where intended.
-
-     `.rf-a4-page` is the reliable boundary instead: each one is a true DOM
-     sibling directly inside `.resume-pages` (ResumeDocument.jsx renders one
-     <PageFrame> per page, all as siblings), so `:last-child` on it always
-     resolves to exactly the real last page. react-engine.css already
-     enforces this same contract for the live preview; restating it here
-     makes pdf-export.css the correct, unconditional authority on its own,
-     independent of whether the engine stylesheet also loaded. */
-  .resume-pages > .rf-a4-page {
-    break-after: page !important;
-    page-break-after: always !important;
-  }
-
-  .resume-pages > .rf-a4-page:last-child {
+  [data-template] .page:last-child,
+  [data-template] .page-break:last-child {
     break-after: auto !important;
     page-break-after: auto !important;
   }
@@ -170,15 +126,5 @@
     width: auto !important;
     height: auto !important;
     display: block !important;
-  }
-
-  /* Match the app's own continuation contract (see react-engine.css):
-     the masthead/name header repeats are only ever hidden on pages marked
-     as continuation pages, never on page 1, and the footer is never
-     touched — it's the intentional page-number/branding strip. */
-  body.pdf-export-active [data-rf-continuation="true"] header,
-  body.pdf-export-active [data-rf-continuation="true"] [data-rf-region="header"],
-  body.pdf-export-active [data-rf-hidden-continuation="true"] {
-    display: none !important;
   }
 }
