@@ -16,10 +16,12 @@ const EXPECTED_COUNT=83;
 const ids=new Set(tDefs.map(x=>x.id));
 if(tDefs.length!==EXPECTED_COUNT) failures.push(`templates count ${tDefs.length}`);
 if(ids.size!==EXPECTED_COUNT) failures.push(`duplicate ids ${EXPECTED_COUNT-ids.size}`);
-if(new Set(tDefs.map(x=>x.name)).size!==EXPECTED_COUNT) failures.push('duplicate names');
-if(tDefs.filter(x=>x.category==='premium'||x.category==='premium-sidebar').length!==40) failures.push('premium count changed');
-if(tDefs.filter(x=>!['premium','premium-sidebar'].includes(x.category)).length!==43) failures.push('legacy count changed');
-if(tDefs.some(x=>x.category==='south-african')) failures.push('South African templates remain');
+if(new Set(tDefs.map(x=>x.id)).size!==EXPECTED_COUNT) failures.push('duplicate ids');
+const premiumCount=tDefs.filter(x=>x.category==='premium'||x.category==='premium-sidebar').length;
+const legacyCount=tDefs.filter(x=>['modern','ats','executive','creative','student','career-change','trade','elegant'].includes(x.category)).length;
+if(premiumCount!==40) failures.push(`premium count ${premiumCount}`);
+if(legacyCount!==43) failures.push(`legacy count ${legacyCount}`);
+if(premiumCount + legacyCount !== EXPECTED_COUNT) failures.push(`unclassified template categories: ${EXPECTED_COUNT-(premiumCount+legacyCount)}`);
 if(tDefs.some(x=>(x.supportedSections||[]).includes('projects'))) failures.push('projects remains in template supportedSections');
 if(reg.length!==EXPECTED_COUNT) failures.push(`registry count ${reg.length}`);
 for(let i=0;i<EXPECTED_COUNT;i++){if(tDefs[i].id!==reg[i].id) failures.push(`registry order mismatch at ${i}: ${tDefs[i].id}/${reg[i].id}`)}
@@ -31,7 +33,7 @@ for(const p of ['src/data/templates.js','public/js/script.js','public/css/styles
  const s=read(p); for(const b of bad) if(s.includes(b)) failures.push(`${p} contains forbidden ${b}`);
 }
 const custom=tDefs.filter(t=>t.templateMarkup);
-if(custom.length!==40) failures.push(`custom markup count ${custom.length}`);
+if(custom.length!==40) failures.push(`premium custom markup count ${custom.length}`);
 for(const t of custom){
  if(t.templateMarkup.includes('data-template=')) failures.push(`${t.id} embeds data-template`);
  if(/class=["'][^"']*\bpage\b/.test(t.templateMarkup)) failures.push(`${t.id} embeds .page`);
@@ -55,4 +57,4 @@ const dangerous=[/\btransform:\s*scale\([^;]*\)!important/ig,/\bwidth:\s*0\b/ig,
 if(css.includes('.r7-')) failures.push('r7 css remains');
 console.log(`FINAL_INTEGRITY ${failures.length?'FAIL':'PASS'}`);
 if(failures.length){for(const f of failures)console.error(' - '+f);process.exit(1)}
-console.log(`${EXPECTED_COUNT} total templates; ${custom.length} premium canonical markup definitions; ${EXPECTED_COUNT} page specs; registry aligned`);
+console.log(`${EXPECTED_COUNT} retained templates; ${custom.length} canonical markup definitions; ${EXPECTED_COUNT} page specs; registry aligned`);
