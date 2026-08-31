@@ -12,7 +12,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -28,21 +28,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "uniquenessProfile": {
-      "index": 1,
-      "accent": "#2F6F63",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 587,
-      "letterSpacingEm": -0.043,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 37,
-        "topPct": 24,
-        "leftPct": 28,
-        "widthPct": 35
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-modern-01\" data-r7-layout=\"L01\" data-r7-order=\"header-summary-main-side-foot\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">01 / modern-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 01</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-modern-01\"><header class=\"lu-modern-01-head\"><div><p class=\"eyebrow\">CLASSIC SYSTEM</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-modern-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-modern-01-body\"><aside class=\"lu-modern-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-modern-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-modern-01-foot\"><span>CLASSIC SYSTEM</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "modern-02",
@@ -57,7 +43,7 @@ export const templates = [
     "accentColor": "#3B5BA9",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -73,21 +59,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "uniquenessProfile": {
-      "index": 2,
-      "accent": "#3B5BA9",
-      "font": "Georgia, serif",
-      "headingWeight": 724,
-      "letterSpacingEm": -0.026,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 74,
-        "topPct": 43,
-        "leftPct": 51,
-        "widthPct": 52
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-modern-02\" data-r7-layout=\"L02\" data-r7-order=\"header-summary-main-foot-side\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">02 / modern-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 02</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-modern-02\"><header class=\"lu-modern-02-head lu-modern-02-split\"><div><div class=\"lu-modern-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-modern-02-body\"><main class=\"lu-modern-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-modern-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-modern-02-foot\"><span>INVERSE PROFILE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "modern-03",
@@ -102,7 +74,7 @@ export const templates = [
     "accentColor": "#B2562F",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -118,21 +90,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "uniquenessProfile": {
-      "index": 3,
-      "accent": "#B2562F",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 511,
-      "letterSpacingEm": -0.009,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 111,
-        "topPct": 62,
-        "leftPct": 74,
-        "widthPct": 69
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-modern-03\" data-r7-layout=\"L03\" data-r7-order=\"header-summary-side-main-foot\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">03 / modern-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 03</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-modern-03\"><header class=\"lu-modern-03-head\"><p class=\"eyebrow\">ACCENT EDITION</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div><div class=\"lu-modern-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div></header><div class=\"lu-modern-03-body\"><section class=\"lu-modern-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-modern-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-modern-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-modern-03-foot\"><span>ACCENT EDITION</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "ats-01",
@@ -147,7 +105,7 @@ export const templates = [
     "accentColor": "#222222",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -163,21 +121,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Corporate, government & high-volume applications",
-    "uniquenessProfile": {
-      "index": 4,
-      "accent": "#222222",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 648,
-      "letterSpacingEm": 0.008,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 148,
-        "topPct": 11,
-        "leftPct": 15,
-        "widthPct": 23
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-ats-01\" data-r7-layout=\"L04\" data-r7-order=\"header-summary-side-foot-main\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">04 / ats-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 04</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-ats-01\"><header class=\"lu-ats-01-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">ATS STANDARD</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-01-body\"><main class=\"lu-ats-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-ats-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-ats-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-ats-01-foot\"><span>ATS STANDARD</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "ats-02",
@@ -192,7 +136,7 @@ export const templates = [
     "accentColor": "#1B2A4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -208,21 +152,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Corporate, government & high-volume applications",
-    "uniquenessProfile": {
-      "index": 5,
-      "accent": "#1B2A4A",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 785,
-      "letterSpacingEm": 0.025,
-      "radiusMm": 3,
-      "ornament": {
-        "angle": 185,
-        "topPct": 30,
-        "leftPct": 38,
-        "widthPct": 40
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-ats-02\" data-r7-layout=\"L05\" data-r7-order=\"header-summary-foot-main-side\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">05 / ats-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 05</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-ats-02\"><header class=\"lu-ats-02-head\"><p class=\"eyebrow\">ATS CONTACT SHEET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-02-body\"><section class=\"lu-ats-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-ats-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-ats-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-ats-02-foot\"><span>ATS CONTACT SHEET</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "ats-03",
@@ -237,7 +167,7 @@ export const templates = [
     "accentColor": "#4A3728",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -253,21 +183,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Corporate, government & high-volume applications",
-    "uniquenessProfile": {
-      "index": 6,
-      "accent": "#4A3728",
-      "font": "Times New Roman, serif",
-      "headingWeight": 572,
-      "letterSpacingEm": 0.042,
-      "radiusMm": 1,
-      "ornament": {
-        "angle": 222,
-        "topPct": 49,
-        "leftPct": 61,
-        "widthPct": 57
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-ats-03\" data-r7-layout=\"L06\" data-r7-order=\"header-summary-foot-side-main\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">06 / ats-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 06</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-ats-03\"><header class=\"lu-ats-03-head\"><div class=\"brand-mark\">ATS</div><div><p class=\"eyebrow\">ATS COMPACT</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-03-body\"><aside class=\"lu-ats-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-ats-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-ats-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-ats-03-foot\"><span>ATS COMPACT</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "ats-04",
@@ -282,7 +198,7 @@ export const templates = [
     "accentColor": "#264D3B",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -298,21 +214,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Corporate, government & high-volume applications",
-    "uniquenessProfile": {
-      "index": 7,
-      "accent": "#264D3B",
-      "font": "Courier New, monospace",
-      "headingWeight": 709,
-      "letterSpacingEm": 0.059,
-      "radiusMm": 12,
-      "ornament": {
-        "angle": 259,
-        "topPct": 68,
-        "leftPct": 84,
-        "widthPct": 74
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-ats-04\" data-r7-layout=\"L07\" data-r7-order=\"header-main-summary-side-foot\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">07 / ats-04</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 07</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-ats-04\"><header class=\"lu-ats-04-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">ATS SMALL CAPS</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-ats-04-body\"><main class=\"lu-ats-04-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-ats-04-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-ats-04-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-ats-04-foot\"><span>ATS SMALL CAPS</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "executive-01",
@@ -327,7 +229,7 @@ export const templates = [
     "accentColor": "#1B2A4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -343,21 +245,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Senior leadership & management positions",
-    "uniquenessProfile": {
-      "index": 8,
-      "accent": "#1B2A4A",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 496,
-      "letterSpacingEm": -0.045,
-      "radiusMm": 10,
-      "ornament": {
-        "angle": 296,
-        "topPct": 17,
-        "leftPct": 25,
-        "widthPct": 28
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-executive-01\" data-r7-layout=\"L08\" data-r7-order=\"header-main-summary-foot-side\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">08 / executive-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 08</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-executive-01\"><header class=\"lu-executive-01-head\"><p class=\"eyebrow\">EXECUTIVE BRIEF</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-executive-01-body\"><section class=\"lu-executive-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-executive-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-executive-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-executive-01-foot\"><span>EXECUTIVE BRIEF</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "executive-02",
@@ -372,7 +260,7 @@ export const templates = [
     "accentColor": "#C9A84C",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -388,21 +276,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Senior leadership & management positions",
-    "uniquenessProfile": {
-      "index": 9,
-      "accent": "#C9A84C",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 633,
-      "letterSpacingEm": -0.028,
-      "radiusMm": 8,
-      "ornament": {
-        "angle": 333,
-        "topPct": 36,
-        "leftPct": 48,
-        "widthPct": 45
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-executive-02\" data-r7-layout=\"L09\" data-r7-order=\"header-main-side-summary-foot\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">09 / executive-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 09</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-executive-02\"><header class=\"lu-executive-02-head lu-executive-02-center\"><div><p class=\"eyebrow\">EXECUTIVE FORMAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-executive-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-executive-02-body\"><aside class=\"lu-executive-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-executive-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-executive-02-foot\"><span>EXECUTIVE FORMAL</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "creative-01",
@@ -417,7 +291,7 @@ export const templates = [
     "accentColor": "#C1447E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -433,21 +307,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Design, media & creative industries",
-    "uniquenessProfile": {
-      "index": 10,
-      "accent": "#C1447E",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 770,
-      "letterSpacingEm": -0.011,
-      "radiusMm": 6,
-      "ornament": {
-        "angle": 10,
-        "topPct": 55,
-        "leftPct": 71,
-        "widthPct": 62
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-creative-01\" data-r7-layout=\"L10\" data-r7-order=\"header-main-side-foot-summary\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">10 / creative-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 10</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>"
+    "templateMarkup": "<div class=\"lu-page lu-creative-01\"><header class=\"lu-creative-01-head lu-creative-01-center\"><div><p class=\"eyebrow\">CREATIVE STUDIO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-creative-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-creative-01-body\"><main class=\"lu-creative-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-creative-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-creative-01-foot\"><span>CREATIVE STUDIO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "split-01",
@@ -462,7 +322,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -478,21 +338,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "uniquenessProfile": {
-      "index": 11,
-      "accent": "#2F6F63",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 557,
-      "letterSpacingEm": 0.006,
-      "radiusMm": 4,
-      "ornament": {
-        "angle": 47,
-        "topPct": 74,
-        "leftPct": 12,
-        "widthPct": 79
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-split-01\" data-r7-layout=\"L11\" data-r7-order=\"header-main-foot-summary-side\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">11 / split-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 11</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-split-01\"><header class=\"lu-split-01-head lu-split-01-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">LEDGER / CASE FILE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-01-body\"><aside class=\"lu-split-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-split-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-split-01-foot\"><span>LEDGER / CASE FILE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "split-02",
@@ -507,7 +353,7 @@ export const templates = [
     "accentColor": "#3B5BA9",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -523,21 +369,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "uniquenessProfile": {
-      "index": 12,
-      "accent": "#3B5BA9",
-      "font": "Georgia, serif",
-      "headingWeight": 694,
-      "letterSpacingEm": 0.023,
-      "radiusMm": 2,
-      "ornament": {
-        "angle": 84,
-        "topPct": 23,
-        "leftPct": 35,
-        "widthPct": 33
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-split-02\" data-r7-layout=\"L12\" data-r7-order=\"header-main-foot-side-summary\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">12 / split-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 12</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>"
+    "templateMarkup": "<div class=\"lu-page lu-split-02\"><header class=\"lu-split-02-head lu-split-02-split\"><div><div class=\"lu-split-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-02-body\"><main class=\"lu-split-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-split-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-split-02-foot\"><span>BRACKET / PROFILE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "split-03",
@@ -552,7 +384,7 @@ export const templates = [
     "accentColor": "#C1447E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -568,21 +400,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Design, media & creative industries",
-    "uniquenessProfile": {
-      "index": 13,
-      "accent": "#C1447E",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 481,
-      "letterSpacingEm": 0.04,
-      "radiusMm": 0,
-      "ornament": {
-        "angle": 121,
-        "topPct": 42,
-        "leftPct": 58,
-        "widthPct": 50
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-split-03\" data-r7-layout=\"L13\" data-r7-order=\"header-side-summary-main-foot\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">13 / split-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 13</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-split-03\"><header class=\"lu-split-03-head lu-split-03-center\"><div><p class=\"eyebrow\">CORNER / PORTFOLIO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-split-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-03-body\"><aside class=\"lu-split-03-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-split-03-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-split-03-foot\"><span>CORNER / PORTFOLIO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "split-04",
@@ -597,7 +415,7 @@ export const templates = [
     "accentColor": "#3D3D3D",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -613,21 +431,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Senior leadership & management positions",
-    "uniquenessProfile": {
-      "index": 14,
-      "accent": "#3D3D3D",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 618,
-      "letterSpacingEm": 0.057,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 158,
-        "topPct": 61,
-        "leftPct": 81,
-        "widthPct": 67
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-split-04\" data-r7-layout=\"L14\" data-r7-order=\"header-side-summary-foot-main\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">14 / split-04</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 14</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-split-04\"><header class=\"lu-split-04-head\"><div><p class=\"eyebrow\">FRAME / EXECUTIVE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-split-04-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-split-04-body\"><main class=\"lu-split-04-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-split-04-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-split-04-foot\"><span>FRAME / EXECUTIVE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "timeline-01",
@@ -642,7 +446,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -658,21 +462,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Tech, marketing & general professional roles",
-    "uniquenessProfile": {
-      "index": 15,
-      "accent": "#2F6F63",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 755,
-      "letterSpacingEm": -0.047,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 195,
-        "topPct": 10,
-        "leftPct": 22,
-        "widthPct": 21
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-timeline-01\" data-r7-layout=\"L15\" data-r7-order=\"header-side-main-summary-foot\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">15 / timeline-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 15</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-timeline-01\"><header class=\"lu-timeline-01-head\"><div class=\"timeline-pin\">01</div><div><p class=\"eyebrow\">PATHWAY / PROGRESSION</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-timeline-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"lu-timeline-01-intro\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"lu-timeline-01-track\"><aside><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"lu-timeline-01-foot\"><span>PATHWAY / PROGRESSION</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "timeline-02",
@@ -687,7 +477,7 @@ export const templates = [
     "accentColor": "#3D3D3D",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -703,21 +493,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Corporate, government & high-volume applications",
-    "uniquenessProfile": {
-      "index": 16,
-      "accent": "#3D3D3D",
-      "font": "Times New Roman, serif",
-      "headingWeight": 542,
-      "letterSpacingEm": -0.03,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 232,
-        "topPct": 29,
-        "leftPct": 45,
-        "widthPct": 38
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-timeline-02\" data-r7-layout=\"L16\" data-r7-order=\"header-side-main-foot-summary\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">16 / timeline-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 16</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>"
+    "templateMarkup": "<div class=\"lu-page lu-timeline-02\"><header class=\"lu-timeline-02-head\"><div class=\"timeline-pin\">01</div><div><p class=\"eyebrow\">MILESTONE / RECORD</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-timeline-02-matrix\"><main><div class=\"section-intro\">PROGRESSION</div><div data-role=\"main\"></div></main><aside><div class=\"summary\" data-bind=\"personalDetails.summary\"></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-timeline-02-foot\"><span>MILESTONE / RECORD</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "timeline-03",
@@ -732,7 +508,7 @@ export const templates = [
     "accentColor": "#1B2A4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -748,21 +524,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Senior leadership & management positions",
-    "uniquenessProfile": {
-      "index": 17,
-      "accent": "#1B2A4A",
-      "font": "Courier New, monospace",
-      "headingWeight": 679,
-      "letterSpacingEm": -0.013,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 269,
-        "topPct": 48,
-        "leftPct": 68,
-        "widthPct": 55
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-timeline-03\" data-r7-layout=\"L17\" data-r7-order=\"header-side-foot-summary-main\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">17 / timeline-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 17</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-timeline-03\"><header class=\"lu-timeline-03-head\"><div class=\"timeline-pin\">01</div><div><p class=\"eyebrow\">JOURNEY / LEADERSHIP</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-timeline-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"lu-timeline-03-summary\"><p class=\"section-kicker\">JOURNEY</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-timeline-03-main\"><div data-role=\"main\"></div></main><aside class=\"lu-timeline-03-side\"><div data-role=\"sidebar\"></div></aside><footer class=\"lu-timeline-03-foot\"><span>JOURNEY / LEADERSHIP</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "combined-01",
@@ -777,7 +539,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -793,21 +555,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 18,
-      "accent": "#2F6F63",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 466,
-      "letterSpacingEm": 0.004,
-      "radiusMm": 3,
-      "ornament": {
-        "angle": 306,
-        "topPct": 67,
-        "leftPct": 9,
-        "widthPct": 72
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-combined-01\" data-r7-layout=\"L18\" data-r7-order=\"header-side-foot-main-summary\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">18 / combined-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 18</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>"
+    "templateMarkup": "<div class=\"lu-page lu-combined-01\"><header class=\"lu-combined-01-head\"><div class=\"brand-mark\">JOURNAL</div><div><p class=\"eyebrow\">ALL TOGETHER / JOURNAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-01-body\"><section class=\"lu-combined-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-combined-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-combined-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-combined-01-foot\"><span>ALL TOGETHER / JOURNAL</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "combined-02",
@@ -822,7 +570,7 @@ export const templates = [
     "accentColor": "#B2562F",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -838,21 +586,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 19,
-      "accent": "#B2562F",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 603,
-      "letterSpacingEm": 0.021,
-      "radiusMm": 1,
-      "ornament": {
-        "angle": 343,
-        "topPct": 16,
-        "leftPct": 32,
-        "widthPct": 26
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-combined-02\" data-r7-layout=\"L19\" data-r7-order=\"header-foot-summary-main-side\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">19 / combined-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 19</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-combined-02\"><header class=\"lu-combined-02-head\"><p class=\"eyebrow\">ONE STORY / EDITORIAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-02-body\"><main class=\"lu-combined-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-combined-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-combined-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-combined-02-foot\"><span>ONE STORY / EDITORIAL</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "combined-03",
@@ -867,7 +601,7 @@ export const templates = [
     "accentColor": "#3B5BA9",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -883,21 +617,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 20,
-      "accent": "#3B5BA9",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 740,
-      "letterSpacingEm": 0.038,
-      "radiusMm": 12,
-      "ornament": {
-        "angle": 20,
-        "topPct": 35,
-        "leftPct": 55,
-        "widthPct": 43
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-combined-03\" data-r7-layout=\"L20\" data-r7-order=\"header-foot-summary-side-main\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">20 / combined-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 20</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-combined-03\"><header class=\"lu-combined-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">STEADY PATH / LEDGER</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-03-body\"><aside class=\"lu-combined-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-combined-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-combined-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-combined-03-foot\"><span>STEADY PATH / LEDGER</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "combined-04",
@@ -912,7 +632,7 @@ export const templates = [
     "accentColor": "#4A5E2F",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -928,21 +648,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 21,
-      "accent": "#4A5E2F",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 527,
-      "letterSpacingEm": 0.055,
-      "radiusMm": 10,
-      "ornament": {
-        "angle": 57,
-        "topPct": 54,
-        "leftPct": 78,
-        "widthPct": 60
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-combined-04\" data-r7-layout=\"L21\" data-r7-order=\"header-foot-main-summary-side\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">21 / combined-04</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 21</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-combined-04\"><header class=\"lu-combined-04-head\"><div class=\"brand-mark\">FIELD</div><div><p class=\"eyebrow\">GROUNDWORK / FIELD NOTES</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-combined-04-body\"><section class=\"lu-combined-04-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-combined-04-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-combined-04-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-combined-04-foot\"><span>GROUNDWORK / FIELD NOTES</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "practical-01",
@@ -957,7 +663,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -973,21 +679,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 22,
-      "accent": "#2F6F63",
-      "font": "Georgia, serif",
-      "headingWeight": 664,
-      "letterSpacingEm": -0.049,
-      "radiusMm": 8,
-      "ornament": {
-        "angle": 94,
-        "topPct": 73,
-        "leftPct": 19,
-        "widthPct": 77
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-practical-01\" data-r7-layout=\"L22\" data-r7-order=\"header-foot-main-side-summary\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">22 / practical-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 22</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>"
+    "templateMarkup": "<div class=\"lu-page lu-practical-01\"><header class=\"lu-practical-01-head\"><div class=\"brand-mark\">READY</div><div><p class=\"eyebrow\">READY TO WORK / PRACTICAL</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-practical-01-body\"><section class=\"lu-practical-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-practical-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-practical-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-practical-01-foot\"><span>READY TO WORK / PRACTICAL</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "practical-02",
@@ -1002,7 +694,7 @@ export const templates = [
     "accentColor": "#1B2A4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1018,21 +710,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 23,
-      "accent": "#1B2A4A",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 451,
-      "letterSpacingEm": -0.032,
-      "radiusMm": 6,
-      "ornament": {
-        "angle": 131,
-        "topPct": 22,
-        "leftPct": 42,
-        "widthPct": 31
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-practical-02\" data-r7-layout=\"L23\" data-r7-order=\"header-foot-side-summary-main\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">23 / practical-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 23</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-practical-02\"><header class=\"lu-practical-02-head lu-practical-02-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">ON CALL / SERVICE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-practical-02-body\"><aside class=\"lu-practical-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-practical-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-practical-02-foot\"><span>ON CALL / SERVICE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "practical-03",
@@ -1047,7 +725,7 @@ export const templates = [
     "accentColor": "#3D3D3D",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1063,21 +741,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 24,
-      "accent": "#3D3D3D",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 588,
-      "letterSpacingEm": -0.015,
-      "radiusMm": 4,
-      "ornament": {
-        "angle": 168,
-        "topPct": 41,
-        "leftPct": 65,
-        "widthPct": 48
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-practical-03\" data-r7-layout=\"L24\" data-r7-order=\"header-foot-side-main-summary\"><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">24 / practical-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 24</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>"
+    "templateMarkup": "<div class=\"lu-page lu-practical-03\"><header class=\"lu-practical-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">HANDS ON / EXPERIENCE</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-practical-03-body\"><main class=\"lu-practical-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-practical-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-practical-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-practical-03-foot\"><span>HANDS ON / EXPERIENCE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "functional-01",
@@ -1092,7 +756,7 @@ export const templates = [
     "accentColor": "#2F6F63",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1108,21 +772,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Career changers highlighting transferable skills",
-    "uniquenessProfile": {
-      "index": 25,
-      "accent": "#2F6F63",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 725,
-      "letterSpacingEm": 0.002,
-      "radiusMm": 2,
-      "ornament": {
-        "angle": 205,
-        "topPct": 60,
-        "leftPct": 6,
-        "widthPct": 65
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-functional-01\" data-r7-layout=\"L25\" data-r7-order=\"summary-header-main-side-foot\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">25 / functional-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 25</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-functional-01\"><header class=\"lu-functional-01-head\"><div><p class=\"eyebrow\">STRONG SUIT / SKILLS</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-functional-01-body\"><aside class=\"lu-functional-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-functional-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-functional-01-foot\"><span>STRONG SUIT / SKILLS</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "functional-02",
@@ -1137,7 +787,7 @@ export const templates = [
     "accentColor": "#3B5BA9",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1153,21 +803,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Career changers highlighting transferable skills",
-    "uniquenessProfile": {
-      "index": 26,
-      "accent": "#3B5BA9",
-      "font": "Times New Roman, serif",
-      "headingWeight": 512,
-      "letterSpacingEm": 0.019,
-      "radiusMm": 0,
-      "ornament": {
-        "angle": 242,
-        "topPct": 9,
-        "leftPct": 29,
-        "widthPct": 19
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-functional-02\" data-r7-layout=\"L26\" data-r7-order=\"summary-header-main-foot-side\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">26 / functional-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 26</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-functional-02\"><header class=\"lu-functional-02-head\"><p class=\"eyebrow\">NEW DIRECTION / TRANSFERABLE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-functional-02-body\"><aside class=\"lu-functional-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-functional-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-functional-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-functional-02-foot\"><span>NEW DIRECTION / TRANSFERABLE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "functional-03",
@@ -1182,7 +818,7 @@ export const templates = [
     "accentColor": "#B08D2E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1198,21 +834,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Career changers highlighting transferable skills",
-    "uniquenessProfile": {
-      "index": 27,
-      "accent": "#B08D2E",
-      "font": "Courier New, monospace",
-      "headingWeight": 649,
-      "letterSpacingEm": 0.036,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 279,
-        "topPct": 28,
-        "leftPct": 52,
-        "widthPct": 36
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-functional-03\" data-r7-layout=\"L27\" data-r7-order=\"summary-header-side-main-foot\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">27 / functional-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 27</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-functional-03\"><header class=\"lu-functional-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">TURNING POINT / RESULTS</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-functional-03-body\"><section class=\"lu-functional-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-functional-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-functional-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-functional-03-foot\"><span>TURNING POINT / RESULTS</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "trade-01",
@@ -1227,7 +849,7 @@ export const templates = [
     "accentColor": "#1B3A4B",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1243,21 +865,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Skilled trades, apprenticeships & artisans",
-    "uniquenessProfile": {
-      "index": 28,
-      "accent": "#1B3A4B",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 786,
-      "letterSpacingEm": 0.053,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 316,
-        "topPct": 47,
-        "leftPct": 75,
-        "widthPct": 53
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-trade-01\" data-r7-layout=\"L28\" data-r7-order=\"summary-header-side-foot-main\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">28 / trade-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 28</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-trade-01\"><header class=\"lu-trade-01-head lu-trade-01-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">ON THE TOOLS / FIELD</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-trade-01-body\"><aside class=\"lu-trade-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-trade-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-trade-01-foot\"><span>ON THE TOOLS / FIELD</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "trade-02",
@@ -1272,7 +880,7 @@ export const templates = [
     "accentColor": "#7A3A1B",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1288,21 +896,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Skilled trades, apprenticeships & artisans",
-    "uniquenessProfile": {
-      "index": 29,
-      "accent": "#7A3A1B",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 573,
-      "letterSpacingEm": -0.051,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 353,
-        "topPct": 66,
-        "leftPct": 16,
-        "widthPct": 70
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-trade-02\" data-r7-layout=\"L29\" data-r7-order=\"summary-header-foot-main-side\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">29 / trade-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 29</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-trade-02\"><header class=\"lu-trade-02-head\"><div class=\"brand-mark\">CERT</div><div><p class=\"eyebrow\">CERTIFIED / CREDENTIALS</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-trade-02-body\"><aside class=\"lu-trade-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-trade-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-trade-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-trade-02-foot\"><span>CERTIFIED / CREDENTIALS</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "trade-03",
@@ -1317,7 +911,7 @@ export const templates = [
     "accentColor": "#2C2C2C",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1333,21 +927,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Skilled trades, apprenticeships & artisans",
-    "uniquenessProfile": {
-      "index": 30,
-      "accent": "#2C2C2C",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 710,
-      "letterSpacingEm": -0.034,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 30,
-        "topPct": 15,
-        "leftPct": 39,
-        "widthPct": 24
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-trade-03\" data-r7-layout=\"L30\" data-r7-order=\"summary-header-foot-side-main\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">30 / trade-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 30</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-trade-03\"><header class=\"lu-trade-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">SKILLED HANDS / TRADE</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-trade-03-body\"><main class=\"lu-trade-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-trade-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-trade-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-trade-03-foot\"><span>SKILLED HANDS / TRADE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "starter-01",
@@ -1362,7 +942,7 @@ export const templates = [
     "accentColor": "#2F8A6E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1378,21 +958,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 31,
-      "accent": "#2F8A6E",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 497,
-      "letterSpacingEm": -0.017,
-      "radiusMm": 3,
-      "ornament": {
-        "angle": 67,
-        "topPct": 34,
-        "leftPct": 62,
-        "widthPct": 41
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-starter-01\" data-r7-layout=\"L31\" data-r7-order=\"summary-main-header-side-foot\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">31 / starter-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 31</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-starter-01\"><header class=\"lu-starter-01-head\"><div class=\"brand-mark\">START</div><div><p class=\"eyebrow\">STARTER CLASSIC / FIRST ROLE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-starter-01-body\"><section class=\"lu-starter-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-starter-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-starter-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-starter-01-foot\"><span>STARTER CLASSIC / FIRST ROLE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "starter-02",
@@ -1407,7 +973,7 @@ export const templates = [
     "accentColor": "#7A3A1B",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1423,21 +989,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 32,
-      "accent": "#7A3A1B",
-      "font": "Georgia, serif",
-      "headingWeight": 634,
-      "letterSpacingEm": 0.0,
-      "radiusMm": 1,
-      "ornament": {
-        "angle": 104,
-        "topPct": 53,
-        "leftPct": 85,
-        "widthPct": 58
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-starter-02\" data-r7-layout=\"L32\" data-r7-order=\"summary-main-header-foot-side\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">32 / starter-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 32</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-starter-02\"><header class=\"lu-starter-02-head\"><div><p class=\"eyebrow\">STARTER WARM / FIRST STEP</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-starter-02-body\"><main class=\"lu-starter-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-starter-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-starter-02-foot\"><span>STARTER WARM / FIRST STEP</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "starter-03",
@@ -1452,7 +1004,7 @@ export const templates = [
     "accentColor": "#2E5E88",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1468,21 +1020,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "First jobs, students & recent graduates",
-    "uniquenessProfile": {
-      "index": 33,
-      "accent": "#2E5E88",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 771,
-      "letterSpacingEm": 0.017,
-      "radiusMm": 12,
-      "ornament": {
-        "angle": 141,
-        "topPct": 72,
-        "leftPct": 26,
-        "widthPct": 75
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-starter-03\" data-r7-layout=\"L33\" data-r7-order=\"summary-main-side-header-foot\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">33 / starter-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 33</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-starter-03\"><header class=\"lu-starter-03-head\"><p class=\"eyebrow\">STARTER COOL / BEGINNING</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-starter-03-body\"><aside class=\"lu-starter-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"lu-starter-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-starter-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main></div><footer class=\"lu-starter-03-foot\"><span>STARTER COOL / BEGINNING</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "mono-01",
@@ -1497,7 +1035,7 @@ export const templates = [
     "accentColor": "#8C7A5E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1513,21 +1051,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 34,
-      "accent": "#8C7A5E",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 558,
-      "letterSpacingEm": 0.034,
-      "radiusMm": 10,
-      "ornament": {
-        "angle": 178,
-        "topPct": 21,
-        "leftPct": 49,
-        "widthPct": 29
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-mono-01\" data-r7-layout=\"L34\" data-r7-order=\"summary-main-side-foot-header\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 34</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">34 / mono-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>"
+    "templateMarkup": "<div class=\"lu-page lu-mono-01\"><header class=\"lu-mono-01-head\"><p class=\"eyebrow\">STONEWOOD / MONO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div><div class=\"lu-mono-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div></header><div class=\"lu-mono-01-body\"><section class=\"lu-mono-01-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><main class=\"lu-mono-01-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><aside class=\"lu-mono-01-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-mono-01-foot\"><span>STONEWOOD / MONO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "mono-02",
@@ -1542,7 +1066,7 @@ export const templates = [
     "accentColor": "#4A6741",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1558,21 +1082,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 35,
-      "accent": "#4A6741",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 695,
-      "letterSpacingEm": 0.051,
-      "radiusMm": 8,
-      "ornament": {
-        "angle": 215,
-        "topPct": 40,
-        "leftPct": 72,
-        "widthPct": 46
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-mono-02\" data-r7-layout=\"L35\" data-r7-order=\"summary-main-foot-header-side\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 35</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">35 / mono-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-mono-02\"><header class=\"lu-mono-02-head\"><div class=\"brand-mark\">SAGE</div><div><p class=\"eyebrow\">SAGEBROOK / MONO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-mono-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-mono-02-body\"><main class=\"lu-mono-02-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-mono-02-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><aside class=\"lu-mono-02-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-mono-02-foot\"><span>SAGEBROOK / MONO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "mono-03",
@@ -1587,7 +1097,7 @@ export const templates = [
     "accentColor": "#3B5BA9",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1603,21 +1113,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 36,
-      "accent": "#3B5BA9",
-      "font": "Times New Roman, serif",
-      "headingWeight": 482,
-      "letterSpacingEm": -0.053,
-      "radiusMm": 6,
-      "ornament": {
-        "angle": 252,
-        "topPct": 59,
-        "leftPct": 13,
-        "widthPct": 63
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-mono-03\" data-r7-layout=\"L36\" data-r7-order=\"summary-main-foot-side-header\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 36</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">36 / mono-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>"
+    "templateMarkup": "<div class=\"lu-page lu-mono-03\"><header class=\"lu-mono-03-head\"><div class=\"num\">01</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"eyebrow\">SLATEVIEW / MONO</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-mono-03-body\"><aside class=\"lu-mono-03-side\"><div class=\"section-intro\">KEY DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"lu-mono-03-main\"><div class=\"section-intro\">CAREER HISTORY</div><div data-role=\"main\"></div></main><section class=\"lu-mono-03-summary\"><p class=\"section-kicker\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section></div><footer class=\"lu-mono-03-foot\"><span>SLATEVIEW / MONO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "facet-01",
@@ -1632,7 +1128,7 @@ export const templates = [
     "accentColor": "#B5654A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1648,21 +1144,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 37,
-      "accent": "#B5654A",
-      "font": "Courier New, monospace",
-      "headingWeight": 619,
-      "letterSpacingEm": -0.036,
-      "radiusMm": 4,
-      "ornament": {
-        "angle": 289,
-        "topPct": 8,
-        "leftPct": 36,
-        "widthPct": 80
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-facet-01\" data-r7-layout=\"L37\" data-r7-order=\"summary-side-header-main-foot\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">37 / facet-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 37</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-facet-01\"><header class=\"lu-facet-01-head lu-facet-01-center\"><div><p class=\"eyebrow\">TERRALINE / FACET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-facet-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-01-body\"><aside class=\"lu-facet-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-facet-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-facet-01-foot\"><span>TERRALINE / FACET</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "facet-02",
@@ -1677,7 +1159,7 @@ export const templates = [
     "accentColor": "#1B5E56",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1693,21 +1175,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 38,
-      "accent": "#1B5E56",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 756,
-      "letterSpacingEm": -0.019,
-      "radiusMm": 2,
-      "ornament": {
-        "angle": 326,
-        "topPct": 27,
-        "leftPct": 59,
-        "widthPct": 34
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-facet-02\" data-r7-layout=\"L38\" data-r7-order=\"summary-side-header-foot-main\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">38 / facet-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 38</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-facet-02\"><header class=\"lu-facet-02-head lu-facet-02-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">DEEPWATER / FACET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-02-body\"><main class=\"lu-facet-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-facet-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-facet-02-foot\"><span>DEEPWATER / FACET</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "facet-03",
@@ -1722,7 +1190,7 @@ export const templates = [
     "accentColor": "#6B3E8E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1738,21 +1206,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 39,
-      "accent": "#6B3E8E",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 543,
-      "letterSpacingEm": -0.002,
-      "radiusMm": 0,
-      "ornament": {
-        "angle": 3,
-        "topPct": 46,
-        "leftPct": 82,
-        "widthPct": 51
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-facet-03\" data-r7-layout=\"L39\" data-r7-order=\"summary-side-main-header-foot\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">39 / facet-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 39</span></footer></div>"
+    "templateMarkup": "<div class=\"lu-page lu-facet-03\"><header class=\"lu-facet-03-head lu-facet-03-split\"><div><div class=\"lu-facet-03-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-03-body\"><aside class=\"lu-facet-03-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-facet-03-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-facet-03-foot\"><span>PLUMLINE / FACET</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "facet-04",
@@ -1767,7 +1221,7 @@ export const templates = [
     "accentColor": "#7A5C2E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1783,21 +1237,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 40,
-      "accent": "#7A5C2E",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 680,
-      "letterSpacingEm": 0.015,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 40,
-        "topPct": 65,
-        "leftPct": 23,
-        "widthPct": 68
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-facet-04\" data-r7-layout=\"L40\" data-r7-order=\"summary-side-main-foot-header\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 40</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">40 / facet-04</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>"
+    "templateMarkup": "<div class=\"lu-page lu-facet-04\"><header class=\"lu-facet-04-head\"><div><p class=\"eyebrow\">BRASSWORK / FACET</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-facet-04-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-facet-04-body\"><main class=\"lu-facet-04-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-facet-04-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-facet-04-foot\"><span>BRASSWORK / FACET</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "duo-01",
@@ -1812,7 +1252,7 @@ export const templates = [
     "accentColor": "#A06060",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1828,21 +1268,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 41,
-      "accent": "#A06060",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 467,
-      "letterSpacingEm": 0.032,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 77,
-        "topPct": 14,
-        "leftPct": 46,
-        "widthPct": 22
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-duo-01\" data-r7-layout=\"L41\" data-r7-order=\"summary-side-foot-header-main\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 41</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">41 / duo-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>"
+    "templateMarkup": "<div class=\"lu-page lu-duo-01\"><header class=\"lu-duo-01-head lu-duo-01-center\"><div><p class=\"eyebrow\">ROSEMERE / DUO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-duo-01-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-duo-01-body\"><aside class=\"lu-duo-01-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-duo-01-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-duo-01-foot\"><span>ROSEMERE / DUO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "duo-02",
@@ -1857,7 +1283,7 @@ export const templates = [
     "accentColor": "#4A6B4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1873,21 +1299,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 42,
-      "accent": "#4A6B4A",
-      "font": "Georgia, serif",
-      "headingWeight": 604,
-      "letterSpacingEm": 0.049,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 114,
-        "topPct": 33,
-        "leftPct": 69,
-        "widthPct": 39
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-duo-02\" data-r7-layout=\"L42\" data-r7-order=\"summary-side-foot-main-header\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 42</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">42 / duo-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>"
+    "templateMarkup": "<div class=\"lu-page lu-duo-02\"><header class=\"lu-duo-02-head\"><div><p class=\"eyebrow\">WILLOWGREEN / DUO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"lu-duo-02-photo\"><img data-bind-src=\"personalDetails.photo\" alt=\"Profile photo\"><span data-bind=\"personalDetails.fullName\"></span></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-duo-02-body\"><main class=\"lu-duo-02-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"lu-duo-02-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside></div><footer class=\"lu-duo-02-foot\"><span>WILLOWGREEN / DUO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "duo-03",
@@ -1902,7 +1314,7 @@ export const templates = [
     "accentColor": "#6B6860",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1918,21 +1330,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "uniquenessProfile": {
-      "index": 43,
-      "accent": "#6B6860",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 741,
-      "letterSpacingEm": -0.055,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 151,
-        "topPct": 52,
-        "leftPct": 10,
-        "widthPct": 56
-      }
-    },
-    "templateMarkup": "<div class=\"cv r7-template r7-duo-03\" data-r7-layout=\"L43\" data-r7-order=\"summary-foot-header-main-side\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 43</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">43 / duo-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>"
+    "templateMarkup": "<div class=\"lu-page lu-duo-03\"><header class=\"lu-duo-03-head lu-duo-03-rail\"><span class=\"railmark\">01</span><div><p class=\"eyebrow\">WARMSTONE / DUO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"lu-duo-03-body\"><aside class=\"lu-duo-03-side\"><p class=\"side-note\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main class=\"lu-duo-03-main\"><div class=\"section-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"lu-duo-03-foot\"><span>WARMSTONE / DUO</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "luxury-editorial-01",
@@ -1947,7 +1345,7 @@ export const templates = [
     "accentColor": "#A78550",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -1963,21 +1361,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Editorial, luxury & personal-brand roles",
-    "templateMarkup": "<div class=\"cv r7-template r7-luxury-editorial-01\" data-r7-layout=\"L44\" data-r7-order=\"summary-foot-header-side-main\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 44</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">44 / luxury-editorial-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 44,
-      "accent": "#A78550",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 528,
-      "letterSpacingEm": -0.038,
-      "radiusMm": 3,
-      "ornament": {
-        "angle": 188,
-        "topPct": 71,
-        "leftPct": 33,
-        "widthPct": 73
-      }
-    }
+    "templateMarkup": "<header><div class=\"hero\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"statement\">EXECUTIVE PROFILE<br/><span>Governance · Strategy · Delivery</span></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"edgrid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "black-champagne-executive-02",
@@ -1992,7 +1376,7 @@ export const templates = [
     "accentColor": "#C8A66B",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2008,21 +1392,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-black-champagne-executive-02\" data-r7-layout=\"L45\" data-r7-order=\"summary-foot-main-header-side\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 45</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">45 / black-champagne-executive-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>",
-    "uniquenessProfile": {
-      "index": 45,
-      "accent": "#C8A66B",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 665,
-      "letterSpacingEm": -0.021,
-      "radiusMm": 1,
-      "ornament": {
-        "angle": 225,
-        "topPct": 20,
-        "leftPct": 56,
-        "widthPct": 27
-      }
-    }
+    "templateMarkup": "<header class=\"darkhead\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"darkgrid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "architectural-grid-03",
@@ -2037,7 +1407,7 @@ export const templates = [
     "accentColor": "#98633E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2053,21 +1423,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-architectural-grid-03\" data-r7-layout=\"L46\" data-r7-order=\"summary-foot-main-side-header\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 46</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">46 / architectural-grid-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 46,
-      "accent": "#98633E",
-      "font": "Times New Roman, serif",
-      "headingWeight": 452,
-      "letterSpacingEm": -0.004,
-      "radiusMm": 12,
-      "ornament": {
-        "angle": 262,
-        "topPct": 39,
-        "leftPct": 79,
-        "widthPct": 44
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-architectural\"><div class=\"ag-topbar\"><span class=\"ag-index\">03</span><span>ARCHITECTURAL GRID</span><span>DESIGN / CV</span></div><header class=\"ag-header\"><div class=\"ag-title\"><span class=\"ag-kicker\">PROFILE 03</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ag-grid\"><aside><div class=\"ag-summary\"><span>PROFILE NOTE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"ag-footer\"><span>TEE / PROFESSIONAL PROFILE</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "modern-swiss-04",
@@ -2082,7 +1438,7 @@ export const templates = [
     "accentColor": "#5D6870",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2098,21 +1454,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-modern-swiss-04\" data-r7-layout=\"L47\" data-r7-order=\"summary-foot-side-header-main\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 47</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">47 / modern-swiss-04</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 47,
-      "accent": "#5D6870",
-      "font": "Courier New, monospace",
-      "headingWeight": 589,
-      "letterSpacingEm": 0.013,
-      "radiusMm": 10,
-      "ornament": {
-        "angle": 299,
-        "topPct": 58,
-        "leftPct": 20,
-        "widthPct": 61
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-swiss\"><header class=\"ms-mast\"><div class=\"ms-no\">04</div><div class=\"ms-brand\">MODERN SWISS</div><div class=\"ms-rule\"></div></header><section class=\"ms-identity\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></section><div class=\"ms-content\"><aside><div class=\"ms-summary\"><span>SUMMARY</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"ms-footer\"><span>SWISS SYSTEM / 04</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "fashion-editorial-portrait-05",
@@ -2127,7 +1469,7 @@ export const templates = [
     "accentColor": "#9A5D80",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2143,21 +1485,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-fashion-editorial-portrait-05\" data-r7-layout=\"L48\" data-r7-order=\"summary-foot-side-main-header\"><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 48</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">48 / fashion-editorial-portrait-05</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 48,
-      "accent": "#9A5D80",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 726,
-      "letterSpacingEm": 0.03,
-      "radiusMm": 8,
-      "ornament": {
-        "angle": 336,
-        "topPct": 7,
-        "leftPct": 43,
-        "widthPct": 78
-      }
-    }
+    "templateMarkup": "<header><div class=\"hero\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"photo portrait\">[APPLICANT PHOTO]</div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"edgrid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "dark-executive-06",
@@ -2172,7 +1500,7 @@ export const templates = [
     "accentColor": "#C7A66A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2188,21 +1516,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-dark-executive-06\" data-r7-layout=\"L49\" data-r7-order=\"main-header-summary-side-foot\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">49 / dark-executive-06</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 49</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 49,
-      "accent": "#C7A66A",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 513,
-      "letterSpacingEm": 0.047,
-      "radiusMm": 6,
-      "ornament": {
-        "angle": 13,
-        "topPct": 26,
-        "leftPct": 66,
-        "widthPct": 32
-      }
-    }
+    "templateMarkup": "<header class=\"darkhead\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"darkgrid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "european-minimal-07",
@@ -2217,7 +1531,7 @@ export const templates = [
     "accentColor": "#8A7460",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2233,21 +1547,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-european-minimal-07\" data-r7-layout=\"L50\" data-r7-order=\"main-header-summary-foot-side\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">50 / european-minimal-07</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 50</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>",
-    "uniquenessProfile": {
-      "index": 50,
-      "accent": "#8A7460",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 650,
-      "letterSpacingEm": -0.057,
-      "radiusMm": 4,
-      "ornament": {
-        "angle": 50,
-        "topPct": 45,
-        "leftPct": 7,
-        "widthPct": 49
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-european-min\"><header class=\"em-header\"><div class=\"em-number\">07</div><div class=\"em-name\"><div class=\"em-kicker\">EUROPEAN MINIMAL</div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"em-line\"></div><div class=\"em-body\"><aside><p class=\"em-summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"em-footer\"><span>07 / PROFESSIONAL CURRICULUM</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "burgundy-heritage-08",
@@ -2262,7 +1562,7 @@ export const templates = [
     "accentColor": "#8F3D4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2278,21 +1578,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-burgundy-heritage-08\" data-r7-layout=\"L51\" data-r7-order=\"main-header-side-summary-foot\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">51 / burgundy-heritage-08</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 51</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 51,
-      "accent": "#8F3D4A",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 787,
-      "letterSpacingEm": -0.04,
-      "radiusMm": 2,
-      "ornament": {
-        "angle": 87,
-        "topPct": 64,
-        "leftPct": 30,
-        "widthPct": 66
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-burgundy\"><header class=\"bh-header\"><div class=\"bh-brand\"><span>08</span><strong>BURGUNDY HERITAGE</strong></div><div class=\"bh-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"bh-frame\"><aside><div class=\"bh-summary\"><span>ABOUT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div class=\"bh-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div><footer class=\"bh-footer\"><span>HERITAGE EDITION · 08</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "technology-executive-09",
@@ -2307,7 +1593,7 @@ export const templates = [
     "accentColor": "#4D7399",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2323,21 +1609,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-technology-executive-09\" data-r7-layout=\"L52\" data-r7-order=\"main-header-side-foot-summary\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">52 / technology-executive-09</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 52</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 52,
-      "accent": "#4D7399",
-      "font": "Georgia, serif",
-      "headingWeight": 574,
-      "letterSpacingEm": -0.023,
-      "radiusMm": 0,
-      "ornament": {
-        "angle": 124,
-        "topPct": 13,
-        "leftPct": 53,
-        "widthPct": 20
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-tech\"><header class=\"te-header\"><div class=\"te-system\"><span>09</span><span>SYSTEM / EXECUTIVE PROFILE</span></div><div class=\"te-identity\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div><div class=\"te-signal\"><i></i><i></i><i></i><i></i><span>ONLINE</span></div></header><div class=\"te-grid\"><aside><div class=\"te-summary\"><span>EXECUTIVE SIGNAL</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"te-footer\"><span>TECHNOLOGY EXECUTIVE / 09</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "portrait-luxury-10",
@@ -2352,7 +1624,7 @@ export const templates = [
     "accentColor": "#B1845A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2368,21 +1640,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-portrait-luxury-10\" data-r7-layout=\"L53\" data-r7-order=\"main-header-foot-summary-side\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">53 / portrait-luxury-10</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 53</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>",
-    "uniquenessProfile": {
-      "index": 53,
-      "accent": "#B1845A",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 711,
-      "letterSpacingEm": -0.006,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 161,
-        "topPct": 32,
-        "leftPct": 76,
-        "widthPct": 37
-      }
-    }
+    "templateMarkup": "<header class=\"top\" data-rf-region=\"header\"><div class=\"identity\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></div><div class=\"photo portrait\">[APPLICANT PHOTO]</div></div></header><div class=\"grid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\" data-rf-region=\"sidebar\"></div></aside><main><div data-role=\"main\" data-rf-region=\"main\"></div></main></div>"
   },
   {
     "id": "contemporary-public-sector-11",
@@ -2397,7 +1655,7 @@ export const templates = [
     "accentColor": "#617F87",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2413,21 +1671,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-contemporary-public-sector-11\" data-r7-layout=\"L54\" data-r7-order=\"main-header-foot-side-summary\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">54 / contemporary-public-sector-11</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 54</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 54,
-      "accent": "#617F87",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 498,
-      "letterSpacingEm": 0.011,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 198,
-        "topPct": 51,
-        "leftPct": 17,
-        "widthPct": 54
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-public\"><div class=\"cp-rail\"><span>11</span><span>PUBLIC<br>SECTOR</span><b></b></div><div class=\"cp-sheet\"><header class=\"cp-header\"><div class=\"cp-kicker\">CONTEMPORARY PUBLIC SECTOR · CURRICULUM VITAE</div><div class=\"cp-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"cp-rule\"></div><div class=\"cp-grid\"><aside><div class=\"cp-summary\"><span>PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"cp-footer\"><span>11 / PUBLIC SERVICE PROFILE</span><span data-page-number>01</span></footer></div></div>"
   },
   {
     "id": "finance-executive-12",
@@ -2442,7 +1686,7 @@ export const templates = [
     "accentColor": "#7D946C",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2458,21 +1702,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-finance-executive-12\" data-r7-layout=\"L55\" data-r7-order=\"main-summary-header-side-foot\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">55 / finance-executive-12</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 55</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 55,
-      "accent": "#7D946C",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 635,
-      "letterSpacingEm": 0.028,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 235,
-        "topPct": 70,
-        "leftPct": 40,
-        "widthPct": 71
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-finance\"><header class=\"fx-header\"><div class=\"fx-index\">12</div><div class=\"fx-name\"><span>FINANCE EXECUTIVE</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"fx-bar\"><i></i><i></i><i></i></div><div class=\"fx-content\"><aside><div class=\"fx-summary\"><span>EXECUTIVE SUMMARY</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"fx-footer\"><span>FINANCIAL PROFILE / 12</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "creative-director-13",
@@ -2487,7 +1717,7 @@ export const templates = [
     "accentColor": "#A85D43",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2503,21 +1733,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-creative-director-13\" data-r7-layout=\"L56\" data-r7-order=\"main-summary-header-foot-side\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">56 / creative-director-13</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 56</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>",
-    "uniquenessProfile": {
-      "index": 56,
-      "accent": "#A85D43",
-      "font": "Times New Roman, serif",
-      "headingWeight": 772,
-      "letterSpacingEm": 0.045,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 272,
-        "topPct": 19,
-        "leftPct": 63,
-        "widthPct": 25
-      }
-    }
+    "templateMarkup": "<header class=\"top\"><div class=\"identity\"><div class=\"photo portrait\">[APPLICANT PHOTO]</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"grid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "magazine-column-portrait-14",
@@ -2532,7 +1748,7 @@ export const templates = [
     "accentColor": "#777777",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2548,21 +1764,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-magazine-column-portrait-14\" data-r7-layout=\"L57\" data-r7-order=\"main-summary-side-header-foot\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">57 / magazine-column-portrait-14</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 57</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 57,
-      "accent": "#777777",
-      "font": "Courier New, monospace",
-      "headingWeight": 559,
-      "letterSpacingEm": -0.059,
-      "radiusMm": 3,
-      "ornament": {
-        "angle": 309,
-        "topPct": 38,
-        "leftPct": 86,
-        "widthPct": 42
-      }
-    }
+    "templateMarkup": "<header class=\"top\"><div class=\"identity\"><div class=\"photo portrait\">[APPLICANT PHOTO]</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"grid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "monochrome-gallery-15",
@@ -2577,7 +1779,7 @@ export const templates = [
     "accentColor": "#5A5A5A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2593,21 +1795,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-monochrome-gallery-15\" data-r7-layout=\"L58\" data-r7-order=\"main-summary-side-foot-header\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 58</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">58 / monochrome-gallery-15</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 58,
-      "accent": "#5A5A5A",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 696,
-      "letterSpacingEm": -0.042,
-      "radiusMm": 1,
-      "ornament": {
-        "angle": 346,
-        "topPct": 57,
-        "leftPct": 27,
-        "widthPct": 59
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-mono-gallery\"><header class=\"mg-header\"><div class=\"mg-mark\">15</div><div class=\"mg-identity\"><div class=\"mg-kicker\">MONOCHROME / GALLERY</div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"mg-stage\"><main><div data-role=\"main\"></div></main><aside><div class=\"mg-summary\"><span>CURATED PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"mg-footer\"><span>BLACK / WHITE / FORM</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "modernist-geometry-16",
@@ -2622,7 +1810,7 @@ export const templates = [
     "accentColor": "#6B6FAA",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2638,21 +1826,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-modernist-geometry-16\" data-r7-layout=\"L59\" data-r7-order=\"main-summary-foot-header-side\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 59</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">59 / modernist-geometry-16</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>",
-    "uniquenessProfile": {
-      "index": 59,
-      "accent": "#6B6FAA",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 483,
-      "letterSpacingEm": -0.025,
-      "radiusMm": 12,
-      "ornament": {
-        "angle": 23,
-        "topPct": 6,
-        "leftPct": 50,
-        "widthPct": 76
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-geometry\"><header class=\"geo-header\"><div class=\"geo-square\">16</div><div class=\"geo-name\"><span>MODERNIST GEOMETRY</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div><div class=\"geo-block\"></div></header><div class=\"geo-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"geo-summary\"><span>ABSTRACT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"geo-footer\"><span>16 / MODERNIST SYSTEM</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "forest-estate-17",
@@ -2667,7 +1841,7 @@ export const templates = [
     "accentColor": "#8A9B7A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2683,21 +1857,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-forest-estate-17\" data-r7-layout=\"L60\" data-r7-order=\"main-summary-foot-side-header\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 60</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">60 / forest-estate-17</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 60,
-      "accent": "#8A9B7A",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 620,
-      "letterSpacingEm": -0.008,
-      "radiusMm": 10,
-      "ornament": {
-        "angle": 60,
-        "topPct": 25,
-        "leftPct": 73,
-        "widthPct": 30
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-forest\"><header class=\"fe-header\"><div class=\"fe-orbit\"><span>17</span></div><div class=\"fe-title\"><span>FOREST ESTATE</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"fe-intro\"><div><span>FIELD NOTE</span><p data-bind=\"personalDetails.summary\"></p></div></div><div class=\"fe-body\"><aside><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"fe-footer\"><span>ESTATE PROFILE / 17</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "sapphire-executive-portrait-18",
@@ -2712,7 +1872,7 @@ export const templates = [
     "accentColor": "#5E7FAF",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2728,21 +1888,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-sapphire-executive-portrait-18\" data-r7-layout=\"L61\" data-r7-order=\"main-side-header-summary-foot\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">61 / sapphire-executive-portrait-18</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 61</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 61,
-      "accent": "#5E7FAF",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 757,
-      "letterSpacingEm": 0.009,
-      "radiusMm": 8,
-      "ornament": {
-        "angle": 97,
-        "topPct": 44,
-        "leftPct": 14,
-        "widthPct": 47
-      }
-    }
+    "templateMarkup": "<header class=\"top\"><div class=\"identity\"><div class=\"photo portrait\">[APPLICANT PHOTO]</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"grid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "premium-consultant-19",
@@ -2757,7 +1903,7 @@ export const templates = [
     "accentColor": "#8C8B78",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2773,21 +1919,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-premium-consultant-19\" data-r7-layout=\"L62\" data-r7-order=\"main-side-header-foot-summary\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">62 / premium-consultant-19</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 62</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 62,
-      "accent": "#8C8B78",
-      "font": "Georgia, serif",
-      "headingWeight": 544,
-      "letterSpacingEm": 0.026,
-      "radiusMm": 6,
-      "ornament": {
-        "angle": 134,
-        "topPct": 63,
-        "leftPct": 37,
-        "widthPct": 64
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-consultant\"><header class=\"pc-header\"><div class=\"pc-top\"><span>19</span><span>PREMIUM CONSULTANT</span><span>EXECUTIVE / ADVISORY</span></div><div class=\"pc-center\"><div class=\"pc-monogram\">P</div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"pc-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"pc-summary\"><span>POSITIONING</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"pc-footer\"><span>ADVISORY PROFILE · 19</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "editorial-portrait-20",
@@ -2802,7 +1934,7 @@ export const templates = [
     "accentColor": "#B45F46",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2818,21 +1950,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-editorial-portrait-20\" data-r7-layout=\"L63\" data-r7-order=\"main-side-summary-header-foot\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">63 / editorial-portrait-20</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 63</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 63,
-      "accent": "#B45F46",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 681,
-      "letterSpacingEm": 0.043,
-      "radiusMm": 4,
-      "ornament": {
-        "angle": 171,
-        "topPct": 12,
-        "leftPct": 60,
-        "widthPct": 18
-      }
-    }
+    "templateMarkup": "<header><div class=\"hero\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"photo portrait\">[APPLICANT PHOTO]</div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"edgrid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "asymmetric-architecture-21",
@@ -2847,7 +1965,7 @@ export const templates = [
     "accentColor": "#6B9AAA",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2863,21 +1981,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-asymmetric-architecture-21\" data-r7-layout=\"L64\" data-r7-order=\"main-side-summary-foot-header\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 64</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">64 / asymmetric-architecture-21</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 64,
-      "accent": "#6B9AAA",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 468,
-      "letterSpacingEm": 0.06,
-      "radiusMm": 2,
-      "ornament": {
-        "angle": 208,
-        "topPct": 31,
-        "leftPct": 83,
-        "widthPct": 35
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-asymmetric\"><div class=\"aa-spine\"><span>21</span><span>ASSET<br>PROFILE</span></div><header class=\"aa-header\"><div><span class=\"aa-kicker\">ASYMMETRIC ARCHITECTURE</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"aa-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"aa-summary\"><span>OVERVIEW</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"aa-footer\"><span>STRUCTURE / PROPORTION / 21</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "luxury-portfolio-22",
@@ -2892,7 +1996,7 @@ export const templates = [
     "accentColor": "#C8A66B",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2908,21 +2012,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-luxury-portfolio-22\" data-r7-layout=\"L65\" data-r7-order=\"main-side-foot-header-summary\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 65</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">65 / luxury-portfolio-22</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 65,
-      "accent": "#C8A66B",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 605,
-      "letterSpacingEm": -0.044,
-      "radiusMm": 0,
-      "ornament": {
-        "angle": 245,
-        "topPct": 50,
-        "leftPct": 24,
-        "widthPct": 52
-      }
-    }
+    "templateMarkup": "<header class=\"top\"><div class=\"identity\"><div class=\"photo portrait\">[APPLICANT PHOTO]</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"grid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "slate-copper-23",
@@ -2937,7 +2027,7 @@ export const templates = [
     "accentColor": "#617F87",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2953,21 +2043,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-slate-copper-23\" data-r7-layout=\"L66\" data-r7-order=\"main-side-foot-summary-header\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 66</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">66 / slate-copper-23</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 66,
-      "accent": "#617F87",
-      "font": "Times New Roman, serif",
-      "headingWeight": 742,
-      "letterSpacingEm": -0.027,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 282,
-        "topPct": 69,
-        "leftPct": 47,
-        "widthPct": 69
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-copper\"><header class=\"sc-header\"><div class=\"sc-label\">23</div><div class=\"sc-identity\"><span>SLATE &amp; COPPER</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sc-copper-rule\"></div><div class=\"sc-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"sc-summary\"><span>PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"sc-footer\"><span>SLATE / COPPER / 23</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "modern-academic-24",
@@ -2982,7 +2058,7 @@ export const templates = [
     "accentColor": "#837A9D",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -2998,21 +2074,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-modern-academic-24\" data-r7-layout=\"L67\" data-r7-order=\"main-foot-header-summary-side\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 67</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">67 / modern-academic-24</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>",
-    "uniquenessProfile": {
-      "index": 67,
-      "accent": "#837A9D",
-      "font": "Courier New, monospace",
-      "headingWeight": 529,
-      "letterSpacingEm": -0.01,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 319,
-        "topPct": 18,
-        "leftPct": 70,
-        "widthPct": 23
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-academic\"><header class=\"ma-header\"><div class=\"ma-journal\"><span>VOL. 24</span><strong>MODERN ACADEMIC</strong><span>CV / DOSSIER</span></div><div class=\"ma-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ma-rule\"></div><div class=\"ma-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"ma-summary\"><span>ABSTRACT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div><footer class=\"ma-footer\"><span>RESEARCH PROFILE / 24</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "high-end-minimal-25",
@@ -3027,7 +2089,7 @@ export const templates = [
     "accentColor": "#5D6870",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3043,21 +2105,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-high-end-minimal-25\" data-r7-layout=\"L68\" data-r7-order=\"main-foot-header-side-summary\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 68</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">68 / high-end-minimal-25</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 68,
-      "accent": "#5D6870",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 666,
-      "letterSpacingEm": 0.007,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 356,
-        "topPct": 37,
-        "leftPct": 11,
-        "widthPct": 40
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-minimal\"><header class=\"hm-header\"><span>25</span><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"hm-whitespace\"></div><div class=\"hm-body\"><aside><div class=\"hm-summary\"><span>NOTE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"hm-footer\"><span>HIGH-END MINIMAL / 25</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "vertical-navigation-26",
@@ -3072,7 +2120,7 @@ export const templates = [
     "accentColor": "#5B8B86",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3088,21 +2136,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-vertical-navigation-26\" data-r7-layout=\"L69\" data-r7-order=\"main-foot-summary-header-side\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 69</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">69 / vertical-navigation-26</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside></div>",
-    "uniquenessProfile": {
-      "index": 69,
-      "accent": "#5B8B86",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 453,
-      "letterSpacingEm": 0.024,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 33,
-        "topPct": 56,
-        "leftPct": 34,
-        "widthPct": 57
-      }
-    }
+    "templateMarkup": "<header class=\"top\"><div class=\"identity\"><div class=\"photo portrait\">[APPLICANT PHOTO]</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"grid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "art-directed-corporate-27",
@@ -3117,7 +2151,7 @@ export const templates = [
     "accentColor": "#87906A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3133,21 +2167,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-art-directed-corporate-27\" data-r7-layout=\"L70\" data-r7-order=\"main-foot-summary-side-header\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 70</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">70 / art-directed-corporate-27</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 70,
-      "accent": "#87906A",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 590,
-      "letterSpacingEm": 0.041,
-      "radiusMm": 3,
-      "ornament": {
-        "angle": 70,
-        "topPct": 5,
-        "leftPct": 57,
-        "widthPct": 74
-      }
-    }
+    "templateMarkup": "<header class=\"top\"><div class=\"identity\"><div class=\"photo portrait\">[APPLICANT PHOTO]</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"grid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "dark-editorial-28",
@@ -3162,7 +2182,7 @@ export const templates = [
     "accentColor": "#C8A66B",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3178,21 +2198,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-dark-editorial-28\" data-r7-layout=\"L71\" data-r7-order=\"main-foot-side-header-summary\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 71</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">71 / dark-editorial-28</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 71,
-      "accent": "#C8A66B",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 727,
-      "letterSpacingEm": 0.058,
-      "radiusMm": 1,
-      "ornament": {
-        "angle": 107,
-        "topPct": 24,
-        "leftPct": 80,
-        "widthPct": 28
-      }
-    }
+    "templateMarkup": "<header class=\"darkhead\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"darkgrid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "modern-european-29",
@@ -3207,7 +2213,7 @@ export const templates = [
     "accentColor": "#A85D43",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3223,21 +2229,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-modern-european-29\" data-r7-layout=\"L72\" data-r7-order=\"main-foot-side-summary-header\"><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 72</span></footer><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">72 / modern-european-29</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 72,
-      "accent": "#A85D43",
-      "font": "Georgia, serif",
-      "headingWeight": 514,
-      "letterSpacingEm": -0.046,
-      "radiusMm": 12,
-      "ornament": {
-        "angle": 144,
-        "topPct": 43,
-        "leftPct": 21,
-        "widthPct": 45
-      }
-    }
+    "templateMarkup": "<div class=\"corp-p1 corp-modern-eu\"><header class=\"me-header\"><div class=\"me-card\"><span>29</span><strong>MODERN EUROPEAN</strong><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"me-contact\"><span>CONTACT</span><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"me-grid\"><aside><div class=\"me-summary\"><span>PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div><footer class=\"me-footer\"><span>29 / EUROPEAN SYSTEM</span><span data-page-number>01</span></footer></div>"
   },
   {
     "id": "signature-executive-30",
@@ -3252,7 +2244,7 @@ export const templates = [
     "accentColor": "#8295B0",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3268,21 +2260,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Experienced professionals wanting a designer look",
-    "templateMarkup": "<div class=\"cv r7-template r7-signature-executive-30\" data-r7-layout=\"L73\" data-r7-order=\"side-header-summary-main-foot\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">73 / signature-executive-30</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 73</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 73,
-      "accent": "#8295B0",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 651,
-      "letterSpacingEm": -0.029,
-      "radiusMm": 10,
-      "ornament": {
-        "angle": 181,
-        "topPct": 62,
-        "leftPct": 44,
-        "widthPct": 62
-      }
-    }
+    "templateMarkup": "<header class=\"darkhead\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"photo portrait\">[APPLICANT PHOTO]</div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"darkgrid\"><aside><p data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "graphite-sidebar-01",
@@ -3297,7 +2275,7 @@ export const templates = [
     "accentColor": "#20313A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3313,21 +2291,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-graphite-sidebar-01\" data-r7-layout=\"L74\" data-r7-order=\"side-header-summary-foot-main\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">74 / graphite-sidebar-01</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 74</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 74,
-      "accent": "#20313A",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 788,
-      "letterSpacingEm": -0.012,
-      "radiusMm": 8,
-      "ornament": {
-        "angle": 218,
-        "topPct": 11,
-        "leftPct": 67,
-        "widthPct": 79
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-graphite\"><aside class=\"p5-g-rail\"><div class=\"p5-g-badge\">CV</div><div class=\"p5-g-side\"><div data-role=\"sidebar\"></div></div></aside><main class=\"p5-g-sheet\"><header class=\"p5-g-head\"><div><span class=\"p5-g-kicker\">PROFESSIONAL PROFILE</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p5-g-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"p5-g-main\" data-role=\"main\"></div></main></div>"
   },
   {
     "id": "ivory-editorial-sidebar-02",
@@ -3342,7 +2306,7 @@ export const templates = [
     "accentColor": "#8B493D",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3358,21 +2322,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-ivory-editorial-sidebar-02\" data-r7-layout=\"L75\" data-r7-order=\"side-header-main-summary-foot\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">75 / ivory-editorial-sidebar-02</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 75</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 75,
-      "accent": "#8B493D",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 575,
-      "letterSpacingEm": 0.005,
-      "radiusMm": 6,
-      "ornament": {
-        "angle": 255,
-        "topPct": 30,
-        "leftPct": 8,
-        "widthPct": 33
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-ivory\"><header class=\"p5-i-head\"><div class=\"p5-i-index\">02</div><div class=\"p5-i-title\"><span>EDITORIAL CV</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-i-rule\"></div><div class=\"p5-i-columns\"><main><section class=\"p5-i-lead\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div data-role=\"main\"></div></main><aside><div class=\"p5-i-note\">SELECTED DETAILS</div><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "navy-vertical-rail-03",
@@ -3387,7 +2337,7 @@ export const templates = [
     "accentColor": "#153A62",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3403,21 +2353,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-navy-vertical-rail-03\" data-r7-layout=\"L76\" data-r7-order=\"side-header-main-foot-summary\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">76 / navy-vertical-rail-03</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 76</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 76,
-      "accent": "#153A62",
-      "font": "Times New Roman, serif",
-      "headingWeight": 712,
-      "letterSpacingEm": 0.022,
-      "radiusMm": 4,
-      "ornament": {
-        "angle": 292,
-        "topPct": 49,
-        "leftPct": 31,
-        "widthPct": 50
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-navy\"><aside class=\"p5-n-rail\"><div class=\"p5-n-mark\">03</div><div class=\"p5-n-label\">CAREER<br>PROFILE</div><div data-role=\"sidebar\"></div></aside><main class=\"p5-n-content\"><header class=\"p5-n-head\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p5-n-summary\"><span>PROFILE</span><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div data-role=\"main\"></div></main></div>"
   },
   {
     "id": "burgundy-two-page-04",
@@ -3432,7 +2368,7 @@ export const templates = [
     "accentColor": "#6D2535",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3448,21 +2384,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-burgundy-two-page-04\" data-r7-layout=\"L77\" data-r7-order=\"side-header-foot-summary-main\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">77 / burgundy-two-page-04</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 77</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 77,
-      "accent": "#6D2535",
-      "font": "Courier New, monospace",
-      "headingWeight": 499,
-      "letterSpacingEm": 0.039,
-      "radiusMm": 2,
-      "ornament": {
-        "angle": 329,
-        "topPct": 68,
-        "leftPct": 54,
-        "widthPct": 67
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-burgundy\"><header class=\"p5-b-head\"><div class=\"p5-b-number\">04</div><div><span class=\"p5-b-kicker\">HERITAGE PROFILE</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-b-frame\"><aside><div class=\"p5-b-side-title\">AT A GLANCE</div><div data-role=\"sidebar\"></div></aside><main><section class=\"p5-b-profile\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div data-role=\"main\"></div></main></div></div>"
   },
   {
     "id": "forest-profile-sidebar-05",
@@ -3477,7 +2399,7 @@ export const templates = [
     "accentColor": "#315D4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3493,21 +2415,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-forest-profile-sidebar-05\" data-r7-layout=\"L78\" data-r7-order=\"side-header-foot-main-summary\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">78 / forest-profile-sidebar-05</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 78</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 78,
-      "accent": "#315D4A",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 636,
-      "letterSpacingEm": 0.056,
-      "radiusMm": 0,
-      "ornament": {
-        "angle": 6,
-        "topPct": 17,
-        "leftPct": 77,
-        "widthPct": 21
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-forest\"><header class=\"p5-f-head\"><div class=\"p5-f-monogram\">05</div><div><span class=\"p5-f-kicker\">FIELD + OFFICE</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-f-body\"><aside><section class=\"p5-f-profile\"><span>ABOUT</span><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div data-role=\"sidebar\"></div></aside><main><div class=\"p5-f-mainbar\">EXPERIENCE &amp; EDUCATION</div><div data-role=\"main\"></div></main></div></div>"
   },
   {
     "id": "black-copper-executive-06",
@@ -3522,7 +2430,7 @@ export const templates = [
     "accentColor": "#C27A4A",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3538,21 +2446,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-black-copper-executive-06\" data-r7-layout=\"L79\" data-r7-order=\"side-summary-header-main-foot\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">79 / black-copper-executive-06</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 79</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 79,
-      "accent": "#C27A4A",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 773,
-      "letterSpacingEm": -0.048,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 43,
-        "topPct": 36,
-        "leftPct": 18,
-        "widthPct": 38
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-copper\"><header class=\"p5-c-top\"><div class=\"p5-c-brand\">06 / EXECUTIVE</div><div class=\"p5-c-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-c-band\"><span>LEADERSHIP PROFILE</span><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"p5-c-body\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "slate-portfolio-07",
@@ -3567,7 +2461,7 @@ export const templates = [
     "accentColor": "#425466",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3583,21 +2477,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-slate-portfolio-07\" data-r7-layout=\"L80\" data-r7-order=\"side-summary-header-foot-main\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">80 / slate-portfolio-07</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 80</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 80,
-      "accent": "#425466",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 560,
-      "letterSpacingEm": -0.031,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 80,
-        "topPct": 55,
-        "leftPct": 41,
-        "widthPct": 55
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-slate\"><header class=\"p5-s-head\"><div class=\"p5-s-monogram\">SP</div><div><p class=\"p5-s-label\">SLATE PORTFOLIO</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p5-s-intro\"><span>PROFILE</span><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"p5-s-grid\"><main><div data-role=\"main\"></div></main><aside><div class=\"p5-s-sidehead\">TOOLS / DETAILS</div><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sand-modern-two-page-08",
@@ -3612,7 +2492,7 @@ export const templates = [
     "accentColor": "#4B4035",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3628,21 +2508,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-sand-modern-two-page-08\" data-r7-layout=\"L81\" data-r7-order=\"side-summary-main-header-foot\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">81 / sand-modern-two-page-08</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 81</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 81,
-      "accent": "#4B4035",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 697,
-      "letterSpacingEm": -0.014,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 117,
-        "topPct": 74,
-        "leftPct": 64,
-        "widthPct": 72
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-sand\"><div class=\"p5-sa-banner\"><span>08</span><span>SAND MODERN</span><span>CURRICULUM VITAE</span></div><header class=\"p5-sa-head\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-sa-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"p5-sa-layout\"><aside><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"
   },
   {
     "id": "indigo-cards-09",
@@ -3657,7 +2523,7 @@ export const templates = [
     "accentColor": "#4C46A5",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3673,21 +2539,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-indigo-cards-09\" data-r7-layout=\"L82\" data-r7-order=\"side-summary-main-foot-header\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 82</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">82 / indigo-cards-09</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header></div>",
-    "uniquenessProfile": {
-      "index": 82,
-      "accent": "#4C46A5",
-      "font": "Georgia, serif",
-      "headingWeight": 484,
-      "letterSpacingEm": 0.003,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 154,
-        "topPct": 23,
-        "leftPct": 5,
-        "widthPct": 26
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-indigo\"><header class=\"p5-in-head\"><div><span class=\"p5-in-kicker\">PROFILE 09</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-in-overview\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"p5-in-cards\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "teal-command-two-page-10",
@@ -3702,7 +2554,7 @@ export const templates = [
     "accentColor": "#0B6B68",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3718,21 +2570,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "Detailed, multi-section professional profiles",
-    "templateMarkup": "<div class=\"cv r7-template r7-teal-command-two-page-10\" data-r7-layout=\"L83\" data-r7-order=\"side-summary-foot-header-main\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 83</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">83 / teal-command-two-page-10</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div><div class=\"r7-photo\" data-role=\"photo\"></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 83,
-      "accent": "#0B6B68",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 621,
-      "letterSpacingEm": 0.02,
-      "radiusMm": 3,
-      "ornament": {
-        "angle": 191,
-        "topPct": 42,
-        "leftPct": 28,
-        "widthPct": 43
-      }
-    }
+    "templateMarkup": "<div class=\"cv p5-teal\"><header class=\"p5-t-head\"><div class=\"p5-t-command\">COMMAND / 10</div><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-t-grid\"><main><section class=\"p5-t-summary\"><span>EXECUTIVE SUMMARY</span><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div data-role=\"main\"></div></main><aside><div class=\"p5-t-sidecap\">CORE DATA</div><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-retail-admin",
@@ -3747,7 +2585,7 @@ export const templates = [
     "accentColor": "#7C2D12",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3763,21 +2601,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-retail-admin\" data-r7-layout=\"L84\" data-r7-order=\"side-summary-foot-main-header\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 84</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">84 / sa-retail-admin</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header></div>",
-    "uniquenessProfile": {
-      "index": 84,
-      "accent": "#7C2D12",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 758,
-      "letterSpacingEm": 0.037,
-      "radiusMm": 1,
-      "ornament": {
-        "angle": 228,
-        "topPct": 61,
-        "leftPct": 51,
-        "widthPct": 60
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-retail-admin\"><header class=\"sa2-retail-head\"><div class=\"sa2-retail-index\">01</div><div class=\"sa2-retail-name\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sa2-retail-band\"><span>READY TO WORK</span><i></i><span>RETAIL → ADMIN</span></div><div class=\"sa2-retail-grid\"><aside class=\"sa2-retail-rail\"><div data-role=\"sidebar\"></div></aside><main class=\"sa2-retail-main\"><section class=\"sa2-retail-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div data-role=\"main\"></div></main></div></div>"
   },
   {
     "id": "sa-matric-first",
@@ -3792,7 +2616,7 @@ export const templates = [
     "accentColor": "#14532D",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3808,21 +2632,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-matric-first\" data-r7-layout=\"L85\" data-r7-order=\"side-main-header-summary-foot\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">85 / sa-matric-first</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 85</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 85,
-      "accent": "#14532D",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 545,
-      "letterSpacingEm": 0.054,
-      "radiusMm": 12,
-      "ornament": {
-        "angle": 265,
-        "topPct": 10,
-        "leftPct": 74,
-        "widthPct": 77
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-matric-first\"><header class=\"sa2-matric-hero\"><div class=\"sa2-matric-mark\">MAT<br>RIC</div><div class=\"sa2-matric-identity\"><p class=\"sa2-kicker\">FIRST JOB CV</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"sa2-matric-intro\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"sa2-matric-columns\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-graduate-launch",
@@ -3837,7 +2647,7 @@ export const templates = [
     "accentColor": "#1E3A5F",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3853,21 +2663,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-graduate-launch\" data-r7-layout=\"L86\" data-r7-order=\"side-main-header-foot-summary\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">86 / sa-graduate-launch</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 86</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 86,
-      "accent": "#1E3A5F",
-      "font": "Times New Roman, serif",
-      "headingWeight": 682,
-      "letterSpacingEm": -0.05,
-      "radiusMm": 10,
-      "ornament": {
-        "angle": 302,
-        "topPct": 29,
-        "leftPct": 15,
-        "widthPct": 31
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-graduate-launch\"><header class=\"sa2-grad-head\"><div><p class=\"sa2-grad-label\">GRADUATE PROFILE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"sa2-grad-contact contact\" data-role=\"contact\"></div></header><div class=\"sa2-grad-score\"><span>01</span><p>LEARNING</p><span>02</span><p>PROJECTS</p><span>03</span><p>EXPERIENCE</p></div><section class=\"sa2-grad-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"sa2-grad-body\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-tvet-technical",
@@ -3882,7 +2678,7 @@ export const templates = [
     "accentColor": "#0F4C5C",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3898,21 +2694,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-tvet-technical\" data-r7-layout=\"L87\" data-r7-order=\"side-main-summary-header-foot\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">87 / sa-tvet-technical</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 87</span></footer></div>",
-    "uniquenessProfile": {
-      "index": 87,
-      "accent": "#0F4C5C",
-      "font": "Courier New, monospace",
-      "headingWeight": 469,
-      "letterSpacingEm": -0.033,
-      "radiusMm": 8,
-      "ornament": {
-        "angle": 339,
-        "topPct": 48,
-        "leftPct": 38,
-        "widthPct": 48
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-tvet\"><header class=\"sa2-tvet-head\"><div class=\"sa2-tvet-code\">TECH<br>CV</div><div><p class=\"sa2-tvet-overline\">TECHNICAL ASSISTANT / APPRENTICE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sa2-tvet-rule\"></div><div class=\"sa2-tvet-grid\"><aside><div class=\"sa2-tvet-stamp\">FIELD<br>READY</div><div data-role=\"sidebar\"></div></aside><main><p class=\"sa2-tvet-section-tag\">WORK HISTORY</p><div data-role=\"main\"></div></main></div></div>"
   },
   {
     "id": "sa-call-centre",
@@ -3927,7 +2709,7 @@ export const templates = [
     "accentColor": "#2563EB",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3943,21 +2725,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-call-centre\" data-r7-layout=\"L88\" data-r7-order=\"side-main-summary-foot-header\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 88</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">88 / sa-call-centre</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header></div>",
-    "uniquenessProfile": {
-      "index": 88,
-      "accent": "#2563EB",
-      "font": "Gill Sans, sans-serif",
-      "headingWeight": 606,
-      "letterSpacingEm": -0.016,
-      "radiusMm": 6,
-      "ornament": {
-        "angle": 16,
-        "topPct": 67,
-        "leftPct": 61,
-        "widthPct": 65
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-call-centre\"><header class=\"sa2-call-head\"><div class=\"sa2-call-avatar\">CV</div><div><p class=\"sa2-call-kicker\">CUSTOMER EXPERIENCE PROFILE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"sa2-call-summary\"><span class=\"sa2-call-quote\">“</span><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"sa2-call-body\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-learnership",
@@ -3972,7 +2740,7 @@ export const templates = [
     "accentColor": "#831843",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -3988,21 +2756,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-learnership\" data-r7-layout=\"L89\" data-r7-order=\"side-main-foot-header-summary\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 89</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">89 / sa-learnership</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 89,
-      "accent": "#831843",
-      "font": "Palatino Linotype, Book Antiqua, Palatino, serif",
-      "headingWeight": 743,
-      "letterSpacingEm": 0.001,
-      "radiusMm": 4,
-      "ornament": {
-        "angle": 53,
-        "topPct": 16,
-        "leftPct": 84,
-        "widthPct": 19
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-learnership\"><header class=\"sa2-learn-head\"><div class=\"sa2-learn-number\">06</div><div class=\"sa2-learn-identity\"><p class=\"sa2-learn-kicker\">LEARNERSHIP APPLICATION</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"sa2-learn-statement\"><p class=\"sa2-learn-label\">MY MOTIVATION</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"sa2-learn-layout\"><aside><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"
   },
   {
     "id": "sa-hospitality",
@@ -4017,7 +2771,7 @@ export const templates = [
     "accentColor": "#713F12",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -4033,21 +2787,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-hospitality\" data-r7-layout=\"L90\" data-r7-order=\"side-main-foot-summary-header\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 90</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">90 / sa-hospitality</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header></div>",
-    "uniquenessProfile": {
-      "index": 90,
-      "accent": "#713F12",
-      "font": "Arial Narrow, Arial, sans-serif",
-      "headingWeight": 530,
-      "letterSpacingEm": 0.018,
-      "radiusMm": 2,
-      "ornament": {
-        "angle": 90,
-        "topPct": 35,
-        "leftPct": 25,
-        "widthPct": 36
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-hospitality\"><div class=\"sa2-hosp-strip\"><span>HOSPITALITY</span><b>→</b><span>OFFICE</span></div><header class=\"sa2-hosp-head\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><p class=\"sa2-hosp-micro\">SERVICE • FRONT DESK • CLIENT CARE</p></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sa2-hosp-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"sa2-hosp-body\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-general-worker",
@@ -4062,7 +2802,7 @@ export const templates = [
     "accentColor": "#365314",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -4078,21 +2818,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-general-worker\" data-r7-layout=\"L91\" data-r7-order=\"side-foot-header-summary-main\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 91</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">91 / sa-general-worker</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 91,
-      "accent": "#365314",
-      "font": "Arial, Helvetica, sans-serif",
-      "headingWeight": 667,
-      "letterSpacingEm": 0.035,
-      "radiusMm": 0,
-      "ornament": {
-        "angle": 127,
-        "topPct": 54,
-        "leftPct": 48,
-        "widthPct": 53
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-general-worker\"><header class=\"sa2-worker-head\"><div class=\"sa2-worker-block\">WORK<br>READY</div><div><p class=\"sa2-worker-kicker\">PRACTICAL EXPERIENCE PROFILE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"sa2-worker-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"sa2-worker-body\"><main><div data-role=\"main\"></div></main><aside><p class=\"sa2-worker-tag\">CAPABILITIES</p><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-admin-starter",
@@ -4107,7 +2833,7 @@ export const templates = [
     "accentColor": "#334155",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -4123,21 +2849,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-admin-starter\" data-r7-layout=\"L92\" data-r7-order=\"side-foot-header-main-summary\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 92</span></footer><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">92 / sa-admin-starter</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 92,
-      "accent": "#334155",
-      "font": "Georgia, serif",
-      "headingWeight": 454,
-      "letterSpacingEm": 0.052,
-      "radiusMm": 11,
-      "ornament": {
-        "angle": 164,
-        "topPct": 73,
-        "leftPct": 71,
-        "widthPct": 70
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-admin-starter\"><header class=\"sa2-admin-head\"><div class=\"sa2-admin-tab\">ADMIN<br>01</div><div><p class=\"sa2-admin-overline\">JUNIOR ADMINISTRATION</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sa2-admin-tabs\"><span>PROFILE</span><span>WORK</span><span>EDUCATION</span><span>TOOLS</span></div><section class=\"sa2-admin-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"sa2-admin-body\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-security-office",
@@ -4152,7 +2864,7 @@ export const templates = [
     "accentColor": "#4C1D95",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -4168,21 +2880,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-security-office\" data-r7-layout=\"L93\" data-r7-order=\"side-foot-summary-header-main\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 93</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">93 / sa-security-office</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main></div>",
-    "uniquenessProfile": {
-      "index": 93,
-      "accent": "#4C1D95",
-      "font": "Trebuchet MS, Arial, sans-serif",
-      "headingWeight": 591,
-      "letterSpacingEm": -0.052,
-      "radiusMm": 9,
-      "ornament": {
-        "angle": 201,
-        "topPct": 22,
-        "leftPct": 12,
-        "widthPct": 24
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-security\"><header class=\"sa2-security-head\"><div class=\"sa2-security-badge\">SEC<br>URE</div><div><p class=\"sa2-security-kicker\">TRANSFERABLE SKILLS CV</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"sa2-security-summary\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"sa2-security-layout\"><aside><div data-role=\"sidebar\"></div></aside><main><div class=\"sa2-security-line\"></div><div data-role=\"main\"></div></main></div></div>"
   },
   {
     "id": "sa-care-domestic",
@@ -4197,7 +2895,7 @@ export const templates = [
     "accentColor": "#0F766E",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -4213,21 +2911,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-care-domestic\" data-r7-layout=\"L94\" data-r7-order=\"side-foot-summary-main-header\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 94</span></footer><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">94 / sa-care-domestic</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header></div>",
-    "uniquenessProfile": {
-      "index": 94,
-      "accent": "#0F766E",
-      "font": "Verdana, sans-serif",
-      "headingWeight": 728,
-      "letterSpacingEm": -0.035,
-      "radiusMm": 7,
-      "ornament": {
-        "angle": 238,
-        "topPct": 41,
-        "leftPct": 35,
-        "widthPct": 41
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-care\"><header class=\"sa2-care-head\"><div class=\"sa2-care-dot\"></div><div><p class=\"sa2-care-kicker\">TRUST • CARE • RELIABILITY</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><section class=\"sa2-care-story\"><p class=\"sa2-care-label\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section><div class=\"sa2-care-body\"><main><div data-role=\"main\"></div></main><aside><div data-role=\"sidebar\"></div></aside></div></div>"
   },
   {
     "id": "sa-youth-portfolio",
@@ -4242,7 +2926,7 @@ export const templates = [
     "accentColor": "#2563EB",
     "previewImage": null,
     "templatePath": null,
-    "rendererKind": "markup",
+    "rendererKind": "legacy",
     "supportedSections": [
       "personal",
       "summary",
@@ -4258,21 +2942,7 @@ export const templates = [
       "custom"
     ],
     "bestFor": "SA job seekers, entry-level & informal experience",
-    "templateMarkup": "<div class=\"cv r7-template r7-sa-youth-portfolio\" data-r7-layout=\"L95\" data-r7-order=\"side-foot-main-header-summary\"><aside class=\"r7-slot r7-side-slot\"><div class=\"r7-label\">DETAILS</div><div data-role=\"sidebar\"></div></aside><footer class=\"r7-slot r7-foot-slot\"><span class=\"r7-rule\"></span><span class=\"r7-page\">CV / 95</span></footer><main class=\"r7-slot r7-main-slot\"><div class=\"r7-label\">EXPERIENCE</div><div data-role=\"main\"></div></main><header class=\"r7-slot r7-header-slot\"><div class=\"r7-kicker\">95 / sa-youth-portfolio</div><div class=\"r7-headline\"><div class=\"r7-name\" data-bind=\"personalDetails.fullName\">Your Name</div><div class=\"r7-role\" data-bind=\"personalDetails.jobTitle\">Professional Title</div></div></header><section class=\"r7-slot r7-summary-slot\"><div class=\"r7-label\">PROFILE</div><div class=\"r7-summary\" data-bind=\"personalDetails.summary\">Professional summary and career profile.</div></section></div>",
-    "uniquenessProfile": {
-      "index": 95,
-      "accent": "#2563EB",
-      "font": "Tahoma, Arial, sans-serif",
-      "headingWeight": 515,
-      "letterSpacingEm": -0.018,
-      "radiusMm": 5,
-      "ornament": {
-        "angle": 275,
-        "topPct": 60,
-        "leftPct": 58,
-        "widthPct": 58
-      }
-    }
+    "templateMarkup": "<div class=\"cv sa2-youth\"><header class=\"sa2-youth-head\"><div class=\"sa2-youth-sticker\">YOUTH<br>CV</div><div><p class=\"sa2-youth-kicker\">READY TO LEARN • READY TO CONTRIBUTE</p><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sa2-youth-intro\"><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"sa2-youth-matrix\"><section class=\"sa2-youth-main\"><div data-role=\"main\"></div></section><aside class=\"sa2-youth-side\"><div data-role=\"sidebar\"></div></aside></div><div class=\"sa2-youth-corner\">SHOW<br>WHAT<br>YOU CAN<br>DO</div></div>"
   }
 ];
 export const templateById = Object.fromEntries(templates.map(t => [t.id,t]));
