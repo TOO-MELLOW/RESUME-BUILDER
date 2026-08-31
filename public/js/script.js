@@ -481,12 +481,6 @@ function enforceSectionCoverage(data, templateId, html) {
             .filter(Boolean)
     );
 
-    // Some art-directed templates have bespoke section markup instead of the
-    // shared SR wrappers - either a different heading class, or (renderMonogram,
-    // and the bare "<p class=...-sec-title>...</p>content" fragments used by
-    // renderFunctional/renderPractical/renderTrade) no wrapping container
-    // element at all. Infer those existing sections from their visible title
-    // and mark them rather than duplicating them in the fallback.
     const titleNodes = Array.from(doc.querySelectorAll(
         '.main-label, .side-label, .combined-sec-title, .starter-sec-title, .mono-kicker, .practical-sec-title, .functional-sec-title, .trade-sec-title'
     ));
@@ -499,10 +493,6 @@ function enforceSectionCoverage(data, templateId, html) {
         );
         if (match) {
             match.setAttribute('data-rf-matched', 'true');
-            // No recognized wrapping container (bare heading + content with
-            // nothing enclosing them) - tag the heading node itself instead
-            // of leaving the section unmarked. Any tagged element satisfies
-            // the coverage check below; it doesn't have to be a container.
             const container = match.closest(
                 '[data-rf-section-type], .main-section, .side-section, .combined-entry, .split-rail-block'
             ) || match;
@@ -581,7 +571,7 @@ function renderTemplateMarkup(data, raw) {
 
 
 const SIDEBAR_TEMPLATE_IDS = new Set(
-    TEMPLATE_CONFIGS.filter(t => t.layout === 'two-column').map(t => t.id)
+    TEMPLATE_DEFINITIONS.filter(def => def.layout === 'two-column').map(def => def.id)
 );
 
     function wrapMain(title,inner,type=""){ return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="main-label">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`; }
@@ -613,9 +603,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     function elegantAvailGrid(s){ if(!s.items.length)return`<p class="empty-note">None added.</p>`; return `<div class="elegant-avail-grid">${s.items.map(it=>`<div class="elegant-avail-item"><span class="av-dot"></span><span class="av-lbl">${escHtml(it.label)}:</span><span class="av-val">${escHtml(it.value)}</span></div>`).join("")}</div>`; }
 
     function renderPersonalInfoAfterSummary(sections, tid) {
-        // Most two-column templates intentionally keep personal info in the rail.
-        // The split family is different: its page contract places personal-info in
-        // the main content column, so it must not be suppressed here.
         if (SIDEBAR_TEMPLATE_IDS.has(tid) && !tid.startsWith('split')) return '';
         const pi = sections.find(s => s.type==="personal-info" && s.visible);
         if (!pi || !pi.items.length) return "";
@@ -628,9 +615,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const sideHtml=vis.filter(s=>SIDEBAR_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
         const mainHtml=vis.filter(s=>MAIN_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
         if (tid==="modern-03") {
-            // modern-03 is single-column: it has no sidebar to catch SIDEBAR_TYPES
-            // sections, so unlike the two-column branch below it must render every
-            // non-personal-info section itself instead of only MAIN_TYPES.
             const allHtml = vis.filter(s=>s.type!=="personal-info").map(s=>SR[s.type]?SR[s.type](s):"").join("");
             return `<div class="modern-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${allHtml}</div>`;
         }
@@ -697,9 +681,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const strengthsHtml=strengthsSec&&strengthsSec.items.some(it=>it.value&&it.value.trim())?`<section class="main-section" data-rf-section-type="strengths"><div class="strengths-row">${strengthsSec.items.filter(it=>it.value&&it.value.trim()).map(it=>`<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></section>`:"";
         const skillsSec=vis.find(s=>s.type==="skills");
         const skillsHtml=skillsSec?`<div class="main-section"><p class="starter-sec-title">${escHtml(skillsSec.title)}</p>${skillsSec.items.length?skillsSec.items.map(it=>{const pct=SKILL_LEVEL_PCT[it.level]||55;return`<div class="skillbar-row"><div class="skillbar-lbl">${escHtml(it.name)}</div><div class="skillbar-track"><div class="skillbar-fill" style="width:${pct}%"></div></div><span class="skillbar-pct">${pct}%</span></div>`;}).join(""):`<p class="empty-note">None added.</p>`}</div>`:"";
-        // personal-info has no dedicated block in this template (unlike modern/split/etc,
-        // which call renderPersonalInfoAfterSummary) - it must fall through to the
-        // generic SR-based restSecs renderer below, not be filtered out entirely.
         const restSecs=vis.filter(s=>s!==strengthsSec&&s.type!=="skills");
         const restHtml=restSecs.map(s=>{const inner=SR[s.type]?SR[s.type](s):"";return `<div class="main-section"><p class="starter-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}</div>`;}).join("");
         const photoEl=p.photo?`<div class="starter-photo"><img src="${p.photo}" alt="Photo"></div>`:'';
@@ -882,10 +863,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const intSec   = vis.find(s => s.type === "interests");
         const piSec    = vis.find(s => s.type === "personal-info");
         const refSec   = vis.find(s => s.type === "references");
-        // mainHtml's mapper below already has working branches for "projects" and
-        // "custom" - but this filter only ever let "experience"/"education" through,
-        // so those branches were dead code and both section types were silently
-        // dropped from the render entirely (not even by the empty-items check).
         const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type) || s.type === "projects" || s.type === "custom");
 
         const badgeEl = p.photo
@@ -923,8 +900,6 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
             ? `<p class="mono-kicker">${escHtml(intSec.title)}</p><hr class="mono-hr"><p style="font-size:10.5px;color:#555;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p>`
             : "";
 
-        // references had no handler anywhere in this template - it was always
-        // dropped, regardless of item count.
         const refHtml = refSec && refSec.items.length
             ? `<p class="mono-kicker" data-rf-section-type="references">${escHtml(refSec.title)}</p><hr class="mono-hr"><div>${refSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;color:#333">${escHtml(it.name)}${it.title ? ` — ${escHtml(it.title)}` : ""}</div>`).join("")}</div>`
             : "";
@@ -1094,8 +1069,6 @@ let cvData, currentTemplateId = "modern-01", currentStep = 0,
     atsPanelOpen = false, targetJD = "", usingDemoData = true;
 let allResumes = {}, currentCvId = null, isMobilePreviewOpen = false;
 
-// Phase 4 history bridge: editor-history.js owns snapshots while this file
-// retains the canonical lexical editor state.
 window.applyEditorHistoryState = function (state) {
     cvData = state;
     currentTemplateId = (state && state.meta && state.meta.templateId) || currentTemplateId || "modern-01";
@@ -1119,9 +1092,6 @@ function setP(o, path, val) {
     c[ks[ks.length - 1]] = val;
 }
 
-// Canonical editor mutation boundary. Every user-visible cvData mutation must
-// enter and leave through this function. History is committed only after a
-// successful mutation; rendering and persistence happen exactly once.
 window.getEditorState = function () { return cvData; };
 window.setEditorState = function (state) { cvData = state; currentTemplateId = state?.meta?.templateId || currentTemplateId; };
 
@@ -1310,7 +1280,7 @@ function duplicateResume(id) { const copy=JSON.parse(JSON.stringify(allResumes[i
 function renameResume(id)    { const n=prompt('Enter new name:',allResumes[id].personalDetails.fullName); if(n&&n.trim()){ allResumes[id].personalDetails.fullName=n.trim(); saveAllResumes(); renderManager(); if(currentCvId===id){cvData=allResumes[id];renderPreview();updatePaLabel();} showToast('Renamed','success'); } }
 function deleteResume(id)    { if(!confirm('Delete this resume?'))return; delete allResumes[id]; saveAllResumes(); renderManager(); if(currentCvId===id){const ids=Object.keys(allResumes); if(ids.length)setCurrentResume(ids[0]); else createNewResume();} showToast('Deleted','info'); }
 
-// ---------- COVER LETTERS (separate top-level data model & storage — not squeezed into cvData) ----------
+// ---------- COVER LETTERS ----------
 let allCoverLetters = {};
 let currentClId = null;
 let clData = null;
@@ -1611,7 +1581,6 @@ function updatePageMeta(view) {
 // ─── navigate() ──────────────────────────────────────────────────────────────
 
 function navigate(view, opts = {}) {
-  // YOUR original logic — untouched
   closeMobilePreview();
   document.body.setAttribute('data-view', view);
   if (view === 'manager') renderManager();
@@ -1638,7 +1607,6 @@ function navigate(view, opts = {}) {
   closeImportModal();
   document.getElementById('preview-area').classList.remove('preview-full');
 
-  // NEW: real URL paths instead of hashes + meta update
   if (!opts.skipHistory) {
     const path = VIEW_TO_PATH[view] || '/';
     if (window.location.pathname !== path) {
@@ -1671,10 +1639,7 @@ window.addEventListener('popstate', (e) => {
     navigate(view, { skipHistory: true });
 });
 
-// Categorized tips per editor step. Each step has a short intro plus tips
-// grouped by category (Writing / ATS / Formatting / Mistakes to avoid) —
-// only the categories relevant to that step are included, so some steps
-// have 2 categories and some have 4.
+// Categorized tips per editor step.
 const TIPS_CONTENT = {
     0: { title: "Personal Details & Summary", groups: [
         { cat: "Writing", tips: [
@@ -1873,8 +1838,6 @@ function renderMobilePreview() {
     const canonicalStack = document.querySelector('#cv-root .resume-pages');
     if (!canonicalStack) return;
 
-    // Clone the complete canonical A4 page stack. The document remains fixed A4;
-    // the mobile viewer scales the stack instead of changing its internal layout.
     const box = document.createElement('div');
     box.className = 'mobile-preview-scale-box';
     const clone = canonicalStack.cloneNode(true);
@@ -2291,12 +2254,6 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
     }
 
     function bulletRow(b, j, type, i, count) {
-        // Reordering previously relied only on native HTML5 drag-and-drop
-        // (draggable="true" + dragstart/dragover/drop below), which iOS
-        // Safari and Android Chrome do not fire from a touch gesture at all —
-        // so on a phone, bullets could be added and deleted but never
-        // reordered. Item-level cards already had this exact ↑/↓ fallback
-        // (see moveItem() above); bullets didn't, so this mirrors that.
         const isFirst = j === 0, isLast = count != null ? j === count - 1 : false;
         return `<div class="bullet-row" draggable="true" data-btype="${type}" data-bidx="${i}" data-bj="${j}">
             <span class="bullet-dot">•</span>
@@ -2571,11 +2528,11 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
         }, { force: false });
     }
     function selectTemplate(id) {
-        commitEditorMutation(() => {
-            if (!TEMPLATE_REGISTRY.has(id) || id === currentTemplateId) return false;
-            currentTemplateId = id; cvData.meta.templateId = id; cvData.meta.themeOverrides = cvData.meta.themeOverrides || {};
-        }, { force: true, step: 5, updateLabel: true });
-    }
+    commitEditorMutation(() => {
+        if (!TEMPLATE_CONFIGS.some(t => t.id === id) || id === currentTemplateId) return false;
+        currentTemplateId = id; cvData.meta.templateId = id; cvData.meta.themeOverrides = cvData.meta.themeOverrides || {};
+    }, { force: true, step: 5, updateLabel: true });
+}
     function setAccentColor(v) {
         commitEditorMutation(() => {
             cvData.meta.themeOverrides = cvData.meta.themeOverrides || {};
@@ -2708,7 +2665,7 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
         return `<p style="font-size:11px;color:var(--t2);margin:0 0 6px">Words in the job description not found in your CV:</p><div style="display:flex;flex-wrap:wrap;gap:4px">${missing.map(w => `<span style="background:#FEF3C7;color:#92400E;font-size:11px;padding:2px 8px;border-radius:10px;border:1px solid #FDE68A">${w}</span>`).join("")}</div>`;
     }
 
-    // ---------- BOTTOM STATUS BAR (surfaces the same ATS checks as the side panel, always visible) ----------
+    // ---------- BOTTOM STATUS BAR ----------
     function updateStatusBar() {
         if (!cvData) return;
         const bar = document.getElementById('editor-statusbar');
@@ -2985,7 +2942,7 @@ function applySingleBullet(type, i, j, btnEl) {
     }
     }
 
-// ---------- IMPORT CV FROM DEVICE (.docx / .txt / .md only — no PDF, see roadmap) ----------
+// ---------- IMPORT CV FROM DEVICE ----------
 let _mammothLoadPromise = null;
 function loadMammoth() {
     if (window.mammoth) return Promise.resolve();
@@ -3125,8 +3082,7 @@ function finalizeImportedResume(parsed, truncated) {
 }
 
 
-/* React rendering bridge: keep the existing Factory editor/controller intact while
-   moving the canonical preview into the React A4 engine. */
+/* React rendering bridge */
 window.__RF_GET_STATE__ = function () { return { data: cvData, templateId: currentTemplateId }; };
 window.__RF_RENDER_TEMPLATE__ = function (data, templateId) { return renderTemplateContent(data, templateId); };
 window.__RF_RENDER_SECTION__ = function (section) { return (typeof SR !== 'undefined' && SR[section.type]) ? SR[section.type](section) : ''; };
@@ -3134,27 +3090,11 @@ window.__RF_CONTACT_HTML__ = function (personal) { return (typeof contactListHtm
 
 /* ==========================================================================
    PDF EXPORT ENGINE — PHASES 1–5
-   --------------------------------------------------------------------------
-   The browser preview is the canonical resume document.
-
-   Local export prints the live preview DOM directly. The production server
-   path receives the same rendered markup for Chromium PDF generation. There
-   is no second renderer, page composer, pixel slicer, or manual paginator.
-   ========================================================================== */
-
+   -------------------------------------------------------------------------- */
 const PDF_EXPORT_ENDPOINT = '/api/export-pdf';
 let activePdfExportRoot = null;
 let activePdfExportMode = null;
 
-/*
- * Canonical print/export preparation.
- *
- * IMPORTANT: there is intentionally no pagination/composition engine here.
- * The live preview (#cv-root / #cl-preview-root) is the canonical resume
- * document. Local PDF export prints that exact DOM. The server export, when
- * required by the production download gate, receives that same rendered
- * markup rather than a separately paginated reconstruction.
- */
 async function waitForPdfFontsAndImages(root) {
     if (document.fonts && document.fonts.ready) {
         await document.fonts.ready;
@@ -3208,8 +3148,6 @@ async function preparePdfExport(documentType) {
     const root = getCanonicalPdfRoot(documentType);
     await waitForPdfFontsAndImages(root);
 
-    /* Two animation frames give the browser a deterministic layout/paint
-       boundary after fonts/images and any last editor update have settled. */
     await new Promise(resolve => requestAnimationFrame(() =>
         requestAnimationFrame(resolve)
     ));
@@ -3217,14 +3155,43 @@ async function preparePdfExport(documentType) {
     return root;
 }
 
+function getPdfExportTemplateId(documentType) {
+    return documentType === 'coverletter'
+        ? (clData?.meta?.templateId || 'cl-01')
+        : (cvData?.meta?.templateId || 'modern-01');
+}
 
+function getPdfExportAuthorization() {
+    // This function is intentionally left for future extension.
+    return {};
+}
+
+function removePdfExportRoot() {
+    activePdfExportRoot = null;
+    activePdfExportMode = null;
+    document.body.classList.remove('pdf-export-active');
+    document.body.removeAttribute('data-rf-print-document');
+}
+
+function exportFileName(documentType) {
+    const source = documentType === 'coverletter'
+        ? (clData && clData.sender && clData.sender.fullName)
+        : (cvData && cvData.personalDetails && cvData.personalDetails.fullName);
+
+    const safe = String(source || (documentType === 'coverletter' ? 'Cover_Letter' : 'Resume'))
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '_')
+        .slice(0, 80);
+
+    return `${safe || (documentType === 'coverletter' ? 'Cover_Letter' : 'Resume')}.pdf`;
+}
 
 function serializeCanonicalPdfDocument(root, documentType, styles) {
     const clone = root.cloneNode(true);
     clone.style.transform = '';
     clone.style.marginBottom = '';
 
-    
     clone.querySelectorAll(
         '[data-rf-continuation="true"] header, ' +
         '[data-rf-continuation="true"] [data-rf-region="header"], ' +
@@ -3250,50 +3217,7 @@ ${canonicalMarkup}
 </html>`;
 }
 
-function removePdfExportRoot() {
-    activePdfExportRoot = null;
-    activePdfExportMode = null;
-    document.body.classList.remove('pdf-export-active');
-    document.body.removeAttribute('data-rf-print-document');
-}
-
-function exportFileName(documentType) {
-    const source = documentType === 'coverletter'
-        ? (clData && clData.sender && clData.sender.fullName)
-        : (cvData && cvData.personalDetails && cvData.personalDetails.fullName);
-
-    const safe = String(source || (documentType === 'coverletter' ? 'Cover_Letter' : 'Resume'))
-        .trim()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '_')
-        .slice(0, 80);
-
-    return `${safe || (documentType === 'coverletter' ? 'Cover_Letter' : 'Resume')}.pdf`;
-}
-
 async function getPdfGlobalStyles() {
-    /*
-     * The template renderer already embeds each shell template's scoped CSS
-     * inside its returned markup. Legacy templates use the global styles.css.
-     *
-     * The live preview also depends on src/styles/react-engine.css — the
-     * React A4 engine's own stylesheet (page geometry, sidebar/main region
-     * stretching, pagination breaks, backgrounds). That file only ever
-     * reaches the browser through main.jsx's `import './styles/react-engine.css'`,
-     * a Vite-processed import with no stable URL, so the export document used
-     * to be built from styles.css + pdf-export.css alone and silently missed
-     * every rule that lived only in the engine stylesheet. That gap — not any
-     * single template's CSS — was the real cause of preview/export mismatches
-     * (wiped backgrounds, unstretched sidebars, wrong pagination) that kept
-     * resurfacing one template at a time. public/css/react-engine.css is a
-     * byte-for-byte static copy of that same file at a stable, fetchable URL
-     * (kept in sync by tests/react-engine-export-parity.cjs), so the export
-     * document now gets the identical engine rules the preview renders with.
-     *
-     * Keep pdf-export.css separate from the rest: template shell <style>
-     * blocks are inside pageHtml, so pdf-export.css must be appended AFTER
-     * pageHtml to remain the final pagination authority.
-     */
     const [baseCss, engineCss, exportCss] = await Promise.all(
         ['/css/styles.css', '/css/react-engine.css', '/css/pdf-export.css'].map(async url => {
             try {
@@ -3443,9 +3367,6 @@ async function exportCoverLetterPDFDirect() {
     }
 }
 
-/*
- * Public entry points used by the existing download gate.
- */
 window.exportPDFDirect = exportPDFDirect;
 window.exportCoverLetterPDFDirect = exportCoverLetterPDFDirect;
 window.exportPdfViaBackend = exportPdfViaBackend;
@@ -3466,8 +3387,6 @@ function shareResume() { }
 function loadSharedResume() { }
 
 let galleryFilter = "all";
-// Attribute filters are independent toggles layered on top of the category
-// filter: { ats: bool, onePage: bool, twoPage: bool, photo: bool, noPhoto: bool }
 let galleryAttrFilters = { ats: false, onePage: false, twoPage: false, photo: false, noPhoto: false };
 function setGalleryFilter(cat, btn) {
     galleryFilter = cat;
@@ -3476,7 +3395,6 @@ function setGalleryFilter(cat, btn) {
     renderGallery();
 }
 function toggleGalleryAttrFilter(key, btn) {
-    // "onePage"/"twoPage" and "photo"/"noPhoto" are mutually exclusive pairs
     const exclusive = { onePage: 'twoPage', twoPage: 'onePage', photo: 'noPhoto', noPhoto: 'photo' };
     galleryAttrFilters[key] = !galleryAttrFilters[key];
     if (galleryAttrFilters[key] && exclusive[key]) galleryAttrFilters[exclusive[key]] = false;
@@ -3544,7 +3462,7 @@ function resetGalleryFilters() {
 function pickGalleryTemplate(id) {
     if (!cvData) loadData();
     const changed = commitEditorMutation(() => {
-        if (!TEMPLATE_REGISTRY.has(id) || id === currentTemplateId) return false;
+        if (!TEMPLATE_CONFIGS.some(t => t.id === id) || id === currentTemplateId) return false;
         currentTemplateId = id; cvData.meta.templateId = id;
         cvData.meta.themeOverrides = cvData.meta.themeOverrides || {};
     }, { force: true, step: 5, updateLabel: true });
@@ -3553,7 +3471,7 @@ function pickGalleryTemplate(id) {
 
 function updateTemplateCatalogCount() {
     const el = document.getElementById('template-count');
-    if (el && TEMPLATE_REGISTRY) el.textContent = TEMPLATE_REGISTRY.list().length;
+    if (el && TEMPLATE_CONFIGS) el.textContent = TEMPLATE_CONFIGS.length;
 }
 
 function renderHeroCv() {
@@ -3610,7 +3528,6 @@ window.updateGlobalCreditBadge = updateGlobalCreditBadge;
 async function handlePaymentReturn() {
     const params = new URLSearchParams(location.search);
     if (!params.has('pw_return')) return;
-    // Strip the query params immediately so a refresh doesn't re-trigger this.
     history.replaceState({}, '', location.pathname + location.hash);
 
     if (!window.mellowSupabase) return;
@@ -3634,8 +3551,6 @@ async function handlePaymentReturn() {
     let status = await window.checkSessionStatus(session.access_token);
     if (status && status.credits_remaining > 0) { finish(status); return; }
 
-    // PayFast's ITN webhook can lag a second or two behind the browser
-    // redirect, so poll a few times before giving up.
     const confirmToast = showToast('Confirming your payment…', 'loading');
     let confirmed = false;
     for (let attempt = 0; attempt < 5; attempt++) {
