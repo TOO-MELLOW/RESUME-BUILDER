@@ -1,24 +1,18 @@
 /*
- * Resume Factory — canonical editor history.
- *
- * The editor owns one canonical cvData object. History stores an
- * immutable checkpoints for explicit editor mutations. The editor calls
- * editorHistoryBegin() before a mutation and editorHistoryCommit() only after
- * the mutation succeeds. Rendering never creates history entries.
+ * Resume Factory — Phase 4 editor history.
+ * Lightweight, dependency-free undo/redo for the structured CV model.
+ * History is intentionally kept in memory; the existing autosave remains
+ * the persistence layer, so browser refresh behaviour is unchanged.
  */
 (function (global) {
   'use strict';
 
   const MAX_HISTORY = 60;
   const GROUP_WINDOW = 900;
-
   let past = [];
   let future = [];
-  let groupSnapshot = null;
-  let groupOpen = false;
-  let checkpointCommitted = false;
   let lastMutationAt = 0;
-  let applyingHistory = false;
+  let activeGroup = false;
 
   function clone(value) {
     return value == null ? value : JSON.parse(JSON.stringify(value));
@@ -29,170 +23,92 @@
   }
 
   function getState() {
-    return typeof global.getEditorState === 'function'
-      ? global.getEditorState()
-      : null;
+    return typeof global.cvData !== 'undefined' ? global.cvData : null;
   }
 
   function notify() {
     const undo = document.getElementById('undo-btn');
     const redo = document.getElementById('redo-btn');
-
-    if (undo) {
-      undo.disabled = past.length === 0;
-      undo.setAttribute('aria-disabled', String(past.length === 0));
-    }
-
-    if (redo) {
-      redo.disabled = future.length === 0;
-      redo.setAttribute('aria-disabled', String(future.length === 0));
-    }
-
+    if (undo) undo.disabled = past.length === 0;
+    if (redo) redo.disabled = future.length === 0;
     document.documentElement.dataset.editorUndo = String(past.length > 0);
     document.documentElement.dataset.editorRedo = String(future.length > 0);
   }
 
-  function begin(force = false) {
+  function begin(force) {
     const state = getState();
-    if (!state || applyingHistory) return false;
-
+    if (!state) return;
     const now = Date.now();
-    const startNewGroup =
-      force ||
-      !groupOpen ||
-      now - lastMutationAt > GROUP_WINDOW;
-
-    if (startNewGroup) {
-      groupSnapshot = clone(state);
-      groupOpen = true;
-      checkpointCommitted = false;
-    }
-
-    lastMutationAt = now;
-    notify();
-    return true;
-  }
-
-  function commit() {
-    const state = getState();
-    if (!state || applyingHistory || !groupOpen || !groupSnapshot) return false;
-
-    if (!checkpointCommitted) {
-      if (same(groupSnapshot, state)) {
-        // A button/input caused no data change. Do not create a fake undo step.
-        groupSnapshot = null;
-        groupOpen = false;
-        checkpointCommitted = false;
-        lastMutationAt = 0;
-        notify();
-        return false;
-      }
-
-      past.push(groupSnapshot);
+    if (force || !activeGroup || now - lastMutationAt > GROUP_WINDOW) {
+      past.push(clone(state));
       if (past.length > MAX_HISTORY) past.shift();
       future = [];
-      checkpointCommitted = true;
+      activeGroup = true;
     }
-
-    lastMutationAt = Date.now();
+    lastMutationAt = now;
     notify();
-    return true;
   }
 
   function boundary() {
-    groupSnapshot = null;
-    groupOpen = false;
-    checkpointCommitted = false;
-    lastMutationAt = 0;
-    notify();
+    activeGroup = false;
   }
 
   function apply(snapshot, direction) {
     const state = getState();
-    if (!state || !snapshot) return false;
-
-    applyingHistory = true;
-
-    if (direction === 'undo') {
-      future.push(clone(state));
-    } else {
-      past.push(clone(state));
-    }
-
-    const restored = clone(snapshot);
-    if (typeof global.setEditorState === 'function') global.setEditorState(restored);
-    else global.cvData = restored;
-    groupSnapshot = null;
-    groupOpen = false;
-    checkpointCommitted = false;
-    lastMutationAt = 0;
-
+    if (!state || !snapshot) return;
+    if (direction === 'undo') future.push(clone(state));
+    else past.push(clone(state));
+    const replacement = clone(snapshot);
+    global.cvData = replacement;
     if (typeof global.applyEditorHistoryState === 'function') {
-      global.applyEditorHistoryState(restored);
+      global.applyEditorHistoryState(replacement);
     }
-
-    if (typeof global.renderPreview === 'function') {
-      global.renderPreview();
-    }
-    if (typeof global.setStep === 'function') {
-      global.setStep(
-        typeof global.getEditorStep === 'function'
-          ? global.getEditorStep()
-          : 0
-      );
-    }
-    if (typeof global.updatePaLabel === 'function') {
-      global.updatePaLabel();
-    }
-    if (typeof global.autoSave === 'function') {
-      global.autoSave();
-    }
-
-    applyingHistory = false;
+    activeGroup = false;
+    lastMutationAt = Date.now();
+    if (typeof global.renderPreview === 'function') global.renderPreview();
+    if (typeof global.setStep === 'function') global.setStep(typeof global.getEditorStep === 'function' ? global.getEditorStep() : 0);
+    if (typeof global.updatePaLabel === 'function') global.updatePaLabel();
+    if (typeof global.autoSave === 'function') global.autoSave();
     notify();
-    return true;
   }
 
   function undo() {
     if (!past.length) return false;
     const snapshot = past.pop();
-    return apply(snapshot, 'undo');
+    apply(snapshot, 'undo');
+    return true;
   }
 
   function redo() {
     if (!future.length) return false;
     const snapshot = future.pop();
-    return apply(snapshot, 'redo');
+    apply(snapshot, 'redo');
+    return true;
   }
 
   function clear() {
     past = [];
     future = [];
-    boundary();
+    activeGroup = false;
+    lastMutationAt = 0;
+    notify();
+  }
+
+  function flushBoundary() {
+    activeGroup = false;
+    lastMutationAt = 0;
   }
 
   document.addEventListener('keydown', function (event) {
     const modifier = event.ctrlKey || event.metaKey;
     if (!modifier || event.altKey) return;
-
     const target = event.target;
     const tag = target && target.tagName ? target.tagName.toLowerCase() : '';
-    const editing =
-      tag === 'input' ||
-      tag === 'textarea' ||
-      tag === 'select' ||
-      target?.isContentEditable;
-
-    // Never hijack native text undo while the user is editing a field.
-    if (editing) return;
-
-    const key = event.key.toLowerCase();
-
-    if (key === 'z') {
+    const editing = tag === 'input' || tag === 'textarea' || target?.isContentEditable;
+    if (event.key.toLowerCase() === 'z') {
       event.preventDefault();
-      if (event.shiftKey) redo();
-      else undo();
-    } else if (key === 'y') {
+      if (event.shiftKey) redo(); else undo();
+    } else if (event.key.toLowerCase() === 'y' && !editing) {
       event.preventDefault();
       redo();
     }
@@ -201,14 +117,9 @@
   global.editorUndo = undo;
   global.editorRedo = redo;
   global.editorHistoryBegin = begin;
-  global.editorHistoryCommit = commit;
   global.editorHistoryBoundary = boundary;
   global.editorHistoryClear = clear;
-  global.editorHistoryFlushBoundary = boundary;
-  global.editorHistoryIsApplying = function () { return applyingHistory; };
-  global.editorHistoryState = function () {
-    return { undo: past.length, redo: future.length };
-  };
-
+  global.editorHistoryFlushBoundary = flushBoundary;
+  global.editorHistoryState = function () { return { undo: past.length, redo: future.length }; };
   notify();
 })(window);

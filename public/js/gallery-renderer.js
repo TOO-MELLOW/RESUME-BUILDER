@@ -56,33 +56,14 @@
 
     function scaleThumb(container, page) {
         const cw = container.clientWidth || 1;
-        const pw = 794;
-        if (!cw) return;
-        // Many per-template rules (all 40 premium templates) set
-        // `.page[data-template="..."] { position: relative }` for their own
-        // real-size layout needs (e.g. absolutely-positioned .footer/.portrait
-        // children). That attribute selector (class + attribute) outranks the
-        // shared `.g-thumb-page`/`.template-thumb-page` class-only selector in
-        // CSS specificity, regardless of stylesheet order, silently turning
-        // this thumbnail's position back to "relative". Once that happens the
-        // page is no longer taken out of flow, so instead of being clipped by
-        // the card's aspect-ratio box it lays out at its full natural
-        // 1123px-tall size *inside* that box, stretching the whole card. Set
-        // position inline so it always wins no matter what any template's own
-        // CSS declares.
-        page.style.position = 'absolute';
-        page.style.top = '0';
-        page.style.left = '0';
-        page.style.width = '794px';
-        page.style.height = '1123px';
-        page.style.minHeight = '1123px';
-        page.style.maxHeight = '1123px';
+        const pw = page.offsetWidth || 794; // ~210mm @ 96dpi fallback
+        if (!pw) return;
         page.style.transform = `scale(${cw / pw})`;
     }
 
     function paintThumb(container, tid, html) {
         const page = document.createElement('div');
-        page.className = 'page g-thumb-page template-thumb-page';
+        page.className = 'page g-thumb-page';
         page.setAttribute('data-template', tid);
         page.innerHTML = html;
 
@@ -144,30 +125,15 @@
 
     // Called by renderGallery() in script.js right after it rebuilds
     // #gallery-grid, so newly-added .g-thumb nodes get observed.
-    function initNodes(selector) {
-        const nodes = document.querySelectorAll(selector);
-        const obs = selector === '.g-thumb[data-thumb-id]' ? ensureObserver() : null;
+    window.initGalleryThumbs = function initGalleryThumbs() {
+        const obs = ensureObserver();
+        const nodes = document.querySelectorAll('.g-thumb[data-thumb-id]');
         if (!obs) {
+            // No IntersectionObserver support — just render everything eagerly.
             nodes.forEach(el => { if (el.dataset.rendered !== '1') renderThumbInto(el, el.getAttribute('data-thumb-id')); });
             return;
         }
         nodes.forEach(el => { if (el.dataset.rendered !== '1') obs.observe(el); });
-    }
-
-    window.renderTemplateThumbnailInto = function renderTemplateThumbnailInto(container, tid) {
-        renderThumbInto(container, tid, 0);
-    };
-
-    window.initGalleryThumbs = function initGalleryThumbs() {
-        initNodes('.g-thumb[data-thumb-id]');
-    };
-
-    window.initTemplatePickerThumbs = function initTemplatePickerThumbs() {
-        initNodes('.tmpl-mini-t[data-thumb-id]');
-    };
-
-    window.initShowcaseThumbs = function initShowcaseThumbs() {
-        initNodes('.sc-thumb[data-thumb-id]');
     };
 
     let resizeT = null;

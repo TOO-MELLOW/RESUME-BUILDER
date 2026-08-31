@@ -28,74 +28,6 @@ const BLANK = {
 
  const allTemplateIds = TEMPLATE_CONFIGS.map(t => t.id);
 
-    function generateLegacyThumbnailSVG(templateId, accent) {
-        // Deterministic, content-shaped thumbnail for templates that previously
-        // fell through to the blank fallback. Geometry changes by template ID;
-        // it is intentionally recognizable as a CV rather than a placeholder.
-        const seed = parseInt(hashString(templateId).slice(0, 8), 16);
-        const bg = PAPER_COLORS[seed % PAPER_COLORS.length];
-        const left = 18 + (seed % 24);
-        const right = 100 - left;
-        const mode = (seed >>> 5) % 8;
-        const line = (x,y,w,h,fill,op=.32) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="1" fill="${fill}" opacity="${op}"/>`;
-        const rr = (x,y,w,h,r,fill,op) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
-        const txt = (x,y,fs,fill,content,anchor='start') => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}" text-anchor="${anchor}" font-weight="700">${content}</text>`;
-        let body = rr(0,0,100,141,2,bg,null);
-        const dark = '#23303A';
-        if (mode===0) {
-            body += rr(0,0,left,141,0,accent,.92);
-            body += txt(left+5,15,7,dark,'JANE MOKOENA');
-            for(let j=0;j<7;j++) body += line(6,30+j*13,left-9,2,'#fff',.34);
-            for(let j=0;j<6;j++) body += line(left+5,32+j*17,right-9,3,dark,.24);
-        } else if (mode===1) {
-            body += rr(0,0,100,25,0,accent,.9);
-            body += txt(8,12,7,'#fff','JANE MOKOENA');
-            body += txt(8,19,4,'#fff','PROFESSIONAL PROFILE');
-            for(let j=0;j<6;j++){ body += line(8,34+j*16,84,2,dark,.25); body += line(8,38+j*16,55,2,accent,.35); }
-        } else if (mode===2) {
-            body += txt(8,15,10,dark,'JANE MOKOENA');
-            body += txt(8,22,5,accent,'CAREER PROFILE');
-            body += rr(8,30,24,93,0,accent,.12);
-            for(let j=0;j<6;j++) body += line(38,34+j*15,54,3,dark,.26);
-        } else if (mode===3) {
-            body += rr(8,8,84,28,3,'#fff',1);
-            body += rr(8,8,5,28,0,accent,.9);
-            body += txt(18,19,8,dark,'JANE');
-            body += txt(18,27,7,dark,'MOKOENA');
-            for(let j=0;j<4;j++) body += rr(8,43+j*20,84,14,2,'#fff',1);
-            for(let j=0;j<4;j++) body += line(13,49+j*20,55,3,accent,.22);
-        } else if (mode===4) {
-            body += rr(0,0,14,141,0,accent,.94);
-            body += txt(21,17,8,dark,'JANE MOKOENA');
-            for(let j=0;j<7;j++) body += line(21,31+j*14,69,2,dark,.27);
-            body += rr(73,31,18,58,2,accent,.14);
-        } else if (mode===5) {
-            body += rr(0,0,100,14,0,accent,.9);
-            body += txt(8,26,9,dark,'JANE MOKOENA');
-            body += line(8,31,84,2,accent,.6);
-            for(let j=0;j<5;j++){ body += txt(8,46+j*18,4,accent,'SECTION'); body += line(26,43+j*18,60,3,dark,.22); }
-        } else if (mode===6) {
-            body += rr(8,8,31,22,2,accent,.16);
-            body += txt(11,20,8,dark,'PROFILE');
-            body += txt(47,18,8,dark,'JANE MOKOENA');
-            for(let j=0;j<5;j++) body += rr(8,37+j*19,84,14,2,'#fff',1);
-            for(let j=0;j<5;j++) body += line(12,43+j*19,48,2,accent,.3);
-        } else {
-            body += rr(0,0,100,33,0,'#fff',1);
-            body += txt(8,15,8,dark,'JANE MOKOENA');
-            body += txt(8,23,4,accent,'CURRICULUM VITAE');
-            body += rr(8,41,26,83,0,accent,.13);
-            for(let j=0;j<6;j++) body += line(40,45+j*13,51,2,dark,.25);
-        }
-        return body;
-    }
-
-    function hashString(value) {
-        let h = 2166136261;
-        for (let i = 0; i < value.length; i++) h = Math.imul(h ^ value.charCodeAt(i), 16777619);
-        return (h >>> 0).toString(16).padStart(8, '0');
-    }
-
     function generateThumbnailSVG(templateId) {
         const a = getTemplateDefaultColor(templateId);
         const rr = (x,y,w,h,r,fill,op) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
@@ -152,13 +84,9 @@ const BLANK = {
           else if(templateId==='sand-modern-two-page-08'){body+=rr(0,0,100,10,0,a,null);body+=txt(8,24,9,'#4A4038','JANE MOKOENA','start');body+=line(8,29,84,1,'#C8B8A5',.8);body+=rr(8,39,21,83,0,'#E9E0D4',null);for(let j=0;j<5;j++)body+=line(35,43+j*16,55,3,'#665A50',.25)}
           else if(templateId==='indigo-cards-09'){body+=txt(8,16,4,a,'PROFILE 09','start');body+=txt(8,27,10,'#25243B','JANE','start');body+=txt(8,36,10,'#25243B','MOKOENA','start');for(let j=0;j<5;j++){body+=rr(39,28+j*20,52,15,2,'#fff',1);body+=line(43,34+j*20,38,2,a,.3)}}
           else if(templateId==='teal-command-two-page-10'){body+=rr(0,0,100,18,0,a,null);body+=txt(8,13,5,'#fff','COMMAND / 10','start');body+=txt(8,29,9,'#204E4B','JANE MOKOENA','start');body+=rr(8,39,25,83,0,'#DCEDEA',null);for(let j=0;j<5;j++)body+=line(39,43+j*16,53,3,'#526A68',.24)}
-          else if(templateId==='executive-01'){body+=rr(0,0,100,31,0,'#1B2A4A',null);body+=txt(8,12,3.5,'#C9D5E6','EXECUTIVE PROFILE','start');body+=txt(8,24,8,'#FFFFFF','JANE MOKOENA','start');body+=txt(8,28,3.4,'#B8C9DF','EXECUTIVE LEADER','start');body+=line(70,38,22,2,'#C9A84C',.8);body+=line(8,46,84,2,'#526276',.2);for(let j=0;j<4;j++){body+=rr(8,54+j*16,54,12,1,'#FFFFFF',1);body+=line(12,59+j*16,39,2,'#1B2A4A',.28)}body+=rr(67,54,25,54,1,'#EEF1F5',1);for(let j=0;j<4;j++)body+=line(71,60+j*10,16,2,'#1B2A4A',.26)}
           return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
         }
-        // Never return the old blank fallback. Remaining templates receive a
-        // deterministic, populated CV thumbnail based on their identity.
-        body = generateLegacyThumbnailSVG(templateId, a);
-        return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+        return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${rr(0,0,100,141,2,'#fff',null)}</svg>`;
     }
 
     const SVGS = {};
@@ -339,16 +267,6 @@ function renderTemplateMarkup(data, raw) {
         const value = getP(data, el.getAttribute('data-bind'));
         el.textContent = value || '';
     });
-    wrapper.querySelectorAll('[data-bind-src]').forEach(el => {
-        const value = getP(data, el.getAttribute('data-bind-src'));
-        if (value) {
-            el.setAttribute('src', value);
-            el.hidden = false;
-        } else {
-            el.removeAttribute('src');
-            el.hidden = true;
-        }
-    });
     wrapper.querySelectorAll('[data-role="contact"]').forEach(el => {
         el.innerHTML = contactListHtml(p);
     });
@@ -381,7 +299,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     const SR = {
         experience(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         education(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
-        projects(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div><span class="entry-date">${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
+        projects(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.name)}</p></div></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         custom(s){ const h=s.items.map(it=>`<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
         "personal-info"(s){ const h=s.items.map(it=>`<div class="side-item">${escHtml(it.label)}: <span class="meta">${escHtml(it.value)}</span></div>`).join(""); return wrapSide(s.title,h,s.type); },
         skills(s){ return wrapSide(s.title,s.items.map(it=>`<span class="skill-tag">${escHtml(it.name)}</span>`).join(""),s.type); },
@@ -405,7 +323,10 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     function elegantAvailGrid(s){ if(!s.items.length)return`<p class="empty-note">None added.</p>`; return `<div class="elegant-avail-grid">${s.items.map(it=>`<div class="elegant-avail-item"><span class="av-dot"></span><span class="av-lbl">${escHtml(it.label)}:</span><span class="av-val">${escHtml(it.value)}</span></div>`).join("")}</div>`; }
 
     function renderPersonalInfoAfterSummary(sections, tid) {
-        if (SIDEBAR_TEMPLATE_IDS.has(tid)) return '';
+        // Most two-column templates intentionally keep personal info in the rail.
+        // The split family is different: its page contract places personal-info in
+        // the main content column, so it must not be suppressed here.
+        if (SIDEBAR_TEMPLATE_IDS.has(tid) && !tid.startsWith('split')) return '';
         const pi = sections.find(s => s.type==="personal-info" && s.visible);
         if (!pi || !pi.items.length) return "";
         return atsPersonalInfoBlock(pi);
@@ -474,11 +395,11 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         }).join("");
         const frame=tid==='split-01'?'split-ledger':tid==='split-02'?'split-bracket':tid==='split-03'?'split-corner':'split-frame';
         const intro = tid==='split-03'
-            ? `<div class="split-header split-header-corner" data-rf-region="header"><div><p class="job-title">${escHtml(p.jobTitle)}</p><p class="name">${escHtml(p.fullName)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
+            ? `<div class="split-header split-header-corner"><div><p class="job-title">${escHtml(p.jobTitle)}</p><p class="name">${escHtml(p.fullName)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
             : tid==='split-04'
-            ? `<div class="split-header split-header-frame" data-rf-region="header"><div class="nameblock"><p class="eyebrow">PROFESSIONAL PROFILE</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
-            : `<div class="split-header" data-rf-region="header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`;
-        return `<div class="split-shell ${frame}"><div class="main"><div class="ledger-header-zone">${intro}</div><hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div><div class="sidebar">${railHtml}</div></div>`;
+            ? `<div class="split-header split-header-frame"><div class="nameblock"><p class="eyebrow">PROFESSIONAL PROFILE</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`
+            : `<div class="split-header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div>`;
+        return `<div class="split-shell ${frame}"><div class="main">${intro}<hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div><div class="sidebar">${railHtml}</div></div>`;
     }
     function renderTimeline(data, tid) {
         const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
@@ -488,7 +409,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
           ? `<div class="tl-mast"><span class="tl-index">CV</span><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`
           : tid==='timeline-03'
           ? `<div class="tl-mast tl-mast-journey"><div><p class="eyebrow">CAREER JOURNEY</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`
-          : `<div class="tl-mast" data-rf-region="header"><div><p class="eyebrow">CAREER PATH</p><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`;
+          : `<div class="tl-mast"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="ats-contact-line">${atsContactLine(p)}</div></div>`;
         return `<div class="main ${cls}">${head}<hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
     }
     const SKILL_LEVEL_PCT={"Beginner":35,"Basic":35,"Intermediate":60,"Proficient":75,"Advanced":90,"Expert":95,"Native":100,"Fluent":95,"Conversational":65};
@@ -499,6 +420,10 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const skillsSec=vis.find(s=>s.type==="skills");
         const skillsHtml=skillsSec?`<div class="main-section"><p class="starter-sec-title">${escHtml(skillsSec.title)}</p>${skillsSec.items.length?skillsSec.items.map(it=>{const pct=SKILL_LEVEL_PCT[it.level]||55;return`<div class="skillbar-row"><div class="skillbar-lbl">${escHtml(it.name)}</div><div class="skillbar-track"><div class="skillbar-fill" style="width:${pct}%"></div></div><span class="skillbar-pct">${pct}%</span></div>`;}).join(""):`<p class="empty-note">None added.</p>`}</div>`:"";
         
+        const experienceSec=vis.find(s=>s.type==="experience");
+        const personalInfoSec=vis.find(s=>s.type==="personal-info");
+        const experienceHtml=experienceSec?SR.experience(experienceSec):"";
+        const personalInfoHtml=personalInfoSec?SR["personal-info"](personalInfoSec):"";
         const restSecs = vis.filter(
     s => s !== strengthsSec &&
          s.type !== "skills" &&
@@ -507,7 +432,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
 );
         const restHtml=restSecs.map(s=>{const inner=SR[s.type]?SR[s.type](s):"";return `<div class="main-section"><p class="starter-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}</div>`;}).join("");
         const photoEl=p.photo?`<div class="starter-photo"><img src="${p.photo}" alt="Photo"></div>`:'';
-        return `<div class="starter-header">${photoEl}<div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div></div><div class="starter-contact-row">${atsContactLine(p)}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${strengthsHtml}${skillsHtml}${restHtml}</div>`;
+        return `<div class="starter-header">${photoEl}<div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div></div><div class="starter-contact-row">${atsContactLine(p)}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${personalInfoHtml}${experienceHtml}${strengthsHtml}${skillsHtml}${restHtml}</div>`;
     }
     function renderCombined(data) {
         const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
@@ -624,9 +549,11 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
                 const inner = SR[s.type] ? SR[s.type](s) : "";
                 return `<p class="trade-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`;
             };
+            const piSec2 = vis.find(s => s.type === "personal-info");
+            const piHtml2 = piSec2 ? `<p class="trade-sec-title">${escHtml(piSec2.title)}</p>${elegantAvailGrid(piSec2)}` : "";
             const sideOtherSecs = otherSecs.filter(s => s.type !== "education");
             const mainOtherSecs = otherSecs.filter(s => s.type === "education");
-            const restHtmlSide2 = sideOtherSecs.map(otherSecMapper2).join("");
+            const restHtmlSide2 = piHtml2 + sideOtherSecs.map(otherSecMapper2).join("");
             const restHtmlMain2 = mainOtherSecs.map(otherSecMapper2).join("");
 
             return `<div class="trade-header trade2-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="trade2-sidebar">${credHeading}${credHtml}${toolsHeading2}${toolsHtml2}${restHtmlSide2}</div><div class="main">${expHtml2 ? `<p class="trade-sec-title" style="margin-top:0">Experience</p>${expHtml2}` : ""}${restHtmlMain2}</div>`;
@@ -675,7 +602,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
             return `<p class="trade-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`;
         }).join("");
 
-        return `<div class="trade-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="main">${badgesHeading}${badgesHtml}${toolsHeading}${toolsHtml}${expHeading}${expHtml}${restHtml}</div>`;
+        return `<div class="trade-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="main">${renderPersonalInfoAfterSummary(vis,tid)}${badgesHeading}${badgesHtml}${toolsHeading}${toolsHtml}${expHeading}${expHtml}${restHtml}</div>`;
     }
 
     function renderMonogram(data) {
@@ -686,6 +613,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const intSec   = vis.find(s => s.type === "interests");
         const piSec    = vis.find(s => s.type === "personal-info");
         const refSec   = vis.find(s => s.type === "references");
+        const strSec   = vis.find(s => s.type === "strengths");
         // mainHtml's mapper below already has working branches for "projects" and
         // "custom" - but this filter only ever let "experience"/"education" through,
         // so those branches were dead code and both section types were silently
@@ -732,6 +660,9 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
         const refHtml = refSec && refSec.items.length
             ? `<p class="mono-kicker" data-rf-section-type="references">${escHtml(refSec.title)}</p><hr class="mono-hr"><div>${refSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;color:#333">${escHtml(it.name)}${it.title ? ` — ${escHtml(it.title)}` : ""}</div>`).join("")}</div>`
             : "";
+        const strHtml = strSec && strSec.items.some(it => it.value && it.value.trim())
+            ? `<p class="mono-kicker" data-rf-section-type="strengths">${escHtml(strSec.title)}</p><hr class="mono-hr"><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div>`
+            : "";
 
         const mainHtml = mainSecs.map(s => {
             if (s.type === "experience") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><div class="entry-header"><div><p class="entry-title" style="font-size:12px">${escHtml(it.role)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date" style="font-size:10px">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
@@ -741,7 +672,7 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
             return "";
         }).join("");
 
-        return `<div class="mono-top">${badgeEl}<p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:13px">${escHtml(p.jobTitle)}</p><div class="mono-contact-row">${contactHtml}</div></div><div class="main">${p.summary ? `<p class="summary" style="margin-bottom:12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}${skillsHtml}${langHtml}${certHtml}${piHtml}${intHtml}${refHtml}</div>`;
+        return `<div class="mono-top">${badgeEl}<p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:13px">${escHtml(p.jobTitle)}</p><div class="mono-contact-row">${contactHtml}</div></div><div class="main">${p.summary ? `<p class="summary" style="margin-bottom:12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}${skillsHtml}${langHtml}${certHtml}${piHtml}${intHtml}${strHtml}${refHtml}</div>`;
     }
 
     function renderFacet(data) {
