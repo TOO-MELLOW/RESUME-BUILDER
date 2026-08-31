@@ -305,44 +305,21 @@ function partitionSections(data, templateId, sections, firstPage, available) {
   return pages;
 }
 
+// Detect premium templates via TEMPLATE_DEFINITIONS from template-system.js
 function isPremiumTemplate(templateId) {
-  return !!(typeof window !== 'undefined' && window.__RF_PREMIUM_TEMPLATES__?.[templateId]);
+  const definition = typeof window !== 'undefined' ? window.TEMPLATE_DEFINITIONS?.[templateId] : null;
+  return !!(definition?.templateMarkup);
 }
 
 function normalizePremiumFragment(fragment, templateId) {
   const doc = new DOMParser().parseFromString(`<div id="__rf_premium_src">${fragment}</div>`, 'text/html');
   const source = doc.getElementById('__rf_premium_src');
-  // Preserve the authored premium-shell contract. The premium stylesheet is
-  // written around an outer [data-template="..."] canvas and, for the 10
-  // sidebar variants, a descendant `.cv` layout frame. Making the `.cv` itself
-  // the data-template root changes selectors like `[data-template="X"] .cv`
-  // from matching to non-matching and destroys the sidebar grid. Always give
-  // premium HTML a single neutral wrapper that owns the template identity,
-  // while keeping the source DOM (including any `.cv` frame) intact inside it.
-  const root = doc.createElement('div');
-  root.className = 'rf-premium-root';
-  while (source.firstChild) root.appendChild(source.firstChild);
-
-  // The 10 sidebar source shells historically include data-template on their
-  // inner `.cv`, but the authored CSS expects data-template to identify the
-  // outer canvas and `.cv` to be a descendant (`[data-template="X"] .cv`).
-  // Strip any source-level identity attributes before assigning the single
-  // renderer-owned template identity to the wrapper. This prevents the A4
-  // canvas padding/min-height rules from being applied twice.
-  root.querySelectorAll('[data-template]').forEach(node => node.removeAttribute('data-template'));
+  const root = source.firstElementChild;
+  if (!root) return fragment;
+  // Remove any existing data-template attribute (should not be present)
+  root.removeAttribute('data-template');
   root.setAttribute('data-template', templateId);
   root.setAttribute('data-rf-template-root', 'true');
-
-  // Every premium shell uses a real <header>. Mark that structural chrome so
-  // continuation pages can remove it reliably.
-  root.querySelectorAll('header').forEach(node => {
-    node.setAttribute('data-rf-region', 'header');
-  });
-
-  if (root.querySelector('.footer')) {
-    root.setAttribute('data-rf-has-footer', 'true');
-  }
-
   return root.outerHTML;
 }
 
