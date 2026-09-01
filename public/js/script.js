@@ -3,12 +3,24 @@ const ACCENT_COLORS = [
     { label: "Slate",    v: "#3B5BA9" }, { label: "Burgundy", v: "#7B2D3E" },
     { label: "Forest",   v: "#264D3B" }, { label: "Rose",     v: "#C1447E" },
     { label: "Sienna",   v: "#B2562F" }, { label: "Charcoal", v: "#3D3D3D" }
+    { label: "Olive",    v: "#4A5E2F" }, { label: "Amber",    v: "#B08D2E" },
+    { label: "Rust",     v: "#7A3A1B" }, { label: "Ocean",    v: "#2E5E88" }
 ];
 const PAPER_COLORS = [
     "#FAF6EF","#EAEEE1","#F2E8D8","#EAE3DE","#F5E9C8",
     "#E4EAD8","#E7DFD7","#F3DEDA","#FFFDF9","#F0EDE8"
 ];
-
+function migrateTemplateId(data) {
+    const rawId = data.meta.templateId || 'modern-01';
+    const migration = (typeof TEMPLATE_ID_MIGRATIONS !== 'undefined') ? TEMPLATE_ID_MIGRATIONS[rawId] : null;
+    if (migration) {
+        data.meta.templateId = migration.to;
+        data.meta.themeOverrides = data.meta.themeOverrides || {};
+        if (!data.meta.themeOverrides.primaryColor) data.meta.themeOverrides.primaryColor = migration.color;
+        return migration.to;
+    }
+    return rawId;
+}
 const SIDEBAR_TYPES = new Set(["personal-info","skills","languages","certificates","references","interests","strengths","custom"]);
 const MAIN_TYPES    = new Set(["experience","education"]);
 
@@ -1283,7 +1295,7 @@ function setCurrentResume(cvId) {
         currentCvId = cvId;
         cvData = allResumes[cvId];
         if (cvData.sections) cvData.sections = sanitizeSections(cvData.sections);
-        currentTemplateId = cvData.meta.templateId || 'modern-01';
+        currentTemplateId = migrateTemplateId(cvData);
         usingDemoData = false;
         renderPreview(); setStep(currentStep); updatePaLabel(); autoSave(); navigate('builder');
     }
@@ -1297,13 +1309,13 @@ function loadData() {
         cvData = allResumes[currentCvId];
         if (cvData.sections) cvData.sections = sanitizeSections(cvData.sections);
         if (typeof editorHistoryClear === 'function') editorHistoryClear();
-        currentTemplateId = cvData.meta.templateId || 'modern-01';
+       currentTemplateId = migrateTemplateId(cvData);
         usingDemoData = false;
     } else {
         const def = JSON.parse(document.getElementById('cv-data').textContent);
         if (def.sections) def.sections = sanitizeSections(def.sections);
         currentCvId = def.meta.cvId; allResumes[currentCvId] = def; saveAllResumes();
-        cvData = def; currentTemplateId = def.meta.templateId || 'modern-01'; usingDemoData = true;
+        cvData = def; currentTemplateId = migrateTemplateId(def); usingDemoData = true;
     }
 }
 
