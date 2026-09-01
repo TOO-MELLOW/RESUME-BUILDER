@@ -46,12 +46,8 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   const root = doc.getElementById('__rf_cont_root');
   root.setAttribute('data-rf-continuation', 'true');
   root.setAttribute('data-rf-page-number', String(pageNumber));
-  // Header chrome is never repeated on continuation pages. Apply the
-  // contract selectors for template-specific chrome, then enforce the
-  // semantic <header> rule as a final safety net so a selector typo or legacy
-  // contract can never leave a header-sized blank block on page 2+.
-  // Use both the continuation contract and the page-1 header contract. Keeping
-  // both lists active makes a selector omission in one contract harmless.
+
+  // Only hide elements explicitly listed in the contract – no blanket header removal
   const selectors = [
     ...(spec.page1?.headerSelectors || []),
     ...(spec.continuation.hidePage1ChromeSelectors || [])
@@ -64,13 +60,13 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
       });
     } catch (_) {}
   }
-  // Personal summary is page-1 identity/profile chrome. It must never reappear
-  // as an empty or duplicated block on a continuation page.
+  // Hide personal summary (page‑1 identity chrome)
   root.querySelectorAll('[data-bind="personalDetails.summary"]').forEach(node => {
     node.setAttribute('data-rf-hidden-continuation', 'true');
     node.style.setProperty('display', 'none', 'important');
   });
-  root.querySelectorAll('header, [data-rf-region="header"]').forEach(node => {
+  // Also hide any region‑marked headers if the contract specifies them
+  root.querySelectorAll('[data-rf-region="header"]').forEach(node => {
     node.setAttribute('data-rf-hidden-continuation', 'true');
     node.style.setProperty('display', 'none', 'important');
   });
@@ -78,7 +74,6 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   root.querySelectorAll('[data-page-count]').forEach(node => { node.textContent = String(pageCount); });
   return Array.from(root.children).map(node => node.outerHTML || '').join('');
 }
-
 
 function markTemplatePageFrames(html) {
   const doc = new DOMParser().parseFromString(`<div id="__rf_frame_root">${html || ''}</div>`, 'text/html');
@@ -151,8 +146,6 @@ function splitOversizedItem(data, templateId, section, item, firstPage, availabl
     if (chunks) return chunks;
   }
 
-  // Last resort: keep the item intact. The outer page reflow pass will move it
-  // to the next A4 page rather than letting it be silently clipped.
   return [base];
 }
 
@@ -189,15 +182,6 @@ function explodeSections(data, templateId, sections, firstPage, available) {
   return result;
 }
 
-// A section that comfortably fits on an empty page (so explodeSections left
-// it as one atomic block) can still be taller than what's actually left on a
-// page that already has other content on it. The old greedy loop treated
-// that block as unsplittable at this stage and moved it to the next page
-// whole, abandoning whatever room was left behind as permanent blank space.
-// Below a certain remaining space it's not worth trying (splitting off a
-// single orphan line reads worse than a clean break), so MIN_SPLIT_SPACE
-// guards against fragmenting a section down to slivers just to fill the last
-// few pixels of a page.
 const MIN_SPLIT_SPACE = 60;
 
 function fillPageSections(data, templateId, remaining, firstPage, available) {
@@ -212,10 +196,6 @@ function fillPageSections(data, templateId, remaining, firstPage, available) {
       if (h > available + 2) break;
       continue;
     }
-    // Doesn't fit in what's left on this page, but earlier content already
-    // fits (chosen is non-empty). Try to split this section so its leading
-    // part fills the remaining space instead of leaving it blank, carrying
-    // the rest forward to the next page.
     const chosenHeight = measureNaturalHeight(data, templateId, chosen, firstPage);
     const remainingSpace = Math.max(0, available - chosenHeight);
     if (remainingSpace < MIN_SPLIT_SPACE) break;
@@ -258,9 +238,6 @@ function partitionSections(data, templateId, sections, firstPage, available) {
     let progressed = true;
     while (progressed) {
       progressed = false;
-      // Sidebar and main are parallel columns (page height = max, not sum),
-      // so each column's own splitting budget is measured against its own
-      // chosen height only - the other column's height doesn't constrain it.
       if (side.length) {
         const candidateSide = [...chosenSide, side[0]];
         const h = measureNaturalHeight(data, templateId, [...candidateSide, ...chosenMain], pageFirst);
@@ -292,8 +269,6 @@ function partitionSections(data, templateId, sections, firstPage, available) {
       if (!side.length && !main.length) break;
     }
 
-    // Never emit an empty continuation page. If a region is intrinsically too large,
-    // explodeSections guarantees at least one unit can advance.
     if (!chosenSide.length && !chosenMain.length) {
       const fallback = side.shift() || main.shift();
       if (fallback) chosenMain.push(fallback);
@@ -305,7 +280,6 @@ function partitionSections(data, templateId, sections, firstPage, available) {
   return pages;
 }
 
-// Detect premium templates via TEMPLATE_DEFINITIONS from template-system.js
 function isPremiumTemplate(templateId) {
   const definition = typeof window !== 'undefined' ? window.TEMPLATE_DEFINITIONS?.[templateId] : null;
   return !!(definition?.templateMarkup);
@@ -316,7 +290,6 @@ function normalizePremiumFragment(fragment, templateId) {
   const source = doc.getElementById('__rf_premium_src');
   const root = source.firstElementChild;
   if (!root) return fragment;
-  // Remove any existing data-template attribute (should not be present)
   root.removeAttribute('data-template');
   root.setAttribute('data-template', templateId);
   root.setAttribute('data-rf-template-root', 'true');
@@ -360,17 +333,11 @@ function measureNaturalHeight(data, templateId, sections, firstPage) {
 
   const pageData = dataForSections(data, sections, firstPage);
 
-
-  // Legacy templates retain their existing natural-height measurement path.
   const page = document.createElement('div');
   page.style.cssText = 'width:210mm;height:auto;min-height:0;max-height:none;overflow:visible;background:#fff;box-sizing:border-box;';
   page.innerHTML = renderPageHtml(pageData, templateId, firstPage ? 1 : 2, 1, firstPage);
   holder.appendChild(page);
   document.body.appendChild(holder);
-  // Measurement must neutralize every synthetic page/root frame, including
-  // premium roots that live one level deeper than .rf-page-content. The old
-  // pass only matched the outer .page, so the premium root kept its A4-sized
-  // min-height and every section could falsely measure as a full page.
   page.querySelectorAll('.page, .a4-page, [data-role="page"], [data-rf-template-root="true"], [data-rf-template-page="true"], .cv').forEach(node => {
     node.style.setProperty('height','auto','important');
     node.style.setProperty('min-height','0','important');
@@ -429,10 +396,12 @@ function moveOverflowFromPage(plan, pageIndex) {
     next[pageIndex + 1].sections = [moved, ...(next[pageIndex + 1].sections || [])];
   }
 
-  // Never leave an empty page behind. When the first/only section overflows,
-  // the original page must disappear rather than becoming a blank sheet.
   if (page.sections.length === 0) {
     next.splice(pageIndex, 1);
+    // If we removed the first page, the new first page must be marked as firstPage
+    if (pageIndex === 0 && next.length > 0) {
+      next[0].firstPage = true;
+    }
   }
   return next;
 }
@@ -497,10 +466,11 @@ async function reflowRenderedOverflow(root, initialPlan, data, templateId) {
       plan = moveOverflowFromPage(plan, overflowed.pageIndex);
     }
 
+    // Ensure first page is always marked as firstPage
+    if (plan.length > 0 && !plan[0].firstPage) plan[0].firstPage = true;
+
     const rootNode = document.getElementById('cv-root');
     if (!rootNode) return plan;
-    // Signal the parent render effect that a new plan is required. The caller
-    // will set the returned plan and React will render it on the next cycle.
     return plan;
   }
   return plan;
@@ -534,8 +504,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     const effectiveHeight = A4_HEIGHT_PX;
     let cancelled = false;
     const timer = window.requestAnimationFrame(async () => {
-      // Pagination is geometry-sensitive. Wait for web fonts so fallback metrics
-      // cannot change line wrapping after the page plan has already been chosen.
       try {
         if (document.fonts?.ready) await document.fonts.ready;
       } catch (_) {}
