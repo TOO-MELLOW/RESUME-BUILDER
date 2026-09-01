@@ -485,6 +485,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
   const A4_HEIGHT_PX = 1122.5;
   const lastSignatureRef = useRef('');
   const reflowDoneRef = useRef(false);
+  const lastTotalHeightRef = useRef(0);
 
   const signature = useMemo(() => JSON.stringify({
     templateId,
@@ -494,7 +495,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     pageSpec: getPageSpec(templateId)
   }), [data, templateId]);
 
-  // First effect: compute initial pagination and decide if reflow is needed
+  // First effect: compute initial pagination and total height
   useLayoutEffect(() => {
     if (!data || !templateId) return;
     if (lastSignatureRef.current === signature && pagePlan) return;
@@ -510,8 +511,19 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
       if (cancelled) return;
       const next = paginate(data, templateId, effectiveHeight);
       if (cancelled) return;
-      // Only need reflow if more than one page
-      setShouldReflow(next.length > 1);
+      // Measure total height of all sections in the first page (or all pages combined for single page)
+      let totalHeight = 0;
+      if (next.length === 1) {
+        // measure the first page's sections
+        const sections = next[0].sections;
+        totalHeight = measureNaturalHeight(data, templateId, sections, true);
+      } else {
+        // if multiple pages, we'll always reflow
+        totalHeight = effectiveHeight + 1;
+      }
+      lastTotalHeightRef.current = totalHeight;
+      // Only need reflow if total height exceeds page height
+      setShouldReflow(totalHeight > effectiveHeight + 5);
       setPagePlan(next);
       window.requestAnimationFrame(() => {
         if (!cancelled) onPagesReady?.(next.length);
@@ -523,7 +535,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     };
   }, [signature, data, templateId, onPagesReady]);
 
-  // Second effect: run reflow only if needed and not done yet
+  // Second effect: run reflow only if needed and not done yet, and only if total height changed significantly
   useLayoutEffect(() => {
     if (!pagePlan || !data || !templateId) return;
     if (!shouldReflow) {
@@ -536,6 +548,22 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     (async () => {
       const rootNode = document.getElementById('cv-root');
       if (!rootNode) return;
+      // Measure current total height before reflow to see if it changed
+      let newTotalHeight = 0;
+      if (pagePlan.length === 1) {
+        const sections = pagePlan[0].sections;
+        newTotalHeight = measureNaturalHeight(data, templateId, sections, true);
+      } else {
+        newTotalHeight = A4_HEIGHT_PX + 1;
+      }
+      // If total height is roughly the same, skip reflow
+      if (Math.abs(newTotalHeight - lastTotalHeightRef.current) < 5) {
+        reflowDoneRef.current = true;
+        onPagesReady?.(pagePlan.length, { overflow: 0 });
+        return;
+      }
+      lastTotalHeightRef.current = newTotalHeight;
+
       const nextPlan = await reflowRenderedOverflow(rootNode, pagePlan, data, templateId);
       if (cancelled) return;
       const before = JSON.stringify(pagePlan);
