@@ -2551,14 +2551,24 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
         sec.visible = sec.visible === false;
     }, { force: true });
 }
-    function moveSec(type, dir) {
-        commitEditorMutation(() => {
-            const secs = cvData.sections; const sec = secs.find(s => s.type === type); if (!sec) return false;
-            const sorted = [...secs].sort((a,b) => (a.order ?? 0) - (b.order ?? 0));
-            const idx = sorted.indexOf(sec); const target = sorted[idx + dir]; if (!target) return false;
-            const tmp = sec.order; sec.order = target.order; target.order = tmp;
-        }, { force: true });
-    }
+   function moveSec(type, dir) {
+    commitEditorMutation(() => {
+        const secs = cvData.sections;
+        const sec = secs.find(s => s.type === type);
+        if (!sec) return false;
+        const sorted = [...secs].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        const idx = sorted.indexOf(sec);
+        const target = sorted[idx + dir];
+        if (!target) return false;
+        // Swap order values
+        const tmp = sec.order;
+        sec.order = target.order;
+        target.order = tmp;
+        // Reassign all orders sequentially to avoid gaps/duplicates
+        const all = cvData.sections.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        all.forEach((s, i) => s.order = i + 1);
+    }, { force: true });
+}
     function renameSection(type) {
         const sec = cvData.sections.find(s => s.type === type); if (!sec) return;
         const name = prompt("Section title:", sec.title);
