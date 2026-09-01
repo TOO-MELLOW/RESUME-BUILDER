@@ -55,10 +55,10 @@
 
    function renderThumbInto(container, tid, attempt) {
     attempt = attempt || 0;
-
     if (!container || container.dataset.rendered === '1') return;
 
     if (typeof renderTemplateContent !== 'function') {
+        // script.js hasn't finished initializing yet — try shortly.
         if (attempt < MAX_RETRIES) {
             setTimeout(
                 () => renderThumbInto(container, tid, attempt + 1),
@@ -75,18 +75,13 @@
 
     if (html === undefined) {
         try {
-            
             html = renderTemplateContent(data, tid);
         } catch (e) {
-            console.error(
-                '[gallery-renderer] Thumbnail render failed for:',
-                tid,
-                e
-            );
+            console.error('Gallery thumbnail render failed for', tid, e);
             html = null;
         }
 
-        if (!isStillLoadingPlaceholder(html) && html) {
+        if (!isStillLoadingPlaceholder(html)) {
             THUMB_CACHE[tid] = html;
         }
     }
@@ -101,13 +96,7 @@
         return;
     }
 
-    if (!html) {
-        console.warn(
-            '[gallery-renderer] No rendered HTML for template:',
-            tid
-        );
-        return;
-    }
+    if (!html) return;
 
     paintThumb(container, tid, html);
 }
