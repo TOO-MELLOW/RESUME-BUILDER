@@ -47,7 +47,6 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   root.setAttribute('data-rf-continuation', 'true');
   root.setAttribute('data-rf-page-number', String(pageNumber));
 
-  // Only hide elements explicitly listed in the contract – no blanket header removal
   const selectors = [
     ...(spec.page1?.headerSelectors || []),
     ...(spec.continuation.hidePage1ChromeSelectors || [])
@@ -60,12 +59,10 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
       });
     } catch (_) {}
   }
-  // Hide personal summary (page‑1 identity chrome)
   root.querySelectorAll('[data-bind="personalDetails.summary"]').forEach(node => {
     node.setAttribute('data-rf-hidden-continuation', 'true');
     node.style.setProperty('display', 'none', 'important');
   });
-  // Also hide any region‑marked headers if the contract specifies them
   root.querySelectorAll('[data-rf-region="header"]').forEach(node => {
     node.setAttribute('data-rf-hidden-continuation', 'true');
     node.style.setProperty('display', 'none', 'important');
@@ -398,7 +395,6 @@ function moveOverflowFromPage(plan, pageIndex) {
 
   if (page.sections.length === 0) {
     next.splice(pageIndex, 1);
-    // If we removed the first page, the new first page must be marked as firstPage
     if (pageIndex === 0 && next.length > 0) {
       next[0].firstPage = true;
     }
@@ -466,7 +462,6 @@ async function reflowRenderedOverflow(root, initialPlan, data, templateId) {
       plan = moveOverflowFromPage(plan, overflowed.pageIndex);
     }
 
-    // Ensure first page is always marked as firstPage
     if (plan.length > 0 && !plan[0].firstPage) plan[0].firstPage = true;
 
     const rootNode = document.getElementById('cv-root');
@@ -486,8 +481,11 @@ function PageFrame({ html, templateId, pageIndex, pageCount }) {
 
 export default function ResumeDocument({ data, templateId, onPagesReady }) {
   const [pagePlan, setPagePlan] = useState(null);
+  const [shouldReflow, setShouldReflow] = useState(false);
   const A4_HEIGHT_PX = 1122.5;
   const lastSignatureRef = useRef('');
+  const reflowDoneRef = useRef(false);
+
   const signature = useMemo(() => JSON.stringify({
     templateId,
     personalDetails: data?.personalDetails,
@@ -496,11 +494,13 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     pageSpec: getPageSpec(templateId)
   }), [data, templateId]);
 
+  // First effect: compute initial pagination and decide if reflow is needed
   useLayoutEffect(() => {
     if (!data || !templateId) return;
-    if (lastSignatureRef.current !== signature) {
-      lastSignatureRef.current = signature;
-    }
+    if (lastSignatureRef.current === signature && pagePlan) return;
+    lastSignatureRef.current = signature;
+    reflowDoneRef.current = false;
+
     const effectiveHeight = A4_HEIGHT_PX;
     let cancelled = false;
     const timer = window.requestAnimationFrame(async () => {
@@ -510,6 +510,8 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
       if (cancelled) return;
       const next = paginate(data, templateId, effectiveHeight);
       if (cancelled) return;
+      // Only need reflow if more than one page
+      setShouldReflow(next.length > 1);
       setPagePlan(next);
       window.requestAnimationFrame(() => {
         if (!cancelled) onPagesReady?.(next.length);
@@ -521,23 +523,31 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     };
   }, [signature, data, templateId, onPagesReady]);
 
+  // Second effect: run reflow only if needed and not done yet
   useLayoutEffect(() => {
     if (!pagePlan || !data || !templateId) return;
+    if (!shouldReflow) {
+      reflowDoneRef.current = true;
+      return;
+    }
+    if (reflowDoneRef.current) return;
+
     let cancelled = false;
     (async () => {
-      const root = document.getElementById('cv-root');
-      if (!root) return;
-      const nextPlan = await reflowRenderedOverflow(root, pagePlan, data, templateId);
+      const rootNode = document.getElementById('cv-root');
+      if (!rootNode) return;
+      const nextPlan = await reflowRenderedOverflow(rootNode, pagePlan, data, templateId);
       if (cancelled) return;
       const before = JSON.stringify(pagePlan);
       const after = JSON.stringify(nextPlan);
       if (before !== after) {
         setPagePlan(nextPlan);
       }
-      onPagesReady?.(nextPlan.length, { overflow: getActualPageOverflow(root) });
+      reflowDoneRef.current = true;
+      onPagesReady?.(nextPlan.length, { overflow: getActualPageOverflow(rootNode) });
     })();
     return () => { cancelled = true; };
-  }, [pagePlan, data, templateId, onPagesReady]);
+  }, [pagePlan, shouldReflow, data, templateId, onPagesReady]);
 
   if (!data || !templateId) return null;
   if (!pagePlan) return <div className={`rf-resume-document rf-template-${templateId}`} aria-busy="true" />;
