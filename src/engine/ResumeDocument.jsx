@@ -2,17 +2,12 @@ import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { templateById } from '../data/templates';
 import { templatePageSpecs } from '../data/templatePageSpecs';
 
-// --- constants ---
-const SIDEBAR_TYPES = new Set([
-  'personal-info', 'skills', 'languages', 'certificates',
-  'references', 'interests', 'strengths', 'projects', 'custom'
-]);
+const SIDEBAR_TYPES = new Set(['personal-info','skills','languages','certificates','references','interests','strengths','projects','custom']);
 const A4_HEIGHT_PX = 1122.5;
 const MIN_SPLIT_SPACE = 30;
 const FIT_TOLERANCE = 10;
 const HEIGHT_CHANGE_THRESHOLD = 10;
 
-// --- helpers ---
 function clone(value) { return JSON.parse(JSON.stringify(value)); }
 function escapeAttr(value) {
   return String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -48,7 +43,6 @@ function cloneSection(section, items, continuation = false) {
   return { ...clone(section), items: clone(items), ...(continuation ? { __rfContinuation: true } : {}) };
 }
 
-// --- continuation contract ---
 function applyContinuationContract(html, templateId, isContinuation, pageNumber, pageCount) {
   if (!isContinuation) return html;
   const spec = getPageSpec(templateId);
@@ -93,7 +87,7 @@ function markTemplatePageFrames(html) {
 }
 
 function dataForSections(data, sections, firstPage) {
-  // strip any continuation flags to avoid stale state
+  // strip any continuation flags and clean sections
   const out = clone(data);
   out.sections = clone(sections).map(s => {
     const { __rfContinuation, ...rest } = s;
@@ -103,7 +97,6 @@ function dataForSections(data, sections, firstPage) {
   return out;
 }
 
-// --- measurement and pagination ---
 function measureItemChunk(data, templateId, section, itemsForSection, firstPage) {
   const candidate = cloneSection(section, itemsForSection.map(clone));
   return measureNaturalHeight(data, templateId, [candidate], firstPage);
@@ -360,13 +353,29 @@ function measureNaturalHeight(data, templateId, sections, firstPage) {
   return height;
 }
 
+// ---------- PAGINATION WITH SANITIZATION ----------
 function paginate(data, templateId, available = A4_HEIGHT_PX) {
-  // Clean sections: remove any continuation flags before paginating
+  // Clean sections: remove continuation flags, ensure unique ids, and sort by order
   const sections = (data.sections || [])
-    .filter(s => s.visible !== false)
-    .sort((a,b) => (a.order ?? 0) - (b.order ?? 0))
-    .map(s => { const { __rfContinuation, ...rest } = s; return rest; });
-  const pages = partitionSections(data, templateId, sections, true, available);
+    .filter(s => s.visible !== false && s.id)
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .map(s => {
+      const { __rfContinuation, ...rest } = s;
+      return rest;
+    });
+
+  // Reassign order sequentially to avoid duplicates
+  sections.forEach((s, i) => s.order = i + 1);
+
+  // Remove duplicate ids (keep first occurrence)
+  const seen = new Set();
+  const unique = sections.filter(s => {
+    if (seen.has(s.id)) return false;
+    seen.add(s.id);
+    return true;
+  });
+
+  const pages = partitionSections(data, templateId, unique, true, available);
   return pages.length ? pages.filter(page => page.sections.length > 0) : [{ sections: [], firstPage: true }];
 }
 
@@ -511,7 +520,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     pageSpec: getPageSpec(templateId)
   }), [data, templateId]);
 
-  // Effect 1: compute initial pagination
+  // Effect 1: compute initial pagination with sanitization
   useLayoutEffect(() => {
     if (!data || !templateId) return;
     if (lastSignatureRef.current === signature && planRef.current) {
