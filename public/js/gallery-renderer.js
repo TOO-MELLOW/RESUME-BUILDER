@@ -112,17 +112,6 @@
     paintThumb(container, tid, html);
 }
 
-        if (isStillLoadingPlaceholder(html)) {
-            // HTML shell template still being fetched by loadHtmlTemplates();
-            // retry a few times rather than caching the "loading" placeholder.
-            if (attempt < MAX_RETRIES) setTimeout(() => renderThumbInto(container, tid, attempt + 1), LOADING_RETRY_MS);
-            return;
-        }
-        if (!html) return; // render failed — keep the placeholder SVG icon
-
-        paintThumb(container, tid, html);
-    }
-
     let observer = null;
     function ensureObserver() {
         if (observer) return observer;
