@@ -81,7 +81,8 @@
 [data-template="luxury-editorial-01"],
 [data-template="dark-executive-06"],
 [data-template="modern-swiss-04"],
-[data-template="burgundy-heritage-08"] {
+[data-template="burgundy-heritage-08"],
+[data-template="luxury-portfolio-22"] {
     contain: layout style;
 }
 
