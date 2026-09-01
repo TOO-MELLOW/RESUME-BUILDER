@@ -1,22 +1,3 @@
-// js/gallery-renderer.js
-//
-// Real, live template thumbnails for the gallery grid.
-//
-// The app already has a single rendering engine — renderTemplateContent(data, tid)
-// in script.js — that powers the live editor preview (#cv-root) and feeds the
-// PDF export path. Previously the gallery used a completely separate set of
-// abstract, procedurally-generated SVG icons (SVGS[id]) instead of that engine,
-// so template cards never showed the real design.
-//
-// This file reuses renderTemplateContent() with the app's own sample CV data
-// to render an actual miniature of each template into its gallery card, then
-// scales it to fit with a CSS transform — the same "one engine powers every
-// surface" approach requested for Phase 2 (thumbnail / editor preview / PDF
-// all share renderTemplateContent()).
-//
-// Loaded AFTER script.js. Rendering is lazy (IntersectionObserver) so we only
-// pay the cost for cards that are actually scrolled into view.
-
 (function () {
     const THUMB_CACHE = {};       // tid -> rendered inner HTML (string) once resolved
     let SAMPLE_DATA_BY_CAT = null;
@@ -29,9 +10,7 @@
         try { return JSON.parse(el.textContent); } catch (e) { return null; }
     }
 
-    // Pick a sample dataset that suits the template's category, so e.g. a
-    // "student" or "south-african" template previews with the entry-level
-    // sample CV rather than the default mid-career one.
+
     function getSampleDataFor(tid) {
         if (!SAMPLE_DATA_BY_CAT) {
             const general = parseSampleTag('cv-data');
@@ -74,27 +53,64 @@
         requestAnimationFrame(() => scaleThumb(container, page));
     }
 
-    function renderThumbInto(container, tid, attempt) {
-        attempt = attempt || 0;
-        if (!container || container.dataset.rendered === '1') return;
-        if (typeof renderTemplateContent !== 'function') {
-            // script.js hasn't finished initializing yet — try shortly.
-            if (attempt < MAX_RETRIES) setTimeout(() => renderThumbInto(container, tid, attempt + 1), LOADING_RETRY_MS);
-            return;
-        }
-        const data = getSampleDataFor(tid);
-        if (!data) return; // no sample data available, leave the fallback icon showing
+   function renderThumbInto(container, tid, attempt) {
+    attempt = attempt || 0;
 
-        let html = THUMB_CACHE[tid];
-        if (html === undefined) {
-            try {
-                html = renderTemplateContent(data, tid);
-            } catch (e) {
-                console.error('Gallery thumbnail render failed for', tid, e);
-                html = null;
-            }
-            if (!isStillLoadingPlaceholder(html)) THUMB_CACHE[tid] = html;
+    if (!container || container.dataset.rendered === '1') return;
+
+    if (typeof renderTemplateContent !== 'function') {
+        if (attempt < MAX_RETRIES) {
+            setTimeout(
+                () => renderThumbInto(container, tid, attempt + 1),
+                LOADING_RETRY_MS
+            );
         }
+        return;
+    }
+
+    const data = getSampleDataFor(tid);
+    if (!data) return;
+
+    let html = THUMB_CACHE[tid];
+
+    if (html === undefined) {
+        try {
+            
+            html = renderTemplateContent(data, tid);
+        } catch (e) {
+            console.error(
+                '[gallery-renderer] Thumbnail render failed for:',
+                tid,
+                e
+            );
+            html = null;
+        }
+
+        if (!isStillLoadingPlaceholder(html) && html) {
+            THUMB_CACHE[tid] = html;
+        }
+    }
+
+    if (isStillLoadingPlaceholder(html)) {
+        if (attempt < MAX_RETRIES) {
+            setTimeout(
+                () => renderThumbInto(container, tid, attempt + 1),
+                LOADING_RETRY_MS
+            );
+        }
+        return;
+    }
+
+    if (!html) {
+        console.warn(
+            '[gallery-renderer] No rendered HTML for template:',
+            tid
+        );
+        return;
+    }
+
+    paintThumb(container, tid, html);
+}
 
         if (isStillLoadingPlaceholder(html)) {
             // HTML shell template still being fetched by loadHtmlTemplates();
