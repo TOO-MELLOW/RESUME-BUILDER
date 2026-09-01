@@ -179,7 +179,9 @@ function explodeSections(data, templateId, sections, firstPage, available) {
   return result;
 }
 
-const MIN_SPLIT_SPACE = 60;
+// Adjusted constants
+const MIN_SPLIT_SPACE = 30; // was 60
+const FIT_TOLERANCE = 10;   // was 2
 
 function fillPageSections(data, templateId, remaining, firstPage, available) {
   const chosen = [];
@@ -187,10 +189,10 @@ function fillPageSections(data, templateId, remaining, firstPage, available) {
     const section = remaining[0];
     const candidate = [...chosen, section];
     const h = measureNaturalHeight(data, templateId, candidate, firstPage);
-    if (h <= available + 2 || !chosen.length) {
+    if (h <= available + FIT_TOLERANCE || !chosen.length) {
       chosen.push(section);
       remaining = remaining.slice(1);
-      if (h > available + 2) break;
+      if (h > available + FIT_TOLERANCE) break;
       continue;
     }
     const chosenHeight = measureNaturalHeight(data, templateId, chosen, firstPage);
@@ -238,7 +240,7 @@ function partitionSections(data, templateId, sections, firstPage, available) {
       if (side.length) {
         const candidateSide = [...chosenSide, side[0]];
         const h = measureNaturalHeight(data, templateId, [...candidateSide, ...chosenMain], pageFirst);
-        if (h <= available + 2 || (!chosenSide.length && !chosenMain.length)) {
+        if (h <= available + FIT_TOLERANCE || (!chosenSide.length && !chosenMain.length)) {
           chosenSide.push(side.shift()); progressed = true;
         } else {
           const chosenSideHeight = chosenSide.length ? measureNaturalHeight(data, templateId, chosenSide, pageFirst) : 0;
@@ -252,7 +254,7 @@ function partitionSections(data, templateId, sections, firstPage, available) {
       if (main.length) {
         const candidateMain = [...chosenMain, main[0]];
         const h = measureNaturalHeight(data, templateId, [...chosenSide, ...candidateMain], pageFirst);
-        if (h <= available + 2 || (!chosenSide.length && !chosenMain.length)) {
+        if (h <= available + FIT_TOLERANCE || (!chosenSide.length && !chosenMain.length)) {
           chosenMain.push(main.shift()); progressed = true;
         } else {
           const chosenMainHeight = chosenMain.length ? measureNaturalHeight(data, templateId, chosenMain, pageFirst) : 0;
@@ -495,7 +497,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     pageSpec: getPageSpec(templateId)
   }), [data, templateId]);
 
-  // First effect: compute initial pagination and total height
   useLayoutEffect(() => {
     if (!data || !templateId) return;
     if (lastSignatureRef.current === signature && pagePlan) return;
@@ -511,18 +512,14 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
       if (cancelled) return;
       const next = paginate(data, templateId, effectiveHeight);
       if (cancelled) return;
-      // Measure total height of all sections in the first page (or all pages combined for single page)
       let totalHeight = 0;
       if (next.length === 1) {
-        // measure the first page's sections
         const sections = next[0].sections;
         totalHeight = measureNaturalHeight(data, templateId, sections, true);
       } else {
-        // if multiple pages, we'll always reflow
         totalHeight = effectiveHeight + 1;
       }
       lastTotalHeightRef.current = totalHeight;
-      // Only need reflow if total height exceeds page height
       setShouldReflow(totalHeight > effectiveHeight + 5);
       setPagePlan(next);
       window.requestAnimationFrame(() => {
@@ -535,7 +532,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     };
   }, [signature, data, templateId, onPagesReady]);
 
-  // Second effect: run reflow only if needed and not done yet, and only if total height changed significantly
   useLayoutEffect(() => {
     if (!pagePlan || !data || !templateId) return;
     if (!shouldReflow) {
@@ -548,7 +544,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     (async () => {
       const rootNode = document.getElementById('cv-root');
       if (!rootNode) return;
-      // Measure current total height before reflow to see if it changed
       let newTotalHeight = 0;
       if (pagePlan.length === 1) {
         const sections = pagePlan[0].sections;
@@ -556,8 +551,8 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
       } else {
         newTotalHeight = A4_HEIGHT_PX + 1;
       }
-      // If total height is roughly the same, skip reflow
-      if (Math.abs(newTotalHeight - lastTotalHeightRef.current) < 5) {
+      // Only reflow if height changed by more than 10px
+      if (Math.abs(newTotalHeight - lastTotalHeightRef.current) < 10) {
         reflowDoneRef.current = true;
         onPagesReady?.(pagePlan.length, { overflow: 0 });
         return;
