@@ -27,8 +27,7 @@
   display:block; width:210mm; max-width:210mm; box-sizing:border-box;
   height:auto; max-height:none; overflow:visible;
 }
-
-/* --- NEW RULE: ensure premium root fills the A4 page width without clipping --- */
+/* Ensure premium root fills the page width */
 [data-rf-template-root="true"] {
   width: 100% !important;
   max-width: 100% !important;
@@ -59,7 +58,6 @@
   overflow:visible !important;
 }
 
-
 /* Continuation pages never repeat page-1 identity chrome. Hiding the actual
    semantic header also covers templates whose old contract used a different
    marker. */
@@ -69,5 +67,50 @@
   display:none !important;
 }
 
+/* ---------- FIXES FOR BLINKING, PAGE BREAKS, AND SIDEBAR STICKYNESS ---------- */
+
+/* Improve page breaks for all content blocks */
+.rf-a4-page .main-section,
+.rf-a4-page .side-section,
+.rf-a4-page .entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+/* Prevent blinking / ghost state for specific templates */
+[data-template="luxury-editorial-01"],
+[data-template="dark-executive-06"],
+[data-template="modern-swiss-04"],
+[data-template="burgundy-heritage-08"] {
+    contain: layout style;
+}
+
+/* Fix hanging content on page 2 for specific templates */
+[data-template="magazine-column-portrait-14"] .rf-page-content,
+[data-template="forest-profile-sidebar-05"] .rf-page-content,
+[data-template="architectural-grid-03"] .rf-page-content {
+    display: block;
+    min-height: fit-content;
+}
+
+[data-template="magazine-column-portrait-14"] .content-block,
+[data-template="forest-profile-sidebar-05"] .section-block,
+[data-template="architectural-grid-03"] .section-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Sticky sidebars for specific templates */
+[data-template="magazine-column-portrait-14"] .sidebar,
+[data-template="forest-profile-sidebar-05"] .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+}
+
+/* Responsive */
 @media screen and (max-width:850px) { #cv-root,.rf-resume-document,.rf-a4-page { width:210mm; } }
 @media print { .rf-a4-page { box-shadow:none !important; } }
