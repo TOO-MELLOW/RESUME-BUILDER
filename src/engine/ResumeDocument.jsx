@@ -2,8 +2,17 @@ import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { templateById } from '../data/templates';
 import { templatePageSpecs } from '../data/templatePageSpecs';
 
-const SIDEBAR_TYPES = new Set(['personal-info','skills','languages','certificates','references','interests','strengths','projects','custom']);
+// --- constants ---
+const SIDEBAR_TYPES = new Set([
+  'personal-info', 'skills', 'languages', 'certificates',
+  'references', 'interests', 'strengths', 'projects', 'custom'
+]);
+const A4_HEIGHT_PX = 1122.5;
+const MIN_SPLIT_SPACE = 30;
+const FIT_TOLERANCE = 10;
+const HEIGHT_CHANGE_THRESHOLD = 10;
 
+// --- helpers ---
 function clone(value) { return JSON.parse(JSON.stringify(value)); }
 function escapeAttr(value) {
   return String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -18,26 +27,28 @@ function blankPersonal(data) {
 function getPageSpec(templateId) {
   return templatePageSpecs.find(spec => spec.id === templateId) || null;
 }
-
 function regionTypesFromValue(value) {
   if (Array.isArray(value)) return new Set(value);
   if (typeof value !== 'string') return new Set();
   return new Set(value.split('/').map(v => v.trim()).filter(Boolean));
 }
-
 function regionAllows(spec, region, type) {
   const value = spec?.page1?.contentRegions?.[region] ?? spec?.continuation?.preserveRegions?.[region];
   const types = regionTypesFromValue(value);
   return types.has(type);
 }
-
 function sectionRegion(spec, type) {
   if (regionAllows(spec, 'sidebar', type)) return 'sidebar';
   if (regionAllows(spec, 'main', type)) return 'main';
   if (SIDEBAR_TYPES.has(type)) return 'sidebar';
   return 'main';
 }
+function sectionItems(section) { return Array.isArray(section?.items) ? section.items : []; }
+function cloneSection(section, items, continuation = false) {
+  return { ...clone(section), items: clone(items), ...(continuation ? { __rfContinuation: true } : {}) };
+}
 
+// --- continuation contract ---
 function applyContinuationContract(html, templateId, isContinuation, pageNumber, pageCount) {
   if (!isContinuation) return html;
   const spec = getPageSpec(templateId);
@@ -82,14 +93,17 @@ function markTemplatePageFrames(html) {
 }
 
 function dataForSections(data, sections, firstPage) {
+  // strip any continuation flags to avoid stale state
   const out = clone(data);
-  out.sections = clone(sections).map(section => section?.__rfContinuation ? { ...section, title: '' } : section);
+  out.sections = clone(sections).map(s => {
+    const { __rfContinuation, ...rest } = s;
+    return rest;
+  });
   if (!firstPage) out.personalDetails = blankPersonal(data);
   return out;
 }
-function sectionItems(section) { return Array.isArray(section?.items) ? section.items : []; }
-function cloneSection(section, items, continuation = false) { return { ...clone(section), items: clone(items), ...(continuation ? { __rfContinuation: true } : {}) }; }
 
+// --- measurement and pagination ---
 function measureItemChunk(data, templateId, section, itemsForSection, firstPage) {
   const candidate = cloneSection(section, itemsForSection.map(clone));
   return measureNaturalHeight(data, templateId, [candidate], firstPage);
@@ -178,10 +192,6 @@ function explodeSections(data, templateId, sections, firstPage, available) {
   }
   return result;
 }
-
-// Adjusted constants
-const MIN_SPLIT_SPACE = 30; // was 60
-const FIT_TOLERANCE = 10;   // was 2
 
 function fillPageSections(data, templateId, remaining, firstPage, available) {
   const chosen = [];
@@ -350,8 +360,12 @@ function measureNaturalHeight(data, templateId, sections, firstPage) {
   return height;
 }
 
-function paginate(data, templateId, available = 1122) {
-  const sections = (data.sections || []).filter(s => s.visible !== false).sort((a,b) => (a.order ?? 0) - (b.order ?? 0));
+function paginate(data, templateId, available = A4_HEIGHT_PX) {
+  // Clean sections: remove any continuation flags before paginating
+  const sections = (data.sections || [])
+    .filter(s => s.visible !== false)
+    .sort((a,b) => (a.order ?? 0) - (b.order ?? 0))
+    .map(s => { const { __rfContinuation, ...rest } = s; return rest; });
   const pages = partitionSections(data, templateId, sections, true, available);
   return pages.length ? pages.filter(page => page.sections.length > 0) : [{ sections: [], firstPage: true }];
 }
@@ -451,7 +465,7 @@ async function reflowRenderedOverflow(root, initialPlan, data, templateId) {
     if (!page?.sections?.length) return plan;
 
     const firstPage = !!page.firstPage;
-    const available = 1122.5;
+    const available = A4_HEIGHT_PX;
     const split = splitLastSectionForOverflow(data, templateId, page, firstPage, available);
     if (split && split.headHeight <= available + 2 && split.tailHeight > 0) {
       page.sections.splice(split.index, 1, split.head);
@@ -481,13 +495,13 @@ function PageFrame({ html, templateId, pageIndex, pageCount }) {
   );
 }
 
+// --- Main component ---
 export default function ResumeDocument({ data, templateId, onPagesReady }) {
   const [pagePlan, setPagePlan] = useState(null);
-  const [shouldReflow, setShouldReflow] = useState(false);
-  const A4_HEIGHT_PX = 1122.5;
   const lastSignatureRef = useRef('');
   const reflowDoneRef = useRef(false);
   const lastTotalHeightRef = useRef(0);
+  const planRef = useRef(null);
 
   const signature = useMemo(() => JSON.stringify({
     templateId,
@@ -497,9 +511,13 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     pageSpec: getPageSpec(templateId)
   }), [data, templateId]);
 
+  // Effect 1: compute initial pagination
   useLayoutEffect(() => {
     if (!data || !templateId) return;
-    if (lastSignatureRef.current === signature && pagePlan) return;
+    if (lastSignatureRef.current === signature && planRef.current) {
+      // same data, reuse plan
+      return;
+    }
     lastSignatureRef.current = signature;
     reflowDoneRef.current = false;
 
@@ -520,7 +538,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
         totalHeight = effectiveHeight + 1;
       }
       lastTotalHeightRef.current = totalHeight;
-      setShouldReflow(totalHeight > effectiveHeight + 5);
+      planRef.current = next;
       setPagePlan(next);
       window.requestAnimationFrame(() => {
         if (!cancelled) onPagesReady?.(next.length);
@@ -532,14 +550,20 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     };
   }, [signature, data, templateId, onPagesReady]);
 
+  // Effect 2: run reflow if needed and if height changed significantly
   useLayoutEffect(() => {
     if (!pagePlan || !data || !templateId) return;
-    if (!shouldReflow) {
-      reflowDoneRef.current = true;
-      return;
-    }
     if (reflowDoneRef.current) return;
-
+    if (pagePlan.length === 1) {
+      const sections = pagePlan[0].sections;
+      const h = measureNaturalHeight(data, templateId, sections, true);
+      if (h <= A4_HEIGHT_PX + 5) {
+        reflowDoneRef.current = true;
+        onPagesReady?.(1, { overflow: 0 });
+        return;
+      }
+    }
+    // otherwise run reflow
     let cancelled = false;
     (async () => {
       const rootNode = document.getElementById('cv-root');
@@ -551,8 +575,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
       } else {
         newTotalHeight = A4_HEIGHT_PX + 1;
       }
-      // Only reflow if height changed by more than 10px
-      if (Math.abs(newTotalHeight - lastTotalHeightRef.current) < 10) {
+      if (Math.abs(newTotalHeight - lastTotalHeightRef.current) < HEIGHT_CHANGE_THRESHOLD) {
         reflowDoneRef.current = true;
         onPagesReady?.(pagePlan.length, { overflow: 0 });
         return;
@@ -564,13 +587,14 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
       const before = JSON.stringify(pagePlan);
       const after = JSON.stringify(nextPlan);
       if (before !== after) {
+        planRef.current = nextPlan;
         setPagePlan(nextPlan);
       }
       reflowDoneRef.current = true;
       onPagesReady?.(nextPlan.length, { overflow: getActualPageOverflow(rootNode) });
     })();
     return () => { cancelled = true; };
-  }, [pagePlan, shouldReflow, data, templateId, onPagesReady]);
+  }, [pagePlan, data, templateId, onPagesReady]);
 
   if (!data || !templateId) return null;
   if (!pagePlan) return <div className={`rf-resume-document rf-template-${templateId}`} aria-busy="true" />;
