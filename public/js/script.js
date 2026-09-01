@@ -25,366 +25,381 @@ const BLANK = {
     strengths:       () => ({ id: genId("str"),  value: "" })
 };
 
- const allTemplateIds = TEMPLATE_CONFIGS.map(t => t.id);
-
-    function generateThumbnailSVG(templateId) {
-        const a = getTemplateDefaultColor(templateId);
-        const rr = (x,y,w,h,r,fill,op) =>
-            `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`; 
-        const line = (x,y,w,h,fill,op) => rr(x,y,w,h,1,fill,op!=null?op:0.4);
-        const txt = (x,y,fs,fill,content,anchor) =>
-            `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}"${anchor?` text-anchor="${anchor}"`:''} font-weight="700">${content}</text>`;
-        let body = '';
-        switch(templateId) {
-            case 'modern-01':
-                body += rr(0,0,100,141,2,'#F8F5EF',null);
-                body += rr(0,0,34,141,0,'#ECEAE2',null);
-                body += rr(33,0,2,141,0,a,null);
-                body += txt(17,22,7,'#222','Jane','middle');
-                body += line(6,26,22,2,'#555',0.5); body += line(6,32,18,2,'#888',0.4); body += line(6,38,20,2,'#888',0.3);
-                for(let i=0;i<4;i++){ body += line(6,48+i*16,22,2,a,0.6); body += line(6,53+i*16,16,2,'#999',0.4); }
-                body += line(38,12,55,6,'#222',0.8); body += rr(38,21,30,3,1,a,0.5);
-                body += line(38,30,55,2,'#999',0.3); body += line(38,35,48,2,'#999',0.25);
-                for(let i=0;i<5;i++){ body += rr(38,42+i*16,55,4,1,a,0.25); body += line(38,49+i*16,45,2,'#999',0.35); body += line(38,53+i*16,38,2,'#999',0.25); }
-                break;
-            case 'modern-02':
-                body += rr(0,0,100,141,2,'#EAE8E0',null);
-                body += rr(0,0,34,141,0,'#D6DBE8',null);
-                body += rr(33,0,2,141,0,a,null);
-                body += txt(17,22,7,'#111','Jane','middle');
-                body += line(6,27,22,2,'#444',0.5); body += line(6,33,18,2,'#666',0.4); body += line(6,39,20,2,'#666',0.3);
-                for(let i=0;i<4;i++){ body += line(6,49+i*16,22,2,a,0.7); body += line(6,54+i*16,16,2,'#888',0.4); }
-                body += line(38,12,55,6,'#222',0.8); body += rr(38,21,30,3,1,a,0.5);
-                body += line(38,30,55,2,'#999',0.3); body += line(38,35,48,2,'#999',0.25);
-                for(let i=0;i<5;i++){ body += rr(38,42+i*16,55,4,1,a,0.25); body += line(38,49+i*16,45,2,'#999',0.35); body += line(38,53+i*16,38,2,'#999',0.25); }
-                break;
-            case 'modern-03':
-                body += rr(0,0,100,141,2,'#F2E8D8',null);
-                body += rr(0,0,100,28,0,a,null);
-                body += txt(50,16,8,'#fff','Jane Mokoena','middle');
-                body += rr(30,21,40,2,1,'rgba(255,255,255,0.4)',null);
-                body += line(10,25,80,1.5,'rgba(255,255,255,0.5)',0.7);
-                for(let i=0;i<6;i++){ body += rr(10,34+i*16,80,4,1,a,0.22); body += line(10,41+i*16,65,2,'#888',0.35); body += line(10,45+i*16,50,2,'#888',0.25); }
-                break;
-            case 'ats-01':
-                body += rr(0,0,100,141,2,'#FAFAFA',null);
-                body += rr(0,0,100,3,0,a,null);
-                body += txt(10,16,9,'#111','Jane Mokoena','start');
-                body += rr(10,19,30,2.5,1,a,0.5); body += line(10,25,80,1,'#111',0.8); body += line(10,30,60,2,'#555',0.4);
-                for(let i=0;i<7;i++){ body += rr(10,36+i*13,50,3,1,'#111',0.15); body += line(10,42+i*13,70,2,'#999',0.35); body += line(10,46+i*13,55,2,'#999',0.25); }
-                break;
-            case 'ats-02':
-                body += rr(0,0,100,141,2,'#FAFAFA',null);
-                body += txt(8,14,8,'#111','Jane Mokoena','start');
-                body += line(8,18,40,2,'#555',0.5);
-                body += line(62,10,32,2,'#888',0.4); body += line(62,14,28,2,'#888',0.3); body += line(62,18,30,2,'#888',0.3);
-                body += line(8,24,84,1.5,'#111',0.9); body += line(8,30,80,2,'#555',0.3);
-                for(let i=0;i<7;i++){ body += rr(8,36+i*13,50,3,1,'#111',0.12); body += line(8,42+i*13,72,2,'#999',0.32); body += line(8,46+i*13,60,2,'#999',0.22); }
-                break;
-            case 'ats-03':
-                body += rr(0,0,100,141,2,'#FDF9F4',null);
-                body += txt(10,12,8,'#2A1F14','Jane Mokoena','start');
-                body += line(10,15,42,2,'#5C4A38',0.5); body += line(10,20,80,1,'#5C4A38',0.6); body += line(10,24,80,1.5,'#BBA',0.4);
-                for(let i=0;i<9;i++){ body += rr(10,28+i*11,45,2.5,0,'#5C4A38',0.12); body += line(10,33+i*11,72,1.5,'#9A8878',0.35); body += line(10,36+i*11,55,1.5,'#9A8878',0.22); }
-                break;
-            case 'ats-04':
-                body += rr(0,0,100,141,2,'#FAFAFA',null);
-                body += txt(10,12,8,'#111','JANE MOKOENA','start');
-                body += line(10,16,45,1.5,'#555',0.5); body += line(10,21,80,1,'#111',0.5);
-                for(let i=0;i<6;i++){ body += rr(8,29+i*17,3,8,0,a,0.8); body += rr(13,29+i*17,30,4,1,a,0.15); body += line(8,37+i*17,72,2,'#999',0.35); body += line(8,41+i*17,55,2,'#999',0.25); }
-                break;
-            case 'executive-01':
-                body += rr(0,0,100,141,2,'#FAFAFA',null);
-                body += rr(0,0,100,34,0,'#1B2A4A',null);
-                body += txt(50,18,8,'#fff','Jane Mokoena','middle');
-                body += rr(35,22,30,1.5,0,'rgba(255,255,255,0.4)',null); body += line(20,27,60,1,'rgba(255,255,255,0.5)',0.7); body += line(10,30,80,1,'rgba(255,255,255,0.2)',0.5);
-                for(let i=0;i<6;i++){ body += rr(10,40+i*15,80,4,1,'#1B2A4A',0.12); body += line(10,47+i*15,65,2,'#999',0.35); body += line(10,51+i*15,50,2,'#999',0.25); }
-                break;
-            case 'executive-02':
-                body += rr(0,0,100,141,2,'#FAFAFA',null);
-                body += rr(0,0,36,141,0,'#1B2A4A',null);
-                body += rr(35,0,3,141,0,a,null);
-                body += txt(18,22,7,'#fff','Jane','middle');
-                body += line(5,26,26,1.5,a,0.8); body += line(5,32,22,2,'rgba(255,255,255,0.5)',0.5); body += line(5,37,18,1.5,'rgba(255,255,255,0.4)',0.4);
-                for(let i=0;i<4;i++){ body += line(5,47+i*17,24,2,a,0.5); body += line(5,52+i*17,18,1.5,'rgba(255,255,255,0.3)',0.5); }
-                body += line(40,10,54,6,'#222',0.7); body += rr(40,20,28,3,1,a,0.5); body += rr(40,27,54,1.5,0,'#1B2A4A',0.7);
-                for(let i=0;i<5;i++){ body += rr(40,33+i*16,54,4,1,'#1B2A4A',0.1); body += line(40,40+i*16,44,2,'#999',0.35); body += line(40,44+i*16,38,2,'#999',0.25); }
-                break;
-            case 'creative-01':
-                body += rr(0,0,100,141,2,'#F8F5F0',null);
-                body += rr(0,0,100,26,0,a,null);
-                body += txt(50,15,9,'#fff','CREATIVE CV','middle');
-                body += line(15,22,70,1,'rgba(255,255,255,0.4)',0.7);
-                body += rr(0,26,35,115,0,'#F0EDE8',null); body += rr(33,26,2,115,0,a,null);
-                for(let i=0;i<5;i++){ body += line(5,33+i*18,25,2,a,0.5); body += line(5,38+i*18,18,2,'#888',0.35); }
-                for(let i=0;i<5;i++){ body += rr(38,32+i*19,55,4,1,a,0.2); body += line(38,39+i*19,48,2,'#888',0.35); body += line(38,43+i*19,40,2,'#888',0.25); }
-                break;
-            case 'split-01':
-                body += rr(0,0,100,141,2,'#EEF1F5',null);
-                body += txt(6,12,7,'#222','Jane Mokoena','start');
-                body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#888',0.3);
-                for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,40,3,'#222',0.6); body += line(13,36+i*24,35,2,'#888',0.4); body += line(13,40+i*24,30,2,'#888',0.3); }
-                body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#E4E7EB',null);
-                for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); body += line(80,15+i*16,12,2,'#aaa',0.3); }
-                break;
-            case 'split-02':
-                body += rr(0,0,100,141,2,'#ECF0F4',null);
-                body += txt(6,12,7,'#222','Jane Mokoena','start');
-                body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#888',0.3);
-                for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,38,3,'#222',0.6); body += line(13,36+i*24,30,2,'#888',0.4); body += line(13,40+i*24,26,2,'#888',0.3); }
-                body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#D0D8E8',null);
-                for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); }
-                break;
-            case 'split-03':
-                body += rr(0,0,100,141,2,'#F5EEED',null);
-                body += txt(6,12,7,'#222','Jane Mokoena','start');
-                body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#ccc',0.5);
-                for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,36,3,'#222',0.6); body += line(13,36+i*24,28,2,'#888',0.4); body += line(13,40+i*24,24,2,'#888',0.3); }
-                body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#E8D0CF',null);
-                for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); }
-                break;
-            case 'split-04':
-                body += rr(0,0,100,141,2,'#EEECEA',null);
-                body += txt(6,12,7,'#222','Jane Mokoena','start');
-                body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#aaa',0.5);
-                for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,34,3,'#222',0.6); body += line(13,36+i*24,26,2,'#888',0.4); }
-                body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#CCC',null);
-                for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,14,2,'#888',0.5); }
-                break;
-            case 'timeline-01':
-                body += rr(0,0,100,141,2,'#FAFCFB',null);
-                body += txt(10,12,8,'#1B2A4A','Jane Mokoena','start');
-                body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.4);
-                body += rr(16,28,2,105,0,a,0.3);
-                for(let i=0;i<5;i++){ body += rr(13,30+i*20,8,8,4,a,1); body += line(24,33+i*20,60,3,'#222',0.5); body += line(24,39+i*20,50,2,'#888',0.35); body += line(24,43+i*20,42,2,'#888',0.25); }
-                break;
-            case 'timeline-02':
-                body += rr(0,0,100,141,2,'#F9F9F9',null);
-                body += txt(10,12,8,'#222','Jane Mokoena','start');
-                body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.4);
-                body += rr(16,28,2,105,0,a,0.3);
-                for(let i=0;i<5;i++){ body += rr(12,30+i*20,10,10,5,a,0.9); body += rr(14,32+i*20,6,6,3,'#F9F9F9',1); body += line(24,33+i*20,58,3,'#333',0.5); body += line(24,39+i*20,48,2,'#888',0.35); body += line(24,43+i*20,40,2,'#888',0.25); }
-                break;
-            case 'timeline-03':
-                body += rr(0,0,100,141,2,'#F5F7FA',null);
-                body += txt(10,12,8,'#1B2A4A','Jane Mokoena','start');
-                body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.5);
-                body += rr(16,28,2,105,0,a,0.25);
-                for(let i=0;i<5;i++){ body += rr(12,30+i*20,8,8,4,'#fff',1); body += rr(12,30+i*20,8,8,4,a,0.8); body += rr(14,32+i*20,4,4,2,'#fff',1); body += line(24,33+i*20,62,3,'#1B2A4A',0.4); body += line(24,39+i*20,52,2,'#888',0.35); body += line(24,43+i*20,44,2,'#888',0.25); }
-                break;
-            case 'combined-01':
-                body += rr(0,0,100,141,2,'#FAFCFB',null);
-                body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#ccc',0.6);
-                for(let i=0;i<4;i++){ body += rr(10,23+i*26,20,5,3,a,0.8); body += line(32,25+i*26,12,3,'#888',0.3); body += line(10,31+i*26,70,2.5,'#222',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,50,2,'#888',0.25); }
-                break;
-            case 'combined-02':
-                body += rr(0,0,100,141,2,'#FDF8F5',null);
-                body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#ddd',0.6);
-                for(let i=0;i<4;i++){ body += rr(10,23+i*26,22,5,3,a,0.8); body += line(34,25+i*26,10,3,'#888',0.3); body += line(10,31+i*26,72,2.5,'#222',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
-                break;
-            case 'combined-03':
-                body += rr(0,0,100,141,2,'#F5F8FC',null);
-                body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#cce',0.5);
-                for(let i=0;i<4;i++){ body += rr(10,23+i*26,18,5,3,a,0.8); body += line(30,25+i*26,14,3,'#88a',0.3); body += line(10,31+i*26,72,2.5,'#1B2A4A',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
-                break;
-            case 'combined-04':
-                body += rr(0,0,100,141,2,'#F8F9F4',null);
-                body += txt(10,10,7,'#333','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#cdc',0.5);
-                for(let i=0;i<4;i++){ body += rr(10,23+i*26,16,5,3,a,0.8); body += line(28,25+i*26,14,3,'#8a8',0.3); body += line(10,31+i*26,72,2.5,'#333',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
-                break;
-            case 'practical-01':
-                body += rr(0,0,100,141,2,'#FAFCFB',null);
-                body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
-                body += txt(10,26,6,a,'AVAILABILITY','start');
-                for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,28,2,'#222',0.5); body += line(20+j*45,37+i*12,20,2,'#888',0.35); }
-                body += line(10,58,80,1,'#ddd',0.5);
-                for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,60,3,'#222',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
-                break;
-            case 'practical-02':
-                body += rr(0,0,100,141,2,'#F5F7FA',null);
-                body += txt(10,10,7,'#1B2A4A','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
-                body += txt(10,26,6,a,'AVAILABILITY','start');
-                for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,26,2,'#1B2A4A',0.5); body += line(20+j*45,37+i*12,18,2,'#888',0.35); }
-                body += line(10,58,80,1,'#ddd',0.5);
-                for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,62,3,'#1B2A4A',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
-                break;
-            case 'practical-03':
-                body += rr(0,0,100,141,2,'#F7F7F7',null);
-                body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
-                body += txt(10,26,6,'#555','AVAILABILITY','start');
-                for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,24,2,'#333',0.5); body += line(20+j*45,37+i*12,16,2,'#888',0.35); }
-                body += line(10,58,80,1,'#ccc',0.5);
-                for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,62,3,'#333',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
-                break;
-            case 'functional-01':
-                body += rr(0,0,100,141,2,'#FAFCFB',null);
-                body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
-                for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,40,3,'#222',0.6); body += line(17,31+i*22,60,2,'#888',0.35); body += line(17,35+i*22,50,2,'#888',0.25); }
-                body += line(10,93,80,1,'#ccc',0.5); body += txt(10,101,6,a,'WORK HISTORY','start');
-                for(let i=0;i<2;i++){ body += line(10,107+i*13,45,2.5,'#222',0.5); body += line(10,112+i*13,35,2,'#888',0.35); }
-                break;
-            case 'functional-02':
-                body += rr(0,0,100,141,2,'#F5F7FA',null);
-                body += txt(10,10,7,'#1B2A4A','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
-                for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,38,3,'#1B2A4A',0.6); body += line(17,31+i*22,62,2,'#888',0.35); body += line(17,35+i*22,52,2,'#888',0.25); }
-                body += line(10,93,80,1,'#bbd',0.5); body += txt(10,101,6,a,'WORK HISTORY','start');
-                for(let i=0;i<2;i++){ body += line(10,107+i*13,48,2.5,'#1B2A4A',0.5); body += line(10,112+i*13,38,2,'#888',0.35); }
-                break;
-            case 'functional-03':
-                body += rr(0,0,100,141,2,'#FDFAF5',null);
-                body += txt(10,10,7,'#2A1F08','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
-                for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,36,3,'#2A1F08',0.6); body += line(17,31+i*22,62,2,'#888',0.35); body += line(17,35+i*22,50,2,'#888',0.25); }
-                body += line(10,93,80,1,'#e8d8a0',0.6); body += txt(10,101,6,a,'WORK HISTORY','start');
-                for(let i=0;i<2;i++){ body += line(10,107+i*13,44,2.5,'#2A1F08',0.5); body += line(10,112+i*13,36,2,'#888',0.35); }
-                break;
-            case 'trade-01':
-                body += rr(0,0,100,141,2,'#F5F7F8',null); body += rr(0,0,100,26,0,'#1B3A4B',null);
-                body += txt(10,15,8,'#fff','Thabo Sekgobela','start'); body += line(10,21,50,2,'#8DB8D0',0.7);
-                for(let i=0;i<3;i++){ body += rr(8+i*30,30,24,9,5,'#F0F4F8',1); body += rr(8+i*30,30,9,9,5,a,1); }
-                body += txt(8,48,6,a,'TOOLS','start');
-                for(let i=0;i<5;i++) body += rr(8+i*18,52,14,7,4,'#E4E9EE',1);
-                body += txt(8,68,6,a,'EXPERIENCE','start');
-                for(let i=0;i<3;i++){ body += rr(8,72+i*20,84,14,3,'#F7F9FB',1); body += rr(8,72+i*20,3,14,1,a,1); body += line(14,76+i*20,50,3,'#222',0.6); body += line(14,81+i*20,42,2,'#888',0.35); }
-                break;
-            case 'trade-02':
-                body += rr(0,0,100,141,2,'#FDF8F4',null); body += rr(0,0,100,17,0,'#7A3A1B',null);
-                body += txt(6,11,7,'#fff','Thabo Sekgobela','start'); body += line(60,11,34,1.5,'#F5C9A8',0.7);
-                body += rr(0,17,39,124,0,'#F0E4DC',null); body += rr(38,17,1.5,124,0,'#E0C8B8',null);
-                body += txt(6,27,5.5,a,'CREDENTIALS','start');
-                for(let i=0;i<3;i++){ body += rr(6,31+i*10,5,5,2.5,a,0.9); body += line(13,35+i*10,26,2,'#5C4A3E',0.5); }
-                body += txt(6,68,5.5,a,'TOOLS','start');
-                for(let i=0;i<4;i++) body += rr(6,72+i*9,30,6,3,'#FFF3EE',1);
-                body += txt(42,27,6,'#2A1808','EXPERIENCE','start');
-                for(let i=0;i<3;i++){ body += rr(42,31+i*20,52,15,3,'#FBF5F0',1); body += rr(42,31+i*20,3,15,1,a,1); body += line(48,35+i*20,38,3,'#222',0.6); body += line(48,40+i*20,32,2,'#888',0.35); }
-                break;
-            case 'trade-03':
-                body += rr(0,0,100,141,2,'#F7F7F7',null); body += rr(0,0,100,26,0,'#2C2C2C',null);
-                body += txt(10,15,8,'#fff','Thabo Sekgobela','start'); body += line(10,21,50,2,'#B0B0B0',0.7);
-                for(let i=0;i<3;i++){ body += rr(8+i*30,30,24,9,5,'#F2F2F2',1); body += rr(8+i*30,30,9,9,5,a,1); }
-                body += txt(8,48,6,a,'TOOLS','start');
-                for(let i=0;i<5;i++) body += rr(8+i*18,52,14,7,4,'#E8E8E8',1);
-                body += txt(8,68,6,a,'EXPERIENCE','start');
-                for(let i=0;i<3;i++){ body += rr(8,72+i*20,84,14,3,'#F5F5F5',1); body += rr(8,72+i*20,3,14,1,a,1); body += line(14,76+i*20,50,3,'#333',0.6); body += line(14,81+i*20,42,2,'#888',0.35); }
-                break;
-            case 'starter-01':
-                body += rr(0,0,100,141,2,'#FAFCFB',null); body += rr(0,0,100,26,0,a,null);
-                body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
-                body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
-                body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#aaa',0.4);
-                body += txt(8,42,6,a,'SKILLS','start');
-                for(let i=0;i<5;i++){ const w=[72,58,85,45,65][i]; body += line(8,48+i*12,30,2,'#444',0.5); body += rr(42,46+i*12,50,3,2,'#E8F0EE',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
-                body += txt(8,108,6,a,'EXPERIENCE','start');
-                for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#222',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
-                break;
-            case 'starter-02':
-                body += rr(0,0,100,141,2,'#FDF8F5',null); body += rr(0,0,100,26,0,a,null);
-                body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
-                body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
-                body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#ccc',0.4);
-                body += txt(8,42,6,a,'SKILLS','start');
-                for(let i=0;i<5;i++){ const w=[68,55,82,48,60][i]; body += line(8,48+i*12,30,2,'#444',0.5); body += rr(42,46+i*12,50,3,2,'#F5E8E4',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
-                body += txt(8,108,6,a,'EXPERIENCE','start');
-                for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#222',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
-                break;
-            case 'starter-03':
-                body += rr(0,0,100,141,2,'#F5F8FC',null); body += rr(0,0,100,26,0,a,null);
-                body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
-                body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
-                body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#bbd',0.4);
-                body += txt(8,42,6,a,'SKILLS','start');
-                for(let i=0;i<5;i++){ const w=[75,52,88,42,68][i]; body += line(8,48+i*12,30,2,'#1B2A4A',0.5); body += rr(42,46+i*12,50,3,2,'#E4EAF5',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
-                body += txt(8,108,6,a,'EXPERIENCE','start');
-                for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#1B2A4A',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
-                break;
-            case 'mono-01':
-                body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#F5F0EA',null);
-                body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
-                body += txt(50,38,7,'#2A2520','Jane Mokoena','middle'); body += line(20,43,60,1,'#E4DFD8',0.7);
-                for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.2); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.2); body += line(54,60+i*18,32,2,'#888',0.35); }
-                break;
-            case 'mono-02':
-                body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#F0F4EE',null);
-                body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
-                body += txt(50,38,7,'#2A3020','Jane Mokoena','middle'); body += line(20,43,60,1,'#D8E0D4',0.7);
-                for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.25); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.25); body += line(54,60+i*18,32,2,'#888',0.35); }
-                break;
-            case 'mono-03':
-                body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#EEF1F8',null);
-                body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
-                body += txt(50,38,7,'#20283A','Jane Mokoena','middle'); body += line(20,43,60,1,'#D4D8E8',0.7);
-                for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.25); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.25); body += line(54,60+i*18,32,2,'#888',0.35); }
-                break;
-            case 'facet-01':
-                body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
-                body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
-                body += txt(15,26,6,'rgba(255,255,255,0.8)','Contact','middle');
-                for(let i=0;i<5;i++) body += line(4,32+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
-                body += txt(15,88,6,'rgba(255,255,255,0.8)','Skills','middle');
-                for(let i=0;i<4;i++) body += line(4,94+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
-                body += txt(34,14,8,'#222','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
-                for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
-                break;
-            case 'facet-02':
-                body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
-                body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
-                for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
-                for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
-                body += txt(34,14,8,'#111','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
-                for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
-                break;
-            case 'facet-03':
-                body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
-                body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
-                for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
-                for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
-                body += txt(34,14,8,'#2A102A','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
-                for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
-                break;
-            case 'facet-04':
-                body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
-                body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
-                for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
-                for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
-                body += txt(34,14,8,'#2A1E08','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
-                for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
-                break;
-            case 'duo-01':
-                body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#F0EDE8',null); body += rr(29,0,1.5,141,0,'#DDD8D2',null);
-                body += txt(15,18,7,'#2A2520','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
-                body += line(5,26,20,2,'#888',0.4); body += line(5,31,18,2,'#888',0.35); body += line(5,36,20,2,'#888',0.3);
-                for(let i=0;i<4;i++){ body += line(5,46+i*16,22,2,a,0.5); body += line(5,51+i*16,16,2,'#888',0.35); body += line(5,55+i*16,14,2,'#888',0.25); }
-                body += txt(34,12,7,'#2A2520','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
-                for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#222',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
-                break;
-            case 'duo-02':
-                body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#EEF0EB',null); body += rr(29,0,1.5,141,0,'#CDD0C8',null);
-                body += txt(15,18,7,'#2A3020','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
-                body += line(5,26,20,2,'#666',0.4); body += line(5,31,18,2,'#666',0.35);
-                for(let i=0;i<4;i++){ body += line(5,41+i*16,22,2,a,0.5); body += line(5,46+i*16,16,2,'#888',0.35); }
-                body += txt(34,12,7,'#2A3020','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
-                for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#2A3020',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
-                break;
-            case 'duo-03':
-                body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#EEECEA',null); body += rr(29,0,1.5,141,0,'#CCC9C6',null);
-                body += txt(15,18,7,'#2A2520','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
-                body += line(5,26,20,2,'#777',0.4); body += line(5,31,18,2,'#777',0.35);
-                for(let i=0;i<4;i++){ body += line(5,41+i*16,22,2,a,0.5); body += line(5,46+i*16,16,2,'#888',0.35); }
-                body += txt(34,12,7,'#2A2520','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
-                for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#333',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
-                break;
-            default:
-                body += rr(0,0,100,141,2,'#F8F8F8',null); body += rr(0,0,100,6,0,a,null);
-                body += txt(10,18,7,'#222',templateId,'start');
-                for(let i=0;i<6;i++) body += line(10,28+i*16,80,3,'#999',0.3);
-        }
-        return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+// --- SECTION SANITIZER (fixes duplication & ghost sections) ---
+function sanitizeSections(sections) {
+    if (!Array.isArray(sections)) return [];
+    const seen = new Set();
+    const result = [];
+    for (const section of sections) {
+        if (!section || typeof section !== 'object') continue;
+        // Ensure each section has an id; assign one if missing.
+        if (!section.id) section.id = genId(section.type || 'sec');
+        if (seen.has(section.id)) continue;
+        seen.add(section.id);
+        result.push(section);
     }
+    return result;
+}
 
-    const SVGS = {};
-    allTemplateIds.forEach(id => { SVGS[id] = generateThumbnailSVG(id); });
+const allTemplateIds = TEMPLATE_CONFIGS.map(t => t.id);
 
+function generateThumbnailSVG(templateId) {
+    const a = getTemplateDefaultColor(templateId);
+    const rr = (x,y,w,h,r,fill,op) =>
+        `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
+    const line = (x,y,w,h,fill,op) => rr(x,y,w,h,1,fill,op!=null?op:0.4);
+    const txt = (x,y,fs,fill,content,anchor) =>
+        `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}"${anchor?` text-anchor="${anchor}"`:''} font-weight="700">${content}</text>`;
+    let body = '';
+    switch(templateId) {
+        case 'modern-01':
+            body += rr(0,0,100,141,2,'#F8F5EF',null);
+            body += rr(0,0,34,141,0,'#ECEAE2',null);
+            body += rr(33,0,2,141,0,a,null);
+            body += txt(17,22,7,'#222','Jane','middle');
+            body += line(6,26,22,2,'#555',0.5); body += line(6,32,18,2,'#888',0.4); body += line(6,38,20,2,'#888',0.3);
+            for(let i=0;i<4;i++){ body += line(6,48+i*16,22,2,a,0.6); body += line(6,53+i*16,16,2,'#999',0.4); }
+            body += line(38,12,55,6,'#222',0.8); body += rr(38,21,30,3,1,a,0.5);
+            body += line(38,30,55,2,'#999',0.3); body += line(38,35,48,2,'#999',0.25);
+            for(let i=0;i<5;i++){ body += rr(38,42+i*16,55,4,1,a,0.25); body += line(38,49+i*16,45,2,'#999',0.35); body += line(38,53+i*16,38,2,'#999',0.25); }
+            break;
+        case 'modern-02':
+            body += rr(0,0,100,141,2,'#EAE8E0',null);
+            body += rr(0,0,34,141,0,'#D6DBE8',null);
+            body += rr(33,0,2,141,0,a,null);
+            body += txt(17,22,7,'#111','Jane','middle');
+            body += line(6,27,22,2,'#444',0.5); body += line(6,33,18,2,'#666',0.4); body += line(6,39,20,2,'#666',0.3);
+            for(let i=0;i<4;i++){ body += line(6,49+i*16,22,2,a,0.7); body += line(6,54+i*16,16,2,'#888',0.4); }
+            body += line(38,12,55,6,'#222',0.8); body += rr(38,21,30,3,1,a,0.5);
+            body += line(38,30,55,2,'#999',0.3); body += line(38,35,48,2,'#999',0.25);
+            for(let i=0;i<5;i++){ body += rr(38,42+i*16,55,4,1,a,0.25); body += line(38,49+i*16,45,2,'#999',0.35); body += line(38,53+i*16,38,2,'#999',0.25); }
+            break;
+        case 'modern-03':
+            body += rr(0,0,100,141,2,'#F2E8D8',null);
+            body += rr(0,0,100,28,0,a,null);
+            body += txt(50,16,8,'#fff','Jane Mokoena','middle');
+            body += rr(30,21,40,2,1,'rgba(255,255,255,0.4)',null);
+            body += line(10,25,80,1.5,'rgba(255,255,255,0.5)',0.7);
+            for(let i=0;i<6;i++){ body += rr(10,34+i*16,80,4,1,a,0.22); body += line(10,41+i*16,65,2,'#888',0.35); body += line(10,45+i*16,50,2,'#888',0.25); }
+            break;
+        case 'ats-01':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += rr(0,0,100,3,0,a,null);
+            body += txt(10,16,9,'#111','Jane Mokoena','start');
+            body += rr(10,19,30,2.5,1,a,0.5); body += line(10,25,80,1,'#111',0.8); body += line(10,30,60,2,'#555',0.4);
+            for(let i=0;i<7;i++){ body += rr(10,36+i*13,50,3,1,'#111',0.15); body += line(10,42+i*13,70,2,'#999',0.35); body += line(10,46+i*13,55,2,'#999',0.25); }
+            break;
+        case 'ats-02':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += txt(8,14,8,'#111','Jane Mokoena','start');
+            body += line(8,18,40,2,'#555',0.5);
+            body += line(62,10,32,2,'#888',0.4); body += line(62,14,28,2,'#888',0.3); body += line(62,18,30,2,'#888',0.3);
+            body += line(8,24,84,1.5,'#111',0.9); body += line(8,30,80,2,'#555',0.3);
+            for(let i=0;i<7;i++){ body += rr(8,36+i*13,50,3,1,'#111',0.12); body += line(8,42+i*13,72,2,'#999',0.32); body += line(8,46+i*13,60,2,'#999',0.22); }
+            break;
+        case 'ats-03':
+            body += rr(0,0,100,141,2,'#FDF9F4',null);
+            body += txt(10,12,8,'#2A1F14','Jane Mokoena','start');
+            body += line(10,15,42,2,'#5C4A38',0.5); body += line(10,20,80,1,'#5C4A38',0.6); body += line(10,24,80,1.5,'#BBA',0.4);
+            for(let i=0;i<9;i++){ body += rr(10,28+i*11,45,2.5,0,'#5C4A38',0.12); body += line(10,33+i*11,72,1.5,'#9A8878',0.35); body += line(10,36+i*11,55,1.5,'#9A8878',0.22); }
+            break;
+        case 'ats-04':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += txt(10,12,8,'#111','JANE MOKOENA','start');
+            body += line(10,16,45,1.5,'#555',0.5); body += line(10,21,80,1,'#111',0.5);
+            for(let i=0;i<6;i++){ body += rr(8,29+i*17,3,8,0,a,0.8); body += rr(13,29+i*17,30,4,1,a,0.15); body += line(8,37+i*17,72,2,'#999',0.35); body += line(8,41+i*17,55,2,'#999',0.25); }
+            break;
+        case 'executive-01':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += rr(0,0,100,34,0,'#1B2A4A',null);
+            body += txt(50,18,8,'#fff','Jane Mokoena','middle');
+            body += rr(35,22,30,1.5,0,'rgba(255,255,255,0.4)',null); body += line(20,27,60,1,'rgba(255,255,255,0.5)',0.7); body += line(10,30,80,1,'rgba(255,255,255,0.2)',0.5);
+            for(let i=0;i<6;i++){ body += rr(10,40+i*15,80,4,1,'#1B2A4A',0.12); body += line(10,47+i*15,65,2,'#999',0.35); body += line(10,51+i*15,50,2,'#999',0.25); }
+            break;
+        case 'executive-02':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += rr(0,0,36,141,0,'#1B2A4A',null);
+            body += rr(35,0,3,141,0,a,null);
+            body += txt(18,22,7,'#fff','Jane','middle');
+            body += line(5,26,26,1.5,a,0.8); body += line(5,32,22,2,'rgba(255,255,255,0.5)',0.5); body += line(5,37,18,1.5,'rgba(255,255,255,0.4)',0.4);
+            for(let i=0;i<4;i++){ body += line(5,47+i*17,24,2,a,0.5); body += line(5,52+i*17,18,1.5,'rgba(255,255,255,0.3)',0.5); }
+            body += line(40,10,54,6,'#222',0.7); body += rr(40,20,28,3,1,a,0.5); body += rr(40,27,54,1.5,0,'#1B2A4A',0.7);
+            for(let i=0;i<5;i++){ body += rr(40,33+i*16,54,4,1,'#1B2A4A',0.1); body += line(40,40+i*16,44,2,'#999',0.35); body += line(40,44+i*16,38,2,'#999',0.25); }
+            break;
+        case 'creative-01':
+            body += rr(0,0,100,141,2,'#F8F5F0',null);
+            body += rr(0,0,100,26,0,a,null);
+            body += txt(50,15,9,'#fff','CREATIVE CV','middle');
+            body += line(15,22,70,1,'rgba(255,255,255,0.4)',0.7);
+            body += rr(0,26,35,115,0,'#F0EDE8',null); body += rr(33,26,2,115,0,a,null);
+            for(let i=0;i<5;i++){ body += line(5,33+i*18,25,2,a,0.5); body += line(5,38+i*18,18,2,'#888',0.35); }
+            for(let i=0;i<5;i++){ body += rr(38,32+i*19,55,4,1,a,0.2); body += line(38,39+i*19,48,2,'#888',0.35); body += line(38,43+i*19,40,2,'#888',0.25); }
+            break;
+        case 'split-01':
+            body += rr(0,0,100,141,2,'#EEF1F5',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#888',0.3);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,40,3,'#222',0.6); body += line(13,36+i*24,35,2,'#888',0.4); body += line(13,40+i*24,30,2,'#888',0.3); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#E4E7EB',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); body += line(80,15+i*16,12,2,'#aaa',0.3); }
+            break;
+        case 'split-02':
+            body += rr(0,0,100,141,2,'#ECF0F4',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#888',0.3);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,38,3,'#222',0.6); body += line(13,36+i*24,30,2,'#888',0.4); body += line(13,40+i*24,26,2,'#888',0.3); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#D0D8E8',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); }
+            break;
+        case 'split-03':
+            body += rr(0,0,100,141,2,'#F5EEED',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#ccc',0.5);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,36,3,'#222',0.6); body += line(13,36+i*24,28,2,'#888',0.4); body += line(13,40+i*24,24,2,'#888',0.3); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#E8D0CF',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); }
+            break;
+        case 'split-04':
+            body += rr(0,0,100,141,2,'#EEECEA',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#aaa',0.5);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,34,3,'#222',0.6); body += line(13,36+i*24,26,2,'#888',0.4); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#CCC',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,14,2,'#888',0.5); }
+            break;
+        case 'timeline-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,12,8,'#1B2A4A','Jane Mokoena','start');
+            body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.4);
+            body += rr(16,28,2,105,0,a,0.3);
+            for(let i=0;i<5;i++){ body += rr(13,30+i*20,8,8,4,a,1); body += line(24,33+i*20,60,3,'#222',0.5); body += line(24,39+i*20,50,2,'#888',0.35); body += line(24,43+i*20,42,2,'#888',0.25); }
+            break;
+        case 'timeline-02':
+            body += rr(0,0,100,141,2,'#F9F9F9',null);
+            body += txt(10,12,8,'#222','Jane Mokoena','start');
+            body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.4);
+            body += rr(16,28,2,105,0,a,0.3);
+            for(let i=0;i<5;i++){ body += rr(12,30+i*20,10,10,5,a,0.9); body += rr(14,32+i*20,6,6,3,'#F9F9F9',1); body += line(24,33+i*20,58,3,'#333',0.5); body += line(24,39+i*20,48,2,'#888',0.35); body += line(24,43+i*20,40,2,'#888',0.25); }
+            break;
+        case 'timeline-03':
+            body += rr(0,0,100,141,2,'#F5F7FA',null);
+            body += txt(10,12,8,'#1B2A4A','Jane Mokoena','start');
+            body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.5);
+            body += rr(16,28,2,105,0,a,0.25);
+            for(let i=0;i<5;i++){ body += rr(12,30+i*20,8,8,4,'#fff',1); body += rr(12,30+i*20,8,8,4,a,0.8); body += rr(14,32+i*20,4,4,2,'#fff',1); body += line(24,33+i*20,62,3,'#1B2A4A',0.4); body += line(24,39+i*20,52,2,'#888',0.35); body += line(24,43+i*20,44,2,'#888',0.25); }
+            break;
+        case 'combined-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#ccc',0.6);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,20,5,3,a,0.8); body += line(32,25+i*26,12,3,'#888',0.3); body += line(10,31+i*26,70,2.5,'#222',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,50,2,'#888',0.25); }
+            break;
+        case 'combined-02':
+            body += rr(0,0,100,141,2,'#FDF8F5',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#ddd',0.6);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,22,5,3,a,0.8); body += line(34,25+i*26,10,3,'#888',0.3); body += line(10,31+i*26,72,2.5,'#222',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
+            break;
+        case 'combined-03':
+            body += rr(0,0,100,141,2,'#F5F8FC',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#cce',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,18,5,3,a,0.8); body += line(30,25+i*26,14,3,'#88a',0.3); body += line(10,31+i*26,72,2.5,'#1B2A4A',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
+            break;
+        case 'combined-04':
+            body += rr(0,0,100,141,2,'#F8F9F4',null);
+            body += txt(10,10,7,'#333','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#cdc',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,16,5,3,a,0.8); body += line(28,25+i*26,14,3,'#8a8',0.3); body += line(10,31+i*26,72,2.5,'#333',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
+            break;
+        case 'practical-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
+            body += txt(10,26,6,a,'AVAILABILITY','start');
+            for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,28,2,'#222',0.5); body += line(20+j*45,37+i*12,20,2,'#888',0.35); }
+            body += line(10,58,80,1,'#ddd',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,60,3,'#222',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
+            break;
+        case 'practical-02':
+            body += rr(0,0,100,141,2,'#F5F7FA',null);
+            body += txt(10,10,7,'#1B2A4A','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
+            body += txt(10,26,6,a,'AVAILABILITY','start');
+            for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,26,2,'#1B2A4A',0.5); body += line(20+j*45,37+i*12,18,2,'#888',0.35); }
+            body += line(10,58,80,1,'#ddd',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,62,3,'#1B2A4A',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
+            break;
+        case 'practical-03':
+            body += rr(0,0,100,141,2,'#F7F7F7',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
+            body += txt(10,26,6,'#555','AVAILABILITY','start');
+            for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,24,2,'#333',0.5); body += line(20+j*45,37+i*12,16,2,'#888',0.35); }
+            body += line(10,58,80,1,'#ccc',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,62,3,'#333',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
+            break;
+        case 'functional-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
+            for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,40,3,'#222',0.6); body += line(17,31+i*22,60,2,'#888',0.35); body += line(17,35+i*22,50,2,'#888',0.25); }
+            body += line(10,93,80,1,'#ccc',0.5); body += txt(10,101,6,a,'WORK HISTORY','start');
+            for(let i=0;i<2;i++){ body += line(10,107+i*13,45,2.5,'#222',0.5); body += line(10,112+i*13,35,2,'#888',0.35); }
+            break;
+        case 'functional-02':
+            body += rr(0,0,100,141,2,'#F5F7FA',null);
+            body += txt(10,10,7,'#1B2A4A','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
+            for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,38,3,'#1B2A4A',0.6); body += line(17,31+i*22,62,2,'#888',0.35); body += line(17,35+i*22,52,2,'#888',0.25); }
+            body += line(10,93,80,1,'#bbd',0.5); body += txt(10,101,6,a,'WORK HISTORY','start');
+            for(let i=0;i<2;i++){ body += line(10,107+i*13,48,2.5,'#1B2A4A',0.5); body += line(10,112+i*13,38,2,'#888',0.35); }
+            break;
+        case 'functional-03':
+            body += rr(0,0,100,141,2,'#FDFAF5',null);
+            body += txt(10,10,7,'#2A1F08','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
+            for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,36,3,'#2A1F08',0.6); body += line(17,31+i*22,62,2,'#888',0.35); body += line(17,35+i*22,50,2,'#888',0.25); }
+            body += line(10,93,80,1,'#e8d8a0',0.6); body += txt(10,101,6,a,'WORK HISTORY','start');
+            for(let i=0;i<2;i++){ body += line(10,107+i*13,44,2.5,'#2A1F08',0.5); body += line(10,112+i*13,36,2,'#888',0.35); }
+            break;
+        case 'trade-01':
+            body += rr(0,0,100,141,2,'#F5F7F8',null); body += rr(0,0,100,26,0,'#1B3A4B',null);
+            body += txt(10,15,8,'#fff','Thabo Sekgobela','start'); body += line(10,21,50,2,'#8DB8D0',0.7);
+            for(let i=0;i<3;i++){ body += rr(8+i*30,30,24,9,5,'#F0F4F8',1); body += rr(8+i*30,30,9,9,5,a,1); }
+            body += txt(8,48,6,a,'TOOLS','start');
+            for(let i=0;i<5;i++) body += rr(8+i*18,52,14,7,4,'#E4E9EE',1);
+            body += txt(8,68,6,a,'EXPERIENCE','start');
+            for(let i=0;i<3;i++){ body += rr(8,72+i*20,84,14,3,'#F7F9FB',1); body += rr(8,72+i*20,3,14,1,a,1); body += line(14,76+i*20,50,3,'#222',0.6); body += line(14,81+i*20,42,2,'#888',0.35); }
+            break;
+        case 'trade-02':
+            body += rr(0,0,100,141,2,'#FDF8F4',null); body += rr(0,0,100,17,0,'#7A3A1B',null);
+            body += txt(6,11,7,'#fff','Thabo Sekgobela','start'); body += line(60,11,34,1.5,'#F5C9A8',0.7);
+            body += rr(0,17,39,124,0,'#F0E4DC',null); body += rr(38,17,1.5,124,0,'#E0C8B8',null);
+            body += txt(6,27,5.5,a,'CREDENTIALS','start');
+            for(let i=0;i<3;i++){ body += rr(6,31+i*10,5,5,2.5,a,0.9); body += line(13,35+i*10,26,2,'#5C4A3E',0.5); }
+            body += txt(6,68,5.5,a,'TOOLS','start');
+            for(let i=0;i<4;i++) body += rr(6,72+i*9,30,6,3,'#FFF3EE',1);
+            body += txt(42,27,6,'#2A1808','EXPERIENCE','start');
+            for(let i=0;i<3;i++){ body += rr(42,31+i*20,52,15,3,'#FBF5F0',1); body += rr(42,31+i*20,3,15,1,a,1); body += line(48,35+i*20,38,3,'#222',0.6); body += line(48,40+i*20,32,2,'#888',0.35); }
+            break;
+        case 'trade-03':
+            body += rr(0,0,100,141,2,'#F7F7F7',null); body += rr(0,0,100,26,0,'#2C2C2C',null);
+            body += txt(10,15,8,'#fff','Thabo Sekgobela','start'); body += line(10,21,50,2,'#B0B0B0',0.7);
+            for(let i=0;i<3;i++){ body += rr(8+i*30,30,24,9,5,'#F2F2F2',1); body += rr(8+i*30,30,9,9,5,a,1); }
+            body += txt(8,48,6,a,'TOOLS','start');
+            for(let i=0;i<5;i++) body += rr(8+i*18,52,14,7,4,'#E8E8E8',1);
+            body += txt(8,68,6,a,'EXPERIENCE','start');
+            for(let i=0;i<3;i++){ body += rr(8,72+i*20,84,14,3,'#F5F5F5',1); body += rr(8,72+i*20,3,14,1,a,1); body += line(14,76+i*20,50,3,'#333',0.6); body += line(14,81+i*20,42,2,'#888',0.35); }
+            break;
+        case 'starter-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null); body += rr(0,0,100,26,0,a,null);
+            body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
+            body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
+            body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#aaa',0.4);
+            body += txt(8,42,6,a,'SKILLS','start');
+            for(let i=0;i<5;i++){ const w=[72,58,85,45,65][i]; body += line(8,48+i*12,30,2,'#444',0.5); body += rr(42,46+i*12,50,3,2,'#E8F0EE',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
+            body += txt(8,108,6,a,'EXPERIENCE','start');
+            for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#222',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
+            break;
+        case 'starter-02':
+            body += rr(0,0,100,141,2,'#FDF8F5',null); body += rr(0,0,100,26,0,a,null);
+            body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
+            body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
+            body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#ccc',0.4);
+            body += txt(8,42,6,a,'SKILLS','start');
+            for(let i=0;i<5;i++){ const w=[68,55,82,48,60][i]; body += line(8,48+i*12,30,2,'#444',0.5); body += rr(42,46+i*12,50,3,2,'#F5E8E4',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
+            body += txt(8,108,6,a,'EXPERIENCE','start');
+            for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#222',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
+            break;
+        case 'starter-03':
+            body += rr(0,0,100,141,2,'#F5F8FC',null); body += rr(0,0,100,26,0,a,null);
+            body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
+            body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
+            body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#bbd',0.4);
+            body += txt(8,42,6,a,'SKILLS','start');
+            for(let i=0;i<5;i++){ const w=[75,52,88,42,68][i]; body += line(8,48+i*12,30,2,'#1B2A4A',0.5); body += rr(42,46+i*12,50,3,2,'#E4EAF5',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
+            body += txt(8,108,6,a,'EXPERIENCE','start');
+            for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#1B2A4A',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
+            break;
+        case 'mono-01':
+            body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#F5F0EA',null);
+            body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
+            body += txt(50,38,7,'#2A2520','Jane Mokoena','middle'); body += line(20,43,60,1,'#E4DFD8',0.7);
+            for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.2); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.2); body += line(54,60+i*18,32,2,'#888',0.35); }
+            break;
+        case 'mono-02':
+            body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#F0F4EE',null);
+            body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
+            body += txt(50,38,7,'#2A3020','Jane Mokoena','middle'); body += line(20,43,60,1,'#D8E0D4',0.7);
+            for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.25); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.25); body += line(54,60+i*18,32,2,'#888',0.35); }
+            break;
+        case 'mono-03':
+            body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#EEF1F8',null);
+            body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
+            body += txt(50,38,7,'#20283A','Jane Mokoena','middle'); body += line(20,43,60,1,'#D4D8E8',0.7);
+            for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.25); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.25); body += line(54,60+i*18,32,2,'#888',0.35); }
+            break;
+        case 'facet-01':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            body += txt(15,26,6,'rgba(255,255,255,0.8)','Contact','middle');
+            for(let i=0;i<5;i++) body += line(4,32+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            body += txt(15,88,6,'rgba(255,255,255,0.8)','Skills','middle');
+            for(let i=0;i<4;i++) body += line(4,94+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#222','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'facet-02':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#111','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'facet-03':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#2A102A','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'facet-04':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#2A1E08','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'duo-01':
+            body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#F0EDE8',null); body += rr(29,0,1.5,141,0,'#DDD8D2',null);
+            body += txt(15,18,7,'#2A2520','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
+            body += line(5,26,20,2,'#888',0.4); body += line(5,31,18,2,'#888',0.35); body += line(5,36,20,2,'#888',0.3);
+            for(let i=0;i<4;i++){ body += line(5,46+i*16,22,2,a,0.5); body += line(5,51+i*16,16,2,'#888',0.35); body += line(5,55+i*16,14,2,'#888',0.25); }
+            body += txt(34,12,7,'#2A2520','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
+            for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#222',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
+            break;
+        case 'duo-02':
+            body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#EEF0EB',null); body += rr(29,0,1.5,141,0,'#CDD0C8',null);
+            body += txt(15,18,7,'#2A3020','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
+            body += line(5,26,20,2,'#666',0.4); body += line(5,31,18,2,'#666',0.35);
+            for(let i=0;i<4;i++){ body += line(5,41+i*16,22,2,a,0.5); body += line(5,46+i*16,16,2,'#888',0.35); }
+            body += txt(34,12,7,'#2A3020','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
+            for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#2A3020',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
+            break;
+        case 'duo-03':
+            body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#EEECEA',null); body += rr(29,0,1.5,141,0,'#CCC9C6',null);
+            body += txt(15,18,7,'#2A2520','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
+            body += line(5,26,20,2,'#777',0.4); body += line(5,31,18,2,'#777',0.35);
+            for(let i=0;i<4;i++){ body += line(5,41+i*16,22,2,a,0.5); body += line(5,46+i*16,16,2,'#888',0.35); }
+            body += txt(34,12,7,'#2A2520','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
+            for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#333',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
+            break;
+        default:
+            body += rr(0,0,100,141,2,'#F8F8F8',null); body += rr(0,0,100,6,0,a,null);
+            body += txt(10,18,7,'#222',templateId,'start');
+            for(let i=0;i<6;i++) body += line(10,28+i*16,80,3,'#999',0.3);
+    }
+    return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+}
 
-   function renderTemplateContent(data, tid) {
+const SVGS = {};
+allTemplateIds.forEach(id => { SVGS[id] = generateThumbnailSVG(id); });
+
+function renderTemplateContent(data, tid) {
     const definition = typeof getTemplateDefinition === 'function'
         ? getTemplateDefinition(tid)
         : null;
@@ -573,276 +588,297 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     TEMPLATE_CONFIGS.filter(def => def.layout === 'two-column').map(def => def.id)
 );
 
+function wrapMain(title, inner, type = "") {
+    return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="main-label">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`;
+}
+function wrapSide(title, inner, type = "") {
+    return `<section class="side-section" data-rf-section-type="${escHtml(type)}"><p class="side-label">${escHtml(title)}</p>${inner||`<p class="empty-note">None added.</p>`}</section>`;
+}
 
-    function wrapMain(title,inner,type=""){ return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="main-label">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`; }
-    function wrapSide(title,inner,type=""){ return `<section class="side-section" data-rf-section-type="${escHtml(type)}"><p class="side-label">${escHtml(title)}</p>${inner||`<p class="empty-note">None added.</p>`}</section>`; }
-
-    const SR = {
-        experience(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
-        education(s){ const h=s.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
-        custom(s){ const h=s.items.map(it=>`<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""); return wrapMain(s.title,h,s.type); },
-        "personal-info"(s){ const h=s.items.map(it=>`<div class="side-item">${escHtml(it.label)}: <span class="meta">${escHtml(it.value)}</span></div>`).join(""); return wrapSide(s.title,h,s.type); },
-        skills(s){ return wrapSide(s.title,s.items.map(it=>`<span class="skill-tag">${escHtml(it.name)}</span>`).join(""),s.type); },
-        languages(s){ return wrapSide(s.title,s.items.map(it=>`<div class="side-item">${escHtml(it.name)} <span class="meta">— ${escHtml(it.level)}</span></div>`).join(""),s.type); },
-        certificates(s){ return wrapSide(s.title,s.items.map(it=>`<div class="side-item">${escHtml(it.name)}</div>`).join(""),s.type); },
-        references(s){ const h=s.items.map(it=>{
+const SR = {
+    experience(s) {
+        const h = s.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
+        return wrapMain(s.title, h, s.type);
+    },
+    education(s) {
+        const h = s.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`).join("");
+        return wrapMain(s.title, h, s.type);
+    },
+    custom(s) {
+        const h = s.items.map(it => `<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
+        return wrapMain(s.title, h, s.type);
+    },
+    "personal-info"(s) {
+        const h = s.items.map(it => `<div class="side-item">${escHtml(it.label)}: <span class="meta">${escHtml(it.value)}</span></div>`).join("");
+        return wrapSide(s.title, h, s.type);
+    },
+    skills(s) {
+        return wrapSide(s.title, s.items.map(it => `<span class="skill-tag">${escHtml(it.name)}</span>`).join(""), s.type);
+    },
+    languages(s) {
+        return wrapSide(s.title, s.items.map(it => `<div class="side-item">${escHtml(it.name)} <span class="meta">— ${escHtml(it.level)}</span></div>`).join(""), s.type);
+    },
+    certificates(s) {
+        return wrapSide(s.title, s.items.map(it => `<div class="side-item">${escHtml(it.name)}</div>`).join(""), s.type);
+    },
+    references(s) {
+        const h = s.items.map(it => {
             const phoneLine = it.phone ? `<div class="ref-contact-line"><span class="icon-inline" style="color:var(--color-accent)">${icoSVG("phone")}</span><span>${escHtml(it.phone)}</span></div>` : "";
             const emailLine = it.email ? `<div class="ref-contact-line"><span class="icon-inline" style="color:var(--color-accent)">${icoSVG("email")}</span><span>${escHtml(it.email)}</span></div>` : "";
             return `<div class="ref-item"><div class="ref-name">${escHtml(it.name)}</div><div class="ref-details">${escHtml(it.title)}</div><div class="ref-contact">${phoneLine}${emailLine}</div></div>`;
-        }).join(""); return wrapSide(s.title,h,s.type); },
-        interests(s){ const line=s.items.map(it=>escHtml(it.value)).join(" · "); return wrapSide(s.title,line?`<p class="side-item" style="line-height:1.5">${line}</p>`:"",s.type); },
-        strengths(s){ const chips=s.items.filter(it=>it.value&&it.value.trim()).map(it=>`<span class="strength-chip">${escHtml(it.value)}</span>`).join(""); return wrapSide(s.title,chips?`<div class="strengths-row">${chips}</div>`:"",s.type); }
-    };
-
-    function contactListHtml(p){ const items=[{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url,label:l.label}))]; return items.filter(i=>i.val).map(i=>`<li><span class="icon-inline">${icoSVG(i.icon)}</span>${i.label?`<a href="${escHtml(i.val)}">${escHtml(i.label)}</a>`:escHtml(i.val)}</li>`).join(""); }
-    function atsContactLine(p){ const items=[{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))]; return items.filter(i=>i.val).map(i=>`<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span class="contact-inline-item" style="opacity:.4">|</span>'); }
-    function photoHtml(p){ if(!p||!p.photo)return ""; return `<div class="cv-photo"><img src="${p.photo}" alt="Photo"></div>`; }
-    function atsStrengthsBlock(s){ const chips=s.items.filter(it=>it.value&&it.value.trim()).map(it=>`<span class="strength-chip">${escHtml(it.value)}</span>`).join(""); return wrapMain(s.title,chips?`<div class="strengths-row">${chips}</div>`:"",s.type); }
-    function atsPersonalInfoBlock(s){ const line=s.items.map(it=>`${escHtml(it.label)}: ${escHtml(it.value)}`).join(" &nbsp;·&nbsp; "); return wrapMain(s.title,line?`<p class="ats-plain-list">${line}</p>`:"",s.type); }
-    function atsPlainList(s,fmt){ const line=s.items.map(fmt).join(", "); return wrapMain(s.title,line?`<p class="ats-plain-list">${line}</p>`:"",s.type); }
-    function elegantAvailGrid(s){ if(!s.items.length)return`<p class="empty-note">None added.</p>`; return `<div class="elegant-avail-grid">${s.items.map(it=>`<div class="elegant-avail-item"><span class="av-dot"></span><span class="av-lbl">${escHtml(it.label)}:</span><span class="av-val">${escHtml(it.value)}</span></div>`).join("")}</div>`; }
-
-    function renderPersonalInfoAfterSummary(sections, tid) {
-        if (SIDEBAR_TEMPLATE_IDS.has(tid) && !tid.startsWith('split')) return '';
-        const pi = sections.find(s => s.type==="personal-info" && s.visible);
-        if (!pi || !pi.items.length) return "";
-        return atsPersonalInfoBlock(pi);
-    }
-
-    function renderModern(data, tid) {
-        const p=data.personalDetails;
-        const vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const sideHtml=vis.filter(s=>SIDEBAR_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
-        const mainHtml=vis.filter(s=>MAIN_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
-        if (tid==="modern-03") {
-            const allHtml = vis.filter(s=>s.type!=="personal-info").map(s=>SR[s.type]?SR[s.type](s):"").join("");
-            return `<div class="modern-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${allHtml}</div>`;
-        }
-        return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div>`;
-    }
-    function renderAts(data, tid) {
-        const p=data.personalDetails;
-        const vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        let hdr;
-        if(tid==="ats-02"){ const cRight=[{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))]; hdr=`<div class="ats-header-row"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="contact-block">${cRight.filter(i=>i.val).map(i=>`<div class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</div>`).join("")}</div></div><hr class="ats-rule">`; }
-        else { hdr=`<div class="ats-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><hr class="ats-rule">`; }
-        const secsHtml=vis.filter(s=>s.type!=="personal-info").map(s=>{ if(s.type==="skills")return atsPlainList(s,it=>escHtml(it.name)); if(s.type==="languages")return atsPlainList(s,it=>`${escHtml(it.name)} (${escHtml(it.level)})`); if(s.type==="certificates")return atsPlainList(s,it=>escHtml(it.name)); if(s.type==="strengths")return atsStrengthsBlock(s); return SR[s.type]?SR[s.type](s):""; }).join("");
-        return `<div class="main">${hdr}<p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
-    }
-    function renderExecutive(data, tid) {
-        const p=data.personalDetails;
-        const vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const secsHtml=vis.filter(s=>s.type!=="personal-info").map(s=>{ if(["skills","languages","certificates"].includes(s.type))return atsPlainList(s,it=>`${escHtml(it.name)}${it.level?` (${escHtml(it.level)})`:""}`); if(s.type==="strengths")return atsStrengthsBlock(s); return SR[s.type]?SR[s.type](s):""; }).join("");
-        return `<div class="exec-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="exec-rule"></div><div class="ats-contact-line exec-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
-    }
-    function renderExecutive02(data) {
-        const p=data.personalDetails;
-        const vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const sideHtml=vis.filter(s=>SIDEBAR_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
-        const mainHtml=vis.filter(s=>MAIN_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
-        return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'executive-02')}${mainHtml}</div>`;
-    }
-    function renderCreative(data) {
-        const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const sideHtml=vis.filter(s=>SIDEBAR_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
-        const mainHtml=vis.filter(s=>MAIN_TYPES.has(s.type)).map(s=>SR[s.type]?SR[s.type](s):"").join("");
-        const cLine=[{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
-        const cHtml=cLine.filter(i=>i.val).map(i=>`<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span style="opacity:.5;margin:0 5px">·</span>');
-        return `<div class="creative-band"><p class="creative-name">${escHtml(p.fullName)}</p><p class="creative-title">${escHtml(p.jobTitle)}</p><div class="creative-contact">${cHtml}</div></div><div class="sidebar">${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'creative-01')}${mainHtml}</div>`;
-    }
-    function renderSplit(data) {
-        const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const mainSecs=vis.filter(s=>MAIN_TYPES.has(s.type));
-        const railSecs=vis.filter(s=>SIDEBAR_TYPES.has(s.type)&&s.type!=="personal-info");
-        const mainHtml=mainSecs.map(s=>{const inner=SR[s.type]?SR[s.type](s):"";return `<div class="split-card">${inner}</div>`;}).join("");
-        const railHtml=railSecs.map(s=>{
-            let ih="";
-            if(s.type==="skills")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
-            else if(s.type==="languages")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)} — ${escHtml(it.level)}</div>`).join("");
-            else if(s.type==="certificates")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
-            else if(s.type==="references")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}${it.title?` — ${escHtml(it.title)}`:""}</div>`).join("");
-            else if(s.type==="projects")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
-            else if(s.type==="custom")ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.title||"")}</div>`).join("");
-            else if(s.type==="strengths")ih=s.items.filter(it=>it.value&&it.value.trim()).map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value)}</div>`).join("");
-            else ih=s.items.map(it=>`<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value||it.name)}</div>`).join("");
-            return `<div class="split-rail-block"><p class="side-label">${escHtml(s.title)}</p>${ih||`<p class="empty-note">None added.</p>`}</div>`;
         }).join("");
-        return `<div class="main"><div class="split-header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div><hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'split')}${mainHtml}</div><div class="sidebar">${railHtml}</div>`;
+        return wrapSide(s.title, h, s.type);
+    },
+    interests(s) {
+        const line = s.items.map(it => escHtml(it.value)).join(" · ");
+        return wrapSide(s.title, line ? `<p class="side-item" style="line-height:1.5">${line}</p>` : "", s.type);
+    },
+    strengths(s) {
+        const chips = s.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("");
+        return wrapSide(s.title, chips ? `<div class="strengths-row">${chips}</div>` : "", s.type);
     }
-    function renderTimeline(data, tid) {
-        const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const secsHtml=vis.filter(s=>s.type!=="personal-info").map(s=>{ if(s.type==="skills")return atsPlainList(s,it=>escHtml(it.name)); if(s.type==="languages")return atsPlainList(s,it=>`${escHtml(it.name)} (${escHtml(it.level)})`); if(s.type==="certificates")return atsPlainList(s,it=>escHtml(it.name)); if(s.type==="strengths")return atsStrengthsBlock(s); return SR[s.type]?SR[s.type](s):""; }).join("");
-        return `<div class="main"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div><hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
+};
+
+function contactListHtml(p) {
+    const items = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url,label:l.label}))];
+    return items.filter(i => i.val).map(i => `<li><span class="icon-inline">${icoSVG(i.icon)}</span>${i.label?`<a href="${escHtml(i.val)}">${escHtml(i.label)}</a>`:escHtml(i.val)}</li>`).join("");
+}
+function atsContactLine(p) {
+    const items = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
+    return items.filter(i => i.val).map(i => `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span class="contact-inline-item" style="opacity:.4">|</span>');
+}
+function photoHtml(p) {
+    if (!p || !p.photo) return "";
+    return `<div class="cv-photo"><img src="${p.photo}" alt="Photo"></div>`;
+}
+function atsStrengthsBlock(s) {
+    const chips = s.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("");
+    return wrapMain(s.title, chips ? `<div class="strengths-row">${chips}</div>` : "", s.type);
+}
+function atsPersonalInfoBlock(s) {
+    const line = s.items.map(it => `${escHtml(it.label)}: ${escHtml(it.value)}`).join(" &nbsp;·&nbsp; ");
+    return wrapMain(s.title, line ? `<p class="ats-plain-list">${line}</p>` : "", s.type);
+}
+function atsPlainList(s, fmt) {
+    const line = s.items.map(fmt).join(", ");
+    return wrapMain(s.title, line ? `<p class="ats-plain-list">${line}</p>` : "", s.type);
+}
+function elegantAvailGrid(s) {
+    if (!s.items.length) return `<p class="empty-note">None added.</p>`;
+    return `<div class="elegant-avail-grid">${s.items.map(it => `<div class="elegant-avail-item"><span class="av-dot"></span><span class="av-lbl">${escHtml(it.label)}:</span><span class="av-val">${escHtml(it.value)}</span></div>`).join("")}</div>`;
+}
+
+function renderPersonalInfoAfterSummary(sections, tid) {
+    if (SIDEBAR_TEMPLATE_IDS.has(tid) && !tid.startsWith('split')) return '';
+    const pi = sections.find(s => s.type === "personal-info" && s.visible);
+    if (!pi || !pi.items.length) return "";
+    return atsPersonalInfoBlock(pi);
+}
+
+function renderModern(data, tid) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    if (tid === "modern-03") {
+        const allHtml = vis.filter(s => s.type !== "personal-info").map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+        return `<div class="modern-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${allHtml}</div>`;
     }
-    const SKILL_LEVEL_PCT={"Beginner":35,"Basic":35,"Intermediate":60,"Proficient":75,"Advanced":90,"Expert":95,"Native":100,"Fluent":95,"Conversational":65};
-    function renderStarter(data) {
-        const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const strengthsSec=vis.find(s=>s.type==="strengths");
-        const strengthsHtml=strengthsSec&&strengthsSec.items.some(it=>it.value&&it.value.trim())?`<section class="main-section" data-rf-section-type="strengths"><div class="strengths-row">${strengthsSec.items.filter(it=>it.value&&it.value.trim()).map(it=>`<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></section>`:"";
-        const skillsSec=vis.find(s=>s.type==="skills");
-        const skillsHtml=skillsSec?`<div class="main-section"><p class="starter-sec-title">${escHtml(skillsSec.title)}</p>${skillsSec.items.length?skillsSec.items.map(it=>{const pct=SKILL_LEVEL_PCT[it.level]||55;return`<div class="skillbar-row"><div class="skillbar-lbl">${escHtml(it.name)}</div><div class="skillbar-track"><div class="skillbar-fill" style="width:${pct}%"></div></div><span class="skillbar-pct">${pct}%</span></div>`;}).join(""):`<p class="empty-note">None added.</p>`}</div>`:"";
-        const restSecs=vis.filter(s=>s!==strengthsSec&&s.type!=="skills");
-        const restHtml=restSecs.map(s=>{const inner=SR[s.type]?SR[s.type](s):"";return `<div class="main-section"><p class="starter-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}</div>`;}).join("");
-        const photoEl=p.photo?`<div class="starter-photo"><img src="${p.photo}" alt="Photo"></div>`:'';
-        return `<div class="starter-header">${photoEl}<div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div></div><div class="starter-contact-row">${atsContactLine(p)}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${strengthsHtml}${skillsHtml}${restHtml}</div>`;
+    return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div>`;
+}
+function renderAts(data, tid) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    let hdr;
+    if(tid === "ats-02") {
+        const cRight = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
+        hdr = `<div class="ats-header-row"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="contact-block">${cRight.filter(i => i.val).map(i => `<div class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</div>`).join("")}</div></div><hr class="ats-rule">`;
+    } else {
+        hdr = `<div class="ats-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><hr class="ats-rule">`;
     }
-    function renderCombined(data) {
-        const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const SRC=new Set(["experience","projects","custom"]);
-        const entries=[];
-        vis.filter(s=>SRC.has(s.type)).forEach(s=>{
-            s.items.forEach(it=>{
-                if(s.type==="experience")entries.push({sourceType:s.type,tag:"Job",title:it.role,sub:[it.company,it.location].filter(Boolean).join(" · "),start:it.startDate,end:it.endDate,current:it.current,bullets:it.bullets||[]});
-                else if(s.type==="projects")entries.push({sourceType:s.type,tag:"Project",title:it.name,sub:it.url||"",start:it.startDate,end:it.endDate,current:false,bullets:it.bullets||[]});
-                else entries.push({sourceType:s.type,tag:s.title||"Activity",title:it.title||s.title,sub:"",start:"",end:"",current:false,bullets:it.bullets||[]});
-            });
+    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
+        if(s.type === "skills") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "languages") return atsPlainList(s, it => `${escHtml(it.name)} (${escHtml(it.level)})`);
+        if(s.type === "certificates") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "strengths") return atsStrengthsBlock(s);
+        return SR[s.type] ? SR[s.type](s) : "";
+    }).join("");
+    return `<div class="main">${hdr}<p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
+}
+function renderExecutive(data, tid) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
+        if(["skills","languages","certificates"].includes(s.type)) return atsPlainList(s, it => `${escHtml(it.name)}${it.level?` (${escHtml(it.level)})`:""}`);
+        if(s.type === "strengths") return atsStrengthsBlock(s);
+        return SR[s.type] ? SR[s.type](s) : "";
+    }).join("");
+    return `<div class="exec-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="exec-rule"></div><div class="ats-contact-line exec-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
+}
+function renderExecutive02(data) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'executive-02')}${mainHtml}</div>`;
+}
+function renderCreative(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const cLine = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
+    const cHtml = cLine.filter(i => i.val).map(i => `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span style="opacity:.5;margin:0 5px">·</span>');
+    return `<div class="creative-band"><p class="creative-name">${escHtml(p.fullName)}</p><p class="creative-title">${escHtml(p.jobTitle)}</p><div class="creative-contact">${cHtml}</div></div><div class="sidebar">${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'creative-01')}${mainHtml}</div>`;
+}
+function renderSplit(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
+    const railSecs = vis.filter(s => SIDEBAR_TYPES.has(s.type) && s.type !== "personal-info");
+    const mainHtml = mainSecs.map(s => { const inner = SR[s.type] ? SR[s.type](s) : ""; return `<div class="split-card">${inner}</div>`; }).join("");
+    const railHtml = railSecs.map(s => {
+        let ih = "";
+        if(s.type === "skills") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
+        else if(s.type === "languages") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)} — ${escHtml(it.level)}</div>`).join("");
+        else if(s.type === "certificates") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
+        else if(s.type === "references") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}${it.title?` — ${escHtml(it.title)}`:""}</div>`).join("");
+        else if(s.type === "projects") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
+        else if(s.type === "custom") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.title||"")}</div>`).join("");
+        else if(s.type === "strengths") ih = s.items.filter(it => it.value && it.value.trim()).map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value)}</div>`).join("");
+        else ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value||it.name)}</div>`).join("");
+        return `<div class="split-rail-block"><p class="side-label">${escHtml(s.title)}</p>${ih || `<p class="empty-note">None added.</p>`}</div>`;
+    }).join("");
+    return `<div class="main"><div class="split-header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div><hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'split')}${mainHtml}</div><div class="sidebar">${railHtml}</div>`;
+}
+function renderTimeline(data, tid) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
+        if(s.type === "skills") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "languages") return atsPlainList(s, it => `${escHtml(it.name)} (${escHtml(it.level)})`);
+        if(s.type === "certificates") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "strengths") return atsStrengthsBlock(s);
+        return SR[s.type] ? SR[s.type](s) : "";
+    }).join("");
+    return `<div class="main"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div><hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
+}
+const SKILL_LEVEL_PCT = {"Beginner":35,"Basic":35,"Intermediate":60,"Proficient":75,"Advanced":90,"Expert":95,"Native":100,"Fluent":95,"Conversational":65};
+function renderStarter(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const strengthsSec = vis.find(s => s.type === "strengths");
+    const strengthsHtml = strengthsSec && strengthsSec.items.some(it => it.value && it.value.trim()) ? `<section class="main-section" data-rf-section-type="strengths"><div class="strengths-row">${strengthsSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></section>` : "";
+    const skillsSec = vis.find(s => s.type === "skills");
+    const skillsHtml = skillsSec ? `<div class="main-section"><p class="starter-sec-title">${escHtml(skillsSec.title)}</p>${skillsSec.items.length ? skillsSec.items.map(it => { const pct = SKILL_LEVEL_PCT[it.level] || 55; return `<div class="skillbar-row"><div class="skillbar-lbl">${escHtml(it.name)}</div><div class="skillbar-track"><div class="skillbar-fill" style="width:${pct}%"></div></div><span class="skillbar-pct">${pct}%</span></div>`; }).join("") : `<p class="empty-note">None added.</p>`}</div>` : "";
+    const restSecs = vis.filter(s => s !== strengthsSec && s.type !== "skills");
+    const restHtml = restSecs.map(s => { const inner = SR[s.type] ? SR[s.type](s) : ""; return `<div class="main-section"><p class="starter-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}</div>`; }).join("");
+    const photoEl = p.photo ? `<div class="starter-photo"><img src="${p.photo}" alt="Photo"></div>` : '';
+    return `<div class="starter-header">${photoEl}<div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div></div><div class="starter-contact-row">${atsContactLine(p)}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${strengthsHtml}${skillsHtml}${restHtml}</div>`;
+}
+function renderCombined(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const SRC = new Set(["experience","projects","custom"]);
+    const entries = [];
+    vis.filter(s => SRC.has(s.type)).forEach(s => {
+        s.items.forEach(it => {
+            if(s.type === "experience") entries.push({sourceType: s.type, tag: "Job", title: it.role, sub: [it.company, it.location].filter(Boolean).join(" · "), start: it.startDate, end: it.endDate, current: it.current, bullets: it.bullets || []});
+            else if(s.type === "projects") entries.push({sourceType: s.type, tag: "Project", title: it.name, sub: it.url || "", start: it.startDate, end: it.endDate, current: false, bullets: it.bullets || []});
+            else entries.push({sourceType: s.type, tag: s.title || "Activity", title: it.title || s.title, sub: "", start: "", end: "", current: false, bullets: it.bullets || []});
         });
-        entries.sort((a,b)=>{if(a.current&&!b.current)return -1;if(b.current&&!a.current)return 1;return(b.start||"").localeCompare(a.start||"");});
-        const entriesHtml=entries.map(e=>`<div class="combined-entry" data-rf-section-type="${escHtml(e.sourceType)}"><span class="combined-tag">${escHtml(e.tag)}</span><p class="entry-title">${escHtml(e.title||"")}</p>${e.sub?`<p class="entry-sub">${escHtml(e.sub)}</p>`:""}${e.start?`<span class="entry-date">${fmtDate(e.start,e.end,e.current)}</span>`:""}${e.bullets.length?`<ul>${e.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
-        const otherSecs=vis.filter(s=>!SRC.has(s.type)&&s.type!=="personal-info");
-        const otherHtml=otherSecs.map(s=>{
-            if(s.type==="skills")return `<p class="combined-sec-title">${escHtml(s.title)}</p><div class="combined-plain-chips">${s.items.length?s.items.map(it=>`<span class="strength-chip">${escHtml(it.name)}</span>`).join(""):`<p class="empty-note">None added.</p>`}</div>`;
-            if(s.type==="strengths"){const vals=s.items.filter(it=>it.value&&it.value.trim());return `<p class="combined-sec-title">${escHtml(s.title)}</p><div class="combined-plain-chips">${vals.length?vals.map(it=>`<span class="strength-chip">${escHtml(it.value)}</span>`).join(""):`<p class="empty-note">None added.</p>`}</div>`;}
-            if(s.type==="languages")return `<p class="combined-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length?s.items.map(it=>`${escHtml(it.name)} (${escHtml(it.level)})`).join(", "):`<span class="empty-note">None added.</span>`}</p>`;
-            if(s.type==="certificates")return `<p class="combined-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length?s.items.map(it=>escHtml(it.name)).join(", "):`<span class="empty-note">None added.</span>`}</p>`;
-            const inner=SR[s.type]?SR[s.type](s):"";
-            return `<p class="combined-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
+    });
+    entries.sort((a,b) => { if(a.current && !b.current) return -1; if(b.current && !a.current) return 1; return (b.start || "").localeCompare(a.start || ""); });
+    const entriesHtml = entries.map(e => `<div class="combined-entry" data-rf-section-type="${escHtml(e.sourceType)}"><span class="combined-tag">${escHtml(e.tag)}</span><p class="entry-title">${escHtml(e.title||"")}</p>${e.sub?`<p class="entry-sub">${escHtml(e.sub)}</p>`:""}${e.start?`<span class="entry-date">${fmtDate(e.start,e.end,e.current)}</span>`:""}${e.bullets.length?`<ul>${e.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
+    const otherSecs = vis.filter(s => !SRC.has(s.type) && s.type !== "personal-info");
+    const otherHtml = otherSecs.map(s => {
+        if(s.type === "skills") return `<p class="combined-sec-title">${escHtml(s.title)}</p><div class="combined-plain-chips">${s.items.length ? s.items.map(it => `<span class="strength-chip">${escHtml(it.name)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
+        if(s.type === "strengths") { const vals = s.items.filter(it => it.value && it.value.trim()); return `<p class="combined-sec-title">${escHtml(s.title)}</p><div class="combined-plain-chips">${vals.length ? vals.map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
+        if(s.type === "languages") return `<p class="combined-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
+        if(s.type === "certificates") return `<p class="combined-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
+        const inner = SR[s.type] ? SR[s.type](s) : "";
+        return `<p class="combined-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
+    }).join("");
+    return `<div class="main"><div class="combined-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="combined-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'combined')}${entriesHtml.length ? `<p class="combined-sec-title">What I've Been Doing</p>${entriesHtml}` : ""}${otherHtml}</div>`;
+}
+function renderPractical(data, tid) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+
+    if (tid === "practical-02") {
+        const sideTypes = new Set(["skills","languages","certificates","references","interests","strengths","personal-info","projects","custom"]);
+        const sideSecs = vis.filter(s => sideTypes.has(s.type));
+        const mainSecs = vis.filter(s => s.type === "experience" || s.type === "education");
+        const sideHtml = sideSecs.map(s => {
+            if (s.type === "personal-info") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${elegantAvailGrid(s)}</div>`;
+            if (s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><div class="practical-plain-chips">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div></div>`; }
+            if (s.type === "languages") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p></div>`;
+            if (s.type === "certificates") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p></div>`;
+            if (s.type === "interests") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.value)).join(" · ") : `<span class="empty-note">None added.</span>`}</p></div>`;
+            if (s.type === "references") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}<br><span class="meta">${escHtml(it.title)}</span></div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
+            if (s.type === "projects") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
+            if (s.type === "custom") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.title || "")}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
+            return "";
         }).join("");
-        return `<div class="main"><div class="combined-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="combined-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'combined')}${entriesHtml.length?`<p class="combined-sec-title">What I've Been Doing</p>${entriesHtml}`:""}${otherHtml}</div>`;
-    }
-    function renderPractical(data, tid) {
-        const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-
-        if (tid === "practical-02") {
-            const sideTypes = new Set(["skills","languages","certificates","references","interests","strengths","personal-info","projects","custom"]);
-            const sideSecs = vis.filter(s => sideTypes.has(s.type));
-            const mainSecs = vis.filter(s => s.type === "experience" || s.type === "education");
-            const sideHtml = sideSecs.map(s => {
-                if (s.type === "personal-info") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${elegantAvailGrid(s)}</div>`;
-                if (s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><div class="practical-plain-chips">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div></div>`; }
-                if (s.type === "languages") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p></div>`;
-                if (s.type === "certificates") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p></div>`;
-                if (s.type === "interests") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.value)).join(" · ") : `<span class="empty-note">None added.</span>`}</p></div>`;
-                if (s.type === "references") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}<br><span class="meta">${escHtml(it.title)}</span></div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
-                if (s.type === "projects") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
-                if (s.type === "custom") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.title || "")}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
-                return "";
-            }).join("");
-            const mainHtml2 = mainSecs.map(s => {
-                if (s.type === "experience") return `<p class="practical-sec-title">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
-                if (s.type === "education") { const inner = SR.education(s); return `<p class="practical-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`; }
-                return "";
-            }).join("");
-            return `<div class="prac2-sidebar">${sideHtml}</div><div class="main"><div class="practical-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="practical-contact-row">${atsContactLine(p)}</div></div><hr class="practical-rule"><p class="summary">${escHtml(p.summary)}</p>${mainHtml2}</div>`;
-        }
-
-        const availSec=vis.find(s=>s.type==="personal-info");
-        const availHtml=availSec?`<p class="practical-sec-title">${escHtml(availSec.title)}</p>${availSec.items.length?`<div class="avail-grid">${availSec.items.map(it=>`<div class="avail-item"><div class="avail-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="avail-text"><span class="avail-label">${escHtml(it.label)}</span><span class="avail-value">${escHtml(it.value)}</span></div></div>`).join("")}</div>`:`<p class="empty-note">None added.</p>`}`:"";
-        const restSecs=vis.filter(s=>s.type!=="personal-info");
-        const restHtml=restSecs.map(s=>{
-            if(s.type==="experience")return `<p class="practical-sec-title">${escHtml(s.title)}</p>${s.items.length?s.items.map(it=>`<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""} — ${fmtDate(it.startDate,it.endDate,it.current)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""):`<p class="empty-note">No entries yet.</p>`}`;
-            if(s.type==="skills"||s.type==="strengths"){const vals=s.type==="skills"?s.items.map(it=>it.name):s.items.filter(it=>it.value&&it.value.trim()).map(it=>it.value);return `<p class="practical-sec-title">${escHtml(s.title)}</p><div class="practical-plain-chips">${vals.length?vals.map(v=>`<span class="strength-chip">${escHtml(v)}</span>`).join(""):`<p class="empty-note">None added.</p>`}</div>`;}
-            if(s.type==="languages")return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length?s.items.map(it=>`${escHtml(it.name)} (${escHtml(it.level)})`).join(", "):`<span class="empty-note">None added.</span>`}</p>`;
-            if(s.type==="certificates")return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length?s.items.map(it=>escHtml(it.name)).join(", "):`<span class="empty-note">None added.</span>`}</p>`;
-            const inner=SR[s.type]?SR[s.type](s):"";
-            return `<p class="practical-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
+        const mainHtml2 = mainSecs.map(s => {
+            if (s.type === "experience") return `<p class="practical-sec-title">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
+            if (s.type === "education") { const inner = SR.education(s); return `<p class="practical-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`; }
+            return "";
         }).join("");
-        return `<div class="main"><div class="practical-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="practical-contact-row">${atsContactLine(p)}</div></div><hr class="practical-rule"><p class="summary">${escHtml(p.summary)}</p>${availHtml}${restHtml}</div>`;
+        return `<div class="prac2-sidebar">${sideHtml}</div><div class="main"><div class="practical-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="practical-contact-row">${atsContactLine(p)}</div></div><hr class="practical-rule"><p class="summary">${escHtml(p.summary)}</p>${mainHtml2}</div>`;
     }
-    function renderFunctional(data) {
-        const p=data.personalDetails, vis=data.sections.filter(s=>s.visible).sort((a,b)=>a.order-b.order);
-        const groupSecs=vis.filter(s=>s.type==="custom"&&s.items.length);
-        const expSec=vis.find(s=>s.type==="experience");
-        const otherSecs=vis.filter(s=>!["custom","experience","personal-info"].includes(s.type));
-        const hasGroups=groupSecs.length>0;
-        const groupsHtml=groupSecs.map(s=>s.items.map(it=>`<div class="functional-group"><p class="functional-group-title"><span class="dot"></span>${escHtml(it.title||s.title)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("")).join("");
-        const historyHtml=expSec?(hasGroups?`<div class="functional-history"><p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">Work History</p>${expSec.items.length?expSec.items.map(it=>`<div class="functional-history-item"><span><span class="fh-role">${escHtml(it.role)}</span> — ${escHtml(it.company)}</span><span>${fmtDate(it.startDate,it.endDate,it.current)}</span></div>`).join(""):`<p class="empty-note">No entries yet.</p>`}</div>`:`<p class="functional-sec-title" style="margin-top:0">${escHtml(expSec.title)}</p>${expSec.items.length?expSec.items.map(it=>`<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join(""):`<p class="empty-note">No entries yet.</p>`}`):"";
-        const restHtml=otherSecs.map(s=>{
-            if(s.type==="skills"||s.type==="strengths"){const vals=s.type==="skills"?s.items.map(it=>it.name):s.items.filter(it=>it.value&&it.value.trim()).map(it=>it.value);return `<p class="functional-sec-title">${escHtml(s.title)}</p><div class="strengths-row">${vals.length?vals.map(v=>`<span class="strength-chip">${escHtml(v)}</span>`).join(""):`<p class="empty-note">None added.</p>`}</div>`;}
-            if(s.type==="languages")return `<p class="functional-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length?s.items.map(it=>`${escHtml(it.name)} (${escHtml(it.level)})`).join(", "):`<span class="empty-note">None added.</span>`}</p>`;
-            if(s.type==="certificates")return `<p class="functional-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length?s.items.map(it=>escHtml(it.name)).join(", "):`<span class="empty-note">None added.</span>`}</p>`;
-            const inner=SR[s.type]?SR[s.type](s):"";
-            return `<p class="functional-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
-        }).join("");
-        return `<div class="main"><div class="functional-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="functional-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'functional')}${hasGroups?`<p class="functional-sec-title" style="margin-top:0" data-rf-section-type="custom">Areas of Strength</p>${groupsHtml}`:""}${historyHtml}${restHtml}</div>`;
-    }
-    function renderTrade(data, tid) {
-        const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a, b) => a.order - b.order);
-        const certSec  = vis.find(s => s.type === "certificates");
-        const skillSec = vis.find(s => s.type === "skills");
-        const expSec   = vis.find(s => s.type === "experience");
-        const otherSecs = vis.filter(s => !["certificates","skills","experience","personal-info"].includes(s.type));
 
-        if (tid === "trade-02") {
-            const credHtml = certSec && certSec.items.length
-                ? certSec.items.map(it =>
-                    `<div class="trade2-cred"><div class="trade2-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>${escHtml(it.name)}</div>`
-                  ).join("")
-                : `<p class="empty-note">None added.</p>`;
-            const credHeading = certSec ? `<p class="trade-sec-title" style="margin-top:0" data-rf-section-type="certificates">Credentials</p>` : `<p class="trade-sec-title" style="margin-top:0">Credentials</p>`;
+    const availSec = vis.find(s => s.type === "personal-info");
+    const availHtml = availSec ? `<p class="practical-sec-title">${escHtml(availSec.title)}</p>${availSec.items.length ? `<div class="avail-grid">${availSec.items.map(it => `<div class="avail-item"><div class="avail-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="avail-text"><span class="avail-label">${escHtml(it.label)}</span><span class="avail-value">${escHtml(it.value)}</span></div></div>`).join("")}</div>` : `<p class="empty-note">None added.</p>`}` : "";
+    const restSecs = vis.filter(s => s.type !== "personal-info");
+    const restHtml = restSecs.map(s => {
+        if(s.type === "experience") return `<p class="practical-sec-title">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""} — ${fmtDate(it.startDate,it.endDate,it.current)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
+        if(s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="practical-sec-title">${escHtml(s.title)}</p><div class="practical-plain-chips">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
+        if(s.type === "languages") return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
+        if(s.type === "certificates") return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
+        const inner = SR[s.type] ? SR[s.type](s) : "";
+        return `<p class="practical-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
+    }).join("");
+    return `<div class="main"><div class="practical-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="practical-contact-row">${atsContactLine(p)}</div></div><hr class="practical-rule"><p class="summary">${escHtml(p.summary)}</p>${availHtml}${restHtml}</div>`;
+}
+function renderFunctional(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const groupSecs = vis.filter(s => s.type === "custom" && s.items.length);
+    const expSec = vis.find(s => s.type === "experience");
+    const otherSecs = vis.filter(s => !["custom","experience","personal-info"].includes(s.type));
+    const hasGroups = groupSecs.length > 0;
+    const groupsHtml = groupSecs.map(s => s.items.map(it => `<div class="functional-group"><p class="functional-group-title"><span class="dot"></span>${escHtml(it.title||s.title)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("")).join("");
+    const historyHtml = expSec ? (hasGroups ? `<div class="functional-history"><p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">Work History</p>${expSec.items.length ? expSec.items.map(it => `<div class="functional-history-item"><span><span class="fh-role">${escHtml(it.role)}</span> — ${escHtml(it.company)}</span><span>${fmtDate(it.startDate,it.endDate,it.current)}</span></div>`).join("") : `<p class="empty-note">No entries yet.</p>`}</div>` : `<p class="functional-sec-title" style="margin-top:0">${escHtml(expSec.title)}</p>${expSec.items.length ? expSec.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`) : "";
+    const restHtml = otherSecs.map(s => {
+        if(s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="functional-sec-title">${escHtml(s.title)}</p><div class="strengths-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
+        if(s.type === "languages") return `<p class="functional-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
+        if(s.type === "certificates") return `<p class="functional-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
+        const inner = SR[s.type] ? SR[s.type](s) : "";
+        return `<p class="functional-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
+    }).join("");
+    return `<div class="main"><div class="functional-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="functional-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'functional')}${hasGroups?`<p class="functional-sec-title" style="margin-top:0" data-rf-section-type="custom">Areas of Strength</p>${groupsHtml}`:""}${historyHtml}${restHtml}</div>`;
+}
+function renderTrade(data, tid) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const certSec  = vis.find(s => s.type === "certificates");
+    const skillSec = vis.find(s => s.type === "skills");
+    const expSec   = vis.find(s => s.type === "experience");
+    const otherSecs = vis.filter(s => !["certificates","skills","experience","personal-info"].includes(s.type));
 
-            const toolsHtml2 = skillSec && skillSec.items.length
-                ? skillSec.items.map(it => `<div class="trade2-tool">${escHtml(it.name)}</div>`).join("")
-                : `<p class="empty-note">None added.</p>`;
-            const toolsHeading2 = skillSec ? `<p class="trade-sec-title" data-rf-section-type="skills">Tools</p>` : `<p class="trade-sec-title">Tools</p>`;
+    if (tid === "trade-02") {
+        const credHtml = certSec && certSec.items.length
+            ? certSec.items.map(it =>
+                `<div class="trade2-cred"><div class="trade2-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>${escHtml(it.name)}</div>`
+              ).join("")
+            : `<p class="empty-note">None added.</p>`;
+        const credHeading = certSec ? `<p class="trade-sec-title" style="margin-top:0" data-rf-section-type="certificates">Credentials</p>` : `<p class="trade-sec-title" style="margin-top:0">Credentials</p>`;
 
-            const expHtml2 = expSec
-                ? expSec.items.map(it =>
-                    `<div class="trade-entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`
-                  ).join("")
-                : `<p class="empty-note">No entries yet.</p>`;
+        const toolsHtml2 = skillSec && skillSec.items.length
+            ? skillSec.items.map(it => `<div class="trade2-tool">${escHtml(it.name)}</div>`).join("")
+            : `<p class="empty-note">None added.</p>`;
+        const toolsHeading2 = skillSec ? `<p class="trade-sec-title" data-rf-section-type="skills">Tools</p>` : `<p class="trade-sec-title">Tools</p>`;
 
-            const otherSecMapper2 = s => {
-                if (s.type === "strengths") { const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="trade-sec-title">${escHtml(s.title)}</p><div class="trade-tools-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
-                if (s.type === "languages") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-                if (s.type === "interests") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.map(it => escHtml(it.value)).join(" · ")}</p>`;
-                if (s.type === "education") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10.5px;color:#555;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
-                if (s.type === "custom") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-                const inner = SR[s.type] ? SR[s.type](s) : "";
-                return `<p class="trade-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`;
-            };
-            const sideOtherSecs = otherSecs.filter(s => s.type !== "education");
-            const mainOtherSecs = otherSecs.filter(s => s.type === "education");
-            const restHtmlSide2 = sideOtherSecs.map(otherSecMapper2).join("");
-            const restHtmlMain2 = mainOtherSecs.map(otherSecMapper2).join("");
+        const expHtml2 = expSec
+            ? expSec.items.map(it =>
+                `<div class="trade-entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`
+              ).join("")
+            : `<p class="empty-note">No entries yet.</p>`;
 
-            return `<div class="trade-header trade2-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="trade2-sidebar">${credHeading}${credHtml}${toolsHeading2}${toolsHtml2}${restHtmlSide2}</div><div class="main">${expHtml2 ? `<p class="trade-sec-title" style="margin-top:0">Experience</p>${expHtml2}` : ""}${restHtmlMain2}</div>`;
-        }
-
-        const badgesHtml = certSec
-            ? (certSec.items.length
-                ? `<div class="badge-row">${certSec.items.map(it =>
-                    `<div class="trade-badge"><div class="badge-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="badge-txt">${escHtml(it.name)}</span></div>`
-                  ).join("")}</div>`
-                : `<p class="empty-note">None added.</p>`)
-            : "";
-        const badgesHeading = certSec
-            ? `<p class="trade-sec-title" data-rf-section-type="certificates">Credentials &amp; Training</p>`
-            : "";
-
-        const toolsHtml = skillSec
-            ? (skillSec.items.length
-                ? `<div class="trade-tools-row">${skillSec.items.map(it =>
-                    `<span class="strength-chip">${escHtml(it.name)}</span>`
-                  ).join("")}</div>`
-                : `<p class="empty-note">None added.</p>`)
-            : "";
-        const toolsHeading = skillSec
-            ? `<p class="trade-sec-title" data-rf-section-type="skills">Tools &amp; Equipment</p>`
-            : "";
-
-        const expHtml = expSec
-            ? (expSec.items.length
-                ? expSec.items.map(it =>
-                    `<div class="trade-entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`
-                  ).join("")
-                : `<p class="empty-note">No entries yet.</p>`)
-            : "";
-        const expHeading = expSec
-            ? `<p class="trade-sec-title" data-rf-section-type="experience">${escHtml(expSec.title)}</p>`
-            : "";
-
-        const restHtml = otherSecs.map(s => {
+        const otherSecMapper2 = s => {
             if (s.type === "strengths") { const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="trade-sec-title">${escHtml(s.title)}</p><div class="trade-tools-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
             if (s.type === "languages") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
             if (s.type === "interests") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.map(it => escHtml(it.value)).join(" · ")}</p>`;
@@ -850,174 +886,224 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
             if (s.type === "custom") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
             const inner = SR[s.type] ? SR[s.type](s) : "";
             return `<p class="trade-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`;
-        }).join("");
+        };
+        const sideOtherSecs = otherSecs.filter(s => s.type !== "education");
+        const mainOtherSecs = otherSecs.filter(s => s.type === "education");
+        const restHtmlSide2 = sideOtherSecs.map(otherSecMapper2).join("");
+        const restHtmlMain2 = mainOtherSecs.map(otherSecMapper2).join("");
 
-        return `<div class="trade-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="main">${badgesHeading}${badgesHtml}${toolsHeading}${toolsHtml}${expHeading}${expHtml}${restHtml}</div>`;
+        return `<div class="trade-header trade2-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="trade2-sidebar">${credHeading}${credHtml}${toolsHeading2}${toolsHtml2}${restHtmlSide2}</div><div class="main">${expHtml2 ? `<p class="trade-sec-title" style="margin-top:0">Experience</p>${expHtml2}` : ""}${restHtmlMain2}</div>`;
     }
 
-    function renderMonogram(data) {
-        const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a, b) => a.order - b.order);
-        const skillSec = vis.find(s => s.type === "skills");
-        const langSec  = vis.find(s => s.type === "languages");
-        const certSec  = vis.find(s => s.type === "certificates");
-        const intSec   = vis.find(s => s.type === "interests");
-        const piSec    = vis.find(s => s.type === "personal-info");
-        const refSec   = vis.find(s => s.type === "references");
-        const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type) || s.type === "projects" || s.type === "custom");
+    const badgesHtml = certSec
+        ? (certSec.items.length
+            ? `<div class="badge-row">${certSec.items.map(it =>
+                `<div class="trade-badge"><div class="badge-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="badge-txt">${escHtml(it.name)}</span></div>`
+              ).join("")}</div>`
+            : `<p class="empty-note">None added.</p>`)
+        : "";
+    const badgesHeading = certSec
+        ? `<p class="trade-sec-title" data-rf-section-type="certificates">Credentials &amp; Training</p>`
+        : "";
 
-        const badgeEl = p.photo
-            ? `<div class="mono-badge"><img src="${p.photo}" alt="Photo"></div>`
-            : `<div class="mono-badge">${initials(p.fullName)}</div>`;
+    const toolsHtml = skillSec
+        ? (skillSec.items.length
+            ? `<div class="trade-tools-row">${skillSec.items.map(it =>
+                `<span class="strength-chip">${escHtml(it.name)}</span>`
+              ).join("")}</div>`
+            : `<p class="empty-note">None added.</p>`)
+        : "";
+    const toolsHeading = skillSec
+        ? `<p class="trade-sec-title" data-rf-section-type="skills">Tools &amp; Equipment</p>`
+        : "";
 
-        const contactItems = [
-            { icon: "email",    val: p.email },
-            { icon: "phone",    val: p.phone },
-            { icon: "location", val: p.location },
-            ...(p.links || []).map(l => ({ icon: "link", val: l.url }))
-        ].filter(i => i.val);
+    const expHtml = expSec
+        ? (expSec.items.length
+            ? expSec.items.map(it =>
+                `<div class="trade-entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`
+              ).join("")
+            : `<p class="empty-note">No entries yet.</p>`)
+        : "";
+    const expHeading = expSec
+        ? `<p class="trade-sec-title" data-rf-section-type="experience">${escHtml(expSec.title)}</p>`
+        : "";
 
-        const contactHtml = contactItems.map((i, idx) =>
-            `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>${idx < contactItems.length - 1 ? '<span class="mono-divider"> · </span>' : ""}`
-        ).join("");
+    const restHtml = otherSecs.map(s => {
+        if (s.type === "strengths") { const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="trade-sec-title">${escHtml(s.title)}</p><div class="trade-tools-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
+        if (s.type === "languages") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
+        if (s.type === "interests") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.map(it => escHtml(it.value)).join(" · ")}</p>`;
+        if (s.type === "education") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10.5px;color:#555;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
+        if (s.type === "custom") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        const inner = SR[s.type] ? SR[s.type](s) : "";
+        return `<p class="trade-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`;
+    }).join("");
 
-        const skillsHtml = skillSec && skillSec.items.length
-            ? `<p class="mono-kicker">${escHtml(skillSec.title)}</p><hr class="mono-hr"><div class="mono-two-col">${skillSec.items.map(it => `<div class="mono-skill-row"><span class="mono-chip-line">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
-            : "";
+    return `<div class="trade-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="main">${badgesHeading}${badgesHtml}${toolsHeading}${toolsHtml}${expHeading}${expHtml}${restHtml}</div>`;
+}
 
-        const langHtml = langSec && langSec.items.length
-            ? `<p class="mono-kicker">${escHtml(langSec.title)}</p><hr class="mono-hr"><div>${langSec.items.map(it => `<div class="mono-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:10px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
-            : "";
+function renderMonogram(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const skillSec = vis.find(s => s.type === "skills");
+    const langSec  = vis.find(s => s.type === "languages");
+    const certSec  = vis.find(s => s.type === "certificates");
+    const intSec   = vis.find(s => s.type === "interests");
+    const piSec    = vis.find(s => s.type === "personal-info");
+    const refSec   = vis.find(s => s.type === "references");
+    const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type) || s.type === "projects" || s.type === "custom");
 
-        const certHtml = certSec && certSec.items.length
-            ? `<p class="mono-kicker">${escHtml(certSec.title)}</p><hr class="mono-hr"><div>${certSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;border-bottom:1px solid #F0EDE8;color:#333">${escHtml(it.name)}</div>`).join("")}</div>`
-            : "";
+    const badgeEl = p.photo
+        ? `<div class="mono-badge"><img src="${p.photo}" alt="Photo"></div>`
+        : `<div class="mono-badge">${initials(p.fullName)}</div>`;
 
-        const piHtml = piSec && piSec.items.length
-            ? `<p class="mono-kicker">${escHtml(piSec.title)}</p><hr class="mono-hr"><div>${piSec.items.map(it => `<div style="font-size:10.5px;padding:1px 0;color:#555">${escHtml(it.label)}: <strong style="color:#222">${escHtml(it.value)}</strong></div>`).join("")}</div>`
-            : "";
+    const contactItems = [
+        { icon: "email",    val: p.email },
+        { icon: "phone",    val: p.phone },
+        { icon: "location", val: p.location },
+        ...(p.links || []).map(l => ({ icon: "link", val: l.url }))
+    ].filter(i => i.val);
 
-        const intHtml = intSec && intSec.items.length
-            ? `<p class="mono-kicker">${escHtml(intSec.title)}</p><hr class="mono-hr"><p style="font-size:10.5px;color:#555;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p>`
-            : "";
+    const contactHtml = contactItems.map((i, idx) =>
+        `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>${idx < contactItems.length - 1 ? '<span class="mono-divider"> · </span>' : ""}`
+    ).join("");
 
-        const refHtml = refSec && refSec.items.length
-            ? `<p class="mono-kicker" data-rf-section-type="references">${escHtml(refSec.title)}</p><hr class="mono-hr"><div>${refSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;color:#333">${escHtml(it.name)}${it.title ? ` — ${escHtml(it.title)}` : ""}</div>`).join("")}</div>`
-            : "";
+    const skillsHtml = skillSec && skillSec.items.length
+        ? `<p class="mono-kicker">${escHtml(skillSec.title)}</p><hr class="mono-hr"><div class="mono-two-col">${skillSec.items.map(it => `<div class="mono-skill-row"><span class="mono-chip-line">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
+        : "";
 
-        const mainHtml = mainSecs.map(s => {
-            if (s.type === "experience") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><div class="entry-header"><div><p class="entry-title" style="font-size:12px">${escHtml(it.role)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date" style="font-size:10px">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-            if (s.type === "education") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.qualification)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.institution)} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10px;color:#777;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
-            if (s.type === "projects") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.name)}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-            if (s.type === "custom") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-            return "";
-        }).join("");
+    const langHtml = langSec && langSec.items.length
+        ? `<p class="mono-kicker">${escHtml(langSec.title)}</p><hr class="mono-hr"><div>${langSec.items.map(it => `<div class="mono-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:10px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
+        : "";
 
-        return `<div class="mono-top">${badgeEl}<p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:13px">${escHtml(p.jobTitle)}</p><div class="mono-contact-row">${contactHtml}</div></div><div class="main">${p.summary ? `<p class="summary" style="margin-bottom:12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}${skillsHtml}${langHtml}${certHtml}${piHtml}${intHtml}${refHtml}</div>`;
-    }
+    const certHtml = certSec && certSec.items.length
+        ? `<p class="mono-kicker">${escHtml(certSec.title)}</p><hr class="mono-hr"><div>${certSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;border-bottom:1px solid #F0EDE8;color:#333">${escHtml(it.name)}</div>`).join("")}</div>`
+        : "";
 
-    function renderFacet(data) {
-        const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a, b) => a.order - b.order);
-        const skillSec = vis.find(s => s.type === "skills");
-        const langSec  = vis.find(s => s.type === "languages");
-        const certSec  = vis.find(s => s.type === "certificates");
-        const intSec   = vis.find(s => s.type === "interests");
-        const piSec    = vis.find(s => s.type === "personal-info");
-        const strSec   = vis.find(s => s.type === "strengths");
-        const refSec   = vis.find(s => s.type === "references");
-        const projSec  = vis.find(s => s.type === "projects");
-        const customSec= vis.find(s => s.type === "custom");
-        const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
+    const piHtml = piSec && piSec.items.length
+        ? `<p class="mono-kicker">${escHtml(piSec.title)}</p><hr class="mono-hr"><div>${piSec.items.map(it => `<div style="font-size:10.5px;padding:1px 0;color:#555">${escHtml(it.label)}: <strong style="color:#222">${escHtml(it.value)}</strong></div>`).join("")}</div>`
+        : "";
 
-        const badgeEl = p.photo
-            ? `<div class="facet-badge"><img src="${p.photo}" alt="Photo"></div>`
-            : `<div class="facet-badge">${initials(p.fullName)}</div>`;
+    const intHtml = intSec && intSec.items.length
+        ? `<p class="mono-kicker">${escHtml(intSec.title)}</p><hr class="mono-hr"><p style="font-size:10.5px;color:#555;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p>`
+        : "";
 
-        const contactMini = [
-            { icon: "email",    val: p.email },
-            { icon: "phone",    val: p.phone },
-            { icon: "location", val: p.location }
-        ].filter(i => i.val).map(i =>
-            `<div><span class="icon-inline" style="margin-right:2px">${icoSVG(i.icon)}</span>${escHtml(i.val)}</div>`
-        ).join("");
+    const refHtml = refSec && refSec.items.length
+        ? `<p class="mono-kicker" data-rf-section-type="references">${escHtml(refSec.title)}</p><hr class="mono-hr"><div>${refSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;color:#333">${escHtml(it.name)}${it.title ? ` — ${escHtml(it.title)}` : ""}</div>`).join("")}</div>`
+        : "";
 
-        const skillsHtml = skillSec && skillSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
-            : "";
-        const langHtml = langSec && langSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:9px;opacity:.7">${escHtml(it.level)}</span></div>`).join("")}</div>`
-            : "";
-        const certHtml = certSec && certSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)">${escHtml(it.name)}</div>`).join("")}</div>`
-            : "";
-        const piHtml = piSec && piSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
-            : "";
-        const strHtml = strSec && strSec.items.some(it => it.value && it.value.trim())
-            ? `<div class="side-section"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3)">${escHtml(it.value)}</span>`).join("")}</div></div>`
-            : "";
-        const intHtml = intSec && intSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10px;color:rgba(255,255,255,0.8);line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
-            : "";
-        const refHtml = refSec && refSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div><div style="opacity:.7">${escHtml(it.title)}</div><div style="opacity:.7">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
-            : "";
-        const projHtml = projSec && projSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
-            : "";
-        const customHtml = customSec && customSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
-            : "";
+    const mainHtml = mainSecs.map(s => {
+        if (s.type === "experience") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><div class="entry-header"><div><p class="entry-title" style="font-size:12px">${escHtml(it.role)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date" style="font-size:10px">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        if (s.type === "education") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.qualification)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.institution)} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10px;color:#777;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
+        if (s.type === "projects") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.name)}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        if (s.type === "custom") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        return "";
+    }).join("");
 
-        const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    return `<div class="mono-top">${badgeEl}<p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:13px">${escHtml(p.jobTitle)}</p><div class="mono-contact-row">${contactHtml}</div></div><div class="main">${p.summary ? `<p class="summary" style="margin-bottom:12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}${skillsHtml}${langHtml}${certHtml}${piHtml}${intHtml}${refHtml}</div>`;
+}
 
-        return `<div class="facet-sidebar">${badgeEl}<div class="facet-contact-mini">${contactMini}</div>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="facet-main"><p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p>${p.summary ? `<p class="summary" style="margin:8px 0 12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}</div>`;
-    }
+function renderFacet(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const skillSec = vis.find(s => s.type === "skills");
+    const langSec  = vis.find(s => s.type === "languages");
+    const certSec  = vis.find(s => s.type === "certificates");
+    const intSec   = vis.find(s => s.type === "interests");
+    const piSec    = vis.find(s => s.type === "personal-info");
+    const strSec   = vis.find(s => s.type === "strengths");
+    const refSec   = vis.find(s => s.type === "references");
+    const projSec  = vis.find(s => s.type === "projects");
+    const customSec= vis.find(s => s.type === "custom");
+    const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
 
-    function renderDuotone(data) {
-        const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a, b) => a.order - b.order);
-        const skillSec = vis.find(s => s.type === "skills");
-        const langSec  = vis.find(s => s.type === "languages");
-        const certSec  = vis.find(s => s.type === "certificates");
-        const intSec   = vis.find(s => s.type === "interests");
-        const piSec    = vis.find(s => s.type === "personal-info");
-        const strSec   = vis.find(s => s.type === "strengths");
-        const refSec   = vis.find(s => s.type === "references");
-        const projSec  = vis.find(s => s.type === "projects");
-        const customSec= vis.find(s => s.type === "custom");
-        const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
+    const badgeEl = p.photo
+        ? `<div class="facet-badge"><img src="${p.photo}" alt="Photo"></div>`
+        : `<div class="facet-badge">${initials(p.fullName)}</div>`;
 
-        const skillsHtml = skillSec && skillSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
-            : "";
-        const langHtml = langSec && langSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span><span style="font-size:9px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
-            : "";
-        const certHtml = certSec && certSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE">${escHtml(it.name)}</div>`).join("")}</div>`
-            : "";
-        const piHtml = piSec && piSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
-            : "";
-        const strHtml = strSec && strSec.items.some(it => it.value && it.value.trim())
-            ? `<div class="side-section"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></div>`
-            : "";
-        const intHtml = intSec && intSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10.5px;color:#666;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
-            : "";
-        const refHtml = refSec && refSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div><div style="color:#888">${escHtml(it.title)}</div><div style="color:#888">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
-            : "";
-        const projHtml = projSec && projSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
-            : "";
-        const customHtml = customSec && customSec.items.length
-            ? `<div class="side-section"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
-            : "";
+    const contactMini = [
+        { icon: "email",    val: p.email },
+        { icon: "phone",    val: p.phone },
+        { icon: "location", val: p.location }
+    ].filter(i => i.val).map(i =>
+        `<div><span class="icon-inline" style="margin-right:2px">${icoSVG(i.icon)}</span>${escHtml(i.val)}</div>`
+    ).join("");
 
-        const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const skillsHtml = skillSec && skillSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
+        : "";
+    const langHtml = langSec && langSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:9px;opacity:.7">${escHtml(it.level)}</span></div>`).join("")}</div>`
+        : "";
+    const certHtml = certSec && certSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)">${escHtml(it.name)}</div>`).join("")}</div>`
+        : "";
+    const piHtml = piSec && piSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
+        : "";
+    const strHtml = strSec && strSec.items.some(it => it.value && it.value.trim())
+        ? `<div class="side-section"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3)">${escHtml(it.value)}</span>`).join("")}</div></div>`
+        : "";
+    const intHtml = intSec && intSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10px;color:rgba(255,255,255,0.8);line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
+        : "";
+    const refHtml = refSec && refSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div><div style="opacity:.7">${escHtml(it.title)}</div><div style="opacity:.7">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
+        : "";
+    const projHtml = projSec && projSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        : "";
+    const customHtml = customSec && customSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        : "";
 
-        return `<div class="duo-sidebar"><p class="name" style="font-size:22px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:12px">${escHtml(p.jobTitle)}</p><div class="duo-gold-rule"></div><ul class="contact-list" style="font-size:10px">${contactListHtml(p)}</ul>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="duo-main"><p class="summary" style="margin:0 0 12px">${escHtml(p.summary)}</p>${mainHtml}</div>`;
-    }
+    const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+
+    return `<div class="facet-sidebar">${badgeEl}<div class="facet-contact-mini">${contactMini}</div>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="facet-main"><p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p>${p.summary ? `<p class="summary" style="margin:8px 0 12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}</div>`;
+}
+
+function renderDuotone(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const skillSec = vis.find(s => s.type === "skills");
+    const langSec  = vis.find(s => s.type === "languages");
+    const certSec  = vis.find(s => s.type === "certificates");
+    const intSec   = vis.find(s => s.type === "interests");
+    const piSec    = vis.find(s => s.type === "personal-info");
+    const strSec   = vis.find(s => s.type === "strengths");
+    const refSec   = vis.find(s => s.type === "references");
+    const projSec  = vis.find(s => s.type === "projects");
+    const customSec= vis.find(s => s.type === "custom");
+    const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
+
+    const skillsHtml = skillSec && skillSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
+        : "";
+    const langHtml = langSec && langSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span><span style="font-size:9px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
+        : "";
+    const certHtml = certSec && certSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE">${escHtml(it.name)}</div>`).join("")}</div>`
+        : "";
+    const piHtml = piSec && piSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
+        : "";
+    const strHtml = strSec && strSec.items.some(it => it.value && it.value.trim())
+        ? `<div class="side-section"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></div>`
+        : "";
+    const intHtml = intSec && intSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10.5px;color:#666;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
+        : "";
+    const refHtml = refSec && refSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div><div style="color:#888">${escHtml(it.title)}</div><div style="color:#888">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
+        : "";
+    const projHtml = projSec && projSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        : "";
+    const customHtml = customSec && customSec.items.length
+        ? `<div class="side-section"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        : "";
+
+    const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+
+    return `<div class="duo-sidebar"><p class="name" style="font-size:22px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:12px">${escHtml(p.jobTitle)}</p><div class="duo-gold-rule"></div><ul class="contact-list" style="font-size:10px">${contactListHtml(p)}</ul>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="duo-main"><p class="summary" style="margin:0 0 12px">${escHtml(p.summary)}</p>${mainHtml}</div>`;
+}
 
 function generateSectionItems(sec) {
     let inner = '';
@@ -1077,7 +1163,7 @@ window.getEditorStep = function () { return currentStep; };
 let _saveToastTimer = null;
 
 function escHtml(s) { if (!s) return ""; return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function genId(p)   { return `${p}_${Date.now().toString(36)}${Math.random().toString(36).slice(2,5)}`; }
+function genId(p) { return `${p}_${Date.now().toString(36)}${Math.random().toString(36).slice(2,5)}`; }
 function getP(o, path) { return path.split(".").reduce((a,k) => a==null?undefined:a[k], o); }
 function setP(o, path, val) {
     const ks = path.split(".");
@@ -1156,6 +1242,12 @@ function loadAllResumes() {
         const stored = localStorage.getItem('Mellow CV_all_resumes');
         if (stored) {
             allResumes = JSON.parse(stored);
+            // Sanitize sections for each resume
+            for (const id in allResumes) {
+                if (allResumes[id].sections) {
+                    allResumes[id].sections = sanitizeSections(allResumes[id].sections);
+                }
+            }
         } else {
             const def     = JSON.parse(document.getElementById('cv-data').textContent);
             const starter = JSON.parse(document.getElementById('cv-data-starter').textContent);
@@ -1163,6 +1255,7 @@ function loadAllResumes() {
             [def, starter, trade].forEach(r => {
                 const pi = r.sections.find(s => s.type === 'personal-info');
                 if (pi) pi.order = 0;
+                if (r.sections) r.sections = sanitizeSections(r.sections);
             });
             allResumes[def.meta.cvId]     = def;
             allResumes[starter.meta.cvId] = starter;
@@ -1172,36 +1265,48 @@ function loadAllResumes() {
     } catch(e) { allResumes = {}; }
 }
 function saveAllResumes() { try { localStorage.setItem('Mellow CV_all_resumes', JSON.stringify(allResumes)); } catch(e) {} }
+
 function getCurrentResume() {
     if (!currentCvId || !allResumes[currentCvId]) {
         const ids = Object.keys(allResumes);
         if (ids.length) currentCvId = ids[0];
-        else { const def = JSON.parse(document.getElementById('cv-data').textContent); currentCvId = def.meta.cvId; allResumes[currentCvId] = def; saveAllResumes(); }
+        else { const def = JSON.parse(document.getElementById('cv-data').textContent);
+               if (def.sections) def.sections = sanitizeSections(def.sections);
+               currentCvId = def.meta.cvId; allResumes[currentCvId] = def; saveAllResumes(); }
     }
     return allResumes[currentCvId];
 }
+
 function setCurrentResume(cvId) {
     if (allResumes[cvId]) {
         if (typeof editorHistoryClear === 'function') editorHistoryClear();
-        currentCvId = cvId; cvData = allResumes[cvId];
+        currentCvId = cvId;
+        cvData = allResumes[cvId];
+        if (cvData.sections) cvData.sections = sanitizeSections(cvData.sections);
         currentTemplateId = cvData.meta.templateId || 'modern-01';
         usingDemoData = false;
         renderPreview(); setStep(currentStep); updatePaLabel(); autoSave(); navigate('builder');
     }
 }
+
 function loadData() {
     loadAllResumes();
     const ids = Object.keys(allResumes);
     if (ids.length) {
-        currentCvId = ids[0]; cvData = allResumes[currentCvId];
+        currentCvId = ids[0];
+        cvData = allResumes[currentCvId];
+        if (cvData.sections) cvData.sections = sanitizeSections(cvData.sections);
         if (typeof editorHistoryClear === 'function') editorHistoryClear();
-        currentTemplateId = cvData.meta.templateId || 'modern-01'; usingDemoData = false;
+        currentTemplateId = cvData.meta.templateId || 'modern-01';
+        usingDemoData = false;
     } else {
         const def = JSON.parse(document.getElementById('cv-data').textContent);
+        if (def.sections) def.sections = sanitizeSections(def.sections);
         currentCvId = def.meta.cvId; allResumes[currentCvId] = def; saveAllResumes();
         cvData = def; currentTemplateId = def.meta.templateId || 'modern-01'; usingDemoData = true;
     }
 }
+
 let lastSavedAt = null;
 function autoSave() {
     if (!cvData) return;
@@ -1273,10 +1378,11 @@ function createNewResume() {
     const base = JSON.parse(document.getElementById('cv-data').textContent);
     const newId = 'cv_' + Date.now().toString(36);
     base.meta.cvId = newId; base.personalDetails.fullName = 'New Resume';
+    if (base.sections) base.sections = sanitizeSections(base.sections);
     allResumes[newId] = base; saveAllResumes(); renderManager(); setCurrentResume(newId);
     showToast('New resume created','success');
 }
-function duplicateResume(id) { const copy=JSON.parse(JSON.stringify(allResumes[id])); const newId='cv_'+Date.now().toString(36); copy.meta.cvId=newId; copy.personalDetails.fullName+=' (copy)'; allResumes[newId]=copy; saveAllResumes(); renderManager(); showToast('Duplicated','success'); }
+function duplicateResume(id) { const copy=JSON.parse(JSON.stringify(allResumes[id])); const newId='cv_'+Date.now().toString(36); copy.meta.cvId=newId; copy.personalDetails.fullName+=' (copy)'; if (copy.sections) copy.sections = sanitizeSections(copy.sections); allResumes[newId]=copy; saveAllResumes(); renderManager(); showToast('Duplicated','success'); }
 function renameResume(id)    { const n=prompt('Enter new name:',allResumes[id].personalDetails.fullName); if(n&&n.trim()){ allResumes[id].personalDetails.fullName=n.trim(); saveAllResumes(); renderManager(); if(currentCvId===id){cvData=allResumes[id];renderPreview();updatePaLabel();} showToast('Renamed','success'); } }
 function deleteResume(id)    { if(!confirm('Delete this resume?'))return; delete allResumes[id]; saveAllResumes(); renderManager(); if(currentCvId===id){const ids=Object.keys(allResumes); if(ids.length)setCurrentResume(ids[0]); else createNewResume();} showToast('Deleted','info'); }
 
@@ -1504,10 +1610,6 @@ function hashToView(hash) {
     return NAV_VIEWS.includes(v) ? v : 'landing';
 }
 
-/* ==========================================================================
-   PAGE META / NAVIGATION
-   -------------------------------------------------------------------------- */
-
 const PAGE_META = {
   landing: {
     title: 'Mellow CV Factory | Professional Resume Builder',
@@ -1623,7 +1725,6 @@ window.addEventListener('popstate', (e) => {
   navigate(view, { skipHistory: true });
 });
 
-// On first load: resolve view from URL path
 (function initViewFromURL() {
   const view = PATH_TO_VIEW[window.location.pathname] || 'landing';
   document.body.setAttribute('data-view', view);
@@ -1631,7 +1732,6 @@ window.addEventListener('popstate', (e) => {
   history.replaceState({ view }, '', window.location.pathname);
 })();
 
-// Categorized tips per editor step.
 const TIPS_CONTENT = {
     0: { title: "Personal Details & Summary", groups: [
         { cat: "Writing", tips: [
@@ -1856,7 +1956,6 @@ function updateMobilePreview() {
     if (isMobilePreviewOpen) renderMobilePreview();
 }
 
-// Preview scaling (desktop)
 let previewZoom = null;
 function getPreviewDocument() {
     return document.querySelector('#cv-root .rf-resume-document');
@@ -1900,7 +1999,6 @@ function scalePreviewToFit() {
 
 function renderPreview(pageEl) {
     // Update React state if the engine is ready; otherwise do nothing.
-    // React will read the initial state via __RF_GET_STATE__ when it mounts.
     if (typeof window.__RF_SET_PREVIEW__ === 'function') {
         window.__RF_SET_PREVIEW__(cvData, currentTemplateId);
     }
@@ -2423,7 +2521,14 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
         commitEditorMutation(() => {
             if (cvData.sections.find(s => s.type === type)) return false;
             const maxOrder = Math.max(0, ...cvData.sections.map(s => s.order ?? 0));
-            cvData.sections.push({ type, title: humanType(type), visible: true, order: maxOrder + 1, items: [] });
+            cvData.sections.push({ 
+                id: genId('sec'),   // <-- assign a unique id to the section itself
+                type, 
+                title: humanType(type), 
+                visible: true, 
+                order: maxOrder + 1, 
+                items: [] 
+            });
         }, { force: true });
     }
     function reorderItem(type, fromIdx, toIdx) {
@@ -3046,6 +3151,8 @@ function finalizeImportedResume(parsed, truncated) {
         });
     });
 
+    if (newCvData.sections) newCvData.sections = sanitizeSections(newCvData.sections);
+
     if (!newCvData.personalDetails.fullName && !newCvData.sections.length) {
         const status = document.getElementById('import-status');
         if (status) status.innerHTML = `<p class="ai-error">Couldn't confidently pull any details from that file. Try a cleaner export of your CV, or build from scratch instead.</p>`;
@@ -3059,7 +3166,6 @@ function finalizeImportedResume(parsed, truncated) {
     showToast(truncated ? 'CV imported (long file — please review carefully)' : 'CV imported — review before downloading', 'success');
 }
 
-
 /* React rendering bridge */
 window.__RF_GET_STATE__ = function () { return { data: cvData, templateId: currentTemplateId }; };
 window.__RF_RENDER_TEMPLATE__ = function (data, templateId) { return renderTemplateContent(data, templateId); };
@@ -3067,7 +3173,7 @@ window.__RF_RENDER_SECTION__ = function (section) { return (typeof SR !== 'undef
 window.__RF_CONTACT_HTML__ = function (personal) { return (typeof contactListHtml === 'function') ? contactListHtml(personal) : ''; };
 
 /* ==========================================================================
-   PDF EXPORT ENGINE — PHASES 1–5
+   PDF EXPORT ENGINE
    -------------------------------------------------------------------------- */
 const PDF_EXPORT_ENDPOINT = '/api/export-pdf';
 let activePdfExportRoot = null;
