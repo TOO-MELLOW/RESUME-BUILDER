@@ -44,7 +44,7 @@
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
         "<div class=\"p6-black-champagne\"><header class=\"p6-bc-head\">" +
-        "<div class=\"p6-bc-folio\">02 / BLACK CHAMPAGNE</div><div class=\"p6-bc-identity\">" +
+        "<div class=\"p6-bc-folio\"></div><div class=\"p6-bc-identity\">" +
         "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p6-bc-layout\"><aside>" +
@@ -68,7 +68,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup": "<div class=\"corp-p1 corp-architectural\"><header class=\"ag-header\"><div class=\"ag-title\"><span class=\"ag-kicker\">PROFILE 03</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ag-grid\"><aside><div class=\"ag-summary\"><span>PROFILE NOTE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
+      "templateMarkup": "<div class=\"corp-p1 corp-architectural\"><header class=\"ag-header\"><div class=\"ag-title\"><span class=\"ag-kicker\"></span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ag-grid\"><aside><div class=\"ag-summary\"><span>PROFILE NOTE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "modern-swiss-04",
       "name": "Modern Swiss",
@@ -105,7 +105,7 @@
       "templateMarkup":
         "<div class=\"p6-fashion\"><header class=\"p6-f-head\">" +
         "<div class=\"p6-f-portrait photo portrait\">[APPLICANT PHOTO]</div><div class=\"p6-f-identity\">" +
-        "<span class=\"p6-f-kicker\">05 / FASHION EDITORIAL</span><h1 data-bind=\"personalDetails.fullName\">" +
+        "<span class=\"p6-f-kicker\"></span><h1 data-bind=\"personalDetails.fullName\">" +
         "</h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"p6-f-body\"><aside>" +
         "<p class=\"p6-f-label\">PROFILE</p><p class=\"summary\" data-bind=\"personalDetails.summary\"></p>" +
@@ -129,7 +129,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-dark-exec\"><header class=\"p6-de-head\"><div class=\"p6-de-index\">06</div>" +
+        "<div class=\"p6-dark-exec\"><header class=\"p6-de-head\"><div class=\"p6-de-index\"></div>" +
         "<div class=\"p6-de-copy\"><p>EXECUTIVE PROFILE</p><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p6-de-layout\"><main>" +
@@ -265,7 +265,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-creative\"><header class=\"p6-cd-head\"><div class=\"p6-cd-num\">13</div><div>" +
+        "<div class=\"p6-creative\"><header class=\"p6-cd-head\"><div class=\"p6-cd-num\"></div><div>" +
         "<p class=\"p6-cd-kicker\">CREATIVE DIRECTOR / PORTFOLIO CV</p>" +
         "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
@@ -292,7 +292,7 @@
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
         "<div class=\"p6-magazine\"><header class=\"p6-m14-head\"><div class=\"p6-m14-title\">" +
-        "<span>14 / MAGAZINE COLUMN</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
+        "<span></span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"photo portrait p6-m14-photo\">[APPLICANT PHOTO]</div></header><div class=\"p6-m14-deck\">" +
         "<p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"p6-m14-body\"><aside>" +
@@ -367,7 +367,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-sapphire\"><header class=\"p6-s18-head\"><div class=\"p6-s18-brand\">18 / SAPPHIRE</div>" +
+        "<div class=\"p6-sapphire\"><header class=\"p6-s18-head\"><div class=\"p6-s18-brand\"></div>" +
         "<div class=\"p6-s18-identity\"><div><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"photo portrait p6-s18-photo\">[APPLICANT PHOTO]</div></div>" +
@@ -411,7 +411,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-editorial\"><header class=\"p6-e20-head\"><div class=\"p6-e20-folio\">20</div>" +
+        "<div class=\"p6-editorial\"><header class=\"p6-e20-head\"><div class=\"p6-e20-folio\"></div>" +
         "<div class=\"p6-e20-name\"><p>EDITORIAL PORTRAIT</p><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"p6-e20-contact contact\" data-role=\"contact\"></div></header><div class=\"p6-e20-intro\">" +
@@ -453,8 +453,8 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-portfolio\"><aside class=\"p6-p22-rail\"><div class=\"p6-p22-mark\">22</div>" +
-        "<p>LUXURY<br>PORTFOLIO</p><p class=\"p6-p22-note\">SELECTED PROFILE</p><div data-role=\"sidebar\"></div>" +
+        "<div class=\"p6-portfolio\"><aside class=\"p6-p22-rail\"><div class=\"p6-p22-mark\"></div>" +
+        "<p></p><p class=\"p6-p22-note\">SELECTED PROFILE</p><div data-role=\"sidebar\"></div>" +
         "</aside><main class=\"p6-p22-main\"><header><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p6-p22-summary\">" +
@@ -530,8 +530,8 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-vertical\"><aside class=\"p6-v26-rail\"><div class=\"p6-v26-number\">26</div>" +
-        "<div class=\"p6-v26-word\">VERTICAL<br>NAVIGATION</div><div class=\"p6-v26-side\"><p>PROFILE</p>" +
+        "<div class=\"p6-vertical\"><aside class=\"p6-v26-rail\"><div class=\"p6-v26-number\"></div>" +
+        "<div class=\"p6-v26-word\"></div><div class=\"p6-v26-side\"><p>PROFILE</p>" +
         "<div data-role=\"sidebar\"></div></div></aside><main class=\"p6-v26-main\"><header>" +
         "<p class=\"p6-v26-kicker\">EXECUTIVE RESUME</p><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div>" +
@@ -556,7 +556,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-art-directed\"><header class=\"p6-ad27-head\"><div class=\"p6-ad27-number\">27</div>" +
+        "<div class=\"p6-art-directed\"><header class=\"p6-ad27-head\"><div class=\"p6-ad27-number\"></div>" +
         "<div class=\"p6-ad27-identity\"><p>ART-DIRECTED CORPORATE PROFILE</p>" +
         "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
@@ -582,8 +582,8 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
       "templateMarkup":
-        "<div class=\"p6-dark-editorial\"><div class=\"p6-ded-top\"><span>28</span><span>DARK EDITORIAL</span>" +
-        "<span>CURRICULUM VITAE</span></div><header class=\"p6-ded-head\"><div>" +
+        "<div class=\"p6-dark-editorial\"><div class=\"p6-ded-top\"><span></span><span></span>" +
+        "<span></span></div><header class=\"p6-ded-head\"><div>" +
         "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p6-ded-layout\"><aside>" +
@@ -674,7 +674,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
-        "<div class=\"cv p5-ivory\"><header class=\"p5-i-head\"><div class=\"p5-i-index\">02</div>" +
+        "<div class=\"cv p5-ivory\"><header class=\"p5-i-head\"><div class=\"p5-i-index\"></div>" +
         "<div class=\"p5-i-title\"><span>EDITORIAL CV</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-i-rule\"></div>" +
@@ -700,7 +700,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
-        "<div class=\"cv p5-navy\"><aside class=\"p5-n-rail\"><div class=\"p5-n-mark\">03</div>" +
+        "<div class=\"cv p5-navy\"><aside class=\"p5-n-rail\"><div class=\"p5-n-mark\"></div>" +
         "<div class=\"p5-n-label\">CAREER<br>PROFILE</div><div data-role=\"sidebar\"></div></aside>" +
         "<main class=\"p5-n-content\"><header class=\"p5-n-head\"><div><h1 data-bind=\"personalDetails.fullName\">" +
         "</h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
@@ -725,7 +725,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
-        "<div class=\"cv p5-burgundy\"><header class=\"p5-b-head\"><div class=\"p5-b-number\">04</div><div>" +
+        "<div class=\"cv p5-burgundy\"><header class=\"p5-b-head\"><div class=\"p5-b-number\"></div><div>" +
         "<span class=\"p5-b-kicker\">HERITAGE PROFILE</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-b-frame\"><aside>" +
@@ -750,7 +750,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
-        "<div class=\"cv p5-forest\"><header class=\"p5-f-head\"><div class=\"p5-f-monogram\">05</div><div>" +
+        "<div class=\"cv p5-forest\"><header class=\"p5-f-head\"><div class=\"p5-f-monogram\"></div><div>" +
         "<span class=\"p5-f-kicker\">FIELD + OFFICE</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-f-body\"><aside>" +
@@ -776,7 +776,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
-        "<div class=\"cv p5-copper\"><header class=\"p5-c-top\"><div class=\"p5-c-brand\">06 / EXECUTIVE</div>" +
+        "<div class=\"cv p5-copper\"><header class=\"p5-c-top\"><div class=\"p5-c-brand\"></div>" +
         "<div class=\"p5-c-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-c-band\">" +
@@ -802,7 +802,7 @@
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
         "<div class=\"cv p5-slate\"><header class=\"p5-s-head\"><div class=\"p5-s-monogram\">SP</div><div>" +
-        "<p class=\"p5-s-label\">SLATE PORTFOLIO</p><h1 data-bind=\"personalDetails.fullName\"></h1>" +
+        "<p class=\"p5-s-label\"></p><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><section class=\"p5-s-intro\">" +
         "<span>PROFILE</span><p class=\"summary\" data-bind=\"personalDetails.summary\"></p></section>" +
@@ -826,8 +826,8 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
-        "<div class=\"cv p5-sand\"><div class=\"p5-sa-banner\"><span>08</span><span>SAND MODERN</span>" +
-        "<span>CURRICULUM VITAE</span></div><header class=\"p5-sa-head\"><div>" +
+        "<div class=\"cv p5-sand\"><div class=\"p5-sa-banner\"><span></span><span></span>" +
+        "<span></span></div><header class=\"p5-sa-head\"><div>" +
         "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-sa-summary\">" +
@@ -852,7 +852,7 @@
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
         "<div class=\"cv p5-indigo\"><header class=\"p5-in-head\"><div>" +
-        "<span class=\"p5-in-kicker\">PROFILE 09</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
+        "<span class=\"p5-in-kicker\"></span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-in-overview\">" +
         "<p class=\"summary\" data-bind=\"personalDetails.summary\"></p></div><div class=\"p5-in-cards\"><main>" +
@@ -875,7 +875,7 @@
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Detailed, multi-section professional profiles",
       "templateMarkup":
-        "<div class=\"cv p5-teal\"><header class=\"p5-t-head\"><div class=\"p5-t-command\">COMMAND / 10</div><div>" +
+        "<div class=\"cv p5-teal\"><header class=\"p5-t-head\"><div class=\"p5-t-command\"></div><div>" +
         "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
         "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
         "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"p5-t-grid\"><main>" +
