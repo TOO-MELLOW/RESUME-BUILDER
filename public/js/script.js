@@ -3611,16 +3611,24 @@ function renderShowcaseStrip() {
         <div class="sc-name">${t.name}</div>
         <div class="sc-cat">${t.cat}</div>
     </div>`).join("");
-    if (typeof initShowcaseThumbs === 'function') initShowcaseThumbs();
 }
 
 function fitMellowHeroCv() {
     const frame = document.getElementById('hero-cv-frame');
     const inner = document.getElementById('hero-cv-inner');
     if (!frame || !inner) return;
+
     const pageWidth = 794;
-    const available = Math.max(220, frame.clientWidth);
-    inner.style.setProperty('--mc-hero-scale', String(available / pageWidth));
+    const frameWidth = frame.getBoundingClientRect().width;
+    if (!Number.isFinite(frameWidth) || frameWidth <= 0) return;
+
+    // Scale the real 794×1123 A4 canvas to the exact width of the hero frame.
+    // Never clamp the width upward: doing so makes narrow mobile columns overflow
+    // and causes the bottom/right of the CV to be clipped.
+    const scale = frameWidth / pageWidth;
+    inner.style.setProperty('--mc-hero-scale', String(scale));
+    inner.style.width = `${pageWidth}px`;
+    inner.style.height = '1123px';
 }
 
 function initMellowHomepageMotion() {
