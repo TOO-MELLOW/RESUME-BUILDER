@@ -1713,7 +1713,7 @@ function navigate(view, opts = {}) {
     }
   }
   if (view === 'gallery') renderGallery();
-  if (view === 'landing') { renderHeroCv(); renderShowcaseStrip(); }
+  if (view === 'landing') { renderHeroCv(); renderShowcaseStrip(); initMellowHomepageMotion(); }
   window.scrollTo(0, 0);
   if (atsPanelOpen) { atsPanelOpen = false; document.getElementById('ats-panel').classList.remove('open'); }
   closeTips();
@@ -3590,13 +3590,65 @@ function renderHeroCv() {
     inner.innerHTML = ''; inner.appendChild(page);
 }
 function renderShowcaseStrip() {
-    const strip = document.getElementById('sc-strip'); if (!strip) return;
-    strip.innerHTML = TEMPLATE_CONFIGS.slice(0, 14).map(t => `
+    const strip = document.getElementById('sc-strip');
+    if (!strip) return;
+    const featuredIds = [
+        'luxury-editorial-01',
+        'executive-01',
+        'ats-01',
+        'modern-01',
+        'sa-graduate-launch',
+        'starter-01'
+    ];
+    const featured = featuredIds
+        .map(id => TEMPLATE_CONFIGS.find(t => t.id === id))
+        .filter(Boolean);
+    const items = featured.length ? featured : TEMPLATE_CONFIGS.slice(0, 6);
+    strip.innerHTML = items.map(t => `
     <div class="sc-card" onclick="navigate('gallery')">
         <div class="sc-thumb" data-thumb-id="${t.id}"><div class="g-thumb-fallback">${SVGS[t.id] || ''}</div></div>
         <div class="sc-name">${t.name}</div>
         <div class="sc-cat">${t.cat}</div>
     </div>`).join("");
+}
+
+function fitMellowHeroCv() {
+    const frame = document.getElementById('hero-cv-frame');
+    const inner = document.getElementById('hero-cv-inner');
+    if (!frame || !inner) return;
+    const pageWidth = 794;
+    const available = Math.max(220, frame.clientWidth);
+    inner.style.setProperty('--mc-hero-scale', String(available / pageWidth));
+}
+
+function initMellowHomepageMotion() {
+    const root = document.querySelector('.mellow-home');
+    if (!root || root.dataset.motionReady === '1') return;
+    root.dataset.motionReady = '1';
+
+    fitMellowHeroCv();
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        root.querySelectorAll('.mc-reveal').forEach(el => el.classList.add('is-visible'));
+        return;
+    }
+
+    const revealItems = root.querySelectorAll('.mc-reveal');
+    if (!('IntersectionObserver' in window)) {
+        revealItems.forEach(el => el.classList.add('is-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    revealItems.forEach(el => observer.observe(el));
 }
 
 let _resizeTimer;
@@ -3608,6 +3660,7 @@ window.addEventListener('resize', () => {
         if (window.innerWidth >= 768 && isMobilePreviewOpen) {
             closeMobilePreview();
         }
+        fitMellowHeroCv();
     }, 120);
 });
 
@@ -3674,216 +3727,6 @@ async function handlePaymentReturn() {
     }
 }
 
-
-// ---------- MELLOWCV HOMEPAGE INTERACTIONS ----------
-const MELLOW_PATH_NOTES = {
-    first: "You don't need ten years of experience. We'll help you find the evidence that you've already started.",
-    graduate: "Your education, projects, volunteering and early work can tell a much stronger story than an empty page suggests.",
-    change: "Your old job is not the whole story. We'll bring transferable skills and useful outcomes forward.",
-    experienced: "Your years matter. Your evidence matters more. Give the reader the strongest proof first.",
-    senior: "At senior level, scope, decisions and impact need room to breathe — not another wall of duties.",
-    sa: "From Matric and learnership applications to experienced roles, start with the conventions and expectations your search actually needs."
-};
-
-const MELLOW_WORKBENCH = {
-    quiet: { id: 'luxury-editorial-01', label: 'QUIET / EDITORIAL' },
-    bold: { id: 'creative-01', label: 'BOLD / CREATIVE' },
-    executive: { id: 'executive-02', label: 'EXECUTIVE / FOCUSED' },
-    practical: { id: 'practical-01', label: 'PRACTICAL / CLEAR' },
-    creative: { id: 'facet-01', label: 'CREATIVE / DISTINCTIVE' },
-    ats: { id: 'ats-01', label: 'ATS-FIRST / DIRECT' }
-};
-
-const MELLOW_JOURNEY_LABELS = [
-    '01 / STORY',
-    '02 / EXPERIENCE',
-    '03 / STRUCTURE',
-    '04 / DESIGN',
-    '05 / READY'
-];
-
-const MELLOW_JOURNEY_NOTES = [
-    'Start somewhere. The page gets clearer as the story does.',
-    'Turn duties into evidence. Keep the useful parts easy to scan.',
-    'Your strongest signal should not be buried halfway down page one.',
-    'Now choose a look that supports the kind of work you want next.',
-    'Check it. Make the last corrections. Then send the right version.'
-];
-
-function getMellowLandingData() {
-    const el = document.getElementById('cv-data');
-    if (!el) return null;
-    try { return JSON.parse(el.textContent); } catch (e) { return null; }
-}
-
-function renderMellowMiniPage(target, templateId, data, scale) {
-    if (!target || typeof renderTemplateContent !== 'function' || !data) return;
-    let pageHtml = '';
-    try {
-        pageHtml = renderTemplateContent(data, templateId);
-    } catch (e) {
-        console.error('[MellowCV] homepage preview failed for', templateId, e);
-        return;
-    }
-    const page = document.createElement('div');
-    page.className = 'page';
-    page.dataset.template = templateId;
-    page.style.cssText = 'width:794px;min-height:1123px;';
-    page.innerHTML = pageHtml;
-    target.replaceChildren(page);
-    target.style.transform = `scale(${scale})`;
-}
-
-function selectCareerPath(key) {
-    const text = MELLOW_PATH_NOTES[key] || MELLOW_PATH_NOTES.first;
-    document.querySelectorAll('.path-card[data-path]').forEach(card => {
-        card.classList.toggle('is-active', card.dataset.path === key);
-    });
-    const response = document.getElementById('path-response');
-    const copy = document.getElementById('path-response-text');
-    if (copy) {
-        copy.textContent = text;
-        copy.animate(
-            [{ opacity: 0.35, transform: 'translateY(4px)' }, { opacity: 1, transform: 'translateY(0)' }],
-            { duration: 260, easing: 'cubic-bezier(.2,.7,.25,1)' }
-        );
-    }
-    if (response) response.classList.add('is-updated');
-}
-
-function setMellowJourneyStage(stage) {
-    const index = Math.max(0, Math.min(4, Number(stage) || 0));
-    document.querySelectorAll('.journey-item[data-stage]').forEach(item => {
-        item.classList.toggle('is-active', Number(item.dataset.stage) === index);
-    });
-    const label = document.getElementById('journey-stage-label');
-    const note = document.getElementById('journey-doc-note');
-    if (label) label.textContent = MELLOW_JOURNEY_LABELS[index];
-    if (note) note.textContent = MELLOW_JOURNEY_NOTES[index];
-}
-
-function initMellowJourney() {
-    const items = Array.from(document.querySelectorAll('.journey-item[data-stage]'));
-    if (!items.length) return;
-    items.forEach(item => {
-        item.addEventListener('mouseenter', () => setMellowJourneyStage(item.dataset.stage));
-        item.addEventListener('focusin', () => setMellowJourneyStage(item.dataset.stage));
-    });
-
-    const inner = document.getElementById('journey-doc-inner');
-    const data = getMellowLandingData();
-    if (inner && data) renderMellowMiniPage(inner, 'luxury-editorial-01', data, 0.60);
-}
-
-function initMellowWorkbench() {
-    const stage = document.getElementById('workbench-page');
-    if (!stage) return;
-    const data = getMellowLandingData();
-    if (!data) return;
-
-    const render = (key) => {
-        const spec = MELLOW_WORKBENCH[key] || MELLOW_WORKBENCH.quiet;
-        const label = document.getElementById('workbench-label');
-        document.querySelectorAll('.workbench-tab[data-template-view]').forEach(btn => {
-            btn.classList.toggle('is-active', btn.dataset.templateView === key);
-        });
-        if (label) label.textContent = spec.label;
-        stage.style.opacity = '0';
-        window.setTimeout(() => {
-            renderMellowMiniPage(stage, spec.id, data, window.innerWidth <= 620 ? 0.46 : 0.60);
-            requestAnimationFrame(() => {
-                stage.style.opacity = '1';
-            });
-        }, 110);
-    };
-
-    document.querySelectorAll('.workbench-tab[data-template-view]').forEach(btn => {
-        btn.addEventListener('click', () => render(btn.dataset.templateView));
-    });
-    render('quiet');
-}
-
-function initMellowBeforeAfter() {
-    const track = document.querySelector('.ba-track');
-    const before = document.querySelector('.ba-before');
-    if (!track || !before) return;
-
-    let raf = 0;
-    let active = false;
-
-    const update = (clientX) => {
-        const rect = track.parentElement.getBoundingClientRect();
-        const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-        before.style.clipPath = `inset(0 ${Math.round((1 - pct) * 100)}% 0 0)`;
-        const handle = document.getElementById('ba-handle');
-        if (handle) handle.style.transform = `translateX(${Math.round((pct - 0.5) * 120)}px)`;
-    };
-
-    const move = e => {
-        if (!active) return;
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => update(e.clientX));
-    };
-    const down = e => {
-        active = true;
-        track.setPointerCapture?.(e.pointerId);
-        update(e.clientX);
-    };
-    const up = () => { active = false; };
-
-    track.addEventListener('pointerdown', down);
-    track.addEventListener('pointermove', move);
-    track.addEventListener('pointerup', up);
-    track.addEventListener('pointercancel', up);
-}
-
-function initMellowReveal() {
-    const nodes = document.querySelectorAll('#view-landing .reveal, #view-landing .path-card, #view-landing .journey-item');
-    if (!nodes.length) return;
-    if (!('IntersectionObserver' in window)) {
-        nodes.forEach(node => node.classList.add('revealed'));
-        return;
-    }
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            if (entry.target.classList.contains('reveal')) entry.target.classList.add('revealed');
-            observer.unobserve(entry.target);
-        });
-    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
-    nodes.forEach(node => {
-        if (node.classList.contains('reveal')) observer.observe(node);
-    });
-}
-
-function initMellowPointerPaper() {
-    const paper = document.getElementById('hero-paper');
-    if (!paper || !window.matchMedia('(hover: hover)').matches) return;
-    let raf = 0;
-    paper.addEventListener('pointermove', e => {
-        if (raf) cancelAnimationFrame(raf);
-        const rect = paper.getBoundingClientRect();
-        const dx = (e.clientX - rect.left) / rect.width - 0.5;
-        const dy = (e.clientY - rect.top) / rect.height - 0.5;
-        raf = requestAnimationFrame(() => {
-            paper.style.transform = `rotate(${2.2 + dx * 2.8}deg) translate(${dx * 5}px,${dy * 5}px)`;
-        });
-    });
-    paper.addEventListener('pointerleave', () => {
-        if (raf) cancelAnimationFrame(raf);
-        paper.style.transform = 'rotate(2.2deg) translate(0,0)';
-    });
-}
-
-function initMellowLandingExperience() {
-    if (!document.getElementById('view-landing')) return;
-    initMellowReveal();
-    initMellowJourney();
-    initMellowWorkbench();
-    initMellowBeforeAfter();
-    initMellowPointerPaper();
-}
-
 // ---------- INIT ----------
 document.addEventListener('DOMContentLoaded', async () => {
     loadData();
@@ -3897,7 +3740,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateTemplateCatalogCount();
     renderHeroCv();
     renderShowcaseStrip();
-    initMellowLandingExperience();
+    initMellowHomepageMotion();
     updateGlobalCreditBadge();
     handlePaymentReturn();
 });
