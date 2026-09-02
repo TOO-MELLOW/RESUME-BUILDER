@@ -1,4 +1,3 @@
-
 (function (global) {
   'use strict';
 
@@ -69,18 +68,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-architectural\"><div class=\"ag-topbar\"><span class=\"ag-index\">03</span>" +
-        "<span>ARCHITECTURAL GRID</span><span>DESIGN / CV</span></div><header class=\"ag-header\">" +
-        "<div class=\"ag-title\"><span class=\"ag-kicker\">PROFILE 03</span>" +
-        "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ag-grid\"><aside>" +
-        "<div class=\"ag-summary\"><span>PROFILE NOTE</span><p data-bind=\"personalDetails.summary\"></p></div>" +
-        "<div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>" +
-        "<footer class=\"ag-footer\"><span>TEE / PROFESSIONAL PROFILE</span><span data-page-number>01</span>" +
-        "</footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-architectural\"><header class=\"ag-header\"><div class=\"ag-title\"><span class=\"ag-kicker\">PROFILE 03</span><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ag-grid\"><aside><div class=\"ag-summary\"><span>PROFILE NOTE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "modern-swiss-04",
       "name": "Modern Swiss",
@@ -97,17 +85,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-swiss\"><header class=\"ms-mast\"><div class=\"ms-no\">04</div>" +
-        "<div class=\"ms-brand\">MODERN SWISS</div><div class=\"ms-rule\"></div></header>" +
-        "<section class=\"ms-identity\"><div><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></section><div class=\"ms-content\"><aside>" +
-        "<div class=\"ms-summary\"><span>SUMMARY</span><p data-bind=\"personalDetails.summary\"></p></div>" +
-        "<div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>" +
-        "<footer class=\"ms-footer\"><span>SWISS SYSTEM / 04</span><span data-page-number>01</span></footer>" +
-        "</div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-swiss\"><section class=\"ms-identity\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></section><div class=\"ms-content\"><aside><div class=\"ms-summary\"><span>SUMMARY</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "fashion-editorial-portrait-05",
       "name": "Fashion Editorial Portrait",
@@ -176,17 +154,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-european-min\"><header class=\"em-header\"><div class=\"em-number\">07</div>" +
-        "<div class=\"em-name\"><div class=\"em-kicker\">EUROPEAN MINIMAL</div>" +
-        "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"em-line\"></div>" +
-        "<div class=\"em-body\"><aside><p class=\"em-summary\" data-bind=\"personalDetails.summary\"></p>" +
-        "<div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>" +
-        "<footer class=\"em-footer\"><span>07 / PROFESSIONAL CURRICULUM</span><span data-page-number>01</span>" +
-        "</footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-european-min\"><header class=\"em-header\"><div class=\"em-name\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"em-line\"></div><div class=\"em-body\"><aside><p class=\"em-summary\" data-bind=\"personalDetails.summary\"></p><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "burgundy-heritage-08",
       "name": "Burgundy Heritage",
@@ -203,17 +171,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-burgundy\"><header class=\"bh-header\"><div class=\"bh-brand\"><span>08</span>" +
-        "<strong>BURGUNDY HERITAGE</strong></div><div class=\"bh-identity\">" +
-        "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"bh-frame\"><aside>" +
-        "<div class=\"bh-summary\"><span>ABOUT</span><p data-bind=\"personalDetails.summary\"></p></div>" +
-        "<div data-role=\"sidebar\"></div></aside><main><div class=\"bh-intro\">SELECTED EXPERIENCE</div>" +
-        "<div data-role=\"main\"></div></main></div><footer class=\"bh-footer\">" +
-        "<span>HERITAGE EDITION · 08</span><span data-page-number>01</span></footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-burgundy\"><header class=\"bh-header\"><div class=\"bh-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"bh-frame\"><aside><div class=\"bh-summary\"><span>ABOUT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div class=\"bh-intro\">SELECTED EXPERIENCE</div><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "technology-executive-09",
       "name": "Technology Executive",
@@ -230,18 +188,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-tech\"><header class=\"te-header\"><div class=\"te-system\"><span>09</span>" +
-        "<span>SYSTEM / EXECUTIVE PROFILE</span></div><div class=\"te-identity\"><div>" +
-        "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></div><div class=\"te-signal\"><i></i><i></i><i></i><i>" +
-        "</i><span>ONLINE</span></div></header><div class=\"te-grid\"><aside><div class=\"te-summary\">" +
-        "<span>EXECUTIVE SIGNAL</span><p data-bind=\"personalDetails.summary\"></p></div>" +
-        "<div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>" +
-        "<footer class=\"te-footer\"><span>TECHNOLOGY EXECUTIVE / 09</span><span data-page-number>01</span>" +
-        "</footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-tech\"><header class=\"te-header\"><div class=\"te-identity\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></div><div class=\"te-signal\"><i></i><i></i><i></i><i></i><span>ONLINE</span></div></header><div class=\"te-grid\"><aside><div class=\"te-summary\"><span>EXECUTIVE SIGNAL</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "portrait-luxury-10",
       "name": "Portrait Luxury",
@@ -283,18 +230,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-public\"><div class=\"cp-rail\"><span>11</span><span>PUBLIC<br>SECTOR</span>" +
-        "<b></b></div><div class=\"cp-sheet\"><header class=\"cp-header\">" +
-        "<div class=\"cp-kicker\">CONTEMPORARY PUBLIC SECTOR · CURRICULUM VITAE</div><div class=\"cp-identity\">" +
-        "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"cp-rule\"></div>" +
-        "<div class=\"cp-grid\"><aside><div class=\"cp-summary\"><span>PROFILE</span>" +
-        "<p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main>" +
-        "<div data-role=\"main\"></div></main></div><footer class=\"cp-footer\">" +
-        "<span>11 / PUBLIC SERVICE PROFILE</span><span data-page-number>01</span></footer></div></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-public\"><div class=\"cp-rail\"><b></b></div><div class=\"cp-sheet\"><header class=\"cp-header\"><div class=\"cp-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"cp-rule\"></div><div class=\"cp-grid\"><aside><div class=\"cp-summary\"><span>PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div></div>"},
     {
       "id": "finance-executive-12",
       "name": "Finance Executive",
@@ -311,16 +247,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-finance\"><header class=\"fx-header\"><div class=\"fx-index\">12</div>" +
-        "<div class=\"fx-name\"><span>FINANCE EXECUTIVE</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"fx-bar\"><i></i><i></i><i></i>" +
-        "</div><div class=\"fx-content\"><aside><div class=\"fx-summary\"><span>EXECUTIVE SUMMARY</span>" +
-        "<p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main>" +
-        "<div data-role=\"main\"></div></main></div><footer class=\"fx-footer\">" +
-        "<span>FINANCIAL PROFILE / 12</span><span data-page-number>01</span></footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-finance\"><header class=\"fx-header\"><div class=\"fx-name\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"fx-bar\"><i></i><i></i><i></i></div><div class=\"fx-content\"><aside><div class=\"fx-summary\"><span>EXECUTIVE SUMMARY</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "creative-director-13",
       "name": "Creative Director",
@@ -388,17 +315,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-mono-gallery\"><header class=\"mg-header\"><div class=\"mg-mark\">15</div>" +
-        "<div class=\"mg-identity\"><div class=\"mg-kicker\">MONOCHROME / GALLERY</div>" +
-        "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"mg-stage\"><main>" +
-        "<div data-role=\"main\"></div></main><aside><div class=\"mg-summary\"><span>CURATED PROFILE</span>" +
-        "<p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div>" +
-        "<footer class=\"mg-footer\"><span>BLACK / WHITE / FORM</span><span data-page-number>01</span></footer>" +
-        "</div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-mono-gallery\"><header class=\"mg-header\"><div class=\"mg-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"mg-stage\"><main><div data-role=\"main\"></div></main><aside><div class=\"mg-summary\"><span>CURATED PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div></div>"},
     {
       "id": "modernist-geometry-16",
       "name": "Modernist Geometry",
@@ -415,16 +332,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-geometry\"><header class=\"geo-header\"><div class=\"geo-square\">16</div>" +
-        "<div class=\"geo-name\"><span>MODERNIST GEOMETRY</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div><div class=\"geo-block\"></div></header>" +
-        "<div class=\"geo-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"geo-summary\">" +
-        "<span>ABSTRACT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\">" +
-        "</div></aside></div><footer class=\"geo-footer\"><span>16 / MODERNIST SYSTEM</span>" +
-        "<span data-page-number>01</span></footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-geometry\"><header class=\"geo-header\"><div class=\"geo-name\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div><div class=\"geo-block\"></div></header><div class=\"geo-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"geo-summary\"><span>ABSTRACT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div></div>"},
     {
       "id": "forest-estate-17",
       "name": "Forest Estate",
@@ -441,16 +349,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-forest\"><header class=\"fe-header\"><div class=\"fe-orbit\"><span>17</span>" +
-        "</div><div class=\"fe-title\"><span>FOREST ESTATE</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"fe-intro\"><div>" +
-        "<span>FIELD NOTE</span><p data-bind=\"personalDetails.summary\"></p></div></div><div class=\"fe-body\">" +
-        "<aside><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div>" +
-        "<footer class=\"fe-footer\"><span>ESTATE PROFILE / 17</span><span data-page-number>01</span></footer>" +
-        "</div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-forest\"><header class=\"fe-header\"><div class=\"fe-title\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"fe-intro\"><div><span>FIELD NOTE</span><p data-bind=\"personalDetails.summary\"></p></div></div><div class=\"fe-body\"><aside><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "sapphire-executive-portrait-18",
       "name": "Sapphire Executive Portrait",
@@ -494,17 +393,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-consultant\"><header class=\"pc-header\"><div class=\"pc-top\"><span>19</span>" +
-        "<span>PREMIUM CONSULTANT</span><span>EXECUTIVE / ADVISORY</span></div><div class=\"pc-center\">" +
-        "<div class=\"pc-monogram\">P</div><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"pc-body\"><main>" +
-        "<div data-role=\"main\"></div></main><aside><div class=\"pc-summary\"><span>POSITIONING</span>" +
-        "<p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div>" +
-        "<footer class=\"pc-footer\"><span>ADVISORY PROFILE · 19</span><span data-page-number>01</span>" +
-        "</footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-consultant\"><header class=\"pc-header\"><div class=\"pc-center\"><div class=\"pc-monogram\">P</div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"pc-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"pc-summary\"><span>POSITIONING</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div></div>"},
     {
       "id": "editorial-portrait-20",
       "name": "Editorial Portrait",
@@ -546,17 +435,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-asymmetric\"><div class=\"aa-spine\"><span>21</span>" +
-        "<span>ASSET<br>PROFILE</span></div><header class=\"aa-header\"><div>" +
-        "<span class=\"aa-kicker\">ASYMMETRIC ARCHITECTURE</span><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"aa-body\"><main>" +
-        "<div data-role=\"main\"></div></main><aside><div class=\"aa-summary\"><span>OVERVIEW</span>" +
-        "<p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div>" +
-        "<footer class=\"aa-footer\"><span>STRUCTURE / PROPORTION / 21</span><span data-page-number>01</span>" +
-        "</footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-asymmetric\"><div class=\"aa-spine\"></div><header class=\"aa-header\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"aa-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"aa-summary\"><span>OVERVIEW</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div></div>"},
     {
       "id": "luxury-portfolio-22",
       "name": "Luxury Portfolio",
@@ -599,16 +478,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-copper\"><header class=\"sc-header\"><div class=\"sc-label\">23</div>" +
-        "<div class=\"sc-identity\"><span>SLATE &amp; COPPER</span><h1 data-bind=\"personalDetails.fullName\">" +
-        "</h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sc-copper-rule\"></div>" +
-        "<div class=\"sc-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"sc-summary\">" +
-        "<span>PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div>" +
-        "</aside></div><footer class=\"sc-footer\"><span>SLATE / COPPER / 23</span>" +
-        "<span data-page-number>01</span></footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-copper\"><header class=\"sc-header\"><div class=\"sc-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"sc-copper-rule\"></div><div class=\"sc-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"sc-summary\"><span>PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div></div>"},
     {
       "id": "modern-academic-24",
       "name": "Modern Academic",
@@ -625,17 +495,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-academic\"><header class=\"ma-header\"><div class=\"ma-journal\">" +
-        "<span>VOL. 24</span><strong>MODERN ACADEMIC</strong><span>CV / DOSSIER</span></div>" +
-        "<div class=\"ma-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ma-rule\"></div>" +
-        "<div class=\"ma-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"ma-summary\">" +
-        "<span>ABSTRACT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\">" +
-        "</div></aside></div><footer class=\"ma-footer\"><span>RESEARCH PROFILE / 24</span>" +
-        "<span data-page-number>01</span></footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-academic\"><header class=\"ma-header\"><div class=\"ma-identity\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"ma-rule\"></div><div class=\"ma-body\"><main><div data-role=\"main\"></div></main><aside><div class=\"ma-summary\"><span>ABSTRACT</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside></div></div>"},
     {
       "id": "high-end-minimal-25",
       "name": "High End Minimal",
@@ -652,16 +512,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-minimal\"><header class=\"hm-header\"><span>25</span><div>" +
-        "<h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div>" +
-        "<div class=\"contact\" data-role=\"contact\"></div></header><div class=\"hm-whitespace\"></div>" +
-        "<div class=\"hm-body\"><aside><div class=\"hm-summary\"><span>NOTE</span>" +
-        "<p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main>" +
-        "<div data-role=\"main\"></div></main></div><footer class=\"hm-footer\">" +
-        "<span>HIGH-END MINIMAL / 25</span><span data-page-number>01</span></footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-minimal\"><header class=\"hm-header\"><div><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"contact\" data-role=\"contact\"></div></header><div class=\"hm-whitespace\"></div><div class=\"hm-body\"><aside><div class=\"hm-summary\"><span>NOTE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "vertical-navigation-26",
       "name": "Vertical Navigation",
@@ -756,16 +607,7 @@
       "rendererKind": "legacy",
       "supportedSections": ["personal", "summary", "experience", "education", "skills", "certifications", "languages", "references", "interests", "strengths", "custom"],
       "bestFor": "Experienced professionals wanting a designer look",
-      "templateMarkup":
-        "<div class=\"corp-p1 corp-modern-eu\"><header class=\"me-header\"><div class=\"me-card\"><span>29</span>" +
-        "<strong>MODERN EUROPEAN</strong><h1 data-bind=\"personalDetails.fullName\"></h1>" +
-        "<div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"me-contact\">" +
-        "<span>CONTACT</span><div class=\"contact\" data-role=\"contact\"></div></div></header>" +
-        "<div class=\"me-grid\"><aside><div class=\"me-summary\"><span>PROFILE</span>" +
-        "<p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main>" +
-        "<div data-role=\"main\"></div></main></div><footer class=\"me-footer\"><span>29 / EUROPEAN SYSTEM</span>" +
-        "<span data-page-number>01</span></footer></div>"
-    },
+      "templateMarkup": "<div class=\"corp-p1 corp-modern-eu\"><header class=\"me-header\"><div class=\"me-card\"><h1 data-bind=\"personalDetails.fullName\"></h1><div class=\"role\" data-bind=\"personalDetails.jobTitle\"></div></div><div class=\"me-contact\"><span>CONTACT</span><div class=\"contact\" data-role=\"contact\"></div></div></header><div class=\"me-grid\"><aside><div class=\"me-summary\"><span>PROFILE</span><p data-bind=\"personalDetails.summary\"></p></div><div data-role=\"sidebar\"></div></aside><main><div data-role=\"main\"></div></main></div></div>"},
     {
       "id": "signature-executive-30",
       "name": "Signature Executive",
