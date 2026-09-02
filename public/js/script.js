@@ -3582,13 +3582,58 @@ function updateTemplateCatalogCount() {
 }
 
 function renderHeroCv() {
-    const inner = document.getElementById('hero-cv-inner'); if (!inner) return;
+    const inner = document.getElementById('hero-cv-inner');
+    if (!inner) return;
+
     const page = document.createElement('div');
-    page.className = 'page'; page.setAttribute('data-template','luxury-editorial-01');
-    page.style.cssText = 'width:794px;min-height:1123px;'; page.style.setProperty('--color-accent','#2F6F63');
-    const heroData = JSON.parse(document.getElementById('cv-data').textContent);
+    page.className = 'page';
+    page.setAttribute('data-template', 'luxury-editorial-01');
+    page.style.cssText = 'width:794px;height:1123px;min-height:1123px;overflow:hidden;';
+    page.style.setProperty('--color-accent', '#2F6F63');
+
+    const source = JSON.parse(document.getElementById('cv-data').textContent);
+    const heroData = JSON.parse(JSON.stringify(source));
+
+    // The hero is a product demonstration, not the user's full document.
+    // Keep enough real content to show the template clearly while guaranteeing
+    // that the complete A4 page remains visible at every responsive scale.
+    const keepTypes = new Set([
+        'personal-info',
+        'experience',
+        'education',
+        'skills',
+        'languages',
+        'certificates'
+    ]);
+
+    heroData.sections = (heroData.sections || [])
+        .filter(section => section && keepTypes.has(section.type))
+        .map(section => {
+            const copy = { ...section };
+
+            if (section.type === 'personal-info') {
+                copy.items = (section.items || []).slice(0, 3);
+            } else if (section.type === 'experience') {
+                copy.items = (section.items || []).slice(0, 2).map(item => ({
+                    ...item,
+                    bullets: (item.bullets || []).slice(0, 2)
+                }));
+            } else if (section.type === 'education') {
+                copy.items = (section.items || []).slice(0, 1);
+            } else if (section.type === 'skills') {
+                copy.items = (section.items || []).slice(0, 8);
+            } else if (section.type === 'languages') {
+                copy.items = (section.items || []).slice(0, 3);
+            } else if (section.type === 'certificates') {
+                copy.items = (section.items || []).slice(0, 3);
+            }
+
+            return copy;
+        });
+
     page.innerHTML = renderTemplateContent(heroData, 'luxury-editorial-01');
-    inner.innerHTML = ''; inner.appendChild(page);
+    inner.innerHTML = '';
+    inner.appendChild(page);
 }
 function renderShowcaseStrip() {
     const strip = document.getElementById('sc-strip');
@@ -3622,13 +3667,13 @@ function fitMellowHeroCv() {
     const frameWidth = frame.getBoundingClientRect().width;
     if (!Number.isFinite(frameWidth) || frameWidth <= 0) return;
 
-    // Scale the real 794×1123 A4 canvas to the exact width of the hero frame.
-    // Never clamp the width upward: doing so makes narrow mobile columns overflow
-    // and causes the bottom/right of the CV to be clipped.
+    // Keep the real A4 canvas intact; only scale it uniformly to the
+    // actual width of the responsive hero column. Never clamp upward.
     const scale = frameWidth / pageWidth;
-    inner.style.setProperty('--mc-hero-scale', String(scale));
     inner.style.width = `${pageWidth}px`;
     inner.style.height = '1123px';
+    inner.style.transformOrigin = 'top left';
+    inner.style.setProperty('--mc-hero-scale', String(scale));
 }
 
 function initMellowHomepageMotion() {
@@ -3637,6 +3682,14 @@ function initMellowHomepageMotion() {
     root.dataset.motionReady = '1';
 
     fitMellowHeroCv();
+
+    const heroFrame = document.getElementById('hero-cv-frame');
+    if (heroFrame && 'ResizeObserver' in window) {
+        const heroResizeObserver = new ResizeObserver(() => {
+            requestAnimationFrame(fitMellowHeroCv);
+        });
+        heroResizeObserver.observe(heroFrame);
+    }
 
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         root.querySelectorAll('.mc-reveal').forEach(el => el.classList.add('is-visible'));
