@@ -59,6 +59,10 @@
         [data-view=manager] #view-manager { display: block }
         [data-view=builder] #view-builder { display: flex }
         [data-view=clbuilder] #view-clbuilder { display: flex }
+        /* Fix: the quick-action FAB was overlapping the hero microcopy on the
+           landing page and duplicating the hero's own CTAs. Hide it there;
+           it still shows up on gallery/manager where it's the fastest way in. */
+        [data-view=landing] #quick-fab-wrap { display: none; }
     </style>
 </head>
 <body data-view="landing">
@@ -90,7 +94,7 @@
       <section class="mc-hero mc-section-pad">
         <div class="mc-hero-copy mc-reveal">
           <p class="mc-kicker">MellowCV · CV + cover letter</p>
-          <h1>Build an application that makes <em>the right things easy to see.</em></h1>
+          <h1>A CV built to get you <em>the interview.</em></h1>
           <p class="mc-hero-text">Create a clear, professional CV, strengthen the way your experience is written, and finish with a cover letter tailored to the role.</p>
           <div class="mc-actions">
             <button class="mc-button mc-button-primary" onclick="navigate('builder')">Build my CV <span aria-hidden="true">→</span></button>
