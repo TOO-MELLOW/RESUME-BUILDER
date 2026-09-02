@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Mellow CV FACTORY | Professional Resume Builder</title>
@@ -59,16 +58,320 @@
         [data-view=manager] #view-manager { display: block }
         [data-view=builder] #view-builder { display: flex }
         [data-view=clbuilder] #view-clbuilder { display: flex }
-        /* Fix: the quick-action FAB was overlapping the hero microcopy on the
-           landing page and duplicating the hero's own CTAs. Hide it there;
-           it still shows up on gallery/manager where it's the fastest way in. */
         [data-view=landing] #quick-fab-wrap { display: none; }
+
+        /* ============================================================
+           ENHANCED LANDING STYLES (scoped to .mellow-home)
+           ============================================================ */
+        .mellow-home {
+          --mc-paper: #EDF0F4;
+          --mc-paper-2: #FBF8F0;
+          --mc-ink: #14201B;
+          --mc-muted: #68716C;
+          --mc-line: #DDE2EA;
+          --mc-accent: #2F7A6E;
+          --mc-accent-soft: #E2EFEB;
+          --mc-dark: #15211C;
+          background: var(--mc-paper);
+          color: var(--mc-ink);
+          min-height: 100vh;
+          overflow-x: clip;
+        }
+        .mellow-home *, .mellow-home *::before, .mellow-home *::after { box-sizing: border-box; }
+
+        /* Navigation */
+        .mc-nav {
+          min-height: 58px;
+          padding: 0 14px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          position: sticky;
+          top: 0;
+          z-index: 80;
+          background: rgba(237,240,244,.96);
+          border-bottom: 1px solid var(--mc-line);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+        }
+        .mc-brand { font: 800 18px/1 'Space Grotesk',sans-serif; letter-spacing: -.04em; color: var(--mc-ink); text-decoration: none; cursor:pointer; white-space:nowrap; }
+        .mc-brand span { color: var(--mc-accent); }
+        .mc-nav-links { display:none; gap:18px; align-items:center; margin-left:auto; }
+        .mc-nav-links a, .mc-text-link, .mc-footer-links a {
+          color: var(--mc-muted);
+          text-decoration:none;
+          cursor:pointer;
+          font: 600 12px/1.2 'Space Grotesk',sans-serif;
+          transition: color .15s;
+        }
+        .mc-nav-links a:hover, .mc-text-link:hover, .mc-footer-links a:hover { color:var(--mc-ink); }
+        .mc-nav-cta {
+          margin-left:auto; border:0; border-radius:999px; background:var(--mc-dark); color:#fff;
+          min-height:38px; padding:0 15px; font:700 12px/1 'Space Grotesk',sans-serif; cursor:pointer;
+          transition: background .15s, transform .15s;
+        }
+        .mc-nav-cta:hover { background:#1f2e28; transform:translateY(-1px); }
+
+        /* Buttons */
+        .mc-button {
+          min-height:48px;
+          padding:0 22px;
+          border-radius:12px;
+          border:1px solid transparent;
+          cursor:pointer;
+          font:700 14px/1 'Space Grotesk',sans-serif;
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          gap:10px;
+          transition:transform .16s ease, background .16s ease, border-color .16s ease;
+        }
+        .mc-button-primary { background:var(--mc-accent); color:#fff; }
+        .mc-button-secondary { background:transparent; color:var(--mc-ink); border-color:var(--mc-line); }
+        .mc-button-light { background:#F4F0E7; color:var(--mc-dark); }
+        .mc-button-ghost-light { color:#fff; border-color:rgba(255,255,255,.25); background:transparent; }
+        .mc-button-primary:hover, .mc-button-secondary:hover, .mc-button-light:hover { transform:translateY(-2px); }
+        .mc-button-ghost-light:hover { background:rgba(255,255,255,.08); transform:translateY(-2px); }
+
+        .mc-text-link {
+          font:600 13px/1 'Space Grotesk',sans-serif;
+          color:var(--mc-muted);
+          background:none;
+          border:0;
+          cursor:pointer;
+          display:inline-flex;
+          align-items:center;
+          gap:6px;
+          padding:6px 0;
+          transition:color .15s;
+        }
+        .mc-text-link:hover { color:var(--mc-ink); }
+
+        .mc-actions { display:flex; flex-direction:column; gap:9px; margin-top:24px; align-items:flex-start; }
+        .mc-actions-center { justify-content:center; align-items:center; }
+
+        /* Section layout */
+        .mc-section-pad { padding: 52px 16px; }
+        .mc-section-light { background: var(--mc-paper-2); }
+        .mc-section-intro { max-width:650px; margin-bottom:28px; }
+        .mc-section-intro-wide { max-width:720px; }
+        .mc-section-intro-row { display:flex; flex-direction:column; gap:18px; justify-content:space-between; }
+
+        /* Kicker */
+        .mc-kicker {
+          margin:0 0 12px;
+          font:700 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;
+          letter-spacing:.13em;
+          text-transform:uppercase;
+          color:var(--mc-accent);
+        }
+
+        /* Headings */
+        .mellow-home h1, .mellow-home h2 { font-family:'Fraunces',serif; font-weight:600; letter-spacing:-.04em; }
+        .mc-hero h1 { margin:0; font-size:clamp(40px,11vw,70px); line-height:.98; max-width:760px; }
+        .mc-hero h1 em { color:var(--mc-accent); font-style:italic; }
+        .mellow-home h2 { margin:0; font-size:clamp(31px,8vw,52px); line-height:1.03; }
+
+        .mc-hero-text { max-width:620px; margin:20px 0 0; color:var(--mc-muted); font-size:16px; line-height:1.62; }
+        .mc-microcopy { margin:10px 0 0; color:#8A908C; font:500 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+
+        /* Hero layout */
+        .mc-hero { display:grid; gap:34px; max-width:1180px; margin:0 auto; }
+        .mc-hero-copy { padding-top:4px; }
+        .mc-hero-product { min-width:0; }
+        .mc-product-heading { display:flex; justify-content:space-between; align-items:center; color:#8A908C; font:700 9px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; margin-bottom:8px; }
+        .mc-cv-stage { width:100%; display:flex; justify-content:center; }
+        .mellow-home .hero-frame {
+          width:min(100%, 350px); height:auto; aspect-ratio:210 / 297; border:1px solid #DDE2EA;
+          border-radius:2px; background:#E3E7EC; box-shadow:16px 16px 0 rgba(21,33,28,.07), 0 14px 30px rgba(21,33,28,.09);
+          overflow:hidden; position:relative;
+        }
+        .mellow-home .hero-frame-inner { width:794px; min-height:1123px; height:1123px; transform-origin:top left; transform:scale(var(--mc-hero-scale,.39)); pointer-events:none; }
+        .mellow-home .hero-frame-inner .page { width:794px; min-height:1123px; }
+        .mc-product-note { margin-top:9px; color:#737A76; font:500 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; display:flex; align-items:center; gap:7px; }
+        .mc-status-dot { width:7px; height:7px; border-radius:50%; background:var(--mc-accent); flex:none; box-shadow:0 0 0 3px var(--mc-accent-soft); }
+
+        /* Trust Strip */
+        .mc-trust { text-align:center; background:var(--mc-paper-2); padding:32px 16px; }
+        .mc-trust-inner { max-width:900px; margin:0 auto; }
+        .mc-trust-badge {
+          display:inline-flex; align-items:center; gap:8px;
+          background:var(--mc-accent-soft); color:var(--mc-accent);
+          padding:6px 16px; border-radius:999px;
+          font:600 13px/1.2 'Space Grotesk',sans-serif;
+          margin-bottom:18px;
+        }
+        .mc-trust-icon { font-size:16px; }
+        .mc-trust-pills {
+          display:flex; flex-wrap:wrap; justify-content:center; gap:10px 24px;
+        }
+        .mc-trust-pills span {
+          display:inline-flex; align-items:center; gap:6px;
+          font-size:14px; color:var(--mc-muted);
+        }
+        .mc-icon { width:18px; height:18px; color:var(--mc-accent); flex-shrink:0; }
+
+        /* Template Showcase */
+        .mc-tpl-filters {
+          display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px;
+        }
+        .mc-tpl-filter {
+          padding:6px 16px; border:1px solid var(--mc-line); border-radius:999px;
+          background:transparent; font:500 12px/1 'Inter',sans-serif; color:var(--mc-muted);
+          cursor:pointer; transition:all .15s;
+        }
+        .mc-tpl-filter:hover { border-color:var(--mc-accent); color:var(--mc-ink); }
+        .mc-tpl-filter.active { background:var(--mc-accent); border-color:var(--mc-accent); color:#fff; }
+
+        .mc-tpl-strip {
+          display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,280px);
+          gap:16px; overflow-x:auto; padding:4px 2px 16px;
+          scroll-snap-type:x proximity; scrollbar-width:none;
+        }
+        .mc-tpl-strip::-webkit-scrollbar { display:none; }
+        .mc-tpl-strip .sc-card { scroll-snap-align:start; }
+        .mc-tpl-strip .sc-thumb {
+          border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);
+          transition:transform .2s, box-shadow .2s;
+        }
+        .mc-tpl-strip .sc-card:hover .sc-thumb {
+          transform:translateY(-4px);
+          box-shadow:0 8px 24px rgba(0,0,0,0.10);
+        }
+
+        /* How It Works – visual timeline */
+        .mc-process-steps {
+          display:flex; flex-direction:column; gap:20px;
+          max-width:900px; margin:0 auto;
+        }
+        .mc-step-item {
+          display:flex; align-items:flex-start; gap:18px;
+          position:relative; padding-bottom:20px;
+        }
+        .mc-step-item:last-child { padding-bottom:0; }
+        .mc-step-item:not(:last-child) .mc-step-line {
+          content:''; position:absolute; left:21px; top:44px; bottom:0;
+          width:2px; background:var(--mc-line);
+        }
+        .mc-step-icon {
+          width:44px; height:44px; flex-shrink:0; border-radius:50%;
+          background:var(--mc-accent); color:#fff;
+          display:flex; align-items:center; justify-content:center;
+          font:700 16px/1 'Space Grotesk',sans-serif;
+        }
+        .mc-step-content { flex:1; }
+        .mc-step-content h3 { margin:0 0 4px; font:700 18px/1.2 'Space Grotesk',sans-serif; }
+        .mc-step-content p { margin:0; color:var(--mc-muted); font-size:14px; line-height:1.5; }
+
+        /* Testimonials */
+        .mc-testi-grid {
+          display:grid; gap:20px; max-width:1100px; margin:0 auto;
+        }
+        .mc-testi-card {
+          background:#fff; border-radius:16px; padding:24px;
+          box-shadow:0 2px 12px rgba(0,0,0,0.04);
+          border:1px solid var(--mc-line);
+          transition:transform .2s, box-shadow .2s;
+        }
+        .mc-testi-card:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(0,0,0,0.08); }
+        .mc-testi-stars { color:#f59e0b; font-size:16px; letter-spacing:2px; margin-bottom:10px; }
+        .mc-testi-quote { font-size:15px; line-height:1.6; color:var(--mc-ink); margin:0 0 16px; font-style:italic; }
+        .mc-testi-by { display:flex; align-items:center; gap:12px; }
+        .mc-testi-avatar {
+          width:40px; height:40px; border-radius:50%;
+          background:var(--mc-accent-soft); color:var(--mc-accent);
+          display:flex; align-items:center; justify-content:center;
+          font-weight:700; font-size:14px; flex-shrink:0;
+        }
+        .mc-testi-name { display:block; font-weight:700; font-size:14px; }
+        .mc-testi-role { font-size:12px; color:var(--mc-muted); }
+        .mc-testi-trust {
+          display:flex; flex-wrap:wrap; justify-content:center;
+          gap:20px 40px; margin-top:30px; padding-top:20px;
+          border-top:1px solid var(--mc-line);
+          font-weight:600; color:var(--mc-muted);
+        }
+
+        /* Before/After */
+        .mc-improve { display:grid; gap:28px; background:var(--mc-paper-2); }
+        .mc-improve-copy { max-width:620px; }
+        .mc-before-after { border:1px solid var(--mc-line); background:#F5F7F9; padding:18px; }
+        .mc-example { padding:16px; background:var(--mc-paper-2); }
+        .mc-example-before { border-left:3px solid #B2B6B1; }
+        .mc-example-after { border-left:3px solid var(--mc-accent); margin-top:10px; }
+        .mc-example-label { display:block; font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace; text-transform:uppercase; letter-spacing:.13em; color:#858B86; }
+        .mc-example p { margin:10px 0 0; font:600 17px/1.35 'Space Grotesk',sans-serif; }
+        .mc-example-divider { display:flex; justify-content:center; padding:8px 0; color:var(--mc-accent); font:700 16px/1 'Space Grotesk',sans-serif; }
+
+        /* Final CTA */
+        .mc-final { background:var(--mc-dark); color:#fff; padding:64px 16px; }
+        .mc-final-inner { max-width:720px; margin:0 auto; text-align:center; }
+        .mc-final .mc-kicker { color:#93C3B8; }
+        .mc-final h2 { color:#fff; }
+        .mc-final-inner > p:not(.mc-kicker) { color:rgba(255,255,255,.72); margin-left:auto; margin-right:auto; }
+
+        /* Footer */
+        .mc-footer { padding:24px 16px 32px; display:grid; gap:22px; background:#0F1915; color:#fff; }
+        .mc-footer-brand strong { display:block; font:800 17px/1 'Space Grotesk',sans-serif; letter-spacing:-.04em; }
+        .mc-footer-brand strong span { color:#8EC0B5; }
+        .mc-footer-brand > span { display:block; margin-top:8px; color:#8B948F; font-size:11px; }
+        .mc-footer-links { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .mc-footer-links a { color:#B6BCB8; }
+        .mc-footer-copy { color:#626B66; font-size:10px; }
+
+        /* Reveal animations */
+        .mc-reveal { opacity:0; transform:translateY(16px); transition:opacity .55s ease, transform .55s cubic-bezier(.22,.7,.2,1); }
+        .mc-reveal.is-visible { opacity:1; transform:none; }
+        .mc-reveal-delay-1 { transition-delay:.08s; }
+
+        /* Responsive */
+        @media (min-width:600px) {
+          .mc-section-pad { padding:72px 28px; }
+          .mc-actions { flex-direction:row; align-items:center; }
+          .mc-button { width:auto; }
+          .mc-process-steps { flex-direction:row; justify-content:space-between; gap:10px; }
+          .mc-step-item { flex:1; flex-direction:column; align-items:center; text-align:center; padding-bottom:0; }
+          .mc-step-item:not(:last-child) .mc-step-line { display:none; }
+          .mc-step-item:not(:last-child)::after { content:''; flex:1; height:2px; background:var(--mc-line); align-self:center; margin:0 8px; }
+          .mc-step-icon { width:56px; height:56px; font-size:20px; }
+          .mc-step-content h3 { font-size:16px; }
+          .mc-testi-grid { grid-template-columns:repeat(3,1fr); }
+          .mc-footer { grid-template-columns:1fr auto; }
+          .mc-footer-copy { grid-column:1/-1; }
+        }
+        @media (min-width:768px) {
+          .mc-nav-links { display:flex; }
+        }
+        @media (min-width:900px) {
+          .mc-nav { padding:0 28px; }
+          .mc-hero { grid-template-columns:minmax(0,1.03fr) minmax(360px,.72fr); align-items:center; gap:50px; padding-top:78px; padding-bottom:86px; }
+          .mc-hero-copy { padding-top:0; }
+          .mc-actions { margin-top:28px; }
+          .mc-section-intro-row { flex-direction:row; align-items:end; }
+          .mc-section-intro-row .mc-text-link { padding-bottom:7px; }
+          .mc-footer { grid-template-columns:1fr 1fr auto; align-items:start; }
+          .mc-footer-copy { grid-column:auto; align-self:end; }
+        }
+        @media (max-width:599px) {
+          .mc-nav-links { display:none; }
+          .mc-hero { grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr); gap:10px; align-items:start; padding:30px 12px 34px; }
+          .mc-hero h1 { font-size:clamp(30px,8.2vw,38px); line-height:.97; }
+          .mc-hero-text { margin-top:14px; font-size:clamp(11px,3.1vw,13px); line-height:1.48; }
+          .mc-kicker { font-size:8px; letter-spacing:.10em; margin-bottom:9px; }
+          .mc-actions { gap:7px; margin-top:16px; }
+          .mc-button { min-height:42px; padding:0 11px; font-size:11px; }
+          .mc-trust-pills span { font-size:12px; }
+          .mc-tpl-strip { grid-auto-columns:minmax(150px,220px); }
+        }
+        @media (prefers-reduced-motion:reduce) {
+          .mc-reveal, .mc-reveal.is-visible, .mc-button, .mc-start-card { transition:none !important; transform:none !important; }
+        }
     </style>
 </head>
 <body data-view="landing">
   <div id="toast-container"></div>
 
-  <!-- QUICK ACTION FAB (hidden inside the builder — that view has its own preview-fab) -->
+  <!-- QUICK ACTION FAB (hidden on landing) -->
   <div class="quick-fab-wrap" id="quick-fab-wrap">
     <div class="quick-fab-menu" id="quick-fab-menu">
       <button class="qf-item" onclick="closeQuickFab();navigate('builder')">📄 Create CV</button>
@@ -78,31 +381,34 @@
     <button class="quick-fab" id="quick-fab" onclick="toggleQuickFab()" aria-label="Quick actions">+</button>
   </div>
 
-  <!-- LANDING VIEW -->
+  <!-- ============================================================
+       LANDING VIEW – UPDATED
+       ============================================================ -->
   <div id="view-landing" class="mellow-home">
     <nav class="mc-nav" aria-label="Main navigation">
       <a class="mc-brand" onclick="navigate('landing')" aria-label="MellowCV home">Mellow<span>CV</span></a>
       <div class="mc-nav-links">
         <a onclick="navigate('gallery')">Templates</a>
+        <a href="#how-it-works">How it works</a>
         <a onclick="createNewCoverLetter()">Cover letter</a>
         <a onclick="navigate('manager')">My resumes</a>
       </div>
-      <button class="mc-nav-cta" onclick="navigate('builder')">Build my CV <span aria-hidden="true">↗</span></button>
+      <button class="mc-nav-cta" onclick="navigate('builder')">Create my CV <span aria-hidden="true">↗</span></button>
     </nav>
 
     <main>
-      <section class="mc-hero mc-section-pad">
-        <div class="mc-hero-copy mc-reveal">
+      <!-- HERO -->
+      <section class="mc-hero mc-section-pad mc-reveal">
+        <div class="mc-hero-copy">
           <p class="mc-kicker">MellowCV · CV + cover letter</p>
           <h1>A CV built to get you <em>the interview.</em></h1>
           <p class="mc-hero-text">Create a clear, professional CV, strengthen the way your experience is written, and finish with a cover letter tailored to the role.</p>
           <div class="mc-actions">
-            <button class="mc-button mc-button-primary" onclick="navigate('builder')">Build my CV <span aria-hidden="true">→</span></button>
-            <button class="mc-button mc-button-secondary" onclick="createNewCoverLetter()">Write a cover letter <span aria-hidden="true">→</span></button>
+            <button class="mc-button mc-button-primary" onclick="navigate('builder')">Create my CV <span aria-hidden="true">→</span></button>
+            <a class="mc-text-link" onclick="navigate('gallery')">View templates <span aria-hidden="true">↗</span></a>
           </div>
           <p class="mc-microcopy">Start free · No account required to begin</p>
         </div>
-
         <div class="mc-hero-product mc-reveal mc-reveal-delay-1">
           <div class="mc-product-heading">
             <span>LIVE PREVIEW</span>
@@ -120,82 +426,91 @@
         </div>
       </section>
 
-      <section class="mc-proof-row" aria-label="MellowCV benefits">
-        <div><strong>CV</strong><span>clear structure</span></div>
-        <div><strong>Cover letter</strong><span>role-specific writing</span></div>
-        <div><strong>ATS</strong><span>readable by screening systems</span></div>
-        <div><strong>A4</strong><span>ready to send</span></div>
-      </section>
-
-      <section class="mc-start mc-section-pad mc-section-light mc-reveal">
-        <div class="mc-section-intro">
-          <p class="mc-kicker">Start with what you need</p>
-          <h2>You don't have to do everything at once.</h2>
-          <p>Choose the next useful step. Each option takes you directly where you need to go.</p>
-        </div>
-        <div class="mc-start-grid">
-          <button class="mc-start-card" onclick="navigate('builder')">
-            <span class="mc-card-label">01</span>
-            <span class="mc-card-title">Build a CV</span>
-            <span class="mc-card-copy">Start fresh and build it step by step.</span>
-            <span class="mc-card-arrow" aria-hidden="true">→</span>
-          </button>
-          <button class="mc-start-card" onclick="openImportModal()">
-            <span class="mc-card-label">02</span>
-            <span class="mc-card-title">Improve my CV</span>
-            <span class="mc-card-copy">Bring in an existing CV and work from there.</span>
-            <span class="mc-card-arrow" aria-hidden="true">→</span>
-          </button>
-          <button class="mc-start-card" onclick="createNewCoverLetter()">
-            <span class="mc-card-label">03</span>
-            <span class="mc-card-title">Write a cover letter</span>
-            <span class="mc-card-copy">Start a letter for the role you're applying for.</span>
-            <span class="mc-card-arrow" aria-hidden="true">→</span>
-          </button>
-          <button class="mc-start-card" onclick="navigate('gallery')">
-            <span class="mc-card-label">04</span>
-            <span class="mc-card-title">Choose a template</span>
-            <span class="mc-card-copy">See the real CV designs before you decide.</span>
-            <span class="mc-card-arrow" aria-hidden="true">→</span>
-          </button>
+      <!-- TRUST STRIP -->
+      <section class="mc-trust mc-reveal">
+        <div class="mc-trust-inner">
+          <div class="mc-trust-badge">
+            <span class="mc-trust-icon">⭐</span> Trusted by 12,000+ job seekers
+          </div>
+          <div class="mc-trust-pills">
+            <span><svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Professional templates</span>
+            <span><svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> ATS-friendly</span>
+            <span><svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Easy to customize</span>
+            <span><svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> PDF ready</span>
+          </div>
         </div>
       </section>
 
-      <section class="mc-process mc-section-pad mc-reveal">
+      <!-- TEMPLATE SHOWCASE -->
+      <section class="mc-templates mc-section-pad mc-reveal" id="templates">
+        <div class="mc-section-intro mc-section-intro-row">
+          <div>
+            <p class="mc-kicker">Templates</p>
+            <h2>Professional designs.<br>Choose the one that feels like you.</h2>
+          </div>
+          <button class="mc-text-link" onclick="navigate('gallery')">View all templates <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="mc-tpl-filters" id="mc-tpl-filters">
+          <button class="mc-tpl-filter active" data-filter="all" onclick="navigate('gallery')">All</button>
+          <button class="mc-tpl-filter" data-filter="modern" onclick="sessionStorage.setItem('mellow_gallery_filter','modern');navigate('gallery')">Modern</button>
+          <button class="mc-tpl-filter" data-filter="ats" onclick="sessionStorage.setItem('mellow_gallery_filter','ats');navigate('gallery')">ATS</button>
+          <button class="mc-tpl-filter" data-filter="executive" onclick="sessionStorage.setItem('mellow_gallery_filter','executive');navigate('gallery')">Executive</button>
+          <button class="mc-tpl-filter" data-filter="creative" onclick="sessionStorage.setItem('mellow_gallery_filter','creative');navigate('gallery')">Creative</button>
+        </div>
+        <div class="sc-strip mc-tpl-strip" id="sc-strip"></div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="mc-process mc-section-pad mc-section-light mc-reveal" id="how-it-works">
         <div class="mc-section-intro mc-section-intro-wide">
           <p class="mc-kicker">How MellowCV works</p>
-          <h2>From blank page to ready-to-send.</h2>
+          <h2>From blank page to ready‑to‑send.</h2>
           <p>The workflow is designed around the decisions that matter when you're applying, not around features you have to learn.</p>
         </div>
-        <div class="mc-process-grid">
-          <article>
-            <span class="mc-step">01</span>
-            <h3>Build your CV</h3>
-            <p>Add your experience, education and skills. Keep the information yours; let the layout do the organising.</p>
-          </article>
-          <article>
-            <span class="mc-step">02</span>
-            <h3>Strengthen the writing</h3>
-            <p>Improve weak descriptions, make achievements clearer, and keep important information easy to find.</p>
-          </article>
-          <article>
-            <span class="mc-step">03</span>
-            <h3>Write the cover letter</h3>
-            <p>Connect your experience to the role instead of sending the same generic letter everywhere.</p>
-          </article>
-          <article>
-            <span class="mc-step">04</span>
-            <h3>Check and send</h3>
-            <p>Choose your final design, review the result, and download your documents when they're ready.</p>
-          </article>
+        <div class="mc-process-steps">
+          <div class="mc-step-item">
+            <div class="mc-step-icon">1</div>
+            <div class="mc-step-content">
+              <h3>Build your CV</h3>
+              <p>Add your experience, education and skills. Keep the information yours; let the layout do the organising.</p>
+            </div>
+            <div class="mc-step-line" aria-hidden="true"></div>
+          </div>
+          <div class="mc-step-item">
+            <div class="mc-step-icon">2</div>
+            <div class="mc-step-content">
+              <h3>Strengthen the writing</h3>
+              <p>Improve weak descriptions, make achievements clearer, and keep important information easy to find.</p>
+            </div>
+            <div class="mc-step-line" aria-hidden="true"></div>
+          </div>
+          <div class="mc-step-item">
+            <div class="mc-step-icon">3</div>
+            <div class="mc-step-content">
+              <h3>Write the cover letter</h3>
+              <p>Connect your experience to the role instead of sending the same generic letter everywhere.</p>
+            </div>
+            <div class="mc-step-line" aria-hidden="true"></div>
+          </div>
+          <div class="mc-step-item">
+            <div class="mc-step-icon">4</div>
+            <div class="mc-step-content">
+              <h3>Check and send</h3>
+              <p>Choose your final design, review the result, and download your documents when they're ready.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="mc-improve mc-section-pad mc-section-light mc-reveal">
+      <!-- PRODUCT SHOWCASE (Before/After) -->
+      <section class="mc-improve mc-section-pad mc-reveal">
         <div class="mc-improve-copy">
           <p class="mc-kicker">Useful help, not decoration</p>
           <h2>A good CV is clearer, not louder.</h2>
           <p>MellowCV helps with the places people usually struggle: what to say, what to leave out, how to organise it, and how to make the cover letter relevant to the job.</p>
+          <div class="mc-actions">
+            <button class="mc-button mc-button-primary" onclick="navigate('builder')">Improve your CV <span aria-hidden="true">→</span></button>
+          </div>
         </div>
         <div class="mc-before-after" role="group" aria-label="Example of stronger CV writing">
           <div class="mc-example mc-example-before">
@@ -207,91 +522,71 @@
             <span class="mc-example-label">Clearer</span>
             <p>Managed social campaigns across three channels and supported weekly campaign reporting.</p>
           </div>
-          <button class="mc-inline-action" onclick="navigate('builder')">Improve your own wording <span aria-hidden="true">↗</span></button>
         </div>
       </section>
 
-      <section class="mc-application mc-section-pad mc-reveal">
+      <!-- TESTIMONIALS -->
+      <section class="mc-testimonials mc-section-pad mc-section-light mc-reveal">
         <div class="mc-section-intro">
-          <p class="mc-kicker">Your application</p>
-          <h2>The CV gets you noticed. The cover letter gives the application context.</h2>
-          <p>Keep both documents consistent, tailored and ready for the same opportunity.</p>
+          <p class="mc-kicker">What job seekers say</p>
+          <h2>Real stories from real users.</h2>
         </div>
-        <div class="mc-docs">
-          <div class="mc-doc-card mc-doc-cv">
-            <div class="mc-doc-top"><span>CV</span><span>01</span></div>
-            <div class="mc-mini-cv">
-              <span class="mc-line mc-line-name"></span>
-              <span class="mc-line mc-line-short"></span>
-              <span class="mc-line"></span>
-              <span class="mc-line mc-line-wide"></span>
-              <span class="mc-line"></span>
-              <span class="mc-line mc-line-med"></span>
-              <span class="mc-line mc-line-wide"></span>
-              <span class="mc-line"></span>
+        <div class="mc-testi-grid">
+          <div class="mc-testi-card">
+            <div class="mc-testi-stars">★★★★★</div>
+            <p class="mc-testi-quote">“Built my CV in minutes. The templates actually look professional and I got two interview calls within a week.”</p>
+            <div class="mc-testi-by">
+              <span class="mc-testi-avatar">SK</span>
+              <div>
+                <span class="mc-testi-name">Sarah K.</span>
+                <span class="mc-testi-role">Marketing Manager</span>
+              </div>
             </div>
-            <p>What you've done.</p>
           </div>
-          <div class="mc-doc-plus" aria-hidden="true">+</div>
-          <div class="mc-doc-card mc-doc-letter">
-            <div class="mc-doc-top"><span>COVER LETTER</span><span>02</span></div>
-            <div class="mc-mini-letter">
-              <span class="mc-line mc-line-name"></span>
-              <span class="mc-line mc-line-short"></span>
-              <span class="mc-line mc-line-wide"></span>
-              <span class="mc-line"></span>
-              <span class="mc-line"></span>
-              <span class="mc-line mc-line-wide"></span>
-              <span class="mc-line mc-line-med"></span>
+          <div class="mc-testi-card">
+            <div class="mc-testi-stars">★★★★★</div>
+            <p class="mc-testi-quote">“Finally a CV builder that doesn't make me fight with formatting. The cover letter tool was a lifesaver.”</p>
+            <div class="mc-testi-by">
+              <span class="mc-testi-avatar">JM</span>
+              <div>
+                <span class="mc-testi-name">James M.</span>
+                <span class="mc-testi-role">Software Engineer</span>
+              </div>
             </div>
-            <p>Why this role makes sense.</p>
+          </div>
+          <div class="mc-testi-card">
+            <div class="mc-testi-stars">★★★★★</div>
+            <p class="mc-testi-quote">“I was nervous about writing a CV from scratch, but the step‑by‑step guide made it easy. Highly recommend!”</p>
+            <div class="mc-testi-by">
+              <span class="mc-testi-avatar">PN</span>
+              <div>
+                <span class="mc-testi-name">Palesa N.</span>
+                <span class="mc-testi-role">Recent Graduate</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="mc-application-actions">
-          <button class="mc-button mc-button-primary" onclick="createNewCoverLetter()">Start a cover letter <span aria-hidden="true">→</span></button>
-          <button class="mc-text-link" onclick="navigate('builder')">Build the CV first <span aria-hidden="true">↗</span></button>
+        <div class="mc-testi-trust">
+          <span>★★★★☆ 4.8 / 5 average rating</span>
+          <span>10,000+ CVs built this month</span>
         </div>
       </section>
 
-      <section class="mc-templates mc-section-pad mc-section-light mc-reveal">
-        <div class="mc-section-intro mc-section-intro-row">
-          <div>
-            <p class="mc-kicker">Templates</p>
-            <h2>Choose a look after you know what you want to say.</h2>
-          </div>
-          <button class="mc-text-link" onclick="navigate('gallery')">See all templates <span aria-hidden="true">↗</span></button>
-        </div>
-        <div class="sc-strip" id="sc-strip"></div>
-      </section>
-
-      <section class="mc-fit mc-section-pad mc-reveal">
-        <div>
-          <p class="mc-kicker">Built for real job searches</p>
-          <h2>Whether you're starting out, changing direction or applying for your next step.</h2>
-        </div>
-        <div class="mc-fit-list">
-          <div><strong>First CV</strong><span>Learn how to present experience you already have.</span></div>
-          <div><strong>Graduate</strong><span>Put projects, placements and education into context.</span></div>
-          <div><strong>Career change</strong><span>Make transferable skills easier to recognise.</span></div>
-          <div><strong>Experienced</strong><span>Put the strongest parts of your career first.</span></div>
-          <div><strong>South African applications</strong><span>Build for local career paths while keeping your documents professional and flexible.</span></div>
-          <div><strong>International / remote</strong><span>Create documents that can travel with you.</span></div>
-        </div>
-      </section>
-
+      <!-- FINAL CTA -->
       <section class="mc-final mc-reveal">
         <div class="mc-final-inner">
           <p class="mc-kicker">Ready when you are</p>
           <h2>Let's make the next application easier.</h2>
           <p>Build your CV, finish your cover letter, and leave with documents you can actually send.</p>
           <div class="mc-actions mc-actions-center">
-            <button class="mc-button mc-button-light" onclick="navigate('builder')">Build my CV <span aria-hidden="true">→</span></button>
+            <button class="mc-button mc-button-light" onclick="navigate('builder')">Create my CV <span aria-hidden="true">→</span></button>
             <button class="mc-button mc-button-ghost-light" onclick="createNewCoverLetter()">Write a cover letter <span aria-hidden="true">→</span></button>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="mc-footer">
       <div class="mc-footer-brand"><strong>Mellow<span>CV</span></strong><span>Build better applications.</span></div>
       <div class="mc-footer-links">
@@ -366,6 +661,7 @@
   </div>
 
 
+  <!-- BUILDER VIEW -->
   <div id="view-builder">
     <header class="bh">
       <div class="bh-l">
@@ -604,26 +900,23 @@
     </div>
   </div>
 
-  
   <script id="cv-data" type="application/json">{"meta":{"cvId":"cv_001","templateId":"modern-01","themeOverrides":{}},"personalDetails":{"fullName":"Jane Mokoena","jobTitle":"Frontend Developer","email":"jane@example.com","phone":"+27 82 123 4567","location":"Polokwane, South Africa","photo":null,"links":[],"summary":"Frontend developer with 3+ years of experience building responsive, accessible web applications. Skilled in JavaScript, HTML/CSS, and modern frameworks. Passionate about turning complex requirements into maintainable, user-friendly interfaces."},"sections":[{"type":"personal-info","title":"Personal Details","visible":true,"order":0,"items":[{"id":"pi_001","label":"Date of Birth","value":"12 June 1999"},{"id":"pi_002","label":"Nationality","value":"South African"},{"id":"pi_003","label":"Gender","value":"Female"},{"id":"pi_004","label":"Driver's License","value":"Code B"}]},{"type":"experience","title":"Experience","visible":true,"order":1,"items":[{"id":"exp_001","role":"Cashier","company":"Shoprite","location":"Polokwane","startDate":"2022-01","endDate":"2022-12","current":false,"bullets":["Assisted more than 150 customers daily while maintaining accurate cash handling and till balancing.","Trained 3 new hires on till procedures, customer service standards, and store policies.","Resolved an average of 10+ customer queries per shift, improving overall satisfaction scores by 15%."]},{"id":"exp_002","role":"Administrative Assistant","company":"Limpopo Department of Education","location":"Polokwane","startDate":"2023-01","endDate":"2024-06","current":false,"bullets":["Managed filing systems and digital records for 200+ employee files, reducing retrieval time by 30%.","Coordinated schedules and meeting logistics for department heads, handling confidential documents.","Assisted with data entry and reporting using Microsoft Excel, ensuring accuracy in monthly reports."]},{"id":"exp_003","role":"Junior Web Developer (Internship)","company":"Mellow Tech Services","location":"Remote","startDate":"2024-07","endDate":"2025-05","current":false,"bullets":["Built and maintained responsive company website using HTML, CSS, and JavaScript, achieving 98% Lighthouse performance score.","Collaborated with the design team to implement UI improvements that increased user engagement by 20%.","Integrated a contact form with email notifications using a serverless backend, reducing response time to client inquiries."]}]},{"type":"education","title":"Education","visible":true,"order":2,"items":[{"id":"edu_001","institution":"University of Limpopo","qualification":"BSc Computer Science","location":"Polokwane","startDate":"2019-01","endDate":"2022-12","current":false,"notes":"Relevant coursework: Data Structures, Web Development, Database Systems."},{"id":"edu_002","institution":"Capricorn High School","qualification":"National Senior Certificate (Matric)","location":"Polokwane","startDate":"2014-01","endDate":"2018-12","current":false,"notes":"Distinctions in Mathematics and Life Sciences."}]},{"type":"skills","title":"Skills","visible":true,"order":4,"items":[{"id":"skl_001","name":"JavaScript","level":"Advanced"},{"id":"skl_002","name":"HTML/CSS","level":"Advanced"},{"id":"skl_003","name":"React","level":"Intermediate"},{"id":"skl_004","name":"Git & GitHub","level":"Intermediate"},{"id":"skl_005","name":"Linux","level":"Intermediate"},{"id":"skl_006","name":"Microsoft Office","level":"Advanced"},{"id":"skl_007","name":"Customer Service","level":"Proficient"},{"id":"skl_008","name":"Problem Solving","level":"Proficient"},{"id":"skl_009","name":"Team Leadership","level":"Proficient"},{"id":"skl_010","name":"Figma","level":"Intermediate"},{"id":"skl_011","name":"Responsive Design","level":"Advanced"},{"id":"skl_012","name":"Time Management","level":"Proficient"}]},{"type":"languages","title":"Languages","visible":true,"order":5,"items":[{"id":"lng_001","name":"English","level":"Fluent"},{"id":"lng_002","name":"Sepedi","level":"Native"},{"id":"lng_003","name":"Afrikaans","level":"Basic"},{"id":"lng_004","name":"isiZulu","level":"Conversational"}]},{"type":"certificates","title":"Certificates","visible":true,"order":6,"items":[{"id":"cert_001","name":"CompTIA A+ (In Progress)"},{"id":"cert_002","name":"First Aid Level 1"},{"id":"cert_003","name":"Microsoft Office Specialist"},{"id":"cert_004","name":"Google IT Support Professional"}]},{"type":"references","title":"References","visible":true,"order":7,"items":[{"id":"ref_001","name":"Mr. Thomas Mabunda","title":"Store Manager, Shoprite","phone":"+27 82 987 6543","email":"thomas.mabunda@shoprite.co.za"},{"id":"ref_002","name":"Ms. Palesa Ndlovu","title":"Senior Developer, Mellow Tech","phone":"+27 72 345 6789","email":"palesa@mellowtech.co.za"}]},{"type":"interests","title":"Interests","visible":true,"order":8,"items":[{"id":"int_001","value":"Reading, Hiking, Chess, Community volunteering, Mobile photography"}]},{"type":"custom","title":"Professional Memberships","visible":true,"order":9,"items":[{"id":"cus_001","title":"SA Computer Society","bullets":["Student member since 2021"]}]}]}</script>
 
   <script id="cv-data-starter" type="application/json">{"meta":{"cvId":"cv_starter_001","templateId":"starter-01","themeOverrides":{}},"personalDetails":{"fullName":"Refilwe Maake","jobTitle":"Seeking Entry-Level Retail / Admin Role","email":"refilwe.maake@example.com","phone":"+27 71 234 5678","location":"Seshego, Polokwane","photo":null,"links":[],"summary":"Reliable and hardworking, looking for a first full-time opportunity in retail, admin support, or customer service. Comfortable working with the public, quick to learn new systems, and used to being on my feet in a fast-paced environment from working in a family shop. Available to start immediately."},"sections":[{"type":"personal-info","title":"Personal Details","visible":true,"order":0,"items":[{"id":"pi_001","label":"Date of Birth","value":"15 March 2002"},{"id":"pi_002","label":"Nationality","value":"South African"},{"id":"pi_003","label":"Driver's License","value":"Learner's (Code 8)"}]},{"type":"strengths","title":"Key Strengths","visible":true,"order":1,"items":[{"id":"str_001","value":"Reliable"},{"id":"str_002","value":"Hardworking"},{"id":"str_003","value":"Punctual"},{"id":"str_004","value":"Good with people"},{"id":"str_005","value":"Fast learner"},{"id":"str_006","value":"Team player"}]},{"type":"experience","title":"Experience","visible":true,"order":2,"items":[{"id":"exp_001","role":"Shop Assistant (Part-time)","company":"Maake Family Spaza Shop","location":"Seshego","startDate":"2023-01","endDate":"","current":true,"bullets":["Serve customers, handle cash, and restock shelves on weekends and school holidays.","Keep track of stock and let my uncle know when items are running low.","Open and close the shop safely, including counting the till."]},{"id":"exp_002","role":"Event Steward","company":"Local church youth event (once-off)","location":"Polokwane","startDate":"2024-06","endDate":"2024-06","current":false,"bullets":["Helped direct people to seating and kept entrances clear during a large weekend event.","Worked as part of a small team to set up and pack away chairs and equipment."]},{"id":"exp_003","role":"Volunteer","company":"Community food-parcel drive","location":"Seshego","startDate":"2023-11","endDate":"2023-12","current":false,"bullets":["Packed food parcels and helped hand them out to families in the area.","Assisted with keeping a simple list of who had already received a parcel."]}]},{"type":"education","title":"Education","visible":true,"order":3,"items":[{"id":"edu_001","institution":"Seshego Secondary School","qualification":"National Senior Certificate (Matric)","location":"Polokwane","startDate":"2018-01","endDate":"2022-12","current":false,"notes":"Subjects included Mathematical Literacy, English, Sepedi, Life Sciences, and Business Studies."}]},{"type":"skills","title":"Skills","visible":true,"order":4,"items":[{"id":"skl_001","name":"Customer Service","level":"Intermediate"},{"id":"skl_002","name":"Cash Handling","level":"Intermediate"},{"id":"skl_003","name":"Basic Computer Use","level":"Basic"},{"id":"skl_004","name":"Stock Taking","level":"Intermediate"},{"id":"skl_005","name":"Teamwork","level":"Advanced"},{"id":"skl_006","name":"WhatsApp / Basic Smartphone Use","level":"Advanced"}]},{"type":"languages","title":"Languages","visible":true,"order":5,"items":[{"id":"lng_001","name":"Sepedi","level":"Native"},{"id":"lng_002","name":"English","level":"Fluent"},{"id":"lng_003","name":"Afrikaans","level":"Basic"}]},{"type":"custom","title":"Other Activities","visible":true,"order":6,"items":[{"id":"cus_002","title":"Informal Tutoring","bullets":["Help two younger neighbours with Grade 8 Maths and English homework a few afternoons a week."]}]},{"type":"interests","title":"Interests","visible":true,"order":7,"items":[{"id":"int_001","value":"Soccer, church youth group, helping out in the community"}]},{"type":"references","title":"References","visible":true,"order":8,"items":[{"id":"ref_001","name":"Mr. Sipho Maake","title":"Shop Owner (Uncle)","phone":"+27 82 111 2222","email":""}]}]}</script>
 
   <script id="cv-data-trade" type="application/json">{"meta":{"cvId":"cv_trade_001","templateId":"trade-01","themeOverrides":{}},"personalDetails":{"fullName":"Thabo Sekgobela","jobTitle":"Electrician's Assistant / Aspiring Artisan","email":"thabo.sekgobela@example.com","phone":"+27 76 456 7890","location":"Polokwane, South Africa","photo":null,"links":[],"summary":"Hands-on and reliable, with three years of practical experience assisting a qualified electrician and helping out at a local panel-beating workshop. Comfortable working with basic hand tools and following instructions on-site. Looking to join a formal apprenticeship or entry-level artisan position to build toward a trade qualification."},"sections":[{"type":"personal-info","title":"Personal Details","visible":true,"order":0,"items":[{"id":"pi_001","label":"Date of Birth","value":"22 August 2000"},{"id":"pi_002","label":"Nationality","value":"South African"},{"id":"pi_003","label":"Driver's License","value":"Learner's (Code 8)"}]},{"type":"certificates","title":"Certificates & Training","visible":true,"order":1,"items":[{"id":"cert_001","name":"First Aid Level 1"},{"id":"cert_002","name":"Basic Health & Safety on Site"},{"id":"cert_003","name":"Learner's License (Code 8, in progress)"}]},{"type":"skills","title":"Tools & Equipment","visible":true,"order":2,"items":[{"id":"skl_001","name":"Hand Tools (spanners, pliers, screwdrivers)","level":"Advanced"},{"id":"skl_002","name":"Multimeter / Basic Testing","level":"Intermediate"},{"id":"skl_003","name":"Cable Running & Conduit","level":"Intermediate"},{"id":"skl_004","name":"Angle Grinder","level":"Intermediate"},{"id":"skl_005","name":"Basic Welding (supervised)","level":"Basic"},{"id":"skl_006","name":"Panel Beating Prep Work","level":"Intermediate"}]},{"type":"experience","title":"Experience","visible":true,"order":3,"items":[{"id":"exp_001","role":"Electrician's Assistant","company":"Self-employed / assisting M. Ledwaba Electrical","location":"Polokwane","startDate":"2022-03","endDate":"","current":true,"bullets":["Assist with running cable, fitting conduit, and installing plug points and light fittings on residential jobs.","Help test circuits using a multimeter under supervision.","Keep the work vehicle stocked and organised, and load/offload tools and materials on-site."]},{"id":"exp_002","role":"Workshop Helper","company":"Neighbourhood panel-beating workshop","location":"Polokwane","startDate":"2021-01","endDate":"2022-02","current":false,"bullets":["Prepared vehicle panels for repair, including sanding and masking.","Assisted with basic welding tasks under supervision.","Kept the workshop area clean and tools in order."]}]},{"type":"custom","title":"Areas of Strength","visible":true,"order":4,"items":[{"id":"cus_001","title":"Practical / Technical Ability","bullets":["Comfortable working with hand tools and basic electrical testing equipment.","Picks up new tasks quickly when shown once."]},{"id":"cus_002","title":"Reliability","bullets":["Three years of consistent, dependable work with the same electrician.","Punctual and safety-conscious on every job."]},{"id":"cus_003","title":"Willingness to Learn","bullets":["Actively looking to formalise skills through a registered apprenticeship.","Currently studying for a Code 8 learner's license."]}]},{"type":"education","title":"Education","visible":true,"order":5,"items":[{"id":"edu_001","institution":"Mankweng Secondary School","qualification":"Grade 11 (did not complete Matric)","location":"Polokwane","startDate":"2016-01","endDate":"2020-11","current":false,"notes":"Left school to help support family income; completed subjects including Mathematics and Technology."}]},{"type":"strengths","title":"Key Strengths","visible":true,"order":6,"items":[{"id":"str_001","value":"Reliable"},{"id":"str_002","value":"Safety-conscious"},{"id":"str_003","value":"Hands-on learner"},{"id":"str_004","value":"Punctual"},{"id":"str_005","value":"Physically fit"}]},{"type":"languages","title":"Languages","visible":true,"order":7,"items":[{"id":"lng_001","name":"Sepedi","level":"Native"},{"id":"lng_002","name":"English","level":"Conversational"}]},{"type":"references","title":"References","visible":true,"order":8,"items":[{"id":"ref_001","name":"Mr. M. Ledwaba","title":"Qualified Electrician","phone":"+27 82 333 4444","email":""}]}]}</script>
 
-
-          <!-- Supabase is provided by the Vite-bundled local bridge below; no CDN dependency in the app shell. -->
-          <script src="/vendor/html2canvas.min.js"></script>
-          <script src="/vendor/jspdf.umd.min.js"></script>
-          <script type="module" src="/src/supabase-global.js"></script>
-          <script src="/js/procv-analytics.js"></script>
-          <script src="/js/procv-download-gate.js"></script>
-          <script src="/js/paywall-modal.js"></script>
-          <script src="/js/template-system.js"></script>
-          <script src="/js/editor-history.js"></script>
-          <script src="/js/script.js"></script>
-          <script src="/js/gallery-renderer.js"></script>
-
-          <script type="module" src="/src/main.jsx"></script>
+  <!-- Supabase bridge, vendor scripts, and modules (unchanged) -->
+  <script src="/vendor/html2canvas.min.js"></script>
+  <script src="/vendor/jspdf.umd.min.js"></script>
+  <script type="module" src="/src/supabase-global.js"></script>
+  <script src="/js/procv-analytics.js"></script>
+  <script src="/js/procv-download-gate.js"></script>
+  <script src="/js/paywall-modal.js"></script>
+  <script src="/js/template-system.js"></script>
+  <script src="/js/editor-history.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/gallery-renderer.js"></script>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
