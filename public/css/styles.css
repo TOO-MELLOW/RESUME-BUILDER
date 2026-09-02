@@ -4310,7 +4310,7 @@
   min-height:38px; padding:0 15px; font:700 12px/1 'Space Grotesk',sans-serif; cursor:pointer;
 }
 .mc-section-pad { padding: 52px 16px; }
-.mc-hero { display:grid; gap:34px; max-width:1180px; margin:0 auto; }
+.mc-hero { display:grid; grid-template-columns:minmax(0,1.03fr) minmax(124px,.72fr); align-items:center; gap:14px; max-width:1180px; margin:0 auto; }
 .mc-hero-copy { padding-top:4px; }
 .mc-kicker {
   margin:0 0 12px; font:700 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -4327,11 +4327,11 @@
 .mc-button-secondary { background:transparent; color:var(--mc-ink); border-color:var(--mc-line); }
 .mc-button-primary:hover, .mc-button-secondary:hover { transform:translateY(-1px); }
 .mc-microcopy { margin:10px 0 0; color:#8A908C; font:500 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
-.mc-hero-product { min-width:0; }
+.mc-hero-product { min-width:0; width:100%; }
 .mc-product-heading { display:flex; justify-content:space-between; align-items:center; color:#8A908C; font:700 9px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; margin-bottom:8px; }
-.mc-cv-stage { width:100%; display:flex; justify-content:center; }
+.mc-cv-stage { width:100%; min-width:0; display:flex; justify-content:center; align-items:flex-start; }
 .mellow-home .hero-frame {
-  width:min(100%, 350px); height:auto; aspect-ratio:210 / 297; border:1px solid #D4CCBE;
+  width:100%; max-width:350px; height:auto; aspect-ratio:210 / 297; border:1px solid #D4CCBE;
   border-radius:2px; background:#DDD7CB; box-shadow:16px 16px 0 rgba(21,33,28,.07), 0 14px 30px rgba(21,33,28,.09);
   overflow:hidden; position:relative;
 }
