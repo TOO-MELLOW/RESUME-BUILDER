@@ -3611,6 +3611,7 @@ function renderShowcaseStrip() {
         <div class="sc-name">${t.name}</div>
         <div class="sc-cat">${t.cat}</div>
     </div>`).join("");
+    if (typeof initShowcaseThumbs === 'function') initShowcaseThumbs();
 }
 
 function fitMellowHeroCv() {
