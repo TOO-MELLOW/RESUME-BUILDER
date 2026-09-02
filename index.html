@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/paywall-modal.css">
 
     <style>
-        /* --- Global Reset (unchanged) --- */
+        /* --- Global reset (unchanged) --- */
         :root {
             --brand: #1B2A4A;
             --accent: #2F7A6E;
@@ -63,7 +63,6 @@
 
         /* ============================================================
            PROFESSIONAL LANDING STYLES
-           Clean, trustworthy, inspired by Novoresume / FlowCV
            ============================================================ */
         .mellow-home {
           --mc-paper: #EDF0F4;
@@ -883,18 +882,29 @@
     </footer>
   </div>
 
-  <!-- ====== REST OF THE PAGE (gallery, manager, builder, modals, scripts) ====== -->
-  <!-- (All other views remain unchanged – only landing is modified) -->
+  <!-- ============================================================
+       OTHER VIEWS (gallery, manager, builder, clbuilder)
+       (All remain unchanged – only landing is above)
+       ============================================================ -->
+  <div id="view-gallery">
+    <!-- Gallery content (unchanged) -->
+  </div>
+  <div id="view-manager">
+    <!-- Manager content (unchanged) -->
+  </div>
+  <div id="view-builder">
+    <!-- Builder content (unchanged) -->
+  </div>
+  <div id="view-clbuilder">
+    <!-- Cover letter builder (unchanged) -->
+  </div>
 
-  <div id="view-gallery"><!-- gallery content --></div>
-  <div id="view-manager"><!-- manager content --></div>
-  <div id="view-builder"><!-- builder content --></div>
-  <div id="view-clbuilder"><!-- cover letter builder --></div>
+  <!-- Modals, template storage, paywall, etc. (unchanged) -->
+  <!-- (Omitted for brevity – they are identical to your original) -->
 
-  <!-- Modals, template storage, paywall, etc. -->
-  <!-- (unchanged – omitted for brevity) -->
-
-  <!-- Scripts -->
+  <!-- ============================================================
+       SCRIPTS (unchanged)
+       ============================================================ -->
   <script src="/vendor/html2canvas.min.js"></script>
   <script src="/vendor/jspdf.umd.min.js"></script>
   <script type="module" src="/src/supabase-global.js"></script>
@@ -906,6 +916,29 @@
   <script src="/js/script.js"></script>
   <script src="/js/gallery-renderer.js"></script>
   <script type="module" src="/src/main.jsx"></script>
+
+  <!-- ============================================================
+       SAFETY PATCH for navigate errors
+       ============================================================ -->
+  <script>
+    (function() {
+      if (typeof window.navigate === 'function') {
+        const originalNavigate = window.navigate;
+        window.navigate = function(view) {
+          try {
+            originalNavigate(view);
+          } catch (e) {
+            console.warn('navigate error for view:', view, e);
+            // Fallback: manually switch views using data-view attribute
+            document.querySelectorAll('[data-view]').forEach(el => el.style.display = 'none');
+            const target = document.querySelector(`[data-view="${view}"]`);
+            if (target) target.style.display = 'block';
+            document.body.dataset.view = view;
+          }
+        };
+      }
+    })();
+  </script>
 
   <!-- Hero scaling + scroll reveal -->
   <script>
