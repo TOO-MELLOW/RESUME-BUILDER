@@ -990,5 +990,94 @@
       });
     })();
   </script>
+<script>
+(function() {
+  // Store the original navigate function
+  const originalNavigate = window.navigate;
+
+  // Define a safe replacement
+  window.navigate = function(view, opts) {
+    opts = opts || {};
+
+    try {
+      // Try the original navigate first
+      if (typeof originalNavigate === 'function') {
+        originalNavigate(view, opts);
+        return;
+      }
+    } catch (e) {
+      // Silently log the error (don't break the page)
+      console.warn('[navigate] Original failed, using fallback:', e.message);
+    }
+
+    // --- FALLBACK: Safe view switching ---
+    // 1. Update the body data-view attribute
+    document.body.setAttribute('data-view', view);
+
+    // 2. Show/hide views using data-view attributes
+    document.querySelectorAll('[data-view]').forEach(function(el) {
+      el.style.display = el.getAttribute('data-view') === view ? 'block' : 'none';
+    });
+
+    // 3. Handle special view logic
+    if (view === 'manager' && typeof renderManager === 'function') {
+      renderManager();
+    }
+    if (view === 'builder' && typeof renderPreview === 'function') {
+      if (!window.cvData) {
+        // If cvData isn't loaded, use the existing loadData function
+        if (typeof loadData === 'function') loadData();
+      }
+      renderPreview();
+      if (typeof setStep === 'function') setStep(window.currentStep || 0);
+      if (typeof updatePaLabel === 'function') updatePaLabel();
+    }
+    if (view === 'clbuilder') {
+      if (typeof renderCLForm === 'function') renderCLForm();
+      if (typeof renderCoverLetterPreview === 'function') renderCoverLetterPreview();
+      if (typeof updateAutosaveLabelCL === 'function') updateAutosaveLabelCL();
+    }
+    if (view === 'gallery' && typeof renderGallery === 'function') {
+      renderGallery();
+    }
+    if (view === 'landing') {
+      if (typeof renderHeroCv === 'function') renderHeroCv();
+      if (typeof renderShowcaseStrip === 'function') renderShowcaseStrip();
+      if (typeof initMellowHomepageMotion === 'function') initMellowHomepageMotion();
+    }
+
+    // 4. Close any open modals/panels
+    if (typeof closeTips === 'function') closeTips();
+    if (typeof closeQuickFab === 'function') closeQuickFab();
+    if (typeof closeImportModal === 'function') closeImportModal();
+    if (typeof closeMobilePreview === 'function') closeMobilePreview();
+
+    // 5. Scroll to top
+    window.scrollTo(0, 0);
+
+    // 6. Update URL (if not skipped)
+    if (!opts.skipHistory) {
+      const viewMap = {
+        landing: '/',
+        gallery: '/gallery',
+        manager: '/manager',
+        builder: '/builder',
+        clbuilder: '/cover-letter'
+      };
+      const path = viewMap[view] || '/';
+      if (window.location.pathname !== path) {
+        history.pushState({ view: view }, '', path);
+      }
+    }
+
+    // 7. Update page meta
+    if (typeof updatePageMeta === 'function') {
+      updatePageMeta(view);
+    }
+  };
+
+  console.log('[navigate] Safe replacement installed.');
+})();
+</script>
 </body>
 </html>
