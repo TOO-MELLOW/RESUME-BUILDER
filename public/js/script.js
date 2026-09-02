@@ -44,6 +44,10 @@ function sanitizeSections(sections) {
     const result = [];
     for (const section of sections) {
         if (!section || typeof section !== 'object') continue;
+        // Projects are intentionally not part of the MellowCV document model.
+        // Strip legacy/demo project sections at the data boundary so preview,
+        // editor, autosave and the React renderer all see the same contract.
+        if (section.type === 'projects') continue;
         // Ensure each section has an id; assign one if missing.
         if (!section.id) section.id = genId(section.type || 'sec');
         if (seen.has(section.id)) continue;
@@ -567,9 +571,7 @@ function renderTemplateMarkup(data, raw) {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = raw;
     const p = data.personalDetails || {};
-    const vis = (data.sections || [])
-        .filter(s => s.visible !== false)
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+    const vis = getVisibleSections(data);
 
     wrapper.querySelectorAll('[data-bind]').forEach(el => {
         const value = getP(data, el.getAttribute('data-bind'));
@@ -1774,10 +1776,9 @@ const TIPS_CONTENT = {
             "Avoid vague numbers-free claims when a real number is available — even an estimate is more convincing than none."
         ]}
     ]},
-    2: { title: "Education & Projects", groups: [
+    2: { title: "Education", groups: [
         { cat: "Writing", tips: [
-            "Only include coursework or projects that are relevant to the role you're targeting.",
-            "For projects, briefly say what you built and what impact or result it had."
+            "Only include coursework that is relevant to the role you're targeting."
         ]},
         { cat: "Formatting", tips: [
             "List your most recent qualification first."
@@ -2040,7 +2041,7 @@ function stepContent(n) {
     switch (n) {
         case 0: return stepPersonal(cvData.personalDetails);
         case 1: return stepSection("experience");
-        case 2: return stepSection("education") + stepSection("projects");
+        case 2: return stepSection("education");
         case 3: return stepSection("skills") + stepSection("languages") + stepSection("certificates");
         case 4: return stepSection("custom") + stepSection("strengths") + stepSection("interests") + stepSection("references") + stepSection("personal-info");
         case 5: return stepDesign();
@@ -2526,7 +2527,7 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
             sec.items.push(BLANK[type]());
         }, { force: true, after: () => setTimeout(() => {
             const cards = document.querySelectorAll(`.icard[data-type="${type}"]`);
-            if (cards.length) cards[cards.length-1].scrollIntoView({ behavior:"smooth", block:"center" });
+            if (cards.length) cards[cards.length - 1].scrollIntoView({ behavior: "auto", block: "nearest" });
         }, 100) });
     }
     function addSection(type) {
