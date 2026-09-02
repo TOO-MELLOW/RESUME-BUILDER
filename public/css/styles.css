@@ -4272,11 +4272,11 @@
    visitor into the CV or cover-letter builder. Scoped to .mellow-home.
    ====================================================================== */
 .mellow-home {
-  --mc-paper: #EDF0F4;
-  --mc-paper-2: #F7F3E8;
+  --mc-paper: #F7F2E9;
+  --mc-paper-2: #EEE8DC;
   --mc-ink: #14201B;
   --mc-muted: #68716C;
-  --mc-line: #D7DDE6;
+  --mc-line: #D9D4C9;
   --mc-accent: #2F7A6E;
   --mc-accent-soft: #E2EFEB;
   --mc-dark: #15211C;
@@ -4295,7 +4295,7 @@
   position: sticky;
   top: 0;
   z-index: 80;
-  background: rgba(237,240,244,.96);
+  background: rgba(247,242,233,.96);
   border-bottom: 1px solid var(--mc-line);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -4339,21 +4339,21 @@
 .mellow-home .hero-frame-inner .page { width:794px; min-height:1123px; }
 .mc-product-note { margin-top:9px; color:#737A76; font:500 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; display:flex; align-items:center; gap:7px; }
 .mc-status-dot { width:7px; height:7px; border-radius:50%; background:var(--mc-accent); flex:none; box-shadow:0 0 0 3px var(--mc-accent-soft); }
-.mc-proof-row { border-top:1px solid var(--mc-line); border-bottom:1px solid var(--mc-line); display:grid; grid-template-columns:1fr 1fr; background:#F7F3E8; }
+.mc-proof-row { border-top:1px solid var(--mc-line); border-bottom:1px solid var(--mc-line); display:grid; grid-template-columns:1fr 1fr; background:#F2ECE1; }
 .mc-proof-row > div { padding:13px 14px; border-right:1px solid var(--mc-line); border-bottom:1px solid var(--mc-line); }
 .mc-proof-row > div:nth-child(2n) { border-right:0; }
 .mc-proof-row > div:nth-last-child(-n+2) { border-bottom:0; }
 .mc-proof-row strong { display:block; font:700 12px/1.1 'Space Grotesk',sans-serif; color:var(--mc-ink); }
 .mc-proof-row span { display:block; margin-top:4px; color:#818782; font-size:10px; }
-.mc-section-light { background:#FBF8F0; }
+.mc-section-light { background:#FCFAF5; }
 .mc-section-intro { max-width:650px; margin-bottom:28px; }
 .mc-section-intro-wide { max-width:720px; }
 .mc-section-intro-row { display:flex; flex-direction:column; gap:18px; justify-content:space-between; }
 .mellow-home h2 { margin:0; font-size:clamp(31px,8vw,52px); line-height:1.03; }
 .mc-section-intro > p:last-child, .mc-improve-copy > p:last-child, .mc-fit > div:first-child > h2 + p, .mc-final-inner > p:not(.mc-kicker) { color:var(--mc-muted); line-height:1.6; font-size:14px; max-width:640px; margin:14px 0 0; }
 .mc-start-grid { display:grid; grid-template-columns:1fr; gap:1px; background:var(--mc-line); border:1px solid var(--mc-line); }
-.mc-start-card { position:relative; min-height:180px; border:0; text-align:left; background:#FBF8F0; padding:20px; cursor:pointer; color:inherit; transition:background-color .18s ease, transform .18s ease; }
-.mc-start-card:hover { background:#F2EDE1; transform:translateY(-1px); }
+.mc-start-card { position:relative; min-height:180px; border:0; text-align:left; background:#FCFAF5; padding:20px; cursor:pointer; color:inherit; transition:background-color .18s ease, transform .18s ease; }
+.mc-start-card:hover { background:#F5EFE5; transform:translateY(-1px); }
 .mc-card-label { display:block; font:700 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace; color:#929892; }
 .mc-card-title { display:block; margin-top:42px; font:700 18px/1.1 'Space Grotesk',sans-serif; }
 .mc-card-copy { display:block; margin-top:8px; max-width:260px; font-size:13px; line-height:1.45; color:var(--mc-muted); }
@@ -4366,8 +4366,8 @@
 .mc-process-grid p { margin:0; max-width:360px; font-size:13px; line-height:1.55; color:var(--mc-muted); }
 .mc-improve { display:grid; gap:28px; }
 .mc-improve-copy { max-width:620px; }
-.mc-before-after { border:1px solid var(--mc-line); background:#F3F5F7; padding:18px; }
-.mc-example { padding:16px; background:#FBF8F0; }
+.mc-before-after { border:1px solid var(--mc-line); background:#F3EEE5; padding:18px; }
+.mc-example { padding:16px; background:#FCFAF5; }
 .mc-example-before { border-left:3px solid #B2B6B1; }
 .mc-example-after { border-left:3px solid var(--mc-accent); margin-top:10px; }
 .mc-example-label { display:block; font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace; text-transform:uppercase; letter-spacing:.13em; color:#858B86; }
@@ -4376,7 +4376,7 @@
 .mc-inline-action { margin-top:15px; border:0; background:none; padding:0; color:var(--mc-ink); font:700 11px/1.3 'Space Grotesk',sans-serif; cursor:pointer; }
 .mc-application { max-width:1180px; margin:0 auto; }
 .mc-docs { display:grid; grid-template-columns:1fr; gap:10px; align-items:center; max-width:560px; }
-.mc-doc-card { padding:16px; min-height:220px; background:#FBF8F0; border:1px solid var(--mc-line); box-shadow:7px 7px 0 rgba(21,33,28,.05); }
+.mc-doc-card { padding:16px; min-height:220px; background:#FCFAF5; border:1px solid var(--mc-line); box-shadow:7px 7px 0 rgba(21,33,28,.05); }
 .mc-doc-top { display:flex; justify-content:space-between; color:#888F89; font:700 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; }
 .mc-mini-cv, .mc-mini-letter { margin-top:26px; padding:10px; min-height:138px; border:1px solid #E8E1D6; background:#fff; }
 .mc-mini-letter { min-height:150px; }
@@ -4459,126 +4459,4 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mc-reveal, .mc-reveal.is-visible, .mc-button, .mc-start-card { transition:none !important; transform:none !important; }
-}
-
-/* ---------------------------------------------------------------------
-   MELLOWCV HERO — MOBILE-FIRST SIDE-BY-SIDE COMPOSITION
-   The hero copy and live CV sit beside each other on phones so the
-   product is visible immediately without pushing the primary action
-   and headline far above the document preview.
-   --------------------------------------------------------------------- */
-@media (max-width: 599px) {
-  .mellow-home .mc-hero {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
-    align-items: start;
-    gap: 12px;
-    padding-left: 14px;
-    padding-right: 14px;
-    padding-top: 28px;
-    padding-bottom: 42px;
-  }
-
-  .mellow-home .mc-hero-copy {
-    min-width: 0;
-    padding-top: 0;
-  }
-
-  .mellow-home .mc-kicker {
-    margin-bottom: 9px;
-    font-size: 8px;
-    letter-spacing: .10em;
-  }
-
-  .mellow-home .mc-hero h1 {
-    font-size: clamp(28px, 8.1vw, 38px);
-    line-height: .98;
-    max-width: none;
-  }
-
-  .mellow-home .mc-hero-text {
-    margin-top: 13px;
-    font-size: 12px;
-    line-height: 1.48;
-    max-width: none;
-  }
-
-  .mellow-home .mc-actions {
-    margin-top: 16px;
-    gap: 7px;
-  }
-
-  .mellow-home .mc-button {
-    min-height: 42px;
-    padding: 0 10px;
-    font-size: 11px;
-    text-align: center;
-    line-height: 1.15;
-  }
-
-  .mellow-home .mc-microcopy {
-    margin-top: 8px;
-    font-size: 8px;
-    line-height: 1.35;
-  }
-
-  .mellow-home .mc-hero-product {
-    min-width: 0;
-    align-self: start;
-  }
-
-  .mellow-home .mc-product-heading {
-    margin-bottom: 6px;
-    font-size: 7px;
-    letter-spacing: .09em;
-  }
-
-  .mellow-home .mc-cv-stage {
-    width: 100%;
-    overflow: hidden;
-    justify-content: center;
-  }
-
-  .mellow-home .hero-frame {
-    width: 100%;
-    max-width: none;
-    border-radius: 2px;
-    box-shadow: 7px 8px 0 rgba(21,33,28,.06), 0 8px 18px rgba(21,33,28,.08);
-  }
-
-  .mellow-home .hero-frame-inner {
-    transform: scale(.18);
-  }
-
-  .mellow-home .mc-product-note {
-    margin-top: 7px;
-    font-size: 8px;
-    line-height: 1.35;
-    gap: 5px;
-  }
-
-  .mellow-home .mc-status-dot {
-    width: 5px;
-    height: 5px;
-    box-shadow: 0 0 0 2px var(--mc-accent-soft);
-  }
-}
-
-@media (min-width: 380px) and (max-width: 599px) {
-  .mellow-home .mc-hero {
-    gap: 14px;
-  }
-
-  .mellow-home .hero-frame-inner {
-    transform: scale(.21);
-  }
-}
-
-@media (min-width: 430px) and (max-width: 599px) {
-  .mellow-home .mc-hero {
-    gap: 16px;
-  }
-
-  .mellow-home .hero-frame-inner {
-    transform: scale(.235);
-  }
 }
