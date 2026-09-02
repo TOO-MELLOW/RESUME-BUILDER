@@ -54,6 +54,19 @@ function sanitizeSections(sections) {
         seen.add(section.id);
         result.push(section);
     }
+
+    // References are always the final document section. This is enforced at
+    // the data boundary so every renderer (premium, legacy, React, export)
+    // receives the same section order even when older saved data had references
+    // before interests or other trailing sections.
+    result.sort((a, b) => {
+        const aRef = a.type === 'references' ? 1 : 0;
+        const bRef = b.type === 'references' ? 1 : 0;
+        if (aRef !== bRef) return aRef - bRef;
+        return (a.order ?? 0) - (b.order ?? 0);
+    });
+    result.forEach((section, index) => { section.order = index; });
+
     return result;
 }
 
@@ -445,7 +458,12 @@ function renderTemplateContent(data, tid) {
 function getVisibleSections(data) {
     return (data?.sections || [])
         .filter(section => section && section.type !== 'projects' && section.visible !== false)
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        .sort((a, b) => {
+            const aRef = a.type === 'references' ? 1 : 0;
+            const bRef = b.type === 'references' ? 1 : 0;
+            if (aRef !== bRef) return aRef - bRef;
+            return (a.order ?? 0) - (b.order ?? 0);
+        });
 }
 
 function sectionRegionType(type) {
@@ -3585,111 +3603,21 @@ function renderHeroCv() {
     const inner = document.getElementById('hero-cv-inner');
     if (!inner) return;
 
-    const sourceEl = document.getElementById('cv-data');
-    if (!sourceEl) return;
+    // Use the exact same thumbnail path as the template gallery. This keeps
+    // the hero preview visually and structurally identical to a real gallery
+    // render instead of maintaining a second hero-specific renderer.
+    inner.classList.add('g-thumb');
+    inner.setAttribute('data-thumb-id', 'luxury-editorial-01');
+    inner.removeAttribute('data-rendered');
+    inner.innerHTML = `<div class="g-thumb-fallback">${SVGS['luxury-editorial-01'] || ''}</div>`;
 
-    const page = document.createElement('div');
-    page.className = 'page';
-    page.setAttribute('data-template', 'luxury-editorial-01');
-    // The hero is intentionally one A4 page. Overflow is clipped only at the
-    // page boundary; the source demo itself is compact enough to occupy page 1.
-    page.style.cssText = 'width:794px;height:1123px;min-height:1123px;overflow:hidden;';
-    page.style.setProperty('--color-accent', '#2F6F63');
-
-    const source = JSON.parse(sourceEl.textContent);
-    const heroData = JSON.parse(JSON.stringify(source));
-
-    /*
-     * Use a dedicated, concise one-page demo so the hero shows the complete
-     * CV information architecture (rather than an incomplete slice of the
-     * user's demo data) while remaining a true one-page A4 presentation.
-     */
-    heroData.meta = { ...(heroData.meta || {}), templateId: 'luxury-editorial-01' };
-    heroData.personalDetails = {
-        ...(heroData.personalDetails || {}),
-        fullName: 'Jane Mokoena',
-        jobTitle: 'Frontend Developer',
-        email: 'jane@example.com',
-        phone: '+27 82 123 4567',
-        location: 'Polokwane, South Africa',
-        summary: 'Frontend developer with 3+ years of experience building responsive, accessible web applications. Focused on clear interfaces, maintainable code and useful digital products.'
-    };
-
-    const conciseSections = [
-        {
-            type: 'personal-info', title: 'Personal Details', visible: true, order: 0,
-            items: [
-                { id: 'hero-pi-1', label: 'Date of Birth', value: '12 June 1999' },
-                { id: 'hero-pi-2', label: 'Nationality', value: 'South African' },
-                { id: 'hero-pi-3', label: 'Gender', value: 'Female' },
-                { id: 'hero-pi-4', label: "Driver's License", value: 'Code B' }
-            ]
-        },
-        {
-            type: 'experience', title: 'Experience', visible: true, order: 1,
-            items: [
-                { id: 'hero-exp-1', role: 'Cashier', company: 'Shoprite', location: 'Polokwane', startDate: '2022-01', endDate: '2022-12', current: false,
-                  bullets: ['Served 150+ customers daily and maintained accurate cash handling.'] },
-                { id: 'hero-exp-2', role: 'Administrative Assistant', company: 'Limpopo Department of Education', location: 'Polokwane', startDate: '2023-01', endDate: '2024-06', current: false,
-                  bullets: ['Managed 200+ employee files and improved document retrieval time.'] },
-                { id: 'hero-exp-3', role: 'Junior Web Developer', company: 'Mellow Tech Services', location: 'Remote', startDate: '2024-07', endDate: '2025-05', current: false,
-                  bullets: ['Built responsive web pages and improved UI engagement by 20%.'] }
-            ]
-        },
-        {
-            type: 'education', title: 'Education', visible: true, order: 2,
-            items: [
-                { id: 'hero-edu-1', institution: 'University of Limpopo', qualification: 'BSc Computer Science', location: 'Polokwane', startDate: '2019-01', endDate: '2022-12', current: false,
-                  notes: 'Web Development, Data Structures and Database Systems.' }
-            ]
-        },
-        {
-            type: 'skills', title: 'Skills', visible: true, order: 3,
-            items: [
-                { id: 'hero-skl-1', name: 'JavaScript', level: 'Advanced' },
-                { id: 'hero-skl-2', name: 'HTML/CSS', level: 'Advanced' },
-                { id: 'hero-skl-3', name: 'React', level: 'Intermediate' },
-                { id: 'hero-skl-4', name: 'Git & GitHub', level: 'Intermediate' },
-                { id: 'hero-skl-5', name: 'Responsive Design', level: 'Advanced' },
-                { id: 'hero-skl-6', name: 'Microsoft Office', level: 'Advanced' },
-                { id: 'hero-skl-7', name: 'Problem Solving', level: 'Proficient' },
-                { id: 'hero-skl-8', name: 'Figma', level: 'Intermediate' }
-            ]
-        },
-        {
-            type: 'languages', title: 'Languages', visible: true, order: 4,
-            items: [
-                { id: 'hero-lng-1', name: 'English', level: 'Fluent' },
-                { id: 'hero-lng-2', name: 'Sepedi', level: 'Native' },
-                { id: 'hero-lng-3', name: 'Afrikaans', level: 'Basic' }
-            ]
-        },
-        {
-            type: 'certificates', title: 'Certificates', visible: true, order: 5,
-            items: [
-                { id: 'hero-cert-1', name: 'CompTIA A+ (In Progress)' },
-                { id: 'hero-cert-2', name: 'Microsoft Office Specialist' },
-                { id: 'hero-cert-3', name: 'Google IT Support Professional' }
-            ]
-        },
-        {
-            type: 'references', title: 'References', visible: true, order: 6,
-            items: [
-                { id: 'hero-ref-1', name: 'Mr. Thomas Mabunda', title: 'Store Manager, Shoprite', phone: '+27 82 987 6543', email: 'thomas@example.com' }
-            ]
-        },
-        {
-            type: 'interests', title: 'Interests', visible: true, order: 7,
-            items: [{ id: 'hero-int-1', value: 'Reading, hiking and community volunteering' }]
-        }
-    ];
-
-    heroData.sections = conciseSections;
-    heroData.__rfPageNumber = 1;
-
-    page.innerHTML = renderTemplateContent(heroData, 'luxury-editorial-01');
-    inner.innerHTML = '';
-    inner.appendChild(page);
+    if (typeof window.initGalleryThumbs === 'function') {
+        window.initGalleryThumbs();
+    } else {
+        requestAnimationFrame(() => {
+            if (typeof window.initGalleryThumbs === 'function') window.initGalleryThumbs();
+        });
+    }
 }
 
 function renderShowcaseStrip() {
@@ -3716,23 +3644,11 @@ function renderShowcaseStrip() {
 }
 
 function fitMellowHeroCv() {
-    const frame = document.getElementById('hero-cv-frame');
-    const inner = document.getElementById('hero-cv-inner');
-    if (!frame || !inner) return;
-
-    const pageWidth = 794;
-    const pageHeight = 1123;
-    const frameWidth = frame.getBoundingClientRect().width;
-    if (!Number.isFinite(frameWidth) || frameWidth <= 0) return;
-
-    // Preserve the real A4 canvas. Only the outer visual scale changes.
-    const scale = frameWidth / pageWidth;
-    inner.style.width = `${pageWidth}px`;
-    inner.style.height = `${pageHeight}px`;
-    inner.style.minHeight = `${pageHeight}px`;
-    inner.style.transformOrigin = 'top left';
-    inner.style.transform = `scale(${scale})`;
-    inner.style.setProperty('--mc-hero-scale', String(scale));
+    // The gallery thumbnail renderer owns the A4 scale. Re-initialising here
+    // is harmless and avoids a second, conflicting transform calculation.
+    if (typeof window.initGalleryThumbs === 'function') {
+        window.initGalleryThumbs();
+    }
 }
 
 function initMellowHomepageMotion() {
@@ -3741,14 +3657,6 @@ function initMellowHomepageMotion() {
     root.dataset.motionReady = '1';
 
     fitMellowHeroCv();
-
-    const heroFrame = document.getElementById('hero-cv-frame');
-    if (heroFrame && 'ResizeObserver' in window) {
-        const heroResizeObserver = new ResizeObserver(() => {
-            requestAnimationFrame(fitMellowHeroCv);
-        });
-        heroResizeObserver.observe(heroFrame);
-    }
 
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         root.querySelectorAll('.mc-reveal').forEach(el => el.classList.add('is-visible'));
@@ -3782,7 +3690,6 @@ window.addEventListener('resize', () => {
         if (window.innerWidth >= 768 && isMobilePreviewOpen) {
             closeMobilePreview();
         }
-        fitMellowHeroCv();
     }, 120);
 });
 
