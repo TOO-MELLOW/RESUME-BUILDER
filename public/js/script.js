@@ -444,7 +444,7 @@ function renderTemplateContent(data, tid) {
 
 function getVisibleSections(data) {
     return (data?.sections || [])
-        .filter(section => section && section.visible !== false)
+        .filter(section => section && section.type !== 'projects' && section.visible !== false)
         .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }
 
