@@ -4461,6 +4461,22 @@
   .mc-reveal, .mc-reveal.is-visible, .mc-button, .mc-start-card { transition:none !important; transform:none !important; }
 }
 
+/* Hero preview parity: the hero uses the same gallery thumbnail renderer. */
+.mellow-home .hero-frame-inner.g-thumb {
+  width:100%;
+  height:100%;
+  min-height:0;
+  transform:none !important;
+  transform-origin:top left;
+  position:relative;
+  overflow:hidden;
+}
+.mellow-home .hero-frame-inner.g-thumb .g-thumb-page {
+  position:absolute !important;
+  top:0;
+  left:0;
+}
+
 /* ======================================================================
    MELLOWCV HERO — MOBILE-FIRST A4 / SIDE-BY-SIDE CONTRACT
    The hero keeps the same two-column composition at phone widths.
@@ -4493,16 +4509,13 @@
   overflow: hidden;
 }
 .mellow-home .hero-frame-inner {
-  width: 794px;
-  height: 1123px;
-  min-height: 1123px;
-  transform-origin: top left;
-}
-.mellow-home .hero-frame-inner .page {
-  width: 794px;
-  min-width: 794px;
-  height: 1123px;
-  min-height: 1123px;
+  width:100%;
+  height:100%;
+  min-height:0;
+  transform:none !important;
+  transform-origin:top left;
+  position:relative;
+  overflow:hidden;
 }
 
 @media (max-width: 899px) {
