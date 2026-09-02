@@ -130,6 +130,13 @@
         nodes.forEach(el => { if (el.dataset.rendered !== '1') obs.observe(el); });
     };
 
+    // Aliases: the in-editor "Design" step template picker (.tmpl-mini-t)
+    // and the landing-page showcase strip (.sc-thumb) render the exact same
+    // real-CV thumbnail markup as the main gallery (.g-thumb) — they all
+    // share the query in initGalleryThumbs above, so these just point at it.
+    window.initTemplatePickerThumbs = window.initGalleryThumbs;
+    window.initShowcaseThumbs = window.initGalleryThumbs;
+
     let resizeT = null;
     window.addEventListener('resize', () => {
         clearTimeout(resizeT);
