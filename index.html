@@ -74,286 +74,227 @@
 
   <!-- LANDING VIEW -->
   <div id="view-landing" class="mellow-home">
-    <nav class="lnav mellow-nav" aria-label="Main navigation">
-      <a class="logo mellow-brand" onclick="navigate('landing')" aria-label="MellowCV home">Mellow<em>CV</em></a>
-      <div class="mellow-nav-note">CV FACTORY / 2026</div>
-      <ul class="lnav-links">
-        <li><a onclick="navigate('gallery')">Templates</a></li>
-        <li><a href="#journey">How it works</a></li>
-        <li><a href="#paths">Career paths</a></li>
-      </ul>
-      <div class="lnav-actions">
-        <button class="btn btn-outline btn-sm mellow-nav-minor" onclick="navigate('manager')">My Resumes</button>
-        <button class="btn btn-primary btn-sm mellow-nav-cta" onclick="navigate('builder')">Build yours ↗</button>
+    <nav class="mc-nav" aria-label="Main navigation">
+      <a class="mc-brand" onclick="navigate('landing')" aria-label="MellowCV home">Mellow<span>CV</span></a>
+      <div class="mc-nav-links">
+        <a onclick="navigate('gallery')">Templates</a>
+        <a onclick="createNewCoverLetter()">Cover letter</a>
+        <a onclick="navigate('manager')">My resumes</a>
       </div>
+      <button class="mc-nav-cta" onclick="navigate('builder')">Build my CV <span aria-hidden="true">↗</span></button>
     </nav>
 
     <main>
-      <section class="mellow-hero" aria-labelledby="mellow-hero-title">
-        <div class="hero-grid">
-          <div class="hero-copy reveal">
-            <div class="hero-index mono-note">01 / START SOMEWHERE</div>
-            <p class="hero-kicker">A CV builder for actual people with actual careers.</p>
-            <h1 id="mellow-hero-title">You've done<br><span>the work.</span><br>Show it properly.</h1>
-            <p class="hero-lead">MellowCV helps you turn the messy bits of your career into a clear, confident CV — one decision at a time.</p>
-            <div class="hero-ctas">
-              <button class="btn btn-primary hero-main-cta" onclick="navigate('builder')">Start with my story <span>↗</span></button>
-              <button class="btn btn-outline hero-secondary-cta" onclick="navigate('gallery')">Browse the templates</button>
-            </div>
-            <div class="hero-microcopy">
-              <span>Free to start</span><i></i><span>No account needed</span><i></i><span>Built for real job hunting</span>
-            </div>
+      <section class="mc-hero mc-section-pad">
+        <div class="mc-hero-copy mc-reveal">
+          <p class="mc-kicker">MellowCV · CV + cover letter</p>
+          <h1>Build an application that makes <em>the right things easy to see.</em></h1>
+          <p class="mc-hero-text">Create a clear, professional CV, strengthen the way your experience is written, and finish with a cover letter tailored to the role.</p>
+          <div class="mc-actions">
+            <button class="mc-button mc-button-primary" onclick="navigate('builder')">Build my CV <span aria-hidden="true">→</span></button>
+            <button class="mc-button mc-button-secondary" onclick="createNewCoverLetter()">Write a cover letter <span aria-hidden="true">→</span></button>
           </div>
-
-          <div class="hero-visual reveal reveal-delay-1">
-            <div class="hero-mark hero-mark-top mono-note">LIVE PREVIEW / 01</div>
-            <div class="hero-paper" id="hero-paper">
-              <div class="hero-paper-top">
-                <span>YOUR CV</span>
-                <span class="hero-page-no">PAGE 01</span>
-              </div>
-              <div class="hero-frame">
-                <div class="hero-frame-inner" id="hero-cv-inner"></div>
-              </div>
-              <div class="hero-paper-foot">
-                <span class="hero-status-dot"></span>
-                <span>editable in MellowCV</span>
-              </div>
-            </div>
-            <div class="hero-annotation hero-annotation-a">
-              <span class="annotation-line"></span>
-              <span class="mono-note">strong hierarchy</span>
-            </div>
-            <div class="hero-annotation hero-annotation-b">
-              <span class="mono-note">actual document · not a mockup</span>
-            </div>
-          </div>
+          <p class="mc-microcopy">Start free · No account required to begin</p>
         </div>
 
-        <div class="hero-bottom reveal reveal-delay-2">
-          <div class="hero-bottom-label mono-note">SCROLL TO SEE HOW IT'S MADE</div>
-          <div class="hero-line"><span></span></div>
-          <div class="hero-bottom-side mono-note">01 / 06</div>
+        <div class="mc-hero-product mc-reveal mc-reveal-delay-1">
+          <div class="mc-product-heading">
+            <span>LIVE PREVIEW</span>
+            <span>01 / 01</span>
+          </div>
+          <div class="mc-cv-stage" id="mc-cv-stage">
+            <div class="hero-frame" id="hero-cv-frame">
+              <div class="hero-frame-inner" id="hero-cv-inner"></div>
+            </div>
+          </div>
+          <div class="mc-product-note">
+            <span class="mc-status-dot" aria-hidden="true"></span>
+            Your information stays editable while you build.
+          </div>
         </div>
       </section>
 
-      <section class="mellow-paths" id="paths" aria-labelledby="paths-title">
-        <div class="section-grid">
-          <div class="section-stamp mono-note">02 / WHERE ARE YOU?</div>
+      <section class="mc-proof-row" aria-label="MellowCV benefits">
+        <div><strong>CV</strong><span>clear structure</span></div>
+        <div><strong>Cover letter</strong><span>role-specific writing</span></div>
+        <div><strong>ATS</strong><span>readable by screening systems</span></div>
+        <div><strong>A4</strong><span>ready to send</span></div>
+      </section>
+
+      <section class="mc-start mc-section-pad mc-section-light mc-reveal">
+        <div class="mc-section-intro">
+          <p class="mc-kicker">Start with what you need</p>
+          <h2>You don't have to do everything at once.</h2>
+          <p>Choose the next useful step. Each option takes you directly where you need to go.</p>
+        </div>
+        <div class="mc-start-grid">
+          <button class="mc-start-card" onclick="navigate('builder')">
+            <span class="mc-card-label">01</span>
+            <span class="mc-card-title">Build a CV</span>
+            <span class="mc-card-copy">Start fresh and build it step by step.</span>
+            <span class="mc-card-arrow" aria-hidden="true">→</span>
+          </button>
+          <button class="mc-start-card" onclick="openImportModal()">
+            <span class="mc-card-label">02</span>
+            <span class="mc-card-title">Improve my CV</span>
+            <span class="mc-card-copy">Bring in an existing CV and work from there.</span>
+            <span class="mc-card-arrow" aria-hidden="true">→</span>
+          </button>
+          <button class="mc-start-card" onclick="createNewCoverLetter()">
+            <span class="mc-card-label">03</span>
+            <span class="mc-card-title">Write a cover letter</span>
+            <span class="mc-card-copy">Start a letter for the role you're applying for.</span>
+            <span class="mc-card-arrow" aria-hidden="true">→</span>
+          </button>
+          <button class="mc-start-card" onclick="navigate('gallery')">
+            <span class="mc-card-label">04</span>
+            <span class="mc-card-title">Choose a template</span>
+            <span class="mc-card-copy">See the real CV designs before you decide.</span>
+            <span class="mc-card-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="mc-process mc-section-pad mc-reveal">
+        <div class="mc-section-intro mc-section-intro-wide">
+          <p class="mc-kicker">How MellowCV works</p>
+          <h2>From blank page to ready-to-send.</h2>
+          <p>The workflow is designed around the decisions that matter when you're applying, not around features you have to learn.</p>
+        </div>
+        <div class="mc-process-grid">
+          <article>
+            <span class="mc-step">01</span>
+            <h3>Build your CV</h3>
+            <p>Add your experience, education and skills. Keep the information yours; let the layout do the organising.</p>
+          </article>
+          <article>
+            <span class="mc-step">02</span>
+            <h3>Strengthen the writing</h3>
+            <p>Improve weak descriptions, make achievements clearer, and keep important information easy to find.</p>
+          </article>
+          <article>
+            <span class="mc-step">03</span>
+            <h3>Write the cover letter</h3>
+            <p>Connect your experience to the role instead of sending the same generic letter everywhere.</p>
+          </article>
+          <article>
+            <span class="mc-step">04</span>
+            <h3>Check and send</h3>
+            <p>Choose your final design, review the result, and download your documents when they're ready.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mc-improve mc-section-pad mc-section-light mc-reveal">
+        <div class="mc-improve-copy">
+          <p class="mc-kicker">Useful help, not decoration</p>
+          <h2>A good CV is clearer, not louder.</h2>
+          <p>MellowCV helps with the places people usually struggle: what to say, what to leave out, how to organise it, and how to make the cover letter relevant to the job.</p>
+        </div>
+        <div class="mc-before-after" role="group" aria-label="Example of stronger CV writing">
+          <div class="mc-example mc-example-before">
+            <span class="mc-example-label">Before</span>
+            <p>Responsible for social media and campaign support.</p>
+          </div>
+          <div class="mc-example-divider" aria-hidden="true">→</div>
+          <div class="mc-example mc-example-after">
+            <span class="mc-example-label">Clearer</span>
+            <p>Managed social campaigns across three channels and supported weekly campaign reporting.</p>
+          </div>
+          <button class="mc-inline-action" onclick="navigate('builder')">Improve your own wording <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+
+      <section class="mc-application mc-section-pad mc-reveal">
+        <div class="mc-section-intro">
+          <p class="mc-kicker">Your application</p>
+          <h2>The CV gets you noticed. The cover letter gives the application context.</h2>
+          <p>Keep both documents consistent, tailored and ready for the same opportunity.</p>
+        </div>
+        <div class="mc-docs">
+          <div class="mc-doc-card mc-doc-cv">
+            <div class="mc-doc-top"><span>CV</span><span>01</span></div>
+            <div class="mc-mini-cv">
+              <span class="mc-line mc-line-name"></span>
+              <span class="mc-line mc-line-short"></span>
+              <span class="mc-line"></span>
+              <span class="mc-line mc-line-wide"></span>
+              <span class="mc-line"></span>
+              <span class="mc-line mc-line-med"></span>
+              <span class="mc-line mc-line-wide"></span>
+              <span class="mc-line"></span>
+            </div>
+            <p>What you've done.</p>
+          </div>
+          <div class="mc-doc-plus" aria-hidden="true">+</div>
+          <div class="mc-doc-card mc-doc-letter">
+            <div class="mc-doc-top"><span>COVER LETTER</span><span>02</span></div>
+            <div class="mc-mini-letter">
+              <span class="mc-line mc-line-name"></span>
+              <span class="mc-line mc-line-short"></span>
+              <span class="mc-line mc-line-wide"></span>
+              <span class="mc-line"></span>
+              <span class="mc-line"></span>
+              <span class="mc-line mc-line-wide"></span>
+              <span class="mc-line mc-line-med"></span>
+            </div>
+            <p>Why this role makes sense.</p>
+          </div>
+        </div>
+        <div class="mc-application-actions">
+          <button class="mc-button mc-button-primary" onclick="createNewCoverLetter()">Start a cover letter <span aria-hidden="true">→</span></button>
+          <button class="mc-text-link" onclick="navigate('builder')">Build the CV first <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+
+      <section class="mc-templates mc-section-pad mc-section-light mc-reveal">
+        <div class="mc-section-intro mc-section-intro-row">
           <div>
-            <p class="eyebrow">Start from where you are, not where the template says you should be.</p>
-            <h2 id="paths-title" class="display-title">There isn't one<br><em>right</em> way into work.</h2>
-            <p class="section-intro">Pick the situation that sounds most like yours. MellowCV can then point you toward the information, structure and templates that make sense for your next move.</p>
+            <p class="mc-kicker">Templates</p>
+            <h2>Choose a look after you know what you want to say.</h2>
           </div>
+          <button class="mc-text-link" onclick="navigate('gallery')">See all templates <span aria-hidden="true">↗</span></button>
         </div>
+        <div class="sc-strip" id="sc-strip"></div>
+      </section>
 
-        <div class="path-board" role="list">
-          <button class="path-card path-card-main" type="button" data-path="first" onclick="selectCareerPath('first')">
-            <span class="path-no mono-note">01</span>
-            <strong>My first CV</strong>
-            <span>Starting out without a decade of experience.</span>
-            <span class="path-arrow">↗</span>
-          </button>
-          <button class="path-card" type="button" data-path="graduate" onclick="selectCareerPath('graduate')">
-            <span class="path-no mono-note">02</span>
-            <strong>Graduate / Matric</strong>
-            <span>Education, projects and early experience.</span>
-            <span class="path-arrow">↗</span>
-          </button>
-          <button class="path-card" type="button" data-path="change" onclick="selectCareerPath('change')">
-            <span class="path-no mono-note">03</span>
-            <strong>Changing careers</strong>
-            <span>Move the useful skills to the front.</span>
-            <span class="path-arrow">↗</span>
-          </button>
-          <button class="path-card" type="button" data-path="experienced" onclick="selectCareerPath('experienced')">
-            <span class="path-no mono-note">04</span>
-            <strong>Experienced</strong>
-            <span>Make the evidence, not the years, do the talking.</span>
-            <span class="path-arrow">↗</span>
-          </button>
-          <button class="path-card path-card-dark" type="button" data-path="senior" onclick="selectCareerPath('senior')">
-            <span class="path-no mono-note">05</span>
-            <strong>Senior / Lead</strong>
-            <span>Show scope, decisions and impact.</span>
-            <span class="path-arrow">↗</span>
-          </button>
-          <button class="path-card path-card-accent" type="button" data-path="sa" onclick="selectCareerPath('sa')">
-            <span class="path-no mono-note">06</span>
-            <strong>South African job search</strong>
-            <span>Start with the conventions recruiters here actually recognise.</span>
-            <span class="path-arrow">↗</span>
-          </button>
+      <section class="mc-fit mc-section-pad mc-reveal">
+        <div>
+          <p class="mc-kicker">Built for real job searches</p>
+          <h2>Whether you're starting out, changing direction or applying for your next step.</h2>
         </div>
-
-        <div class="path-response" id="path-response" aria-live="polite">
-          <span class="response-mark mono-note">MELLOWCV / NOTE</span>
-          <p id="path-response-text">You don't have to know exactly what belongs on your CV yet.</p>
-          <button class="text-link" type="button" onclick="navigate('builder')">Let's work it out →</button>
+        <div class="mc-fit-list">
+          <div><strong>First CV</strong><span>Learn how to present experience you already have.</span></div>
+          <div><strong>Graduate</strong><span>Put projects, placements and education into context.</span></div>
+          <div><strong>Career change</strong><span>Make transferable skills easier to recognise.</span></div>
+          <div><strong>Experienced</strong><span>Put the strongest parts of your career first.</span></div>
+          <div><strong>South African applications</strong><span>Build for local career paths while keeping your documents professional and flexible.</span></div>
+          <div><strong>International / remote</strong><span>Create documents that can travel with you.</span></div>
         </div>
       </section>
 
-      <section class="mellow-journey" id="journey" aria-labelledby="journey-title">
-        <div class="journey-intro section-grid">
-          <div class="section-stamp mono-note">03 / THE PROCESS</div>
-          <div>
-            <p class="eyebrow">Let's make the page.</p>
-            <h2 id="journey-title" class="display-title">Five decisions.<br><em>One</em> finished CV.</h2>
+      <section class="mc-final mc-reveal">
+        <div class="mc-final-inner">
+          <p class="mc-kicker">Ready when you are</p>
+          <h2>Let's make the next application easier.</h2>
+          <p>Build your CV, finish your cover letter, and leave with documents you can actually send.</p>
+          <div class="mc-actions mc-actions-center">
+            <button class="mc-button mc-button-light" onclick="navigate('builder')">Build my CV <span aria-hidden="true">→</span></button>
+            <button class="mc-button mc-button-ghost-light" onclick="createNewCoverLetter()">Write a cover letter <span aria-hidden="true">→</span></button>
           </div>
         </div>
-
-        <div class="journey-stage">
-          <div class="journey-list" role="list">
-            <article class="journey-item is-active" data-stage="0">
-              <span class="journey-no">01</span>
-              <div><h3>Start with the story.</h3><p>You give us the facts. We help you work out what deserves space.</p></div>
-            </article>
-            <article class="journey-item" data-stage="1">
-              <span class="journey-no">02</span>
-              <div><h3>Make experience readable.</h3><p>Turn duties into evidence. Keep the useful parts easy to scan.</p></div>
-            </article>
-            <article class="journey-item" data-stage="2">
-              <span class="journey-no">03</span>
-              <div><h3>Put the hierarchy in place.</h3><p>Your strongest signal should not be buried halfway down page one.</p></div>
-            </article>
-            <article class="journey-item" data-stage="3">
-              <span class="journey-no">04</span>
-              <div><h3>Choose how you want to be seen.</h3><p>Template, spacing, typography and colour should support your story.</p></div>
-            </article>
-            <article class="journey-item" data-stage="4">
-              <span class="journey-no">05</span>
-              <div><h3>Check it. Then send it.</h3><p>Readability, ATS checks and export are the final pass — not the whole product.</p></div>
-            </article>
-          </div>
-
-          <div class="journey-document" aria-label="CV process preview">
-            <div class="journey-doc-meta mono-note"><span id="journey-stage-label">01 / STORY</span><span>LIVE DOCUMENT</span></div>
-            <div class="journey-doc-window" id="journey-doc-window">
-              <div class="journey-doc-inner" id="journey-doc-inner"></div>
-              <div class="journey-doc-note" id="journey-doc-note">Start somewhere. The page gets clearer as the story does.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="mellow-dark-statement" aria-labelledby="dark-statement-title">
-        <div class="dark-statement-inner">
-          <div class="mono-note dark-kicker">A GOOD CV DOESN'T SHOUT.</div>
-          <h2 id="dark-statement-title">It makes the<br><span>right things</span><br>easy to find.</h2>
-          <div class="dark-statement-note">
-            <span class="dark-rule"></span>
-            <p>Clarity is a design decision. So is knowing what to leave out.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="mellow-templates" aria-labelledby="templates-title">
-        <div class="templates-head section-grid">
-          <div class="section-stamp mono-note">04 / FIND YOUR VOICE</div>
-          <div>
-            <p class="eyebrow">The template should fit the person, not the other way around.</p>
-            <h2 id="templates-title" class="display-title">Different jobs.<br><em>Different</em> voices.</h2>
-          </div>
-        </div>
-
-        <div class="template-workbench">
-          <div class="workbench-menu" role="tablist" aria-label="Template styles">
-            <button class="workbench-tab is-active" type="button" data-template-view="quiet">Quiet</button>
-            <button class="workbench-tab" type="button" data-template-view="bold">Bold</button>
-            <button class="workbench-tab" type="button" data-template-view="executive">Executive</button>
-            <button class="workbench-tab" type="button" data-template-view="practical">Practical</button>
-            <button class="workbench-tab" type="button" data-template-view="creative">Creative</button>
-            <button class="workbench-tab" type="button" data-template-view="ats">ATS-first</button>
-          </div>
-          <div class="workbench-preview" id="workbench-preview">
-            <div class="workbench-meta">
-              <span class="mono-note" id="workbench-label">QUIET / EDITORIAL</span>
-              <button class="text-link" type="button" onclick="navigate('gallery')">See the full collection →</button>
-            </div>
-            <div class="workbench-stage" id="workbench-stage">
-              <div class="workbench-page" id="workbench-page"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="template-strip-head">
-          <span class="mono-note">A CURATED LOOK AT THE COLLECTION</span>
-          <span class="template-count-inline"><strong id="template-count">0</strong> layouts</span>
-        </div>
-        <div class="sc-strip mellow-sc-strip" id="sc-strip"></div>
-      </section>
-
-      <section class="mellow-before-after" aria-labelledby="before-after-title">
-        <div class="section-grid">
-          <div class="section-stamp mono-note">05 / THE DETAILS</div>
-          <div>
-            <p class="eyebrow">Small wording changes can change what a recruiter notices.</p>
-            <h2 id="before-after-title" class="display-title">Don't just say<br><em>what you did.</em></h2>
-          </div>
-        </div>
-
-        <div class="before-after">
-          <div class="ba-side ba-before">
-            <span class="mono-note">BEFORE</span>
-            <p id="ba-before-copy">Responsible for social media.</p>
-            <div class="ba-tags"><span>vague</span><span>passive</span></div>
-          </div>
-          <div class="ba-track">
-            <span class="ba-handle" id="ba-handle">↔</span>
-          </div>
-          <div class="ba-side ba-after">
-            <span class="mono-note">AFTER</span>
-            <p id="ba-after-copy">Managed social campaigns across three channels, improving engagement by 20%.</p>
-            <div class="ba-tags"><span>clear</span><span>evidence-led</span></div>
-          </div>
-        </div>
-
-        <div class="ba-foot">
-          <span>action</span><span>specifics</span><span>evidence</span><span>relevance</span>
-        </div>
-      </section>
-
-      <section class="mellow-local" aria-labelledby="local-title">
-        <div class="local-sticker mono-note">MADE FOR REAL JOB SEARCHES</div>
-        <div class="local-grid">
-          <div>
-            <p class="eyebrow">And yes — where you're applying matters.</p>
-            <h2 id="local-title" class="display-title">Your career doesn't<br>follow one <em>template.</em></h2>
-          </div>
-          <div class="local-copy">
-            <p>From Matric and learnership applications to graduate roles, experienced work, management and international opportunities, the right CV is the one that fits the situation.</p>
-            <div class="local-paths">
-              <span>Matric / Grade 12</span>
-              <span>Graduate</span>
-              <span>Learnership</span>
-              <span>Career change</span>
-              <span>Experienced</span>
-              <span>International / Remote</span>
-            </div>
-            <button class="btn btn-primary" onclick="navigate('builder')">Build the one you need ↗</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="mellow-final" aria-labelledby="final-title">
-        <div class="final-index mono-note">06 / READY</div>
-        <h2 id="final-title">Ready to make<br><em>yours?</em></h2>
-        <p>You don't need another generic CV. You need one that makes sense when someone reads it in thirty seconds.</p>
-        <button class="btn btn-primary final-cta" onclick="navigate('builder')">Okay. Let's build it <span>↗</span></button>
-        <div class="final-detail mono-note">FREE TO START / NO ACCOUNT REQUIRED / PDF EXPORT</div>
       </section>
     </main>
 
-    <footer class="lfooter mellow-footer">
-      <div class="lfooter-inner">
-        <div class="logo mellow-brand">Mellow<em>CV</em></div>
-        <div class="footer-links">
-          <a onclick="navigate('gallery')">Templates</a>
-          <a onclick="navigate('manager')">My Resumes</a>
-          <a onclick="navigate('builder')">Build a CV</a>
-        </div>
-        <div class="lfooter-copy">© 2026 MellowCV / Make your work readable.</div>
+    <footer class="mc-footer">
+      <div class="mc-footer-brand"><strong>Mellow<span>CV</span></strong><span>Build better applications.</span></div>
+      <div class="mc-footer-links">
+        <a onclick="navigate('gallery')">Templates</a>
+        <a onclick="navigate('builder')">Build a CV</a>
+        <a onclick="createNewCoverLetter()">Cover letter</a>
+        <a onclick="navigate('manager')">My documents</a>
       </div>
+      <div class="mc-footer-copy">© 2026 MellowCV</div>
     </footer>
   </div>
 
