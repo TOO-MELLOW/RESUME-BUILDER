@@ -4460,3 +4460,125 @@
 @media (prefers-reduced-motion: reduce) {
   .mc-reveal, .mc-reveal.is-visible, .mc-button, .mc-start-card { transition:none !important; transform:none !important; }
 }
+
+/* ---------------------------------------------------------------------
+   MELLOWCV HERO — MOBILE-FIRST SIDE-BY-SIDE COMPOSITION
+   The hero copy and live CV sit beside each other on phones so the
+   product is visible immediately without pushing the primary action
+   and headline far above the document preview.
+   --------------------------------------------------------------------- */
+@media (max-width: 599px) {
+  .mellow-home .mc-hero {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    align-items: start;
+    gap: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 28px;
+    padding-bottom: 42px;
+  }
+
+  .mellow-home .mc-hero-copy {
+    min-width: 0;
+    padding-top: 0;
+  }
+
+  .mellow-home .mc-kicker {
+    margin-bottom: 9px;
+    font-size: 8px;
+    letter-spacing: .10em;
+  }
+
+  .mellow-home .mc-hero h1 {
+    font-size: clamp(28px, 8.1vw, 38px);
+    line-height: .98;
+    max-width: none;
+  }
+
+  .mellow-home .mc-hero-text {
+    margin-top: 13px;
+    font-size: 12px;
+    line-height: 1.48;
+    max-width: none;
+  }
+
+  .mellow-home .mc-actions {
+    margin-top: 16px;
+    gap: 7px;
+  }
+
+  .mellow-home .mc-button {
+    min-height: 42px;
+    padding: 0 10px;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .mellow-home .mc-microcopy {
+    margin-top: 8px;
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .mellow-home .mc-hero-product {
+    min-width: 0;
+    align-self: start;
+  }
+
+  .mellow-home .mc-product-heading {
+    margin-bottom: 6px;
+    font-size: 7px;
+    letter-spacing: .09em;
+  }
+
+  .mellow-home .mc-cv-stage {
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  .mellow-home .hero-frame {
+    width: 100%;
+    max-width: none;
+    border-radius: 2px;
+    box-shadow: 7px 8px 0 rgba(21,33,28,.06), 0 8px 18px rgba(21,33,28,.08);
+  }
+
+  .mellow-home .hero-frame-inner {
+    transform: scale(.18);
+  }
+
+  .mellow-home .mc-product-note {
+    margin-top: 7px;
+    font-size: 8px;
+    line-height: 1.35;
+    gap: 5px;
+  }
+
+  .mellow-home .mc-status-dot {
+    width: 5px;
+    height: 5px;
+    box-shadow: 0 0 0 2px var(--mc-accent-soft);
+  }
+}
+
+@media (min-width: 380px) and (max-width: 599px) {
+  .mellow-home .mc-hero {
+    gap: 14px;
+  }
+
+  .mellow-home .hero-frame-inner {
+    transform: scale(.21);
+  }
+}
+
+@media (min-width: 430px) and (max-width: 599px) {
+  .mellow-home .mc-hero {
+    gap: 16px;
+  }
+
+  .mellow-home .hero-frame-inner {
+    transform: scale(.235);
+  }
+}
