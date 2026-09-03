@@ -434,7 +434,15 @@ function renderTemplateContent(data, tid) {
         : null;
     let html;
 
-    if (definition?.templateMarkup) html = renderTemplateMarkup(data, definition.templateMarkup);
+    if (definition?.templateMarkup) {
+        html = renderTemplateMarkup(data, definition.templateMarkup);
+
+        // Premium templateMarkup is the authoritative section renderer.
+        // Do not run the legacy coverage pass against these authored shells:
+        // it can mis-classify decorative/template-specific labels as missing
+        // sections and append a second fallback copy.
+        if (tid === 'asymmetric-architecture-21') return html;
+    }
     else if (tid === 'executive-02')       html = renderExecutive02(data);
     else if (tid.startsWith('modern'))     html = renderModern(data, tid);
     else if (tid.startsWith('ats'))       html = renderAts(data, tid);
@@ -452,14 +460,6 @@ function renderTemplateContent(data, tid) {
     else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
     else html = renderModern(data, tid);
 
-    // Premium templates with an explicit templateMarkup own their section
-    // placement. Running the legacy coverage-repair pass after those slots
-    // have already been populated can append the same sections a second time.
-    // Keep the fallback coverage repair for legacy renderers, but do not run it
-    // for Asymmetric Architecture, whose authored markup is authoritative.
-    if (tid === 'asymmetric-architecture-21' && definition?.templateMarkup) {
-        return html;
-    }
     return enforceSectionCoverage(data, tid, html);
 }
 
@@ -606,16 +606,27 @@ function renderTemplateMarkup(data, raw) {
     wrapper.querySelectorAll('[data-role="contact"]').forEach(el => {
         el.innerHTML = contactListHtml(p);
     });
+    const renderSection = section => {
+        if (!SR[section.type]) return '';
+        // Continuation chunks carry the same section type/title as page 1, but
+        // the section itself must not look like it started over again. The
+        // existing empty-label cleanup in renderPageHtml then removes the
+        // now-empty heading while preserving the section content.
+        return SR[section.type]({
+            ...section,
+            title: section.__rfContinuation ? '' : section.title
+        });
+    };
     wrapper.querySelectorAll('[data-role="sidebar"]').forEach(el => {
         el.innerHTML = vis
             .filter(section => SIDEBAR_TYPES.has(section.type))
-            .map(section => SR[section.type] ? SR[section.type](section) : '')
+            .map(renderSection)
             .join('');
     });
     wrapper.querySelectorAll('[data-role="main"]').forEach(el => {
         el.innerHTML = vis
             .filter(section => MAIN_TYPES.has(section.type))
-            .map(section => SR[section.type] ? SR[section.type](section) : '')
+            .map(renderSection)
             .join('');
     });
     wrapper.querySelectorAll('[data-page-number]').forEach(el => {
