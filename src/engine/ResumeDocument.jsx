@@ -50,8 +50,9 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   if (!spec?.continuation) return html;
   const doc = new DOMParser().parseFromString(`<div id="__rf_cont_root">${html}</div>`, 'text/html');
   const root = doc.getElementById('__rf_cont_root');
-  root.setAttribute('data-rf-continuation', 'true');
-  root.setAttribute('data-rf-page-number', String(pageNumber));
+  const pageRoot = root.firstElementChild || root;
+  pageRoot.setAttribute('data-rf-continuation', 'true');
+  pageRoot.setAttribute('data-rf-page-number', String(pageNumber));
 
   const selectors = [
     ...(spec.page1?.headerSelectors || []),
@@ -75,6 +76,16 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   });
   root.querySelectorAll('[data-page-number]').forEach(node => { node.textContent = String(pageNumber); });
   root.querySelectorAll('[data-page-count]').forEach(node => { node.textContent = String(pageCount); });
+
+  // Some premium shells use a two-column body whose secondary column contains
+  // page-1-only content. Mark an empty continuation sidebar so the authored
+  // shell can collapse that column without changing other premium templates.
+  const asymmetricBody = pageRoot.querySelector('.corp-asymmetric .aa-body');
+  const asymmetricSidebar = asymmetricBody?.querySelector('aside [data-role="sidebar"]');
+  if (asymmetricBody && asymmetricSidebar && asymmetricSidebar.children.length === 0) {
+    asymmetricBody.setAttribute('data-rf-empty-sidebar', 'true');
+  }
+
   return Array.from(root.children).map(node => node.outerHTML || '').join('');
 }
 
@@ -368,6 +379,7 @@ function paginate(data, templateId, available = A4_HEIGHT_PX) {
   // Reassign order sequentially to avoid duplicates
   sections.forEach((s, i) => s.order = i + 1);
 
+  // Remove duplicate ids (keep first occurrence)
   const seen = new Set();
   const unique = sections.filter(s => {
     if (seen.has(s.id)) return false;
@@ -559,6 +571,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     };
   }, [signature, data, templateId, onPagesReady]);
 
+  // Effect 2: run reflow if needed and if height changed significantly
   useLayoutEffect(() => {
     if (!pagePlan || !data || !templateId) return;
     if (reflowDoneRef.current) return;
@@ -571,6 +584,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
         return;
       }
     }
+    // otherwise run reflow
     let cancelled = false;
     (async () => {
       const rootNode = document.getElementById('cv-root');
