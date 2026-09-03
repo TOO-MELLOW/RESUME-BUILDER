@@ -86,6 +86,23 @@
     return true;
   }
 
+  // Called by commitEditorMutation() in script.js right after a mutation
+  // runs, to close out the checkpoint that begin() opened beforehand. If
+  // the mutation didn't actually change anything (e.g. re-typing the same
+  // value), drop the no-op checkpoint instead of leaving a dead undo step.
+  // Returns true when a real change was committed, false otherwise.
+  function commit() {
+    const state = getState();
+    if (!state) return true;
+    if (past.length && same(past[past.length - 1], state)) {
+      past.pop();
+      notify();
+      return false;
+    }
+    notify();
+    return true;
+  }
+
   function clear() {
     past = [];
     future = [];
@@ -117,6 +134,7 @@
   global.editorUndo = undo;
   global.editorRedo = redo;
   global.editorHistoryBegin = begin;
+  global.editorHistoryCommit = commit;
   global.editorHistoryBoundary = boundary;
   global.editorHistoryClear = clear;
   global.editorHistoryFlushBoundary = flushBoundary;
