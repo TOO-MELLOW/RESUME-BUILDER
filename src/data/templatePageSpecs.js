@@ -2728,10 +2728,9 @@ export const templatePageSpecs = [
     "page1": {
       "frame": ".page",
       "layout": "two-column",
-      "header": [
-        "header.top",
-        "div.topline",
-        "div.identity"
+      "headerSelectors": [
+        ".aa-header",
+        ".aa-spine"
       ],
       "photo": [],
       "footer": [
@@ -2757,7 +2756,7 @@ export const templatePageSpecs = [
       "design": "same template shell and content regions; no separate art-directed continuation",
       "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
       "hidePage1ChromeSelectors": [
-        "[data-rf-region=\"header\"]"
+        ".aa-summary"
       ],
       "preserveSelectors": [
         ".page",
