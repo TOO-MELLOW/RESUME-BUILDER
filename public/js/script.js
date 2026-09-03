@@ -434,15 +434,7 @@ function renderTemplateContent(data, tid) {
         : null;
     let html;
 
-    if (definition?.templateMarkup) {
-        html = renderTemplateMarkup(data, definition.templateMarkup);
-
-        // Premium templateMarkup is the authoritative section renderer.
-        // Do not run the legacy coverage pass against these authored shells:
-        // it can mis-classify decorative/template-specific labels as missing
-        // sections and append a second fallback copy.
-        if (tid === 'asymmetric-architecture-21') return html;
-    }
+    if (definition?.templateMarkup) html = renderTemplateMarkup(data, definition.templateMarkup);
     else if (tid === 'executive-02')       html = renderExecutive02(data);
     else if (tid.startsWith('modern'))     html = renderModern(data, tid);
     else if (tid.startsWith('ats'))       html = renderAts(data, tid);
@@ -460,6 +452,14 @@ function renderTemplateContent(data, tid) {
     else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
     else html = renderModern(data, tid);
 
+    // Premium templates with an explicit templateMarkup own their section
+    // placement. Running the legacy coverage-repair pass after those slots
+    // have already been populated can append the same sections a second time.
+    // Keep the fallback coverage repair for legacy renderers, but do not run it
+    // for Asymmetric Architecture, whose authored markup is authoritative.
+    if (tid === 'asymmetric-architecture-21' && definition?.templateMarkup) {
+        return html;
+    }
     return enforceSectionCoverage(data, tid, html);
 }
 
@@ -606,27 +606,16 @@ function renderTemplateMarkup(data, raw) {
     wrapper.querySelectorAll('[data-role="contact"]').forEach(el => {
         el.innerHTML = contactListHtml(p);
     });
-    const renderSection = section => {
-        if (!SR[section.type]) return '';
-        // Continuation chunks carry the same section type/title as page 1, but
-        // the section itself must not look like it started over again. The
-        // existing empty-label cleanup in renderPageHtml then removes the
-        // now-empty heading while preserving the section content.
-        return SR[section.type]({
-            ...section,
-            title: section.__rfContinuation ? '' : section.title
-        });
-    };
     wrapper.querySelectorAll('[data-role="sidebar"]').forEach(el => {
         el.innerHTML = vis
             .filter(section => SIDEBAR_TYPES.has(section.type))
-            .map(renderSection)
+            .map(section => SR[section.type] ? SR[section.type](section) : '')
             .join('');
     });
     wrapper.querySelectorAll('[data-role="main"]').forEach(el => {
         el.innerHTML = vis
             .filter(section => MAIN_TYPES.has(section.type))
-            .map(renderSection)
+            .map(section => SR[section.type] ? SR[section.type](section) : '')
             .join('');
     });
     wrapper.querySelectorAll('[data-page-number]').forEach(el => {
@@ -866,7 +855,7 @@ function renderPractical(data, tid) {
             return "";
         }).join("");
         const mainHtml2 = mainSecs.map(s => {
-            if (s.type === "experience") return `<p class="practical-sec-title">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
+            if (s.type === "experience") return `<p class="practical-sec-title" data-rf-section-type="experience">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
             if (s.type === "education") { const inner = SR.education(s); return `<p class="practical-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`; }
             return "";
         }).join("");
@@ -877,7 +866,7 @@ function renderPractical(data, tid) {
     const availHtml = availSec ? `<p class="practical-sec-title">${escHtml(availSec.title)}</p>${availSec.items.length ? `<div class="avail-grid">${availSec.items.map(it => `<div class="avail-item"><div class="avail-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="avail-text"><span class="avail-label">${escHtml(it.label)}</span><span class="avail-value">${escHtml(it.value)}</span></div></div>`).join("")}</div>` : `<p class="empty-note">None added.</p>`}` : "";
     const restSecs = vis.filter(s => s.type !== "personal-info");
     const restHtml = restSecs.map(s => {
-        if(s.type === "experience") return `<p class="practical-sec-title">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""} — ${fmtDate(it.startDate,it.endDate,it.current)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
+        if(s.type === "experience") return `<p class="practical-sec-title" data-rf-section-type="experience">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""} — ${fmtDate(it.startDate,it.endDate,it.current)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
         if(s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="practical-sec-title">${escHtml(s.title)}</p><div class="practical-plain-chips">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
         if(s.type === "languages") return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
         if(s.type === "certificates") return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
@@ -893,7 +882,7 @@ function renderFunctional(data) {
     const otherSecs = vis.filter(s => !["custom","experience","personal-info"].includes(s.type));
     const hasGroups = groupSecs.length > 0;
     const groupsHtml = groupSecs.map(s => s.items.map(it => `<div class="functional-group"><p class="functional-group-title"><span class="dot"></span>${escHtml(it.title||s.title)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("")).join("");
-    const historyHtml = expSec ? (hasGroups ? `<div class="functional-history"><p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">Work History</p>${expSec.items.length ? expSec.items.map(it => `<div class="functional-history-item"><span><span class="fh-role">${escHtml(it.role)}</span> — ${escHtml(it.company)}</span><span>${fmtDate(it.startDate,it.endDate,it.current)}</span></div>`).join("") : `<p class="empty-note">No entries yet.</p>`}</div>` : `<p class="functional-sec-title" style="margin-top:0">${escHtml(expSec.title)}</p>${expSec.items.length ? expSec.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`) : "";
+    const historyHtml = expSec ? (hasGroups ? `<div class="functional-history"><p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">Work History</p>${expSec.items.length ? expSec.items.map(it => `<div class="functional-history-item"><span><span class="fh-role">${escHtml(it.role)}</span> — ${escHtml(it.company)}</span><span>${fmtDate(it.startDate,it.endDate,it.current)}</span></div>`).join("") : `<p class="empty-note">No entries yet.</p>`}</div>` : `<p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">${escHtml(expSec.title)}</p>${expSec.items.length ? expSec.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`) : "";
     const restHtml = otherSecs.map(s => {
         if(s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="functional-sec-title">${escHtml(s.title)}</p><div class="strengths-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
         if(s.type === "languages") return `<p class="functional-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
@@ -943,7 +932,7 @@ function renderTrade(data, tid) {
         const restHtmlSide2 = sideOtherSecs.map(otherSecMapper2).join("");
         const restHtmlMain2 = mainOtherSecs.map(otherSecMapper2).join("");
 
-        return `<div class="trade-header trade2-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="trade2-sidebar">${credHeading}${credHtml}${toolsHeading2}${toolsHtml2}${restHtmlSide2}</div><div class="main">${expHtml2 ? `<p class="trade-sec-title" style="margin-top:0">Experience</p>${expHtml2}` : ""}${restHtmlMain2}</div>`;
+        return `<div class="trade-header trade2-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="trade2-sidebar">${credHeading}${credHtml}${toolsHeading2}${toolsHtml2}${restHtmlSide2}</div><div class="main">${expHtml2 ? `<p class="trade-sec-title" style="margin-top:0" data-rf-section-type="experience">${escHtml(expSec.title)}</p>${expHtml2}` : ""}${restHtmlMain2}</div>`;
     }
 
     const badgesHtml = certSec
@@ -1042,10 +1031,10 @@ function renderMonogram(data) {
         : "";
 
     const mainHtml = mainSecs.map(s => {
-        if (s.type === "experience") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><div class="entry-header"><div><p class="entry-title" style="font-size:12px">${escHtml(it.role)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date" style="font-size:10px">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-        if (s.type === "education") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.qualification)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.institution)} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10px;color:#777;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
-        if (s.type === "projects") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.name)}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-        if (s.type === "custom") return `<p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        if (s.type === "experience") return `<p class="mono-kicker" data-rf-section-type="experience">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><div class="entry-header"><div><p class="entry-title" style="font-size:12px">${escHtml(it.role)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date" style="font-size:10px">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        if (s.type === "education") return `<p class="mono-kicker" data-rf-section-type="education">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.qualification)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.institution)} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10px;color:#777;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
+        if (s.type === "projects") return `<p class="mono-kicker" data-rf-section-type="projects">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.name)}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        if (s.type === "custom") return `<p class="mono-kicker" data-rf-section-type="custom">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
         return "";
     }).join("");
 
