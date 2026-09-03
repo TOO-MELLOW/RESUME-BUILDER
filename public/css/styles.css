@@ -4353,7 +4353,7 @@
 
 /* Hero layout */
 .mc-hero {
-  background-image: url('images/your-hero-bg.jpg');
+  background-image: url('images/bg.jpg');
   background-size: cover;
   background-position: 25% center;
 }
