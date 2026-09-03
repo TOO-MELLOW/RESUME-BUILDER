@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/paywall-modal.css">
 
     <style>
-        /* --- Global reset (unchanged) --- */
+        /* --- Global reset --- */
         :root {
             --brand: #1B2A4A;
             --accent: #2F7A6E;
@@ -884,26 +884,14 @@
 
   <!-- ============================================================
        OTHER VIEWS (gallery, manager, builder, clbuilder)
-       (All remain unchanged – only landing is above)
        ============================================================ -->
-  <div id="view-gallery">
-    <!-- Gallery content (unchanged) -->
-  </div>
-  <div id="view-manager">
-    <!-- Manager content (unchanged) -->
-  </div>
-  <div id="view-builder">
-    <!-- Builder content (unchanged) -->
-  </div>
-  <div id="view-clbuilder">
-    <!-- Cover letter builder (unchanged) -->
-  </div>
-
-  <!-- Modals, template storage, paywall, etc. (unchanged) -->
-  <!-- (Omitted for brevity – they are identical to your original) -->
+  <div id="view-gallery"></div>
+  <div id="view-manager"></div>
+  <div id="view-builder"></div>
+  <div id="view-clbuilder"></div>
 
   <!-- ============================================================
-       SCRIPTS (unchanged)
+       SCRIPTS
        ============================================================ -->
   <script src="/vendor/html2canvas.min.js"></script>
   <script src="/vendor/jspdf.umd.min.js"></script>
@@ -918,29 +906,105 @@
   <script type="module" src="/src/main.jsx"></script>
 
   <!-- ============================================================
-       SAFETY PATCH for navigate errors
+       SAFE NAVIGATE OVERRIDE (Single, comprehensive)
        ============================================================ -->
   <script>
-    (function() {
-      if (typeof window.navigate === 'function') {
-        const originalNavigate = window.navigate;
-        window.navigate = function(view) {
-          try {
-            originalNavigate(view);
-          } catch (e) {
-            console.warn('navigate error for view:', view, e);
-            // Fallback: manually switch views using data-view attribute
-            document.querySelectorAll('[data-view]').forEach(el => el.style.display = 'none');
-            const target = document.querySelector(`[data-view="${view}"]`);
-            if (target) target.style.display = 'block';
-            document.body.dataset.view = view;
-          }
-        };
+  (function() {
+    // Store the original navigate function from script.js
+    const originalNavigate = window.navigate;
+
+    // Define a safe replacement
+    window.navigate = function(view, opts) {
+      opts = opts || {};
+
+      try {
+        // Try the original navigate first
+        if (typeof originalNavigate === 'function') {
+          originalNavigate(view, opts);
+          return;
+        }
+      } catch (e) {
+        // Silently log the error (don't break the page)
+        console.warn('[navigate] Original failed, using fallback:', e.message);
       }
-    })();
+
+      // --- FALLBACK: Safe view switching ---
+
+      // 1. Update the body data-view attribute
+      document.body.setAttribute('data-view', view);
+
+      // 2. Show/hide views using data-view attributes
+      //    IMPORTANT: Use '' to restore default display (not 'block')
+      //    because #view-builder and #view-clbuilder use 'flex'.
+      document.querySelectorAll('[data-view]').forEach(function(el) {
+        el.style.display = el.getAttribute('data-view') === view ? '' : 'none';
+      });
+
+      // 3. Handle special view logic
+      if (view === 'manager' && typeof renderManager === 'function') {
+        renderManager();
+      }
+      if (view === 'builder') {
+        if (typeof renderPreview === 'function') {
+          if (!window.cvData) {
+            if (typeof loadData === 'function') loadData();
+          }
+          renderPreview();
+          if (typeof setStep === 'function') setStep(window.currentStep || 0);
+          if (typeof updatePaLabel === 'function') updatePaLabel();
+        }
+      }
+      if (view === 'clbuilder') {
+        if (typeof renderCLForm === 'function') renderCLForm();
+        if (typeof renderCoverLetterPreview === 'function') renderCoverLetterPreview();
+        if (typeof updateAutosaveLabelCL === 'function') updateAutosaveLabelCL();
+      }
+      if (view === 'gallery' && typeof renderGallery === 'function') {
+        renderGallery();
+      }
+      if (view === 'landing') {
+        if (typeof renderHeroCv === 'function') renderHeroCv();
+        if (typeof renderShowcaseStrip === 'function') renderShowcaseStrip();
+        if (typeof initMellowHomepageMotion === 'function') initMellowHomepageMotion();
+      }
+
+      // 4. Close any open modals/panels
+      if (typeof closeTips === 'function') closeTips();
+      if (typeof closeQuickFab === 'function') closeQuickFab();
+      if (typeof closeImportModal === 'function') closeImportModal();
+      if (typeof closeMobilePreview === 'function') closeMobilePreview();
+
+      // 5. Scroll to top
+      window.scrollTo(0, 0);
+
+      // 6. Update URL (if not skipped)
+      if (!opts.skipHistory) {
+        const viewMap = {
+          landing: '/',
+          gallery: '/gallery',
+          manager: '/manager',
+          builder: '/builder',
+          clbuilder: '/cover-letter'
+        };
+        const path = viewMap[view] || '/';
+        if (window.location.pathname !== path) {
+          history.pushState({ view: view }, '', path);
+        }
+      }
+
+      // 7. Update page meta
+      if (typeof updatePageMeta === 'function') {
+        updatePageMeta(view);
+      }
+    };
+
+    console.log('[navigate] Safe replacement installed.');
+  })();
   </script>
 
-  <!-- Hero scaling + scroll reveal -->
+  <!-- ============================================================
+       HERO SCALING + SCROLL REVEAL
+       ============================================================ -->
   <script>
     (function() {
       // 1. Hero preview scaling
@@ -990,94 +1054,5 @@
       });
     })();
   </script>
-<script>
-(function() {
-  // Store the original navigate function
-  const originalNavigate = window.navigate;
-
-  // Define a safe replacement
-  window.navigate = function(view, opts) {
-    opts = opts || {};
-
-    try {
-      // Try the original navigate first
-      if (typeof originalNavigate === 'function') {
-        originalNavigate(view, opts);
-        return;
-      }
-    } catch (e) {
-      // Silently log the error (don't break the page)
-      console.warn('[navigate] Original failed, using fallback:', e.message);
-    }
-
-    // --- FALLBACK: Safe view switching ---
-    // 1. Update the body data-view attribute
-    document.body.setAttribute('data-view', view);
-
-    // 2. Show/hide views using data-view attributes
-    document.querySelectorAll('[data-view]').forEach(function(el) {
-      el.style.display = el.getAttribute('data-view') === view ? 'block' : 'none';
-    });
-
-    // 3. Handle special view logic
-    if (view === 'manager' && typeof renderManager === 'function') {
-      renderManager();
-    }
-    if (view === 'builder' && typeof renderPreview === 'function') {
-      if (!window.cvData) {
-        // If cvData isn't loaded, use the existing loadData function
-        if (typeof loadData === 'function') loadData();
-      }
-      renderPreview();
-      if (typeof setStep === 'function') setStep(window.currentStep || 0);
-      if (typeof updatePaLabel === 'function') updatePaLabel();
-    }
-    if (view === 'clbuilder') {
-      if (typeof renderCLForm === 'function') renderCLForm();
-      if (typeof renderCoverLetterPreview === 'function') renderCoverLetterPreview();
-      if (typeof updateAutosaveLabelCL === 'function') updateAutosaveLabelCL();
-    }
-    if (view === 'gallery' && typeof renderGallery === 'function') {
-      renderGallery();
-    }
-    if (view === 'landing') {
-      if (typeof renderHeroCv === 'function') renderHeroCv();
-      if (typeof renderShowcaseStrip === 'function') renderShowcaseStrip();
-      if (typeof initMellowHomepageMotion === 'function') initMellowHomepageMotion();
-    }
-
-    // 4. Close any open modals/panels
-    if (typeof closeTips === 'function') closeTips();
-    if (typeof closeQuickFab === 'function') closeQuickFab();
-    if (typeof closeImportModal === 'function') closeImportModal();
-    if (typeof closeMobilePreview === 'function') closeMobilePreview();
-
-    // 5. Scroll to top
-    window.scrollTo(0, 0);
-
-    // 6. Update URL (if not skipped)
-    if (!opts.skipHistory) {
-      const viewMap = {
-        landing: '/',
-        gallery: '/gallery',
-        manager: '/manager',
-        builder: '/builder',
-        clbuilder: '/cover-letter'
-      };
-      const path = viewMap[view] || '/';
-      if (window.location.pathname !== path) {
-        history.pushState({ view: view }, '', path);
-      }
-    }
-
-    // 7. Update page meta
-    if (typeof updatePageMeta === 'function') {
-      updatePageMeta(view);
-    }
-  };
-
-  console.log('[navigate] Safe replacement installed.');
-})();
-</script>
 </body>
 </html>
