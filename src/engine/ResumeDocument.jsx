@@ -50,9 +50,8 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   if (!spec?.continuation) return html;
   const doc = new DOMParser().parseFromString(`<div id="__rf_cont_root">${html}</div>`, 'text/html');
   const root = doc.getElementById('__rf_cont_root');
-  const pageRoot = root.firstElementChild || root;
-  pageRoot.setAttribute('data-rf-continuation', 'true');
-  pageRoot.setAttribute('data-rf-page-number', String(pageNumber));
+  root.setAttribute('data-rf-continuation', 'true');
+  root.setAttribute('data-rf-page-number', String(pageNumber));
 
   const selectors = [
     ...(spec.page1?.headerSelectors || []),
@@ -77,12 +76,27 @@ function applyContinuationContract(html, templateId, isContinuation, pageNumber,
   root.querySelectorAll('[data-page-number]').forEach(node => { node.textContent = String(pageNumber); });
   root.querySelectorAll('[data-page-count]').forEach(node => { node.textContent = String(pageCount); });
 
-  // Asymmetric Architecture has a page-1-only overview column. When there is
-  // no continuing sidebar content, collapse that authored column on page 2.
-  const asymmetricBody = pageRoot.querySelector('.corp-asymmetric .aa-body');
-  const asymmetricSidebar = asymmetricBody?.querySelector(':scope > aside [data-role="sidebar"]');
-  if (asymmetricBody && asymmetricSidebar && asymmetricSidebar.children.length === 0) {
-    asymmetricBody.setAttribute('data-rf-empty-sidebar', 'true');
+  // The parser wrapper is discarded below, so copy the continuation marker
+  // onto every real page/template root that survives serialization.
+  root.querySelectorAll('.page, [data-rf-template-root="true"]').forEach(node => {
+    node.setAttribute('data-rf-continuation', 'true');
+    node.setAttribute('data-rf-page-number', String(pageNumber));
+  });
+
+  if (templateId === 'asymmetric-architecture-21') {
+    root.querySelectorAll('[data-role="sidebar"]').forEach(sidebar => {
+      const visibleChildren = Array.from(sidebar.children).filter(node => {
+        const style = node.getAttribute('style') || '';
+        return !node.hasAttribute('data-rf-hidden-continuation') &&
+          !/display\s*:\s*none/i.test(style);
+      });
+      if (!visibleChildren.length) {
+        const aside = sidebar.closest('aside');
+        const body = sidebar.closest('.aa-body');
+        if (aside) aside.setAttribute('data-rf-empty-continuation-sidebar', 'true');
+        if (body) body.setAttribute('data-rf-no-sidebar', 'true');
+      }
+    });
   }
 
   return Array.from(root.children).map(node => node.outerHTML || '').join('');
@@ -100,10 +114,9 @@ function markTemplatePageFrames(html) {
 function dataForSections(data, sections, firstPage) {
   // strip any continuation flags and clean sections
   const out = clone(data);
-  out.sections = clone(sections).map(s => {
-    const { __rfContinuation, ...rest } = s;
-    return rest;
-  });
+  // Keep the internal continuation marker so authored section renderers can
+  // suppress a repeated section heading on the next page.
+  out.sections = clone(sections).map(s => ({ ...s }));
   if (!firstPage) out.personalDetails = blankPersonal(data);
   return out;
 }
@@ -113,7 +126,7 @@ function measureItemChunk(data, templateId, section, itemsForSection, firstPage)
   return measureNaturalHeight(data, templateId, [candidate], firstPage);
 }
 
-function splitTextIntoMeasuredChunks(data, templateId, section, item, key, text, firstPage, available) {
+function splitTextIntoMeasuredChunks(data, templateId, section, item, key, text, firstPage) {
   if (!text || typeof text !== 'string' || text.length < 80) return null;
   const words = text.split(/\s+/).filter(Boolean);
   if (words.length < 12) return null;
@@ -157,7 +170,7 @@ function splitOversizedItem(data, templateId, section, item, firstPage, availabl
   }
 
   for (const key of ['notes','description','summary','details']) {
-    const chunks = splitTextIntoMeasuredChunks(data, templateId, section, base, key, base[key], firstPage, available);
+    const chunks = splitTextIntoMeasuredChunks(data, templateId, section, base, key, base[key], firstPage);
     if (chunks) return chunks;
   }
 
@@ -413,31 +426,29 @@ function getActualPageOverflow(root) {
   return Math.max(0, ...getPageOverflowDetails(root).map(item => item.overflow));
 }
 
-function mergeSectionIntoNextPage(nextPage, section) {
-  if (!nextPage || !section) return;
-  const matchIndex = nextPage.sections.findIndex(s => s?.id === section.id);
-  if (matchIndex === -1) {
-    nextPage.sections.unshift(cloneSection(section, sectionItems(section), true));
-    return;
+function moveOverflowFromPage(plan, pageIndex) {
+  if (!Array.isArray(plan) || pageIndex < 0 || pageIndex >= plan.length) return plan;
+  const next = plan.map(page => ({ ...page, sections: [...(page.sections || [])] }));
+  const page = next[pageIndex];
+  if (!page?.sections?.length) return next;
+
+  const moveIndex = page.sections.length - 1;
+  const moved = page.sections[moveIndex];
+  page.sections.splice(moveIndex, 1);
+
+  if (pageIndex + 1 >= next.length) {
+    next.push({ sections: [moved], firstPage: false });
+  } else {
+    next[pageIndex + 1].sections = [moved, ...(next[pageIndex + 1].sections || [])];
   }
 
-  const existing = nextPage.sections[matchIndex];
-  const existingItems = sectionItems(existing);
-  const incomingItems = sectionItems(section);
-  const seen = new Set(existingItems.map(item => item?.id).filter(Boolean));
-  const merged = [];
-
-  for (const item of incomingItems) {
-    const id = item?.id;
-    if (id && seen.has(id)) continue;
-    if (id) seen.add(id);
-    merged.push(item);
+  if (page.sections.length === 0) {
+    next.splice(pageIndex, 1);
+    if (pageIndex === 0 && next.length > 0) {
+      next[0].firstPage = true;
+    }
   }
-  merged.push(...existingItems);
-
-  existing.items = clone(merged);
-  existing.__rfContinuation = true;
-  nextPage.sections[matchIndex] = existing;
+  return next;
 }
 
 function splitLastSectionForOverflow(data, templateId, page, firstPage, available) {
@@ -447,75 +458,16 @@ function splitLastSectionForOverflow(data, templateId, page, firstPage, availabl
   const items = sectionItems(section);
   if (items.length <= 1) return null;
 
-  // Find the largest prefix that fits with all preceding sections. This avoids
-  // the old 50/50 split that could create a duplicate section chunk on page 2.
-  let bestCut = 0;
-  let low = 1;
-  let high = items.length - 1;
-  while (low <= high) {
-    const cut = Math.floor((low + high) / 2);
-    const head = cloneSection(section, items.slice(0, cut));
-    const candidateSections = [...page.sections.slice(0, index), head];
-    const height = measureNaturalHeight(data, templateId, candidateSections, firstPage);
-    if (height <= available + 2) {
-      bestCut = cut;
-      low = cut + 1;
-    } else {
-      high = cut - 1;
-    }
-  }
-
-  if (bestCut <= 0 || bestCut >= items.length) return null;
+  const cut = Math.max(1, Math.ceil(items.length / 2));
+  const head = cloneSection(section, items.slice(0, cut));
+  const tail = cloneSection(section, items.slice(cut), true);
   return {
     index,
-    head: cloneSection(section, items.slice(0, bestCut)),
-    tail: cloneSection(section, items.slice(bestCut), true)
+    head,
+    tail,
+    headHeight: measureNaturalHeight(data, templateId, [head], firstPage),
+    tailHeight: measureNaturalHeight(data, templateId, [tail], false)
   };
-}
-
-function moveOverflowFromPage(plan, pageIndex) {
-  if (!Array.isArray(plan) || pageIndex < 0 || pageIndex >= plan.length) return plan;
-  const next = plan.map(page => ({ ...page, sections: [...(page.sections || [])] }));
-  const page = next[pageIndex];
-  if (!page?.sections?.length) return next;
-
-  const moved = page.sections.pop();
-  if (!moved) return next;
-  if (pageIndex + 1 >= next.length) next.push({ sections: [], firstPage: false });
-  mergeSectionIntoNextPage(next[pageIndex + 1], moved);
-
-  if (page.sections.length === 0) {
-    next.splice(pageIndex, 1);
-    if (pageIndex === 0 && next.length > 0) next[0].firstPage = true;
-  }
-  return next;
-}
-
-function dedupePlanPageSections(plan) {
-  return plan.map(page => {
-    const seenIds = new Set();
-    const sections = [];
-    for (const section of page.sections || []) {
-      if (!section) continue;
-      const id = section.id || `${section.type || 'section'}:${sections.length}`;
-      if (!seenIds.has(id)) {
-        seenIds.add(id);
-        sections.push(section);
-        continue;
-      }
-
-      // A repeated id on a single page is a renderer-plan defect, not a valid
-      // second copy. Merge only genuinely new items into the existing section.
-      const existing = sections.find(s => (s?.id || '') === id);
-      if (existing) {
-        const existingItems = sectionItems(existing);
-        const existingItemIds = new Set(existingItems.map(i => i?.id).filter(Boolean));
-        const extras = sectionItems(section).filter(i => !i?.id || !existingItemIds.has(i.id));
-        existing.items = [...existingItems, ...extras];
-      }
-    }
-    return { ...page, sections };
-  }).filter(page => page.sections.length > 0);
 }
 
 async function waitForVisualStabilization(root) {
@@ -535,26 +487,37 @@ async function waitForVisualStabilization(root) {
 }
 
 async function reflowRenderedOverflow(root, initialPlan, data, templateId) {
-  await waitForVisualStabilization(root);
-  const details = getPageOverflowDetails(root);
-  const overflowed = details.find(item => item.overflow > 2);
-  if (!overflowed) return initialPlan;
+  let plan = initialPlan.map(page => ({ ...page, sections: [...(page.sections || [])] }));
+  for (let iteration = 0; iteration < 20; iteration++) {
+    await waitForVisualStabilization(root);
+    const details = getPageOverflowDetails(root);
+    const overflowed = details.find(item => item.overflow > 2);
+    if (!overflowed) return plan;
 
-  const plan = initialPlan.map(page => ({ ...page, sections: [...(page.sections || [])] }));
-  const page = plan[overflowed.pageIndex];
-  if (!page?.sections?.length) return plan;
+    const page = plan[overflowed.pageIndex];
+    if (!page?.sections?.length) return plan;
 
-  const split = splitLastSectionForOverflow(data, templateId, page, !!page.firstPage, A4_HEIGHT_PX);
-  if (split) {
-    page.sections.splice(split.index, 1, split.head);
-    if (overflowed.pageIndex + 1 >= plan.length) plan.push({ sections: [], firstPage: false });
-    mergeSectionIntoNextPage(plan[overflowed.pageIndex + 1], split.tail);
-  } else {
-    moveOverflowFromPage(plan, overflowed.pageIndex);
+    const firstPage = !!page.firstPage;
+    const available = A4_HEIGHT_PX;
+    const split = splitLastSectionForOverflow(data, templateId, page, firstPage, available);
+    if (split && split.headHeight <= available + 2 && split.tailHeight > 0) {
+      page.sections.splice(split.index, 1, split.head);
+      if (overflowed.pageIndex + 1 >= plan.length) {
+        plan.push({ sections: [split.tail], firstPage: false });
+      } else {
+        plan[overflowed.pageIndex + 1].sections = [split.tail, ...(plan[overflowed.pageIndex + 1].sections || [])];
+      }
+    } else {
+      plan = moveOverflowFromPage(plan, overflowed.pageIndex);
+    }
+
+    if (plan.length > 0 && !plan[0].firstPage) plan[0].firstPage = true;
+
+    const rootNode = document.getElementById('cv-root');
+    if (!rootNode) return plan;
+    return plan;
   }
-
-  if (plan.length && !plan[0].firstPage) plan[0].firstPage = true;
-  return dedupePlanPageSections(plan);
+  return plan;
 }
 
 function PageFrame({ html, templateId, pageIndex, pageCount }) {
@@ -571,7 +534,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
   const lastSignatureRef = useRef('');
   const reflowDoneRef = useRef(false);
   const lastTotalHeightRef = useRef(0);
-  const reflowAttemptsRef = useRef(0);
   const planRef = useRef(null);
 
   const signature = useMemo(() => JSON.stringify({
@@ -591,7 +553,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     }
     lastSignatureRef.current = signature;
     reflowDoneRef.current = false;
-    reflowAttemptsRef.current = 0;
 
     const effectiveHeight = A4_HEIGHT_PX;
     let cancelled = false;
@@ -622,51 +583,49 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     };
   }, [signature, data, templateId, onPagesReady]);
 
-  // Effect 2: verify the rendered A4 pages and repair only genuine overflow.
-  // Every repair updates React state first; the new DOM is then measured again.
+  // Effect 2: run reflow if needed and if height changed significantly
   useLayoutEffect(() => {
     if (!pagePlan || !data || !templateId) return;
     if (reflowDoneRef.current) return;
-    if (reflowAttemptsRef.current >= 6) {
-      reflowDoneRef.current = true;
-      const rootNode = document.getElementById('cv-root');
-      onPagesReady?.(pagePlan.length, { overflow: rootNode ? getActualPageOverflow(rootNode) : 0 });
-      return;
+    if (pagePlan.length === 1) {
+      const sections = pagePlan[0].sections;
+      const h = measureNaturalHeight(data, templateId, sections, true);
+      if (h <= A4_HEIGHT_PX + 5) {
+        reflowDoneRef.current = true;
+        onPagesReady?.(1, { overflow: 0 });
+        return;
+      }
     }
-
+    // otherwise run reflow
     let cancelled = false;
     (async () => {
       const rootNode = document.getElementById('cv-root');
       if (!rootNode) return;
-      await waitForVisualStabilization(rootNode);
-      if (cancelled) return;
-
-      const details = getPageOverflowDetails(rootNode);
-      const overflowed = details.find(item => item.overflow > 2);
-      if (!overflowed) {
+      let newTotalHeight = 0;
+      if (pagePlan.length === 1) {
+        const sections = pagePlan[0].sections;
+        newTotalHeight = measureNaturalHeight(data, templateId, sections, true);
+      } else {
+        newTotalHeight = A4_HEIGHT_PX + 1;
+      }
+      if (Math.abs(newTotalHeight - lastTotalHeightRef.current) < HEIGHT_CHANGE_THRESHOLD) {
         reflowDoneRef.current = true;
         onPagesReady?.(pagePlan.length, { overflow: 0 });
         return;
       }
+      lastTotalHeightRef.current = newTotalHeight;
 
-      reflowAttemptsRef.current += 1;
       const nextPlan = await reflowRenderedOverflow(rootNode, pagePlan, data, templateId);
       if (cancelled) return;
-
       const before = JSON.stringify(pagePlan);
       const after = JSON.stringify(nextPlan);
-      if (before === after) {
-        reflowDoneRef.current = true;
-        onPagesReady?.(pagePlan.length, { overflow: getActualPageOverflow(rootNode) });
-        return;
+      if (before !== after) {
+        planRef.current = nextPlan;
+        setPagePlan(nextPlan);
       }
-
-      planRef.current = nextPlan;
-      setPagePlan(nextPlan);
-      // Keep the verifier armed until the updated DOM has been measured.
-      reflowDoneRef.current = false;
+      reflowDoneRef.current = true;
+      onPagesReady?.(nextPlan.length, { overflow: getActualPageOverflow(rootNode) });
     })();
-
     return () => { cancelled = true; };
   }, [pagePlan, data, templateId, onPagesReady]);
 
