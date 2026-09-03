@@ -2748,7 +2748,7 @@ export const templatePageSpecs = [
         ]
       },
       "contentRegions": {
-        "sidebar": "personal-info/summary/skills/languages/certificates/references/interests/strengthscustom",
+        "sidebar": "personal-info/skills/languages/certificates/references/interests/strengths/custom",
         "main": "experience/education"
       }
     },
