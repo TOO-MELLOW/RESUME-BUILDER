@@ -60,11 +60,34 @@
 
 /* Continuation pages never repeat page-1 identity chrome. Hiding the actual
    semantic header also covers templates whose old contract used a different
-   marker. */
+   marker. The continuation marker lives on the returned .page node, not on a
+   disposable parsing wrapper. */
 .rf-page-content [data-rf-continuation="true"] header,
 .rf-page-content [data-rf-continuation="true"] [data-rf-region="header"],
 .rf-page-content [data-rf-continuation="true"] [data-rf-hidden-continuation="true"] {
   display:none !important;
+}
+
+/* Asymmetric Architecture: retain the authored page-1 look, but let
+   continuation pages become a clean content-only sheet. */
+.rf-template-asymmetric-architecture-21 .rf-page-content > [data-rf-continuation="true"] .corp-asymmetric {
+  display:block;
+  grid-template-columns:none;
+  padding:8mm 11mm 7mm 11mm;
+}
+.rf-template-asymmetric-architecture-21 .rf-page-content > [data-rf-continuation="true"] .corp-asymmetric .aa-body {
+  padding-left:0;
+  min-height:0;
+}
+.rf-template-asymmetric-architecture-21 .rf-page-content > [data-rf-continuation="true"] .corp-asymmetric .aa-body[data-rf-empty-sidebar="true"] {
+  display:block;
+}
+.rf-template-asymmetric-architecture-21 .rf-page-content > [data-rf-continuation="true"] .corp-asymmetric .aa-body[data-rf-empty-sidebar="true"] aside {
+  display:none !important;
+}
+.rf-template-asymmetric-architecture-21 .rf-page-content > [data-rf-continuation="true"] .corp-asymmetric .aa-body[data-rf-empty-sidebar="true"] main {
+  width:100%;
+  padding-right:0;
 }
 
 /* ---------- FIXES FOR BLINKING, PAGE BREAKS, AND SIDEBAR STICKYNESS ---------- */
