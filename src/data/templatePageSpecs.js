@@ -2756,6 +2756,8 @@ export const templatePageSpecs = [
       "design": "same template shell and content regions; no separate art-directed continuation",
       "pageBreakRule": "new A4 sheet; renderer reflows measured content into the same template shell",
       "hidePage1ChromeSelectors": [
+        ".aa-header",
+        ".aa-spine",
         ".aa-summary"
       ],
       "preserveSelectors": [
