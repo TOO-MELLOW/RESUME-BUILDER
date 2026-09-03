@@ -368,7 +368,6 @@ function paginate(data, templateId, available = A4_HEIGHT_PX) {
   // Reassign order sequentially to avoid duplicates
   sections.forEach((s, i) => s.order = i + 1);
 
-  // Remove duplicate ids (keep first occurrence)
   const seen = new Set();
   const unique = sections.filter(s => {
     if (seen.has(s.id)) return false;
@@ -560,7 +559,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     };
   }, [signature, data, templateId, onPagesReady]);
 
-  // Effect 2: run reflow if needed and if height changed significantly
   useLayoutEffect(() => {
     if (!pagePlan || !data || !templateId) return;
     if (reflowDoneRef.current) return;
@@ -573,7 +571,6 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
         return;
       }
     }
-    // otherwise run reflow
     let cancelled = false;
     (async () => {
       const rootNode = document.getElementById('cv-root');
