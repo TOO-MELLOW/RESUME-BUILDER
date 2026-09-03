@@ -67,6 +67,33 @@
   display:none !important;
 }
 
+/* Asymmetric Architecture: continuation pages keep only the authored
+   content regions. The page-1 identity chrome never repeats. */
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"] {
+  min-height:0 !important;
+  height:auto !important;
+  overflow:visible !important;
+}
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"] .aa-header,
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"] .aa-spine,
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"] .aa-summary {
+  display:none !important;
+}
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"] .aa-body {
+  min-height:0 !important;
+}
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"] [data-rf-empty-continuation-sidebar="true"] {
+  display:none !important;
+}
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"][data-rf-no-sidebar="true"] .aa-body {
+  display:block !important;
+  padding-left:0 !important;
+}
+.rf-page-content [data-template="asymmetric-architecture-21"][data-rf-continuation="true"][data-rf-no-sidebar="true"] .aa-body main {
+  width:100% !important;
+  padding:0 !important;
+}
+
 /* ---------- FIXES FOR BLINKING, PAGE BREAKS, AND SIDEBAR STICKYNESS ---------- */
 
 /* Improve page breaks for all content blocks */
@@ -115,27 +142,3 @@
 /* Responsive */
 @media screen and (max-width:850px) { #cv-root,.rf-resume-document,.rf-a4-page { width:210mm; } }
 @media print { .rf-a4-page { box-shadow:none !important; } }
-
-/* Asymmetric Architecture continuation contract. Page-1 spine/header/overview
-   are authored chrome; page 2 uses only the content that actually continues. */
-.rf-template-asymmetric-architecture-21 .rf-page-content > .page[data-rf-continuation="true"] > [data-rf-template-root="true"].corp-asymmetric {
-  display:block;
-  grid-template-columns:none;
-  padding-left:11mm;
-  padding-right:11mm;
-}
-.rf-template-asymmetric-architecture-21 .rf-page-content > .page[data-rf-continuation="true"] > [data-rf-template-root="true"].corp-asymmetric .aa-body {
-  min-height:0;
-  padding-left:0;
-}
-.rf-template-asymmetric-architecture-21 .rf-page-content > .page[data-rf-continuation="true"] > [data-rf-template-root="true"].corp-asymmetric .aa-body[data-rf-empty-sidebar="true"] {
-  display:block;
-}
-.rf-template-asymmetric-architecture-21 .rf-page-content > .page[data-rf-continuation="true"] > [data-rf-template-root="true"].corp-asymmetric .aa-body[data-rf-empty-sidebar="true"] > aside {
-  display:none !important;
-}
-.rf-template-asymmetric-architecture-21 .rf-page-content > .page[data-rf-continuation="true"] > [data-rf-template-root="true"].corp-asymmetric .aa-body[data-rf-empty-sidebar="true"] > main {
-  width:100%;
-  padding:7mm 0 0;
-}
-
