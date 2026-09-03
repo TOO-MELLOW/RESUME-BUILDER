@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { templateById } from '../data/templates';
+import { templateById, resolveTemplateId } from '../data/templates';
 import { templatePageSpecs } from '../data/templatePageSpecs';
 
 const SIDEBAR_TYPES = new Set(['personal-info','skills','languages','certificates','references','interests','strengths','projects','custom']);
@@ -20,7 +20,8 @@ function blankPersonal(data) {
   };
 }
 function getPageSpec(templateId) {
-  return templatePageSpecs.find(spec => spec.id === templateId) || null;
+  const resolvedId = resolveTemplateId(templateId);
+  return templatePageSpecs.find(spec => spec.id === resolvedId) || null;
 }
 function regionTypesFromValue(value) {
   if (Array.isArray(value)) return new Set(value);
@@ -213,7 +214,7 @@ function fillPageSections(data, templateId, remaining, firstPage, available) {
 
 function partitionSections(data, templateId, sections, firstPage, available) {
   const spec = getPageSpec(templateId);
-  const layout = spec?.layout || templateById[templateId]?.layout || 'single-column';
+  const layout = spec?.layout || templateById[resolveTemplateId(templateId)]?.layout || 'single-column';
   const twoColumn = layout === 'two-column';
   if (!twoColumn) {
     const expanded = explodeSections(data, templateId, sections, firstPage, available);
@@ -299,7 +300,7 @@ function normalizePremiumFragment(fragment, templateId) {
 }
 
 function renderPageHtml(data, templateId, pageIndex, pageCount, firstPage) {
-  const definition = templateById[templateId] || { rendererKind: 'legacy' };
+  const definition = templateById[resolveTemplateId(templateId)] || { rendererKind: 'legacy' };
   const spec = getPageSpec(templateId);
   if (typeof window.__RF_RENDER_TEMPLATE__ === 'function') {
     const fragment = window.__RF_RENDER_TEMPLATE__(data, templateId) || '<p class="empty-note">Unable to render template.</p>';
@@ -516,7 +517,7 @@ export default function ResumeDocument({ data, templateId, onPagesReady }) {
     templateId,
     personalDetails: data?.personalDetails,
     sections: data?.sections,
-    definition: templateById[templateId]?.pageCount,
+    definition: templateById[resolveTemplateId(templateId)]?.pageCount,
     pageSpec: getPageSpec(templateId)
   }), [data, templateId]);
 
