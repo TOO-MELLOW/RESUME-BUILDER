@@ -452,6 +452,14 @@ function renderTemplateContent(data, tid) {
     else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
     else html = renderModern(data, tid);
 
+    // Premium templates with an explicit templateMarkup own their section
+    // placement. Running the legacy coverage-repair pass after those slots
+    // have already been populated can append the same sections a second time.
+    // Keep the fallback coverage repair for legacy renderers, but do not run it
+    // for Asymmetric Architecture, whose authored markup is authoritative.
+    if (tid === 'asymmetric-architecture-21' && definition?.templateMarkup) {
+        return html;
+    }
     return enforceSectionCoverage(data, tid, html);
 }
 
