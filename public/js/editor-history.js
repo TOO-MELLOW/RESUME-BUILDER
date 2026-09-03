@@ -23,6 +23,11 @@
   }
 
   function getState() {
+    // script.js declares `cvData` as a top-level `let`, which — since
+    // script.js is a plain classic script, not a module or IIFE — never
+    // becomes `window.cvData`. Use the accessor script.js already exposes
+    // for exactly this instead of reading the (always-undefined) global.
+    if (typeof global.getEditorState === 'function') return global.getEditorState();
     return typeof global.cvData !== 'undefined' ? global.cvData : null;
   }
 
@@ -59,9 +64,12 @@
     if (direction === 'undo') future.push(clone(state));
     else past.push(clone(state));
     const replacement = clone(snapshot);
-    global.cvData = replacement;
+    // Route through the real setter (see getState() above) rather than
+    // writing the always-inert `global.cvData`.
     if (typeof global.applyEditorHistoryState === 'function') {
       global.applyEditorHistoryState(replacement);
+    } else {
+      global.cvData = replacement;
     }
     activeGroup = false;
     lastMutationAt = Date.now();
