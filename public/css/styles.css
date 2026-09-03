@@ -4352,8 +4352,14 @@
 .mc-microcopy { margin:10px 0 0; color:#8A908C; font:500 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
 
 /* Hero layout */
-.mc-hero { display:grid; gap:34px; max-width:1180px; margin:0 auto; }
-.mc-hero-copy { padding-top:4px; }
+.mc-hero {
+  background-image: url('images/your-hero-bg.jpg');
+  background-size: cover;
+  background-position: 25% center;
+}
+@media (max-width: 599px) {
+  .mc-hero { background-position: 5% center; }
+}
 .mc-hero-product { min-width:0; }
 .mc-product-heading { display:flex; justify-content:space-between; align-items:center; color:#8A908C; font:700 9px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.12em; margin-bottom:8px; }
 .mc-cv-stage { width:100%; display:flex; justify-content:center; }
