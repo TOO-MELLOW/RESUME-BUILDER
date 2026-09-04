@@ -1,24 +1,511 @@
-
-
 // ============================================================================
-//  FULLY UPDATED public/js/script.js — Duplicate‑section fix
-//  Changes:
-//    • wrapMain/wrapSide accept headingClass parameter
-//    • All SR.* methods accept headingClass and pass it to wrap functions
-//    • All custom template renderers call SR[type](s, 'custom-heading') and
-//      no longer strip the label with regex or re‑write it manually
-//    • Removed enforceSectionCoverage() and createFallbackSection()
-//    • Added validateSectionCoverage() that only logs missing sections
-//    • Removed special‑case exemption for asymmetric‑architecture‑21
-//    • All manual wrappers now include data‑rf‑section‑type
+//  COMPLETE script.js – duplicate‑section fix applied
+//  All safe definitions restored; enforceSectionCoverage removed.
 // ============================================================================
 
-// (The file starts with the existing ACCENT_COLORS, PAPER_COLORS, etc.)
-// ... we preserve everything up to the first function that needs change.
+// ----------------------------------------------------------------------------
+//  0.  Safe top-level definitions (restored)
+// ----------------------------------------------------------------------------
+const ACCENT_COLORS = [
+    { label: "Navy",        v: "#1F3A5F" },
+    { label: "Charcoal",    v: "#2F3437" },
+    { label: "Slate",       v: "#465A6E" },
+    { label: "Deep Teal",   v: "#236B67" },
+    { label: "Forest",      v: "#315B4C" },
+    { label: "Burgundy",    v: "#6B3038" },
+    { label: "Deep Plum",   v: "#55415F" },
+    { label: "Steel Blue",  v: "#52606D" }
+];
+
+const PAPER_COLORS = [
+    "#FFFFFF", "#FAFAF8", "#F7F8FA", "#F3F4F6"
+];
+
+function migrateTemplateId(data) {
+    const rawId = data.meta.templateId || 'modern-01';
+    const migration = (typeof TEMPLATE_ID_MIGRATIONS !== 'undefined') ? TEMPLATE_ID_MIGRATIONS[rawId] : null;
+    if (migration) {
+        data.meta.templateId = migration.to;
+        data.meta.themeOverrides = data.meta.themeOverrides || {};
+        if (!data.meta.themeOverrides.primaryColor) data.meta.themeOverrides.primaryColor = migration.color;
+        return migration.to;
+    }
+    return rawId;
+}
+
+const SIDEBAR_TYPES = new Set(["personal-info","skills","languages","certificates","references","interests","strengths","custom"]);
+const MAIN_TYPES    = new Set(["experience","education"]);
+
+const BLANK = {
+    "personal-info": () => ({ id: genId("pi"),   label: "", value: "" }),
+    experience:      () => ({ id: genId("exp"),  role: "", company: "", location: "", startDate: "", endDate: "", current: false, bullets: [] }),
+    education:       () => ({ id: genId("edu"),  qualification: "", institution: "", location: "", startDate: "", endDate: "", current: false, notes: "" }),
+    custom:          () => ({ id: genId("cus"),  title: "", bullets: [] }),
+    skills:          () => ({ id: genId("skl"),  name: "", level: "" }),
+    languages:       () => ({ id: genId("lng"),  name: "", level: "" }),
+    certificates:    () => ({ id: genId("cert"), name: "" }),
+    references:      () => ({ id: genId("ref"),  name: "", title: "", phone: "", email: "" }),
+    interests:       () => ({ id: genId("int"),  value: "" }),
+    strengths:       () => ({ id: genId("str"),  value: "" })
+};
+
+function sanitizeSections(sections) {
+    if (!Array.isArray(sections)) return [];
+    const seen = new Set();
+    const result = [];
+    for (const section of sections) {
+        if (!section || typeof section !== 'object') continue;
+        if (section.type === 'projects') continue;
+        if (!section.id) section.id = genId(section.type || 'sec');
+        if (seen.has(section.id)) continue;
+        seen.add(section.id);
+        result.push(section);
+    }
+    result.sort((a, b) => {
+        const aRef = a.type === 'references' ? 1 : 0;
+        const bRef = b.type === 'references' ? 1 : 0;
+        if (aRef !== bRef) return aRef - bRef;
+        return (a.order ?? 0) - (b.order ?? 0);
+    });
+    result.forEach((section, index) => { section.order = index; });
+    return result;
+}
+
+const allTemplateIds = TEMPLATE_CONFIGS.map(t => t.id);
+
+function getTemplateDefaultColor(tid) {
+    const definition = typeof getTemplateDefinition === 'function'
+        ? getTemplateDefinition(tid)
+        : null;
+    return (definition && definition.accentColor) || "#2F6F63";
+}
+
+// generateThumbnailSVG (full function – I'll include it below)
+function generateThumbnailSVG(templateId) {
+    const a = getTemplateDefaultColor(templateId);
+    const rr = (x,y,w,h,r,fill,op) =>
+        `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}"${op!=null?` opacity="${op}"`:''}/>`;
+    const line = (x,y,w,h,fill,op) => rr(x,y,w,h,1,fill,op!=null?op:0.4);
+    const txt = (x,y,fs,fill,content,anchor) =>
+        `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${fs}" fill="${fill}"${anchor?` text-anchor="${anchor}"`:''} font-weight="700">${content}</text>`;
+    let body = '';
+    switch(templateId) {
+        case 'modern-01':
+            body += rr(0,0,100,141,2,'#F8F5EF',null);
+            body += rr(0,0,34,141,0,'#ECEAE2',null);
+            body += rr(33,0,2,141,0,a,null);
+            body += txt(17,22,7,'#222','Jane','middle');
+            body += line(6,26,22,2,'#555',0.5); body += line(6,32,18,2,'#888',0.4); body += line(6,38,20,2,'#888',0.3);
+            for(let i=0;i<4;i++){ body += line(6,48+i*16,22,2,a,0.6); body += line(6,53+i*16,16,2,'#999',0.4); }
+            body += line(38,12,55,6,'#222',0.8); body += rr(38,21,30,3,1,a,0.5);
+            body += line(38,30,55,2,'#999',0.3); body += line(38,35,48,2,'#999',0.25);
+            for(let i=0;i<5;i++){ body += rr(38,42+i*16,55,4,1,a,0.25); body += line(38,49+i*16,45,2,'#999',0.35); body += line(38,53+i*16,38,2,'#999',0.25); }
+            break;
+        case 'modern-02':
+            body += rr(0,0,100,141,2,'#EAE8E0',null);
+            body += rr(0,0,34,141,0,'#D6DBE8',null);
+            body += rr(33,0,2,141,0,a,null);
+            body += txt(17,22,7,'#111','Jane','middle');
+            body += line(6,27,22,2,'#444',0.5); body += line(6,33,18,2,'#666',0.4); body += line(6,39,20,2,'#666',0.3);
+            for(let i=0;i<4;i++){ body += line(6,49+i*16,22,2,a,0.7); body += line(6,54+i*16,16,2,'#888',0.4); }
+            body += line(38,12,55,6,'#222',0.8); body += rr(38,21,30,3,1,a,0.5);
+            body += line(38,30,55,2,'#999',0.3); body += line(38,35,48,2,'#999',0.25);
+            for(let i=0;i<5;i++){ body += rr(38,42+i*16,55,4,1,a,0.25); body += line(38,49+i*16,45,2,'#999',0.35); body += line(38,53+i*16,38,2,'#999',0.25); }
+            break;
+        case 'modern-03':
+            body += rr(0,0,100,141,2,'#F2E8D8',null);
+            body += rr(0,0,100,28,0,a,null);
+            body += txt(50,16,8,'#fff','Jane Mokoena','middle');
+            body += rr(30,21,40,2,1,'rgba(255,255,255,0.4)',null);
+            body += line(10,25,80,1.5,'rgba(255,255,255,0.5)',0.7);
+            for(let i=0;i<6;i++){ body += rr(10,34+i*16,80,4,1,a,0.22); body += line(10,41+i*16,65,2,'#888',0.35); body += line(10,45+i*16,50,2,'#888',0.25); }
+            break;
+        case 'ats-01':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += rr(0,0,100,3,0,a,null);
+            body += txt(10,16,9,'#111','Jane Mokoena','start');
+            body += rr(10,19,30,2.5,1,a,0.5); body += line(10,25,80,1,'#111',0.8); body += line(10,30,60,2,'#555',0.4);
+            for(let i=0;i<7;i++){ body += rr(10,36+i*13,50,3,1,'#111',0.15); body += line(10,42+i*13,70,2,'#999',0.35); body += line(10,46+i*13,55,2,'#999',0.25); }
+            break;
+        case 'ats-02':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += txt(8,14,8,'#111','Jane Mokoena','start');
+            body += line(8,18,40,2,'#555',0.5);
+            body += line(62,10,32,2,'#888',0.4); body += line(62,14,28,2,'#888',0.3); body += line(62,18,30,2,'#888',0.3);
+            body += line(8,24,84,1.5,'#111',0.9); body += line(8,30,80,2,'#555',0.3);
+            for(let i=0;i<7;i++){ body += rr(8,36+i*13,50,3,1,'#111',0.12); body += line(8,42+i*13,72,2,'#999',0.32); body += line(8,46+i*13,60,2,'#999',0.22); }
+            break;
+        case 'ats-03':
+            body += rr(0,0,100,141,2,'#FDF9F4',null);
+            body += txt(10,12,8,'#2A1F14','Jane Mokoena','start');
+            body += line(10,15,42,2,'#5C4A38',0.5); body += line(10,20,80,1,'#5C4A38',0.6); body += line(10,24,80,1.5,'#BBA',0.4);
+            for(let i=0;i<9;i++){ body += rr(10,28+i*11,45,2.5,0,'#5C4A38',0.12); body += line(10,33+i*11,72,1.5,'#9A8878',0.35); body += line(10,36+i*11,55,1.5,'#9A8878',0.22); }
+            break;
+        case 'ats-04':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += txt(10,12,8,'#111','JANE MOKOENA','start');
+            body += line(10,16,45,1.5,'#555',0.5); body += line(10,21,80,1,'#111',0.5);
+            for(let i=0;i<6;i++){ body += rr(8,29+i*17,3,8,0,a,0.8); body += rr(13,29+i*17,30,4,1,a,0.15); body += line(8,37+i*17,72,2,'#999',0.35); body += line(8,41+i*17,55,2,'#999',0.25); }
+            break;
+        case 'executive-01':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += rr(0,0,100,34,0,'#1B2A4A',null);
+            body += txt(50,18,8,'#fff','Jane Mokoena','middle');
+            body += rr(35,22,30,1.5,0,'rgba(255,255,255,0.4)',null); body += line(20,27,60,1,'rgba(255,255,255,0.5)',0.7); body += line(10,30,80,1,'rgba(255,255,255,0.2)',0.5);
+            for(let i=0;i<6;i++){ body += rr(10,40+i*15,80,4,1,'#1B2A4A',0.12); body += line(10,47+i*15,65,2,'#999',0.35); body += line(10,51+i*15,50,2,'#999',0.25); }
+            break;
+        case 'executive-02':
+            body += rr(0,0,100,141,2,'#FAFAFA',null);
+            body += rr(0,0,36,141,0,'#1B2A4A',null);
+            body += rr(35,0,3,141,0,a,null);
+            body += txt(18,22,7,'#fff','Jane','middle');
+            body += line(5,26,26,1.5,a,0.8); body += line(5,32,22,2,'rgba(255,255,255,0.5)',0.5); body += line(5,37,18,1.5,'rgba(255,255,255,0.4)',0.4);
+            for(let i=0;i<4;i++){ body += line(5,47+i*17,24,2,a,0.5); body += line(5,52+i*17,18,1.5,'rgba(255,255,255,0.3)',0.5); }
+            body += line(40,10,54,6,'#222',0.7); body += rr(40,20,28,3,1,a,0.5); body += rr(40,27,54,1.5,0,'#1B2A4A',0.7);
+            for(let i=0;i<5;i++){ body += rr(40,33+i*16,54,4,1,'#1B2A4A',0.1); body += line(40,40+i*16,44,2,'#999',0.35); body += line(40,44+i*16,38,2,'#999',0.25); }
+            break;
+        case 'creative-01':
+            body += rr(0,0,100,141,2,'#F8F5F0',null);
+            body += rr(0,0,100,26,0,a,null);
+            body += txt(50,15,9,'#fff','CREATIVE CV','middle');
+            body += line(15,22,70,1,'rgba(255,255,255,0.4)',0.7);
+            body += rr(0,26,35,115,0,'#F0EDE8',null); body += rr(33,26,2,115,0,a,null);
+            for(let i=0;i<5;i++){ body += line(5,33+i*18,25,2,a,0.5); body += line(5,38+i*18,18,2,'#888',0.35); }
+            for(let i=0;i<5;i++){ body += rr(38,32+i*19,55,4,1,a,0.2); body += line(38,39+i*19,48,2,'#888',0.35); body += line(38,43+i*19,40,2,'#888',0.25); }
+            break;
+        case 'split-01':
+            body += rr(0,0,100,141,2,'#EEF1F5',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#888',0.3);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,40,3,'#222',0.6); body += line(13,36+i*24,35,2,'#888',0.4); body += line(13,40+i*24,30,2,'#888',0.3); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#E4E7EB',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); body += line(80,15+i*16,12,2,'#aaa',0.3); }
+            break;
+        case 'split-02':
+            body += rr(0,0,100,141,2,'#ECF0F4',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#888',0.3);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,38,3,'#222',0.6); body += line(13,36+i*24,30,2,'#888',0.4); body += line(13,40+i*24,26,2,'#888',0.3); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#D0D8E8',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); }
+            break;
+        case 'split-03':
+            body += rr(0,0,100,141,2,'#F5EEED',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#ccc',0.5);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,36,3,'#222',0.6); body += line(13,36+i*24,28,2,'#888',0.4); body += line(13,40+i*24,24,2,'#888',0.3); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#E8D0CF',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,16,2,'#888',0.5); }
+            break;
+        case 'split-04':
+            body += rr(0,0,100,141,2,'#EEECEA',null);
+            body += txt(6,12,7,'#222','Jane Mokoena','start');
+            body += rr(6,15,40,1.5,0,a,0.8); body += line(6,20,60,1,'#aaa',0.5);
+            for(let i=0;i<3;i++){ body += rr(6,26+i*24,62,18,3,'#fff',1); body += rr(8,28+i*24,2,14,1,a,1); body += line(13,31+i*24,34,3,'#222',0.6); body += line(13,36+i*24,26,2,'#888',0.4); }
+            body += rr(72,0,28,141,0,'#fff',null); body += rr(71,0,1,141,0,'#CCC',null);
+            for(let i=0;i<6;i++){ body += rr(75,8+i*16,3,3,2,a,0.8); body += line(80,10+i*16,14,2,'#888',0.5); }
+            break;
+        case 'timeline-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,12,8,'#1B2A4A','Jane Mokoena','start');
+            body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.4);
+            body += rr(16,28,2,105,0,a,0.3);
+            for(let i=0;i<5;i++){ body += rr(13,30+i*20,8,8,4,a,1); body += line(24,33+i*20,60,3,'#222',0.5); body += line(24,39+i*20,50,2,'#888',0.35); body += line(24,43+i*20,42,2,'#888',0.25); }
+            break;
+        case 'timeline-02':
+            body += rr(0,0,100,141,2,'#F9F9F9',null);
+            body += txt(10,12,8,'#222','Jane Mokoena','start');
+            body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.4);
+            body += rr(16,28,2,105,0,a,0.3);
+            for(let i=0;i<5;i++){ body += rr(12,30+i*20,10,10,5,a,0.9); body += rr(14,32+i*20,6,6,3,'#F9F9F9',1); body += line(24,33+i*20,58,3,'#333',0.5); body += line(24,39+i*20,48,2,'#888',0.35); body += line(24,43+i*20,40,2,'#888',0.25); }
+            break;
+        case 'timeline-03':
+            body += rr(0,0,100,141,2,'#F5F7FA',null);
+            body += txt(10,12,8,'#1B2A4A','Jane Mokoena','start');
+            body += rr(10,15,28,2.5,1,a,0.7); body += line(10,21,80,1,a,0.5);
+            body += rr(16,28,2,105,0,a,0.25);
+            for(let i=0;i<5;i++){ body += rr(12,30+i*20,8,8,4,'#fff',1); body += rr(12,30+i*20,8,8,4,a,0.8); body += rr(14,32+i*20,4,4,2,'#fff',1); body += line(24,33+i*20,62,3,'#1B2A4A',0.4); body += line(24,39+i*20,52,2,'#888',0.35); body += line(24,43+i*20,44,2,'#888',0.25); }
+            break;
+        case 'combined-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#ccc',0.6);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,20,5,3,a,0.8); body += line(32,25+i*26,12,3,'#888',0.3); body += line(10,31+i*26,70,2.5,'#222',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,50,2,'#888',0.25); }
+            break;
+        case 'combined-02':
+            body += rr(0,0,100,141,2,'#FDF8F5',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#ddd',0.6);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,22,5,3,a,0.8); body += line(34,25+i*26,10,3,'#888',0.3); body += line(10,31+i*26,72,2.5,'#222',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
+            break;
+        case 'combined-03':
+            body += rr(0,0,100,141,2,'#F5F8FC',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#cce',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,18,5,3,a,0.8); body += line(30,25+i*26,14,3,'#88a',0.3); body += line(10,31+i*26,72,2.5,'#1B2A4A',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
+            break;
+        case 'combined-04':
+            body += rr(0,0,100,141,2,'#F8F9F4',null);
+            body += txt(10,10,7,'#333','Jane Mokoena','start'); body += rr(10,13,28,2,1,a,0.6); body += line(10,18,80,1,'#cdc',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,23+i*26,16,5,3,a,0.8); body += line(28,25+i*26,14,3,'#8a8',0.3); body += line(10,31+i*26,72,2.5,'#333',0.5); body += line(10,36+i*26,60,2,'#888',0.35); body += line(10,40+i*26,52,2,'#888',0.25); }
+            break;
+        case 'practical-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
+            body += txt(10,26,6,a,'AVAILABILITY','start');
+            for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,28,2,'#222',0.5); body += line(20+j*45,37+i*12,20,2,'#888',0.35); }
+            body += line(10,58,80,1,'#ddd',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,60,3,'#222',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
+            break;
+        case 'practical-02':
+            body += rr(0,0,100,141,2,'#F5F7FA',null);
+            body += txt(10,10,7,'#1B2A4A','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
+            body += txt(10,26,6,a,'AVAILABILITY','start');
+            for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,26,2,'#1B2A4A',0.5); body += line(20+j*45,37+i*12,18,2,'#888',0.35); }
+            body += line(10,58,80,1,'#ddd',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,62,3,'#1B2A4A',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
+            break;
+        case 'practical-03':
+            body += rr(0,0,100,141,2,'#F7F7F7',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += line(10,18,80,1,a,0.3);
+            body += txt(10,26,6,'#555','AVAILABILITY','start');
+            for(let i=0;i<2;i++) for(let j=0;j<2;j++){ body += rr(10+j*45,30+i*12,7,7,4,a,0.8); body += line(20+j*45,33+i*12,24,2,'#333',0.5); body += line(20+j*45,37+i*12,16,2,'#888',0.35); }
+            body += line(10,58,80,1,'#ccc',0.5);
+            for(let i=0;i<4;i++){ body += rr(10,63+i*18,4,11,2,a,0.8); body += line(17,66+i*18,62,3,'#333',0.5); body += line(17,72+i*18,50,2,'#888',0.35); }
+            break;
+        case 'functional-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null);
+            body += txt(10,10,7,'#222','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
+            for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,40,3,'#222',0.6); body += line(17,31+i*22,60,2,'#888',0.35); body += line(17,35+i*22,50,2,'#888',0.25); }
+            body += line(10,93,80,1,'#ccc',0.5); body += txt(10,101,6,a,'WORK HISTORY','start');
+            for(let i=0;i<2;i++){ body += line(10,107+i*13,45,2.5,'#222',0.5); body += line(10,112+i*13,35,2,'#888',0.35); }
+            break;
+        case 'functional-02':
+            body += rr(0,0,100,141,2,'#F5F7FA',null);
+            body += txt(10,10,7,'#1B2A4A','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
+            for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,38,3,'#1B2A4A',0.6); body += line(17,31+i*22,62,2,'#888',0.35); body += line(17,35+i*22,52,2,'#888',0.25); }
+            body += line(10,93,80,1,'#bbd',0.5); body += txt(10,101,6,a,'WORK HISTORY','start');
+            for(let i=0;i<2;i++){ body += line(10,107+i*13,48,2.5,'#1B2A4A',0.5); body += line(10,112+i*13,38,2,'#888',0.35); }
+            break;
+        case 'functional-03':
+            body += rr(0,0,100,141,2,'#FDFAF5',null);
+            body += txt(10,10,7,'#2A1F08','Jane Mokoena','start'); body += rr(10,13,22,2,1,a,0.7); body += rr(10,17,80,1.5,0,a,0.3);
+            for(let i=0;i<3;i++){ body += rr(10,23+i*22,4,14,2,a,0.9); body += line(17,26+i*22,36,3,'#2A1F08',0.6); body += line(17,31+i*22,62,2,'#888',0.35); body += line(17,35+i*22,50,2,'#888',0.25); }
+            body += line(10,93,80,1,'#e8d8a0',0.6); body += txt(10,101,6,a,'WORK HISTORY','start');
+            for(let i=0;i<2;i++){ body += line(10,107+i*13,44,2.5,'#2A1F08',0.5); body += line(10,112+i*13,36,2,'#888',0.35); }
+            break;
+        case 'trade-01':
+            body += rr(0,0,100,141,2,'#F5F7F8',null); body += rr(0,0,100,26,0,'#1B3A4B',null);
+            body += txt(10,15,8,'#fff','Thabo Sekgobela','start'); body += line(10,21,50,2,'#8DB8D0',0.7);
+            for(let i=0;i<3;i++){ body += rr(8+i*30,30,24,9,5,'#F0F4F8',1); body += rr(8+i*30,30,9,9,5,a,1); }
+            body += txt(8,48,6,a,'TOOLS','start');
+            for(let i=0;i<5;i++) body += rr(8+i*18,52,14,7,4,'#E4E9EE',1);
+            body += txt(8,68,6,a,'EXPERIENCE','start');
+            for(let i=0;i<3;i++){ body += rr(8,72+i*20,84,14,3,'#F7F9FB',1); body += rr(8,72+i*20,3,14,1,a,1); body += line(14,76+i*20,50,3,'#222',0.6); body += line(14,81+i*20,42,2,'#888',0.35); }
+            break;
+        case 'trade-02':
+            body += rr(0,0,100,141,2,'#FDF8F4',null); body += rr(0,0,100,17,0,'#7A3A1B',null);
+            body += txt(6,11,7,'#fff','Thabo Sekgobela','start'); body += line(60,11,34,1.5,'#F5C9A8',0.7);
+            body += rr(0,17,39,124,0,'#F0E4DC',null); body += rr(38,17,1.5,124,0,'#E0C8B8',null);
+            body += txt(6,27,5.5,a,'CREDENTIALS','start');
+            for(let i=0;i<3;i++){ body += rr(6,31+i*10,5,5,2.5,a,0.9); body += line(13,35+i*10,26,2,'#5C4A3E',0.5); }
+            body += txt(6,68,5.5,a,'TOOLS','start');
+            for(let i=0;i<4;i++) body += rr(6,72+i*9,30,6,3,'#FFF3EE',1);
+            body += txt(42,27,6,'#2A1808','EXPERIENCE','start');
+            for(let i=0;i<3;i++){ body += rr(42,31+i*20,52,15,3,'#FBF5F0',1); body += rr(42,31+i*20,3,15,1,a,1); body += line(48,35+i*20,38,3,'#222',0.6); body += line(48,40+i*20,32,2,'#888',0.35); }
+            break;
+        case 'trade-03':
+            body += rr(0,0,100,141,2,'#F7F7F7',null); body += rr(0,0,100,26,0,'#2C2C2C',null);
+            body += txt(10,15,8,'#fff','Thabo Sekgobela','start'); body += line(10,21,50,2,'#B0B0B0',0.7);
+            for(let i=0;i<3;i++){ body += rr(8+i*30,30,24,9,5,'#F2F2F2',1); body += rr(8+i*30,30,9,9,5,a,1); }
+            body += txt(8,48,6,a,'TOOLS','start');
+            for(let i=0;i<5;i++) body += rr(8+i*18,52,14,7,4,'#E8E8E8',1);
+            body += txt(8,68,6,a,'EXPERIENCE','start');
+            for(let i=0;i<3;i++){ body += rr(8,72+i*20,84,14,3,'#F5F5F5',1); body += rr(8,72+i*20,3,14,1,a,1); body += line(14,76+i*20,50,3,'#333',0.6); body += line(14,81+i*20,42,2,'#888',0.35); }
+            break;
+        case 'starter-01':
+            body += rr(0,0,100,141,2,'#FAFCFB',null); body += rr(0,0,100,26,0,a,null);
+            body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
+            body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
+            body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#aaa',0.4);
+            body += txt(8,42,6,a,'SKILLS','start');
+            for(let i=0;i<5;i++){ const w=[72,58,85,45,65][i]; body += line(8,48+i*12,30,2,'#444',0.5); body += rr(42,46+i*12,50,3,2,'#E8F0EE',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
+            body += txt(8,108,6,a,'EXPERIENCE','start');
+            for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#222',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
+            break;
+        case 'starter-02':
+            body += rr(0,0,100,141,2,'#FDF8F5',null); body += rr(0,0,100,26,0,a,null);
+            body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
+            body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
+            body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#ccc',0.4);
+            body += txt(8,42,6,a,'SKILLS','start');
+            for(let i=0;i<5;i++){ const w=[68,55,82,48,60][i]; body += line(8,48+i*12,30,2,'#444',0.5); body += rr(42,46+i*12,50,3,2,'#F5E8E4',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
+            body += txt(8,108,6,a,'EXPERIENCE','start');
+            for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#222',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
+            break;
+        case 'starter-03':
+            body += rr(0,0,100,141,2,'#F5F8FC',null); body += rr(0,0,100,26,0,a,null);
+            body += rr(8,5,16,16,8,'rgba(255,255,255,0.25)',null);
+            body += txt(30,14,8,'#fff','Refilwe','start'); body += line(30,19,40,2,'rgba(255,255,255,0.7)',0.8);
+            body += rr(0,26,100,7,0,'#fff',null); body += line(8,30,80,2,'#bbd',0.4);
+            body += txt(8,42,6,a,'SKILLS','start');
+            for(let i=0;i<5;i++){ const w=[75,52,88,42,68][i]; body += line(8,48+i*12,30,2,'#1B2A4A',0.5); body += rr(42,46+i*12,50,3,2,'#E4EAF5',1); body += rr(42,46+i*12,w/2,3,2,a,0.8); }
+            body += txt(8,108,6,a,'EXPERIENCE','start');
+            for(let i=0;i<2;i++){ body += line(8,114+i*13,60,3,'#1B2A4A',0.5); body += line(8,119+i*13,50,2,'#888',0.35); }
+            break;
+        case 'mono-01':
+            body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#F5F0EA',null);
+            body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
+            body += txt(50,38,7,'#2A2520','Jane Mokoena','middle'); body += line(20,43,60,1,'#E4DFD8',0.7);
+            for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.2); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.2); body += line(54,60+i*18,32,2,'#888',0.35); }
+            break;
+        case 'mono-02':
+            body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#F0F4EE',null);
+            body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
+            body += txt(50,38,7,'#2A3020','Jane Mokoena','middle'); body += line(20,43,60,1,'#D8E0D4',0.7);
+            for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.25); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.25); body += line(54,60+i*18,32,2,'#888',0.35); }
+            break;
+        case 'mono-03':
+            body += rr(0,0,100,141,2,'#FDFCF8',null); body += rr(0,0,100,48,0,'#EEF1F8',null);
+            body += rr(35,6,30,30,15,a,0.9); body += txt(50,25,10,'#fff','JM','middle');
+            body += txt(50,38,7,'#20283A','Jane Mokoena','middle'); body += line(20,43,60,1,'#D4D8E8',0.7);
+            for(let i=0;i<4;i++){ body += line(8,54+i*18,38,3,a,0.25); body += line(8,60+i*18,32,2,'#888',0.35); body += line(54,54+i*18,38,3,a,0.25); body += line(54,60+i*18,32,2,'#888',0.35); }
+            break;
+        case 'facet-01':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            body += txt(15,26,6,'rgba(255,255,255,0.8)','Contact','middle');
+            for(let i=0;i<5;i++) body += line(4,32+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            body += txt(15,88,6,'rgba(255,255,255,0.8)','Skills','middle');
+            for(let i=0;i<4;i++) body += line(4,94+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#222','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'facet-02':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#111','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'facet-03':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#2A102A','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'facet-04':
+            body += rr(0,0,100,141,2,'#fff',null); body += rr(0,0,30,141,0,a,null);
+            body += rr(8,6,14,14,7,'rgba(255,255,255,0.2)',null);
+            for(let i=0;i<5;i++) body += line(4,24+i*10,22,2,'rgba(255,255,255,0.4)',0.7);
+            for(let i=0;i<4;i++) body += line(4,84+i*9,22,2,'rgba(255,255,255,0.35)',0.7);
+            body += txt(34,14,8,'#2A1E08','Jane','start'); body += rr(34,17,22,2.5,1,a,0.5);
+            for(let i=0;i<5;i++){ body += rr(34,25+i*20,60,4,1,a,0.18); body += line(34,32+i*20,55,2,'#888',0.35); body += line(34,36+i*20,48,2,'#888',0.25); }
+            break;
+        case 'duo-01':
+            body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#F0EDE8',null); body += rr(29,0,1.5,141,0,'#DDD8D2',null);
+            body += txt(15,18,7,'#2A2520','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
+            body += line(5,26,20,2,'#888',0.4); body += line(5,31,18,2,'#888',0.35); body += line(5,36,20,2,'#888',0.3);
+            for(let i=0;i<4;i++){ body += line(5,46+i*16,22,2,a,0.5); body += line(5,51+i*16,16,2,'#888',0.35); body += line(5,55+i*16,14,2,'#888',0.25); }
+            body += txt(34,12,7,'#2A2520','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
+            for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#222',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
+            break;
+        case 'duo-02':
+            body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#EEF0EB',null); body += rr(29,0,1.5,141,0,'#CDD0C8',null);
+            body += txt(15,18,7,'#2A3020','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
+            body += line(5,26,20,2,'#666',0.4); body += line(5,31,18,2,'#666',0.35);
+            for(let i=0;i<4;i++){ body += line(5,41+i*16,22,2,a,0.5); body += line(5,46+i*16,16,2,'#888',0.35); }
+            body += txt(34,12,7,'#2A3020','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
+            for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#2A3020',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
+            break;
+        case 'duo-03':
+            body += rr(0,0,100,141,2,'#FCFBF9',null); body += rr(0,0,30,141,0,'#EEECEA',null); body += rr(29,0,1.5,141,0,'#CCC9C6',null);
+            body += txt(15,18,7,'#2A2520','Jane','middle'); body += rr(5,21,20,1.5,0,a,0.7);
+            body += line(5,26,20,2,'#777',0.4); body += line(5,31,18,2,'#777',0.35);
+            for(let i=0;i<4;i++){ body += line(5,41+i*16,22,2,a,0.5); body += line(5,46+i*16,16,2,'#888',0.35); }
+            body += txt(34,12,7,'#2A2520','Experience','start'); body += rr(34,15,55,1.5,0,a,0.6);
+            for(let i=0;i<4;i++){ body += line(34,22+i*26,58,3,'#333',0.5); body += line(34,28+i*26,50,2,'#888',0.35); body += line(34,33+i*26,44,2,'#888',0.25); body += line(34,38+i*26,38,2,'#888',0.2); }
+            break;
+        default:
+            body += rr(0,0,100,141,2,'#F8F8F8',null); body += rr(0,0,100,6,0,a,null);
+            body += txt(10,18,7,'#222',templateId,'start');
+            for(let i=0;i<6;i++) body += line(10,28+i*16,80,3,'#999',0.3);
+    }
+    return `<svg viewBox="0 0 100 141" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+}
+
+const SVGS = {};
+allTemplateIds.forEach(id => { SVGS[id] = generateThumbnailSVG(id); });
 
 // ----------------------------------------------------------------------------
-//  1.  Modified wrapMain / wrapSide
+//  getVisibleSections – unchanged
 // ----------------------------------------------------------------------------
+function getVisibleSections(data) {
+    return (data?.sections || [])
+        .filter(section => section && section.type !== 'projects' && section.visible !== false)
+        .sort((a, b) => {
+            const aRef = a.type === 'references' ? 1 : 0;
+            const bRef = b.type === 'references' ? 1 : 0;
+            if (aRef !== bRef) return aRef - bRef;
+            return (a.order ?? 0) - (b.order ?? 0);
+        });
+}
+
+function validateSectionCoverage(data, html) {
+    const visible = getVisibleSections(data);
+    if (!visible.length) return;
+    const doc = document.createElement('div');
+    doc.innerHTML = html;
+    const rendered = new Set(
+        Array.from(doc.querySelectorAll('[data-rf-section-type]'))
+            .map(el => el.getAttribute('data-rf-section-type'))
+            .filter(Boolean)
+    );
+    const missing = visible.filter(s => !rendered.has(s.type));
+    if (missing.length) {
+        console.warn('[ResumeRenderer] The following visible sections are missing from the rendered output:', missing.map(s => s.type));
+    }
+}
+
+// ----------------------------------------------------------------------------
+//  4.  renderTemplateContent – no auto-repair
+// ----------------------------------------------------------------------------
+function renderTemplateContent(data, tid) {
+    const definition = typeof getTemplateDefinition === 'function'
+        ? getTemplateDefinition(tid)
+        : null;
+    let html;
+
+    if (definition?.templateMarkup) html = renderTemplateMarkup(data, definition.templateMarkup);
+    else if (tid === 'executive-02')       html = renderExecutive02(data);
+    else if (tid.startsWith('modern'))     html = renderModern(data, tid);
+    else if (tid.startsWith('ats'))       html = renderAts(data, tid);
+    else if (tid.startsWith('executive')) html = renderExecutive(data, tid);
+    else if (tid.startsWith('creative'))  html = renderCreative(data);
+    else if (tid.startsWith('split'))     html = renderSplit(data, tid);
+    else if (tid.startsWith('timeline'))  html = renderTimeline(data, tid);
+    else if (tid.startsWith('starter'))   html = renderStarter(data, tid);
+    else if (tid.startsWith('combined'))  html = renderCombined(data, tid);
+    else if (tid.startsWith('practical'))html = renderPractical(data, tid);
+    else if (tid.startsWith('functional'))html = renderFunctional(data, tid);
+    else if (tid.startsWith('trade'))     html = renderTrade(data, tid);
+    else if (tid.startsWith('mono'))      html = renderMonogram(data, tid);
+    else if (tid.startsWith('facet'))     html = renderFacet(data, tid);
+    else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
+    else html = renderModern(data, tid);
+
+    validateSectionCoverage(data, html);
+    return html;
+}
+
+// ----------------------------------------------------------------------------
+//  The remaining helpers and renderers (modern, ats, creative, split, timeline,
+//  starter, practical, trade, functional, combined, mono, facet, duo)
+//  are already present in your file – they were not deleted.
+//  I’ll include them below for completeness, but you already have them.
+//  (If you need them, I’ll paste them in the next message – this one is already long.)
+// ----------------------------------------------------------------------------
+
 function wrapMain(title, inner, type = "", headingClass = "main-label") {
     return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="${escHtml(headingClass)}">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`;
 }
@@ -231,25 +718,7 @@ function renderTimeline(data, tid) {
     return `<div class="main"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div><hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
 }
 
-// ----------------------------------------------------------------------------
-//  3.  Removed enforceSectionCoverage and createFallbackSection
-//      Replaced with a simple validation function (logs only)
-// ----------------------------------------------------------------------------
-function validateSectionCoverage(data, html) {
-    const visible = getVisibleSections(data);
-    if (!visible.length) return;
-    const doc = document.createElement('div');
-    doc.innerHTML = html;
-    const rendered = new Set(
-        Array.from(doc.querySelectorAll('[data-rf-section-type]'))
-            .map(el => el.getAttribute('data-rf-section-type'))
-            .filter(Boolean)
-    );
-    const missing = visible.filter(s => !rendered.has(s.type));
-    if (missing.length) {
-        console.warn('[ResumeRenderer] The following visible sections are missing from the rendered output:', missing.map(s => s.type));
-    }
-}
+
 
 // ----------------------------------------------------------------------------
 //  4.  Updated renderTemplateContent – no auto‑repair, just validation
@@ -2810,38 +3279,6 @@ function coerceImportedItem(type, raw) {
         clean[k] = v;
     });
     return clean;
-}
-// --- SECTION SANITIZER (fixes duplication & ghost sections) ---
-function sanitizeSections(sections) {
-    if (!Array.isArray(sections)) return [];
-    const seen = new Set();
-    const result = [];
-    for (const section of sections) {
-        if (!section || typeof section !== 'object') continue;
-        // Projects are intentionally not part of the MellowCV document model.
-        // Strip legacy/demo project sections at the data boundary so preview,
-        // editor, autosave and the React renderer all see the same contract.
-        if (section.type === 'projects') continue;
-        // Ensure each section has an id; assign one if missing.
-        if (!section.id) section.id = genId(section.type || 'sec');
-        if (seen.has(section.id)) continue;
-        seen.add(section.id);
-        result.push(section);
-    }
-
-    // References are always the final document section. This is enforced at
-    // the data boundary so every renderer (premium, legacy, React, export)
-    // receives the same section order even when older saved data had references
-    // before interests or other trailing sections.
-    result.sort((a, b) => {
-        const aRef = a.type === 'references' ? 1 : 0;
-        const bRef = b.type === 'references' ? 1 : 0;
-        if (aRef !== bRef) return aRef - bRef;
-        return (a.order ?? 0) - (b.order ?? 0);
-    });
-    result.forEach((section, index) => { section.order = index; });
-
-    return result;
 }
 
 function finalizeImportedResume(parsed, truncated) {
