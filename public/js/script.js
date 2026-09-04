@@ -2111,25 +2111,30 @@ function scalePreviewToFit() {
 }
 
 function renderPreview(pageEl) {
-    // 🔧 DEBUG: Force legacy preview (bypass React) to test if duplicates come from React.
-    // If duplicates disappear, the issue is in the React component (main-a1LYnnQG.js).
-    // To re-enable React, comment out the next 7 lines.
+    // 🔧 If you want to bypass React and use the legacy renderer (to avoid duplication),
+    // keep the following block active. To re-enable React, comment out the block.
     const root = document.getElementById('cv-root');
     if (root && cvData) {
-        root.innerHTML = renderTemplateContent(cvData, currentTemplateId);
+        // Render the content using the legacy engine
+        const content = renderTemplateContent(cvData, currentTemplateId);
+        // Wrap it in the same A4 page structure that React uses (so styles apply)
+        root.innerHTML = `
+            <div class="resume-pages">
+                <div class="rf-a4-page">
+                    ${content}
+                </div>
+            </div>
+        `;
         updateStatusBar();
         updateMobilePreview();
-        // Also update any zoom/scale if needed
         if (typeof scalePreviewToFit === 'function') scalePreviewToFit();
         return;
     }
 
-    // Original React-based preview (kept for reference)
-    // Update React state if the engine is ready; otherwise do nothing.
+    // Original React-based preview (if React is re‑enabled)
     if (typeof window.__RF_SET_PREVIEW__ === 'function') {
         window.__RF_SET_PREVIEW__(cvData, currentTemplateId);
     }
-    // Keep status bar and mobile preview in sync (they read from cvData/DOM)
     updateStatusBar();
     updateMobilePreview();
 }
