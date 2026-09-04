@@ -718,45 +718,6 @@ function renderTimeline(data, tid) {
     return `<div class="main"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div><hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
 }
 
-
-
-// ----------------------------------------------------------------------------
-//  4.  Updated renderTemplateContent – no auto‑repair, just validation
-// ----------------------------------------------------------------------------
-function renderTemplateContent(data, tid) {
-    const definition = typeof getTemplateDefinition === 'function'
-        ? getTemplateDefinition(tid)
-        : null;
-    let html;
-
-    if (definition?.templateMarkup) html = renderTemplateMarkup(data, definition.templateMarkup);
-    else if (tid === 'executive-02')       html = renderExecutive02(data);
-    else if (tid.startsWith('modern'))     html = renderModern(data, tid);
-    else if (tid.startsWith('ats'))       html = renderAts(data, tid);
-    else if (tid.startsWith('executive')) html = renderExecutive(data, tid);
-    else if (tid.startsWith('creative'))  html = renderCreative(data);
-    else if (tid.startsWith('split'))     html = renderSplit(data, tid);
-    else if (tid.startsWith('timeline'))  html = renderTimeline(data, tid);
-    else if (tid.startsWith('starter'))   html = renderStarter(data, tid);
-    else if (tid.startsWith('combined'))  html = renderCombined(data, tid);
-    else if (tid.startsWith('practical'))html = renderPractical(data, tid);
-    else if (tid.startsWith('functional'))html = renderFunctional(data, tid);
-    else if (tid.startsWith('trade'))     html = renderTrade(data, tid);
-    else if (tid.startsWith('mono'))      html = renderMonogram(data, tid);
-    else if (tid.startsWith('facet'))     html = renderFacet(data, tid);
-    else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
-    else html = renderModern(data, tid);
-
-    // Run validation (log only) – no DOM modification
-    validateSectionCoverage(data, html);
-    return html;
-}
-
-// ----------------------------------------------------------------------------
-//  5.  Updated all custom template renderers to use SR with headingClass
-//      and remove regex stripping / manual re‑wrapping
-// ----------------------------------------------------------------------------
-
 // ---------- starter ----------
 function renderStarter(data, tid) {
     const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
