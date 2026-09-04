@@ -2111,6 +2111,20 @@ function scalePreviewToFit() {
 }
 
 function renderPreview(pageEl) {
+    // 🔧 DEBUG: Force legacy preview (bypass React) to test if duplicates come from React.
+    // If duplicates disappear, the issue is in the React component (main-a1LYnnQG.js).
+    // To re-enable React, comment out the next 7 lines.
+    const root = document.getElementById('cv-root');
+    if (root && cvData) {
+        root.innerHTML = renderTemplateContent(cvData, currentTemplateId);
+        updateStatusBar();
+        updateMobilePreview();
+        // Also update any zoom/scale if needed
+        if (typeof scalePreviewToFit === 'function') scalePreviewToFit();
+        return;
+    }
+
+    // Original React-based preview (kept for reference)
     // Update React state if the engine is ready; otherwise do nothing.
     if (typeof window.__RF_SET_PREVIEW__ === 'function') {
         window.__RF_SET_PREVIEW__(cvData, currentTemplateId);
@@ -2119,7 +2133,6 @@ function renderPreview(pageEl) {
     updateStatusBar();
     updateMobilePreview();
 }
-
 function getTemplateDefaultColor(tid) {
     const definition = typeof getTemplateDefinition === 'function'
         ? getTemplateDefinition(tid)
