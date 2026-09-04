@@ -330,7 +330,7 @@ function getThemeOverrides(data) {
       : '',
     paper: typeof overrides.paperColor === 'string' && overrides.paperColor.trim()
       ? overrides.paperColor.trim()
-      : ''
+      : '#FFFFFF'
   };
 }
 
