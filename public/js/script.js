@@ -2057,9 +2057,11 @@ function getTemplateDefaultColor(tid) {
 }
 
 function setStep(n) {
+    const stepBody = document.getElementById('ep-body');
+    if (!stepBody) return;
     currentStep = n;
     document.querySelectorAll('.ep-tab').forEach(t => t.classList.toggle('active', +t.dataset.step === n));
-    document.getElementById('ep-body').innerHTML = stepContent(n);
+    stepBody.innerHTML = stepContent(n);
     if (n === 5 && typeof initTemplatePickerThumbs === 'function') requestAnimationFrame(initTemplatePickerThumbs);
     wireStepEvents();
     const tipsModal = document.getElementById('tips-modal');
@@ -3601,7 +3603,7 @@ function pickGalleryTemplate(id) {
         if (!TEMPLATE_CONFIGS.some(t => t.id === id) || id === currentTemplateId) return false;
         currentTemplateId = id; cvData.meta.templateId = id;
         cvData.meta.themeOverrides = cvData.meta.themeOverrides || {};
-    }, { force: true, step: 5, updateLabel: true });
+    }, { force: true, step: null, updateLabel: false });
     if (changed) navigate('builder');
 }
 
