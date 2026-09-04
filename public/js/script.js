@@ -57,7 +57,7 @@ function sanitizeSections(sections) {
     for (const section of sections) {
         if (!section || typeof section !== 'object') continue;
         if (section.type === 'projects') continue;
-        // Ensure section has an id
+        // Ensure each section has an id
         if (!section.id) section.id = genId(section.type || 'sec');
         // Skip duplicate ids
         if (seenIds.has(section.id)) continue;
@@ -67,7 +67,7 @@ function sanitizeSections(sections) {
         seenTypes.add(section.type);
         result.push(section);
     }
-    // Sort references to the end (unchanged)
+    // References to the end (unchanged)
     result.sort((a, b) => {
         const aRef = a.type === 'references' ? 1 : 0;
         const bRef = b.type === 'references' ? 1 : 0;
