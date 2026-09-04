@@ -629,6 +629,25 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     TEMPLATE_CONFIGS.filter(def => def.layout === 'two-column').map(def => def.id)
 );
 
+// ============================================================================
+//  FULLY UPDATED public/js/script.js — Duplicate‑section fix
+//  Changes:
+//    • wrapMain/wrapSide accept headingClass parameter
+//    • All SR.* methods accept headingClass and pass it to wrap functions
+//    • All custom template renderers call SR[type](s, 'custom-heading') and
+//      no longer strip the label with regex or re‑write it manually
+//    • Removed enforceSectionCoverage() and createFallbackSection()
+//    • Added validateSectionCoverage() that only logs missing sections
+//    • Removed special‑case exemption for asymmetric‑architecture‑21
+//    • All manual wrappers now include data‑rf‑section‑type
+// ============================================================================
+
+// (The file starts with the existing ACCENT_COLORS, PAPER_COLORS, etc.)
+// ... we preserve everything up to the first function that needs change.
+
+// ----------------------------------------------------------------------------
+//  1.  Modified wrapMain / wrapSide
+// ----------------------------------------------------------------------------
 function wrapMain(title, inner, type = "", headingClass = "main-label") {
     return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="${escHtml(headingClass)}">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`;
 }
@@ -636,6 +655,9 @@ function wrapSide(title, inner, type = "", headingClass = "side-label") {
     return `<section class="side-section" data-rf-section-type="${escHtml(type)}"><p class="${escHtml(headingClass)}">${escHtml(title)}</p>${inner||`<p class="empty-note">None added.</p>`}</section>`;
 }
 
+// ----------------------------------------------------------------------------
+//  2.  Updated SR object – all methods accept headingClass
+// ----------------------------------------------------------------------------
 const SR = {
     experience(s, headingClass) {
         const h = s.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
@@ -679,163 +701,85 @@ const SR = {
         return wrapSide(s.title, chips ? `<div class="strengths-row">${chips}</div>` : "", s.type, headingClass || 'side-label');
     }
 };
-function contactListHtml(p) {
-    const items = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url,label:l.label}))];
-    return items.filter(i => i.val).map(i => `<li><span class="icon-inline">${icoSVG(i.icon)}</span>${i.label?`<a href="${escHtml(i.val)}">${escHtml(i.label)}</a>`:escHtml(i.val)}</li>`).join("");
-}
-function atsContactLine(p) {
-    const items = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
-    return items.filter(i => i.val).map(i => `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span class="contact-inline-item" style="opacity:.4">|</span>');
-}
-function photoHtml(p) {
-    if (!p || !p.photo) return "";
-    return `<div class="cv-photo"><img src="${p.photo}" alt="Photo"></div>`;
-}
-function atsStrengthsBlock(s) {
-    const chips = s.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("");
-    return wrapMain(s.title, chips ? `<div class="strengths-row">${chips}</div>` : "", s.type);
-}
-function atsPersonalInfoBlock(s) {
-    const line = s.items.map(it => `${escHtml(it.label)}: ${escHtml(it.value)}`).join(" &nbsp;·&nbsp; ");
-    return wrapMain(s.title, line ? `<p class="ats-plain-list">${line}</p>` : "", s.type);
-}
-function atsPlainList(s, fmt) {
-    const line = s.items.map(fmt).join(", ");
-    return wrapMain(s.title, line ? `<p class="ats-plain-list">${line}</p>` : "", s.type);
-}
-function elegantAvailGrid(s) {
-    if (!s.items.length) return `<p class="empty-note">None added.</p>`;
-    return `<div class="elegant-avail-grid">${s.items.map(it => `<div class="elegant-avail-item"><span class="av-dot"></span><span class="av-lbl">${escHtml(it.label)}:</span><span class="av-val">${escHtml(it.value)}</span></div>`).join("")}</div>`;
+
+// ----------------------------------------------------------------------------
+//  3.  Removed enforceSectionCoverage and createFallbackSection
+//      Replaced with a simple validation function (logs only)
+// ----------------------------------------------------------------------------
+function validateSectionCoverage(data, html) {
+    const visible = getVisibleSections(data);
+    if (!visible.length) return;
+    const doc = document.createElement('div');
+    doc.innerHTML = html;
+    const rendered = new Set(
+        Array.from(doc.querySelectorAll('[data-rf-section-type]'))
+            .map(el => el.getAttribute('data-rf-section-type'))
+            .filter(Boolean)
+    );
+    const missing = visible.filter(s => !rendered.has(s.type));
+    if (missing.length) {
+        console.warn('[ResumeRenderer] The following visible sections are missing from the rendered output:', missing.map(s => s.type));
+    }
 }
 
-function renderPersonalInfoAfterSummary(sections, tid) {
-    if (SIDEBAR_TEMPLATE_IDS.has(tid) && !tid.startsWith('split')) return '';
-    const pi = sections.find(s => s.type === "personal-info" && s.visible);
-    if (!pi || !pi.items.length) return "";
-    return atsPersonalInfoBlock(pi);
+// ----------------------------------------------------------------------------
+//  4.  Updated renderTemplateContent – no auto‑repair, just validation
+// ----------------------------------------------------------------------------
+function renderTemplateContent(data, tid) {
+    const definition = typeof getTemplateDefinition === 'function'
+        ? getTemplateDefinition(tid)
+        : null;
+    let html;
+
+    if (definition?.templateMarkup) html = renderTemplateMarkup(data, definition.templateMarkup);
+    else if (tid === 'executive-02')       html = renderExecutive02(data);
+    else if (tid.startsWith('modern'))     html = renderModern(data, tid);
+    else if (tid.startsWith('ats'))       html = renderAts(data, tid);
+    else if (tid.startsWith('executive')) html = renderExecutive(data, tid);
+    else if (tid.startsWith('creative'))  html = renderCreative(data);
+    else if (tid.startsWith('split'))     html = renderSplit(data, tid);
+    else if (tid.startsWith('timeline'))  html = renderTimeline(data, tid);
+    else if (tid.startsWith('starter'))   html = renderStarter(data, tid);
+    else if (tid.startsWith('combined'))  html = renderCombined(data, tid);
+    else if (tid.startsWith('practical'))html = renderPractical(data, tid);
+    else if (tid.startsWith('functional'))html = renderFunctional(data, tid);
+    else if (tid.startsWith('trade'))     html = renderTrade(data, tid);
+    else if (tid.startsWith('mono'))      html = renderMonogram(data, tid);
+    else if (tid.startsWith('facet'))     html = renderFacet(data, tid);
+    else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
+    else html = renderModern(data, tid);
+
+    // Run validation (log only) – no DOM modification
+    validateSectionCoverage(data, html);
+    return html;
 }
 
-function renderModern(data, tid) {
-    const p = data.personalDetails;
-    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
-    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
-    if (tid === "modern-03") {
-        const allHtml = vis.filter(s => s.type !== "personal-info").map(s => SR[s.type] ? SR[s.type](s) : "").join("");
-        return `<div class="modern-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${allHtml}</div>`;
-    }
-    return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div>`;
-}
-function renderAts(data, tid) {
-    const p = data.personalDetails;
-    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    let hdr;
-    if(tid === "ats-02") {
-        const cRight = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
-        hdr = `<div class="ats-header-row"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="contact-block">${cRight.filter(i => i.val).map(i => `<div class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</div>`).join("")}</div></div><hr class="ats-rule">`;
-    } else {
-        hdr = `<div class="ats-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><hr class="ats-rule">`;
-    }
-    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
-        if(s.type === "skills") return atsPlainList(s, it => escHtml(it.name));
-        if(s.type === "languages") return atsPlainList(s, it => `${escHtml(it.name)} (${escHtml(it.level)})`);
-        if(s.type === "certificates") return atsPlainList(s, it => escHtml(it.name));
-        if(s.type === "strengths") return atsStrengthsBlock(s);
-        return SR[s.type] ? SR[s.type](s) : "";
-    }).join("");
-    return `<div class="main">${hdr}<p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
-}
-function renderExecutive(data, tid) {
-    const p = data.personalDetails;
-    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
-        if(["skills","languages","certificates"].includes(s.type)) return atsPlainList(s, it => `${escHtml(it.name)}${it.level?` (${escHtml(it.level)})`:""}`);
-        if(s.type === "strengths") return atsStrengthsBlock(s);
-        return SR[s.type] ? SR[s.type](s) : "";
-    }).join("");
-    return `<div class="exec-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="exec-rule"></div><div class="ats-contact-line exec-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
-}
-function renderExecutive02(data) {
-    const p = data.personalDetails;
-    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
-    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
-    return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'executive-02')}${mainHtml}</div>`;
-}
-function renderCreative(data) {
-    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
-    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
-    const cLine = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
-    const cHtml = cLine.filter(i => i.val).map(i => `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span style="opacity:.5;margin:0 5px">·</span>');
-    return `<div class="creative-band"><p class="creative-name">${escHtml(p.fullName)}</p><p class="creative-title">${escHtml(p.jobTitle)}</p><div class="creative-contact">${cHtml}</div></div><div class="sidebar">${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'creative-01')}${mainHtml}</div>`;
-}
-function renderSplit(data) {
-    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
-    const railSecs = vis.filter(s => SIDEBAR_TYPES.has(s.type) && s.type !== "personal-info");
-    const mainHtml = mainSecs.map(s => { const inner = SR[s.type] ? SR[s.type](s) : ""; return `<div class="split-card">${inner}</div>`; }).join("");
-    const railHtml = railSecs.map(s => {
-        let ih = "";
-        if(s.type === "skills") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
-        else if(s.type === "languages") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)} — ${escHtml(it.level)}</div>`).join("");
-        else if(s.type === "certificates") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
-        else if(s.type === "references") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}${it.title?` — ${escHtml(it.title)}`:""}</div>`).join("");
-        else if(s.type === "projects") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
-        else if(s.type === "custom") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.title||"")}</div>`).join("");
-        else if(s.type === "strengths") ih = s.items.filter(it => it.value && it.value.trim()).map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value)}</div>`).join("");
-        else ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value||it.name)}</div>`).join("");
-        return `<div class="split-rail-block"><p class="side-label">${escHtml(s.title)}</p>${ih || `<p class="empty-note">None added.</p>`}</div>`;
-    }).join("");
-    return `<div class="main"><div class="split-header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div><hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'split')}${mainHtml}</div><div class="sidebar">${railHtml}</div>`;
-}
-function renderTimeline(data, tid) {
-    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
-        if(s.type === "skills") return atsPlainList(s, it => escHtml(it.name));
-        if(s.type === "languages") return atsPlainList(s, it => `${escHtml(it.name)} (${escHtml(it.level)})`);
-        if(s.type === "certificates") return atsPlainList(s, it => escHtml(it.name));
-        if(s.type === "strengths") return atsStrengthsBlock(s);
-        return SR[s.type] ? SR[s.type](s) : "";
-    }).join("");
-    return `<div class="main"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div><hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
-}
-const SKILL_LEVEL_PCT = {"Beginner":35,"Basic":35,"Intermediate":60,"Proficient":75,"Advanced":90,"Expert":95,"Native":100,"Fluent":95,"Conversational":65};
-function renderStarter(data) {
+// ----------------------------------------------------------------------------
+//  5.  Updated all custom template renderers to use SR with headingClass
+//      and remove regex stripping / manual re‑wrapping
+// ----------------------------------------------------------------------------
+
+// ---------- starter ----------
+function renderStarter(data, tid) {
     const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
     const strengthsSec = vis.find(s => s.type === "strengths");
-    const strengthsHtml = strengthsSec && strengthsSec.items.some(it => it.value && it.value.trim()) ? `<section class="main-section" data-rf-section-type="strengths"><div class="strengths-row">${strengthsSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></section>` : "";
+    const strengthsHtml = strengthsSec && strengthsSec.items.some(it => it.value && it.value.trim()) 
+        ? `<section class="main-section" data-rf-section-type="strengths"><div class="strengths-row">${strengthsSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></section>` 
+        : "";
     const skillsSec = vis.find(s => s.type === "skills");
-    const skillsHtml = skillsSec ? `<div class="main-section"><p class="starter-sec-title">${escHtml(skillsSec.title)}</p>${skillsSec.items.length ? skillsSec.items.map(it => { const pct = SKILL_LEVEL_PCT[it.level] || 55; return `<div class="skillbar-row"><div class="skillbar-lbl">${escHtml(it.name)}</div><div class="skillbar-track"><div class="skillbar-fill" style="width:${pct}%"></div></div><span class="skillbar-pct">${pct}%</span></div>`; }).join("") : `<p class="empty-note">None added.</p>`}</div>` : "";
+    const skillsHtml = skillsSec 
+        ? SR.skills(skillsSec, 'starter-sec-title')  // pass custom heading class
+        : "";
     const restSecs = vis.filter(s => s !== strengthsSec && s.type !== "skills");
-    const restHtml = restSecs.map(s => { const inner = SR[s.type] ? SR[s.type](s) : ""; return `<div class="main-section"><p class="starter-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}</div>`; }).join("");
+    const restHtml = restSecs.map(s => {
+        // Use SR with custom heading class 'starter-sec-title'
+        return SR[s.type] ? SR[s.type](s, 'starter-sec-title') : "";
+    }).join("");
     const photoEl = p.photo ? `<div class="starter-photo"><img src="${p.photo}" alt="Photo"></div>` : '';
     return `<div class="starter-header">${photoEl}<div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div></div><div class="starter-contact-row">${atsContactLine(p)}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${strengthsHtml}${skillsHtml}${restHtml}</div>`;
 }
-function renderCombined(data) {
-    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const SRC = new Set(["experience","projects","custom"]);
-    const entries = [];
-    vis.filter(s => SRC.has(s.type)).forEach(s => {
-        s.items.forEach(it => {
-            if(s.type === "experience") entries.push({sourceType: s.type, tag: "Job", title: it.role, sub: [it.company, it.location].filter(Boolean).join(" · "), start: it.startDate, end: it.endDate, current: it.current, bullets: it.bullets || []});
-            else if(s.type === "projects") entries.push({sourceType: s.type, tag: "Project", title: it.name, sub: it.url || "", start: it.startDate, end: it.endDate, current: false, bullets: it.bullets || []});
-            else entries.push({sourceType: s.type, tag: s.title || "Activity", title: it.title || s.title, sub: "", start: "", end: "", current: false, bullets: it.bullets || []});
-        });
-    });
-    entries.sort((a,b) => { if(a.current && !b.current) return -1; if(b.current && !a.current) return 1; return (b.start || "").localeCompare(a.start || ""); });
-    const entriesHtml = entries.map(e => `<div class="combined-entry" data-rf-section-type="${escHtml(e.sourceType)}"><span class="combined-tag">${escHtml(e.tag)}</span><p class="entry-title">${escHtml(e.title||"")}</p>${e.sub?`<p class="entry-sub">${escHtml(e.sub)}</p>`:""}${e.start?`<span class="entry-date">${fmtDate(e.start,e.end,e.current)}</span>`:""}${e.bullets.length?`<ul>${e.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
-    const otherSecs = vis.filter(s => !SRC.has(s.type) && s.type !== "personal-info");
-    const otherHtml = otherSecs.map(s => {
-        if(s.type === "skills") return `<p class="combined-sec-title">${escHtml(s.title)}</p><div class="combined-plain-chips">${s.items.length ? s.items.map(it => `<span class="strength-chip">${escHtml(it.name)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
-        if(s.type === "strengths") { const vals = s.items.filter(it => it.value && it.value.trim()); return `<p class="combined-sec-title">${escHtml(s.title)}</p><div class="combined-plain-chips">${vals.length ? vals.map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
-        if(s.type === "languages") return `<p class="combined-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-        if(s.type === "certificates") return `<p class="combined-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-        const inner = SR[s.type] ? SR[s.type](s) : "";
-        return `<p class="combined-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
-    }).join("");
-    return `<div class="main"><div class="combined-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="combined-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'combined')}${entriesHtml.length ? `<p class="combined-sec-title">What I've Been Doing</p>${entriesHtml}` : ""}${otherHtml}</div>`;
-}
+
+// ---------- practical ----------
 function renderPractical(data, tid) {
     const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
 
@@ -844,54 +788,78 @@ function renderPractical(data, tid) {
         const sideSecs = vis.filter(s => sideTypes.has(s.type));
         const mainSecs = vis.filter(s => s.type === "experience" || s.type === "education");
         const sideHtml = sideSecs.map(s => {
-            if (s.type === "personal-info") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${elegantAvailGrid(s)}</div>`;
-            if (s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><div class="practical-plain-chips">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div></div>`; }
-            if (s.type === "languages") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p></div>`;
-            if (s.type === "certificates") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p></div>`;
-            if (s.type === "interests") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.value)).join(" · ") : `<span class="empty-note">None added.</span>`}</p></div>`;
-            if (s.type === "references") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}<br><span class="meta">${escHtml(it.title)}</span></div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
-            if (s.type === "projects") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
-            if (s.type === "custom") return `<div class="side-section"><p class="side-label">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.title || "")}</div>`).join("") : `<p class="empty-note">None added.</p>`}</div>`;
+            if (s.type === "personal-info") {
+                return `<section class="side-section" data-rf-section-type="personal-info"><p class="side-label">${escHtml(s.title)}</p>${elegantAvailGrid(s)}</section>`;
+            }
+            if (s.type === "skills" || s.type === "strengths") {
+                const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value);
+                const content = vals.length ? `<div class="practical-plain-chips">${vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("")}</div>` : `<p class="empty-note">None added.</p>`;
+                return `<section class="side-section" data-rf-section-type="${s.type}"><p class="side-label">${escHtml(s.title)}</p>${content}</section>`;
+            }
+            if (s.type === "languages" || s.type === "certificates") {
+                const isLang = s.type === "languages";
+                const items = s.items.map(it => isLang ? `${escHtml(it.name)} (${escHtml(it.level)})` : escHtml(it.name));
+                const content = items.length ? `<p class="ats-plain-list">${items.join(", ")}</p>` : `<span class="empty-note">None added.</span>`;
+                return `<section class="side-section" data-rf-section-type="${s.type}"><p class="side-label">${escHtml(s.title)}</p>${content}</section>`;
+            }
+            if (s.type === "interests") {
+                const content = s.items.length ? `<p class="ats-plain-list">${s.items.map(it => escHtml(it.value)).join(" · ")}</p>` : `<span class="empty-note">None added.</span>`;
+                return `<section class="side-section" data-rf-section-type="interests"><p class="side-label">${escHtml(s.title)}</p>${content}</section>`;
+            }
+            if (s.type === "references") {
+                const content = s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it.name)}<br><span class="meta">${escHtml(it.title)}</span></div>`).join("") : `<p class="empty-note">None added.</p>`;
+                return `<section class="side-section" data-rf-section-type="references"><p class="side-label">${escHtml(s.title)}</p>${content}</section>`;
+            }
+            if (s.type === "projects" || s.type === "custom") {
+                const label = s.type === "projects" ? "name" : "title";
+                const content = s.items.length ? s.items.map(it => `<div class="side-item">${escHtml(it[label] || "")}</div>`).join("") : `<p class="empty-note">None added.</p>`;
+                return `<section class="side-section" data-rf-section-type="${s.type}"><p class="side-label">${escHtml(s.title)}</p>${content}</section>`;
+            }
             return "";
         }).join("");
         const mainHtml2 = mainSecs.map(s => {
-            if (s.type === "experience") return `<p class="practical-sec-title" data-rf-section-type="experience">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
-            if (s.type === "education") { const inner = SR.education(s); return `<p class="practical-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`; }
+            if (s.type === "experience") {
+                return SR.experience(s, 'practical-sec-title');
+            }
+            if (s.type === "education") {
+                return SR.education(s, 'practical-sec-title');
+            }
             return "";
         }).join("");
         return `<div class="prac2-sidebar">${sideHtml}</div><div class="main"><div class="practical-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="practical-contact-row">${atsContactLine(p)}</div></div><hr class="practical-rule"><p class="summary">${escHtml(p.summary)}</p>${mainHtml2}</div>`;
     }
 
+    // practical-01 and -03
     const availSec = vis.find(s => s.type === "personal-info");
-    const availHtml = availSec ? `<p class="practical-sec-title">${escHtml(availSec.title)}</p>${availSec.items.length ? `<div class="avail-grid">${availSec.items.map(it => `<div class="avail-item"><div class="avail-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="avail-text"><span class="avail-label">${escHtml(it.label)}</span><span class="avail-value">${escHtml(it.value)}</span></div></div>`).join("")}</div>` : `<p class="empty-note">None added.</p>`}` : "";
+    const availHtml = availSec 
+        ? `<section class="main-section" data-rf-section-type="personal-info"><p class="practical-sec-title">${escHtml(availSec.title)}</p>${availSec.items.length ? `<div class="avail-grid">${availSec.items.map(it => `<div class="avail-item"><div class="avail-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="avail-text"><span class="avail-label">${escHtml(it.label)}</span><span class="avail-value">${escHtml(it.value)}</span></div></div>`).join("")}</div>` : `<p class="empty-note">None added.</p>`}</section>` 
+        : "";
     const restSecs = vis.filter(s => s.type !== "personal-info");
     const restHtml = restSecs.map(s => {
-        if(s.type === "experience") return `<p class="practical-sec-title" data-rf-section-type="experience">${escHtml(s.title)}</p>${s.items.length ? s.items.map(it => `<div class="practical-entry"><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""} — ${fmtDate(it.startDate,it.endDate,it.current)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`;
-        if(s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="practical-sec-title">${escHtml(s.title)}</p><div class="practical-plain-chips">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
-        if(s.type === "languages") return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-        if(s.type === "certificates") return `<p class="practical-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-        const inner = SR[s.type] ? SR[s.type](s) : "";
-        return `<p class="practical-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
+        if (s.type === "experience") {
+            return SR.experience(s, 'practical-sec-title');
+        }
+        if (s.type === "skills" || s.type === "strengths") {
+            const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value);
+            const content = vals.length ? `<div class="practical-plain-chips">${vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("")}</div>` : `<p class="empty-note">None added.</p>`;
+            return `<section class="main-section" data-rf-section-type="${s.type}"><p class="practical-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        if (s.type === "languages" || s.type === "certificates") {
+            const isLang = s.type === "languages";
+            const items = s.items.map(it => isLang ? `${escHtml(it.name)} (${escHtml(it.level)})` : escHtml(it.name));
+            const content = items.length ? `<p class="ats-plain-list">${items.join(", ")}</p>` : `<span class="empty-note">None added.</span>`;
+            return `<section class="main-section" data-rf-section-type="${s.type}"><p class="practical-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        // other sections (interests, references, custom, education) – use SR with custom heading
+        if (SR[s.type]) {
+            return SR[s.type](s, 'practical-sec-title');
+        }
+        return "";
     }).join("");
     return `<div class="main"><div class="practical-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="practical-contact-row">${atsContactLine(p)}</div></div><hr class="practical-rule"><p class="summary">${escHtml(p.summary)}</p>${availHtml}${restHtml}</div>`;
 }
-function renderFunctional(data) {
-    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
-    const groupSecs = vis.filter(s => s.type === "custom" && s.items.length);
-    const expSec = vis.find(s => s.type === "experience");
-    const otherSecs = vis.filter(s => !["custom","experience","personal-info"].includes(s.type));
-    const hasGroups = groupSecs.length > 0;
-    const groupsHtml = groupSecs.map(s => s.items.map(it => `<div class="functional-group"><p class="functional-group-title"><span class="dot"></span>${escHtml(it.title||s.title)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("")).join("");
-    const historyHtml = expSec ? (hasGroups ? `<div class="functional-history"><p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">Work History</p>${expSec.items.length ? expSec.items.map(it => `<div class="functional-history-item"><span><span class="fh-role">${escHtml(it.role)}</span> — ${escHtml(it.company)}</span><span>${fmtDate(it.startDate,it.endDate,it.current)}</span></div>`).join("") : `<p class="empty-note">No entries yet.</p>`}</div>` : `<p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">${escHtml(expSec.title)}</p>${expSec.items.length ? expSec.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("") : `<p class="empty-note">No entries yet.</p>`}`) : "";
-    const restHtml = otherSecs.map(s => {
-        if(s.type === "skills" || s.type === "strengths") { const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="functional-sec-title">${escHtml(s.title)}</p><div class="strengths-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
-        if(s.type === "languages") return `<p class="functional-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-        if(s.type === "certificates") return `<p class="functional-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => escHtml(it.name)).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-        const inner = SR[s.type] ? SR[s.type](s) : "";
-        return `<p class="functional-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/,"")}`;
-    }).join("");
-    return `<div class="main"><div class="functional-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="functional-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'functional')}${hasGroups?`<p class="functional-sec-title" style="margin-top:0" data-rf-section-type="custom">Areas of Strength</p>${groupsHtml}`:""}${historyHtml}${restHtml}</div>`;
-}
+
+// ---------- trade ----------
 function renderTrade(data, tid) {
     const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
     const certSec  = vis.find(s => s.type === "certificates");
@@ -919,13 +887,33 @@ function renderTrade(data, tid) {
             : `<p class="empty-note">No entries yet.</p>`;
 
         const otherSecMapper2 = s => {
-            if (s.type === "strengths") { const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="trade-sec-title">${escHtml(s.title)}</p><div class="trade-tools-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
-            if (s.type === "languages") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-            if (s.type === "interests") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.map(it => escHtml(it.value)).join(" · ")}</p>`;
-            if (s.type === "education") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10.5px;color:#555;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
-            if (s.type === "custom") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-            const inner = SR[s.type] ? SR[s.type](s) : "";
-            return `<p class="trade-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`;
+            if (s.type === "strengths") {
+                const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value);
+                const content = vals.length ? `<div class="trade-tools-row">${vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("")}</div>` : `<p class="empty-note">None added.</p>`;
+                return `<section class="main-section" data-rf-section-type="strengths"><p class="trade-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+            }
+            if (s.type === "languages") {
+                const items = s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`);
+                const content = items.length ? `<p class="ats-plain-list">${items.join(", ")}</p>` : `<span class="empty-note">None added.</span>`;
+                return `<section class="main-section" data-rf-section-type="languages"><p class="trade-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+            }
+            if (s.type === "interests") {
+                const content = s.items.map(it => escHtml(it.value)).join(" · ");
+                return `<section class="main-section" data-rf-section-type="interests"><p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${content}</p></section>`;
+            }
+            if (s.type === "education") {
+                const items = s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10.5px;color:#555;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("");
+                return `<section class="main-section" data-rf-section-type="education"><p class="trade-sec-title">${escHtml(s.title)}</p>${items}</section>`;
+            }
+            if (s.type === "custom") {
+                const items = s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("");
+                return `<section class="main-section" data-rf-section-type="custom"><p class="trade-sec-title">${escHtml(s.title)}</p>${items}</section>`;
+            }
+            // fallback
+            if (SR[s.type]) {
+                return SR[s.type](s, 'trade-sec-title');
+            }
+            return "";
         };
         const sideOtherSecs = otherSecs.filter(s => s.type !== "education");
         const mainOtherSecs = otherSecs.filter(s => s.type === "education");
@@ -935,6 +923,7 @@ function renderTrade(data, tid) {
         return `<div class="trade-header trade2-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="trade2-sidebar">${credHeading}${credHtml}${toolsHeading2}${toolsHtml2}${restHtmlSide2}</div><div class="main">${expHtml2 ? `<p class="trade-sec-title" style="margin-top:0" data-rf-section-type="experience">${escHtml(expSec.title)}</p>${expHtml2}` : ""}${restHtmlMain2}</div>`;
     }
 
+    // trade-01 and -03
     const badgesHtml = certSec
         ? (certSec.items.length
             ? `<div class="badge-row">${certSec.items.map(it =>
@@ -969,18 +958,109 @@ function renderTrade(data, tid) {
         : "";
 
     const restHtml = otherSecs.map(s => {
-        if (s.type === "strengths") { const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value); return `<p class="trade-sec-title">${escHtml(s.title)}</p><div class="trade-tools-row">${vals.length ? vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("") : `<p class="empty-note">None added.</p>`}</div>`; }
-        if (s.type === "languages") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.length ? s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`).join(", ") : `<span class="empty-note">None added.</span>`}</p>`;
-        if (s.type === "interests") return `<p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${s.items.map(it => escHtml(it.value)).join(" · ")}</p>`;
-        if (s.type === "education") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10.5px;color:#555;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
-        if (s.type === "custom") return `<p class="trade-sec-title">${escHtml(s.title)}</p>${s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-        const inner = SR[s.type] ? SR[s.type](s) : "";
-        return `<p class="trade-sec-title">${escHtml(s.title)}</p>${inner.replace(/<p class="(main|side)-label">.*?<\/p>/, "")}`;
+        if (s.type === "strengths") {
+            const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value);
+            const content = vals.length ? `<div class="trade-tools-row">${vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("")}</div>` : `<p class="empty-note">None added.</p>`;
+            return `<section class="main-section" data-rf-section-type="strengths"><p class="trade-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        if (s.type === "languages") {
+            const items = s.items.map(it => `${escHtml(it.name)} (${escHtml(it.level)})`);
+            const content = items.length ? `<p class="ats-plain-list">${items.join(", ")}</p>` : `<span class="empty-note">None added.</span>`;
+            return `<section class="main-section" data-rf-section-type="languages"><p class="trade-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        if (s.type === "interests") {
+            const content = s.items.map(it => escHtml(it.value)).join(" · ");
+            return `<section class="main-section" data-rf-section-type="interests"><p class="trade-sec-title">${escHtml(s.title)}</p><p class="ats-plain-list">${content}</p></section>`;
+        }
+        if (s.type === "education") {
+            const items = s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location ? ` · ${escHtml(it.location)}` : ""} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10.5px;color:#555;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("");
+            return `<section class="main-section" data-rf-section-type="education"><p class="trade-sec-title">${escHtml(s.title)}</p>${items}</section>`;
+        }
+        if (s.type === "custom") {
+            const items = s.items.map(it => `<div class="trade-entry"><p class="entry-title">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul>${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("");
+            return `<section class="main-section" data-rf-section-type="custom"><p class="trade-sec-title">${escHtml(s.title)}</p>${items}</section>`;
+        }
+        // fallback
+        if (SR[s.type]) {
+            return SR[s.type](s, 'trade-sec-title');
+        }
+        return "";
     }).join("");
 
     return `<div class="trade-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="trade-contact-row">${atsContactLine(p)}</div></div><div class="main">${badgesHeading}${badgesHtml}${toolsHeading}${toolsHtml}${expHeading}${expHtml}${restHtml}</div>`;
 }
 
+// ---------- functional ----------
+function renderFunctional(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const groupSecs = vis.filter(s => s.type === "custom" && s.items.length);
+    const expSec = vis.find(s => s.type === "experience");
+    const otherSecs = vis.filter(s => !["custom","experience","personal-info"].includes(s.type));
+    const hasGroups = groupSecs.length > 0;
+    const groupsHtml = groupSecs.map(s => s.items.map(it => `<div class="functional-group"><p class="functional-group-title"><span class="dot"></span>${escHtml(it.title||s.title)}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("")).join("");
+    const historyHtml = expSec ? (hasGroups ? `<div class="functional-history"><p class="functional-sec-title" style="margin-top:0" data-rf-section-type="experience">Work History</p>${expSec.items.length ? expSec.items.map(it => `<div class="functional-history-item"><span><span class="fh-role">${escHtml(it.role)}</span> — ${escHtml(it.company)}</span><span>${fmtDate(it.startDate,it.endDate,it.current)}</span></div>`).join("") : `<p class="empty-note">No entries yet.</p>`}</div>` : SR.experience(expSec, 'functional-sec-title')) : "";
+    const restHtml = otherSecs.map(s => {
+        if (s.type === "skills" || s.type === "strengths") {
+            const vals = s.type === "skills" ? s.items.map(it => it.name) : s.items.filter(it => it.value && it.value.trim()).map(it => it.value);
+            const content = vals.length ? `<div class="strengths-row">${vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("")}</div>` : `<p class="empty-note">None added.</p>`;
+            return `<section class="main-section" data-rf-section-type="${s.type}"><p class="functional-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        if (s.type === "languages" || s.type === "certificates") {
+            const isLang = s.type === "languages";
+            const items = s.items.map(it => isLang ? `${escHtml(it.name)} (${escHtml(it.level)})` : escHtml(it.name));
+            const content = items.length ? `<p class="ats-plain-list">${items.join(", ")}</p>` : `<span class="empty-note">None added.</span>`;
+            return `<section class="main-section" data-rf-section-type="${s.type}"><p class="functional-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        // other sections – use SR with custom heading
+        if (SR[s.type]) {
+            return SR[s.type](s, 'functional-sec-title');
+        }
+        return "";
+    }).join("");
+    return `<div class="main"><div class="functional-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="functional-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'functional')}${hasGroups?`<p class="functional-sec-title" style="margin-top:0" data-rf-section-type="custom">Areas of Strength</p>${groupsHtml}`:""}${historyHtml}${restHtml}</div>`;
+}
+
+// ---------- combined ----------
+function renderCombined(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const SRC = new Set(["experience","projects","custom"]);
+    const entries = [];
+    vis.filter(s => SRC.has(s.type)).forEach(s => {
+        s.items.forEach(it => {
+            if(s.type === "experience") entries.push({sourceType: s.type, tag: "Job", title: it.role, sub: [it.company, it.location].filter(Boolean).join(" · "), start: it.startDate, end: it.endDate, current: it.current, bullets: it.bullets || []});
+            else if(s.type === "projects") entries.push({sourceType: s.type, tag: "Project", title: it.name, sub: it.url || "", start: it.startDate, end: it.endDate, current: false, bullets: it.bullets || []});
+            else entries.push({sourceType: s.type, tag: s.title || "Activity", title: it.title || s.title, sub: "", start: "", end: "", current: false, bullets: it.bullets || []});
+        });
+    });
+    entries.sort((a,b) => { if(a.current && !b.current) return -1; if(b.current && !a.current) return 1; return (b.start || "").localeCompare(a.start || ""); });
+    const entriesHtml = entries.map(e => `<div class="combined-entry" data-rf-section-type="${escHtml(e.sourceType)}"><span class="combined-tag">${escHtml(e.tag)}</span><p class="entry-title">${escHtml(e.title||"")}</p>${e.sub?`<p class="entry-sub">${escHtml(e.sub)}</p>`:""}${e.start?`<span class="entry-date">${fmtDate(e.start,e.end,e.current)}</span>`:""}${e.bullets.length?`<ul>${e.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
+    const otherSecs = vis.filter(s => !SRC.has(s.type) && s.type !== "personal-info");
+    const otherHtml = otherSecs.map(s => {
+        if (s.type === "skills") {
+            const content = s.items.length ? `<div class="combined-plain-chips">${s.items.map(it => `<span class="strength-chip">${escHtml(it.name)}</span>`).join("")}</div>` : `<p class="empty-note">None added.</p>`;
+            return `<section class="main-section" data-rf-section-type="skills"><p class="combined-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        if (s.type === "strengths") {
+            const vals = s.items.filter(it => it.value && it.value.trim()).map(it => it.value);
+            const content = vals.length ? `<div class="combined-plain-chips">${vals.map(v => `<span class="strength-chip">${escHtml(v)}</span>`).join("")}</div>` : `<p class="empty-note">None added.</p>`;
+            return `<section class="main-section" data-rf-section-type="strengths"><p class="combined-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        if (s.type === "languages" || s.type === "certificates") {
+            const isLang = s.type === "languages";
+            const items = s.items.map(it => isLang ? `${escHtml(it.name)} (${escHtml(it.level)})` : escHtml(it.name));
+            const content = items.length ? `<p class="ats-plain-list">${items.join(", ")}</p>` : `<span class="empty-note">None added.</span>`;
+            return `<section class="main-section" data-rf-section-type="${s.type}"><p class="combined-sec-title">${escHtml(s.title)}</p>${content}</section>`;
+        }
+        // other sections – use SR with custom heading
+        if (SR[s.type]) {
+            return SR[s.type](s, 'combined-sec-title');
+        }
+        return "";
+    }).join("");
+    return `<div class="main"><div class="combined-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="combined-contact-row">${atsContactLine(p)}</div></div><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'combined')}${entriesHtml.length ? `<p class="combined-sec-title">What I've Been Doing</p>${entriesHtml}` : ""}${otherHtml}</div>`;
+}
+
+// ---------- monogram (mono) ----------
 function renderMonogram(data) {
     const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
     const skillSec = vis.find(s => s.type === "skills");
@@ -1007,23 +1087,23 @@ function renderMonogram(data) {
     ).join("");
 
     const skillsHtml = skillSec && skillSec.items.length
-        ? `<p class="mono-kicker">${escHtml(skillSec.title)}</p><hr class="mono-hr"><div class="mono-two-col">${skillSec.items.map(it => `<div class="mono-skill-row"><span class="mono-chip-line">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
+        ? `<p class="mono-kicker" data-rf-section-type="skills">${escHtml(skillSec.title)}</p><hr class="mono-hr"><div class="mono-two-col">${skillSec.items.map(it => `<div class="mono-skill-row"><span class="mono-chip-line">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
         : "";
 
     const langHtml = langSec && langSec.items.length
-        ? `<p class="mono-kicker">${escHtml(langSec.title)}</p><hr class="mono-hr"><div>${langSec.items.map(it => `<div class="mono-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:10px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
+        ? `<p class="mono-kicker" data-rf-section-type="languages">${escHtml(langSec.title)}</p><hr class="mono-hr"><div>${langSec.items.map(it => `<div class="mono-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:10px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
         : "";
 
     const certHtml = certSec && certSec.items.length
-        ? `<p class="mono-kicker">${escHtml(certSec.title)}</p><hr class="mono-hr"><div>${certSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;border-bottom:1px solid #F0EDE8;color:#333">${escHtml(it.name)}</div>`).join("")}</div>`
+        ? `<p class="mono-kicker" data-rf-section-type="certificates">${escHtml(certSec.title)}</p><hr class="mono-hr"><div>${certSec.items.map(it => `<div style="font-size:10.5px;padding:2px 0;border-bottom:1px solid #F0EDE8;color:#333">${escHtml(it.name)}</div>`).join("")}</div>`
         : "";
 
     const piHtml = piSec && piSec.items.length
-        ? `<p class="mono-kicker">${escHtml(piSec.title)}</p><hr class="mono-hr"><div>${piSec.items.map(it => `<div style="font-size:10.5px;padding:1px 0;color:#555">${escHtml(it.label)}: <strong style="color:#222">${escHtml(it.value)}</strong></div>`).join("")}</div>`
+        ? `<p class="mono-kicker" data-rf-section-type="personal-info">${escHtml(piSec.title)}</p><hr class="mono-hr"><div>${piSec.items.map(it => `<div style="font-size:10.5px;padding:1px 0;color:#555">${escHtml(it.label)}: <strong style="color:#222">${escHtml(it.value)}</strong></div>`).join("")}</div>`
         : "";
 
     const intHtml = intSec && intSec.items.length
-        ? `<p class="mono-kicker">${escHtml(intSec.title)}</p><hr class="mono-hr"><p style="font-size:10.5px;color:#555;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p>`
+        ? `<p class="mono-kicker" data-rf-section-type="interests">${escHtml(intSec.title)}</p><hr class="mono-hr"><p style="font-size:10.5px;color:#555;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p>`
         : "";
 
     const refHtml = refSec && refSec.items.length
@@ -1031,16 +1111,24 @@ function renderMonogram(data) {
         : "";
 
     const mainHtml = mainSecs.map(s => {
-        if (s.type === "experience") return `<p class="mono-kicker" data-rf-section-type="experience">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><div class="entry-header"><div><p class="entry-title" style="font-size:12px">${escHtml(it.role)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.company)}${it.location ? ` · ${escHtml(it.location)}` : ""}</p></div><span class="entry-date" style="font-size:10px">${fmtDate(it.startDate, it.endDate, it.current)}</span></div>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-        if (s.type === "education") return `<p class="mono-kicker" data-rf-section-type="education">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.qualification)}</p><p class="entry-sub" style="font-size:10.5px">${escHtml(it.institution)} — ${fmtDate(it.startDate, it.endDate, it.current)}</p>${it.notes ? `<p style="font-size:10px;color:#777;margin:2px 0 0">${escHtml(it.notes)}</p>` : ""}</div>`).join("")}`;
-        if (s.type === "projects") return `<p class="mono-kicker" data-rf-section-type="projects">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.name)}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
-        if (s.type === "custom") return `<p class="mono-kicker" data-rf-section-type="custom">${escHtml(s.title)}</p><hr class="mono-hr">${s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it.title || "")}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}`;
+        if (s.type === "experience") {
+            return SR.experience(s, 'mono-kicker');
+        }
+        if (s.type === "education") {
+            return SR.education(s, 'mono-kicker');
+        }
+        if (s.type === "projects" || s.type === "custom") {
+            const titleField = s.type === "projects" ? "name" : "title";
+            const items = s.items.map(it => `<div class="mono-entry"><p class="entry-title" style="font-size:12px">${escHtml(it[titleField] || "")}</p>${it.bullets && it.bullets.length ? `<ul style="font-size:10.5px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("");
+            return `<section class="main-section" data-rf-section-type="${s.type}"><p class="mono-kicker">${escHtml(s.title)}</p><hr class="mono-hr">${items}</section>`;
+        }
         return "";
     }).join("");
 
     return `<div class="mono-top">${badgeEl}<p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:13px">${escHtml(p.jobTitle)}</p><div class="mono-contact-row">${contactHtml}</div></div><div class="main">${p.summary ? `<p class="summary" style="margin-bottom:12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}${skillsHtml}${langHtml}${certHtml}${piHtml}${intHtml}${refHtml}</div>`;
 }
 
+// ---------- facet ----------
 function renderFacet(data) {
     const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
     const skillSec = vis.find(s => s.type === "skills");
@@ -1067,38 +1155,39 @@ function renderFacet(data) {
     ).join("");
 
     const skillsHtml = skillSec && skillSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="skills"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
         : "";
     const langHtml = langSec && langSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:9px;opacity:.7">${escHtml(it.level)}</span></div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="languages"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="facet-skill-row"><span>${escHtml(it.name)}</span><span style="font-size:9px;opacity:.7">${escHtml(it.level)}</span></div>`).join("")}</div>`
         : "";
     const certHtml = certSec && certSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)">${escHtml(it.name)}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="certificates"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)">${escHtml(it.name)}</div>`).join("")}</div>`
         : "";
     const piHtml = piSec && piSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
+        ? `<div class="side-section" data-rf-section-type="personal-info"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
         : "";
     const strHtml = strSec && strSec.items.some(it => it.value && it.value.trim())
-        ? `<div class="side-section"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3)">${escHtml(it.value)}</span>`).join("")}</div></div>`
+        ? `<div class="side-section" data-rf-section-type="strengths"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3)">${escHtml(it.value)}</span>`).join("")}</div></div>`
         : "";
     const intHtml = intSec && intSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10px;color:rgba(255,255,255,0.8);line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
+        ? `<div class="side-section" data-rf-section-type="interests"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10px;color:rgba(255,255,255,0.8);line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
         : "";
     const refHtml = refSec && refSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div><div style="opacity:.7">${escHtml(it.title)}</div><div style="opacity:.7">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="references"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div><div style="opacity:.7">${escHtml(it.title)}</div><div style="opacity:.7">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
         : "";
     const projHtml = projSec && projSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="projects"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
         : "";
     const customHtml = customSec && customSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="custom"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10px;color:rgba(255,255,255,0.85);padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.1)"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
         : "";
 
-    const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s, 'main-label') : "").join("");
 
     return `<div class="facet-sidebar">${badgeEl}<div class="facet-contact-mini">${contactMini}</div>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="facet-main"><p class="name" style="font-size:26px">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p>${p.summary ? `<p class="summary" style="margin:8px 0 12px">${escHtml(p.summary)}</p>` : ""}${mainHtml}</div>`;
 }
 
+// ---------- duo ----------
 function renderDuotone(data) {
     const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
     const skillSec = vis.find(s => s.type === "skills");
@@ -1113,37 +1202,38 @@ function renderDuotone(data) {
     const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
 
     const skillsHtml = skillSec && skillSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="skills"><p class="side-label">${escHtml(skillSec.title)}</p>${skillSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span>${dotRating(it.level)}</div>`).join("")}</div>`
         : "";
     const langHtml = langSec && langSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span><span style="font-size:9px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="languages"><p class="side-label">${escHtml(langSec.title)}</p>${langSec.items.map(it => `<div class="duo-skill-row"><span style="font-size:10.5px">${escHtml(it.name)}</span><span style="font-size:9px;color:#888">${escHtml(it.level)}</span></div>`).join("")}</div>`
         : "";
     const certHtml = certSec && certSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE">${escHtml(it.name)}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="certificates"><p class="side-label">${escHtml(certSec.title)}</p>${certSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE">${escHtml(it.name)}</div>`).join("")}</div>`
         : "";
     const piHtml = piSec && piSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
+        ? `<div class="side-section" data-rf-section-type="personal-info"><p class="side-label">${escHtml(piSec.title)}</p>${elegantAvailGrid(piSec)}</div>`
         : "";
     const strHtml = strSec && strSec.items.some(it => it.value && it.value.trim())
-        ? `<div class="side-section"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></div>`
+        ? `<div class="side-section" data-rf-section-type="strengths"><p class="side-label">${escHtml(strSec.title)}</p><div class="strengths-row">${strSec.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("")}</div></div>`
         : "";
     const intHtml = intSec && intSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10.5px;color:#666;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
+        ? `<div class="side-section" data-rf-section-type="interests"><p class="side-label">${escHtml(intSec.title)}</p><p style="font-size:10.5px;color:#666;line-height:1.5">${intSec.items.map(it => escHtml(it.value)).join(" · ")}</p></div>`
         : "";
     const refHtml = refSec && refSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div><div style="color:#888">${escHtml(it.title)}</div><div style="color:#888">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="references"><p class="side-label">${escHtml(refSec.title)}</p>${refSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div><div style="color:#888">${escHtml(it.title)}</div><div style="color:#888">${escHtml(it.phone)} · ${escHtml(it.email)}</div></div>`).join("")}</div>`
         : "";
     const projHtml = projSec && projSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="projects"><p class="side-label">${escHtml(projSec.title)}</p>${projSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.name)}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
         : "";
     const customHtml = customSec && customSec.items.length
-        ? `<div class="side-section"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
+        ? `<div class="side-section" data-rf-section-type="custom"><p class="side-label">${escHtml(customSec.title)}</p>${customSec.items.map(it => `<div style="font-size:10.5px;color:#555;padding:2px 0;border-bottom:1px solid #E8E4DE"><div>${escHtml(it.title || "")}</div>${it.bullets && it.bullets.length ? `<ul style="margin:2px 0 0;padding-left:14px">${it.bullets.map(b => `<li>${escHtml(b)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`
         : "";
 
-    const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = mainSecs.map(s => SR[s.type] ? SR[s.type](s, 'main-label') : "").join("");
 
     return `<div class="duo-sidebar"><p class="name" style="font-size:22px">${escHtml(p.fullName)}</p><p class="job-title" style="font-size:12px">${escHtml(p.jobTitle)}</p><div class="duo-gold-rule"></div><ul class="contact-list" style="font-size:10px">${contactListHtml(p)}</ul>${skillsHtml}${langHtml}${certHtml}${piHtml}${strHtml}${intHtml}${refHtml}${projHtml}${customHtml}</div><div class="duo-main"><p class="summary" style="margin:0 0 12px">${escHtml(p.summary)}</p>${mainHtml}</div>`;
 }
+
 
 function generateSectionItems(sec) {
     let inner = '';
