@@ -27,7 +27,9 @@
     "qa:premium-root-structure": "node tests/premium-root-structure.cjs",
     "qa:empty-pages": "node tests/empty-page-regression.cjs",
     "qa:dead-code": "node tests/dead-code-regression.cjs",
-    "qa:template-identity-scope": "node tests/template-identity-scope.cjs"
+    "qa:template-identity-scope": "node tests/template-identity-scope.cjs",
+    "predev": "node scripts/generate-mpa-pages.mjs",
+    "prebuild": "node scripts/generate-mpa-pages.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",
