@@ -73,6 +73,164 @@ const SR = {
     }
 };
 
+const SIDEBAR_TEMPLATE_IDS = new Set(
+    TEMPLATE_CONFIGS.filter(def => def.layout === 'two-column').map(def => def.id)
+);
+
+function contactListHtml(p) {
+    const items = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url,label:l.label}))];
+    return items.filter(i => i.val).map(i => `<li><span class="icon-inline">${icoSVG(i.icon)}</span>${i.label?`<a href="${escHtml(i.val)}">${escHtml(i.label)}</a>`:escHtml(i.val)}</li>`).join("");
+}
+function atsContactLine(p) {
+    const items = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
+    return items.filter(i => i.val).map(i => `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span class="contact-inline-item" style="opacity:.4">|</span>');
+}
+function photoHtml(p) {
+    if (!p || !p.photo) return "";
+    return `<div class="cv-photo"><img src="${p.photo}" alt="Photo"></div>`;
+}
+function atsStrengthsBlock(s) {
+    const chips = s.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("");
+    return wrapMain(s.title, chips ? `<div class="strengths-row">${chips}</div>` : "", s.type);
+}
+function atsPersonalInfoBlock(s) {
+    const line = s.items.map(it => `${escHtml(it.label)}: ${escHtml(it.value)}`).join(" &nbsp;·&nbsp; ");
+    return wrapMain(s.title, line ? `<p class="ats-plain-list">${line}</p>` : "", s.type);
+}
+function atsPlainList(s, fmt) {
+    const line = s.items.map(fmt).join(", ");
+    return wrapMain(s.title, line ? `<p class="ats-plain-list">${line}</p>` : "", s.type);
+}
+function elegantAvailGrid(s) {
+    if (!s.items.length) return `<p class="empty-note">None added.</p>`;
+    return `<div class="elegant-avail-grid">${s.items.map(it => `<div class="elegant-avail-item"><span class="av-dot"></span><span class="av-lbl">${escHtml(it.label)}:</span><span class="av-val">${escHtml(it.value)}</span></div>`).join("")}</div>`;
+}
+
+function renderPersonalInfoAfterSummary(sections, tid) {
+    if (SIDEBAR_TEMPLATE_IDS.has(tid) && !tid.startsWith('split')) return '';
+    const pi = sections.find(s => s.type === "personal-info" && s.visible);
+    if (!pi || !pi.items.length) return "";
+    return atsPersonalInfoBlock(pi);
+}
+
+function renderTemplateMarkup(data, raw) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = raw;
+    const p = data.personalDetails || {};
+    const vis = getVisibleSections(data);
+
+    wrapper.querySelectorAll('[data-bind]').forEach(el => {
+        const value = getP(data, el.getAttribute('data-bind'));
+        el.textContent = value || '';
+    });
+    wrapper.querySelectorAll('[data-role="contact"]').forEach(el => {
+        el.innerHTML = contactListHtml(p);
+    });
+    wrapper.querySelectorAll('[data-role="sidebar"]').forEach(el => {
+        el.innerHTML = vis
+            .filter(section => SIDEBAR_TYPES.has(section.type))
+            .map(section => SR[section.type] ? SR[section.type](section) : '')
+            .join('');
+    });
+    wrapper.querySelectorAll('[data-role="main"]').forEach(el => {
+        el.innerHTML = vis
+            .filter(section => MAIN_TYPES.has(section.type))
+            .map(section => SR[section.type] ? SR[section.type](section) : '')
+            .join('');
+    });
+    wrapper.querySelectorAll('[data-page-number]').forEach(el => {
+        el.textContent = String(data.__rfPageNumber || 1);
+    });
+    return wrapper.innerHTML;
+}
+
+// ---------- renderers for modern, ats, executive, creative, split, timeline ----------
+function renderModern(data, tid) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    if (tid === "modern-03") {
+        const allHtml = vis.filter(s => s.type !== "personal-info").map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+        return `<div class="modern-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${allHtml}</div>`;
+    }
+    return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${mainHtml}</div>`;
+}
+function renderAts(data, tid) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    let hdr;
+    if(tid === "ats-02") {
+        const cRight = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
+        hdr = `<div class="ats-header-row"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="contact-block">${cRight.filter(i => i.val).map(i => `<div class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</div>`).join("")}</div></div><hr class="ats-rule">`;
+    } else {
+        hdr = `<div class="ats-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div></div><hr class="ats-rule">`;
+    }
+    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
+        if(s.type === "skills") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "languages") return atsPlainList(s, it => `${escHtml(it.name)} (${escHtml(it.level)})`);
+        if(s.type === "certificates") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "strengths") return atsStrengthsBlock(s);
+        return SR[s.type] ? SR[s.type](s) : "";
+    }).join("");
+    return `<div class="main">${hdr}<p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
+}
+function renderExecutive(data, tid) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
+        if(["skills","languages","certificates"].includes(s.type)) return atsPlainList(s, it => `${escHtml(it.name)}${it.level?` (${escHtml(it.level)})`:""}`);
+        if(s.type === "strengths") return atsStrengthsBlock(s);
+        return SR[s.type] ? SR[s.type](s) : "";
+    }).join("");
+    return `<div class="exec-header"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="exec-rule"></div><div class="ats-contact-line exec-contact-line">${atsContactLine(p)}</div></div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
+}
+function renderExecutive02(data) {
+    const p = data.personalDetails;
+    const vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    return `<div class="sidebar">${photoHtml(p)}<p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><ul class="contact-list">${contactListHtml(p)}</ul>${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'executive-02')}${mainHtml}</div>`;
+}
+function renderCreative(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const sideHtml = vis.filter(s => SIDEBAR_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const mainHtml = vis.filter(s => MAIN_TYPES.has(s.type)).map(s => SR[s.type] ? SR[s.type](s) : "").join("");
+    const cLine = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url}))];
+    const cHtml = cLine.filter(i => i.val).map(i => `<span class="contact-inline-item"><span class="icon-inline">${icoSVG(i.icon)}</span>${escHtml(i.val)}</span>`).join('<span style="opacity:.5;margin:0 5px">·</span>');
+    return `<div class="creative-band"><p class="creative-name">${escHtml(p.fullName)}</p><p class="creative-title">${escHtml(p.jobTitle)}</p><div class="creative-contact">${cHtml}</div></div><div class="sidebar">${sideHtml}</div><div class="main"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'creative-01')}${mainHtml}</div>`;
+}
+function renderSplit(data) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const mainSecs = vis.filter(s => MAIN_TYPES.has(s.type));
+    const railSecs = vis.filter(s => SIDEBAR_TYPES.has(s.type) && s.type !== "personal-info");
+    const mainHtml = mainSecs.map(s => { const inner = SR[s.type] ? SR[s.type](s) : ""; return `<div class="split-card">${inner}</div>`; }).join("");
+    const railHtml = railSecs.map(s => {
+        let ih = "";
+        if(s.type === "skills") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
+        else if(s.type === "languages") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)} — ${escHtml(it.level)}</div>`).join("");
+        else if(s.type === "certificates") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
+        else if(s.type === "references") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}${it.title?` — ${escHtml(it.title)}`:""}</div>`).join("");
+        else if(s.type === "projects") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.name)}</div>`).join("");
+        else if(s.type === "custom") ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.title||"")}</div>`).join("");
+        else if(s.type === "strengths") ih = s.items.filter(it => it.value && it.value.trim()).map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value)}</div>`).join("");
+        else ih = s.items.map(it => `<div class="split-rail-item"><span class="dot"></span>${escHtml(it.value||it.name)}</div>`).join("");
+        return `<div class="split-rail-block"><p class="side-label">${escHtml(s.title)}</p>${ih || `<p class="empty-note">None added.</p>`}</div>`;
+    }).join("");
+    return `<div class="main"><div class="split-header"><div><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p></div><div class="split-contact-row">${atsContactLine(p)}</div></div><hr class="split-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,'split')}${mainHtml}</div><div class="sidebar">${railHtml}</div>`;
+}
+function renderTimeline(data, tid) {
+    const p = data.personalDetails, vis = data.sections.filter(s => s.visible).sort((a,b) => a.order - b.order);
+    const secsHtml = vis.filter(s => s.type !== "personal-info").map(s => {
+        if(s.type === "skills") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "languages") return atsPlainList(s, it => `${escHtml(it.name)} (${escHtml(it.level)})`);
+        if(s.type === "certificates") return atsPlainList(s, it => escHtml(it.name));
+        if(s.type === "strengths") return atsStrengthsBlock(s);
+        return SR[s.type] ? SR[s.type](s) : "";
+    }).join("");
+    return `<div class="main"><p class="name">${escHtml(p.fullName)}</p><p class="job-title">${escHtml(p.jobTitle)}</p><div class="ats-contact-line">${atsContactLine(p)}</div><hr class="tl-rule"><p class="summary">${escHtml(p.summary)}</p>${renderPersonalInfoAfterSummary(vis,tid)}${secsHtml}</div>`;
+}
+
 // ----------------------------------------------------------------------------
 //  3.  Removed enforceSectionCoverage and createFallbackSection
 //      Replaced with a simple validation function (logs only)
