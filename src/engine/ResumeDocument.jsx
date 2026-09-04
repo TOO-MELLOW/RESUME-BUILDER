@@ -322,6 +322,44 @@ function normalizePremiumFragment(fragment, templateId) {
   return root.outerHTML;
 }
 
+function getThemeOverrides(data) {
+  const overrides = data?.meta?.themeOverrides || {};
+  return {
+    accent: typeof overrides.primaryColor === 'string' && overrides.primaryColor.trim()
+      ? overrides.primaryColor.trim()
+      : '',
+    paper: typeof overrides.paperColor === 'string' && overrides.paperColor.trim()
+      ? overrides.paperColor.trim()
+      : ''
+  };
+}
+
+function themeStyleString(data) {
+  const { accent, paper } = getThemeOverrides(data);
+  const vars = [];
+  if (accent) {
+    vars.push(`--color-accent:${escapeAttr(accent)}`);
+    vars.push(`--accent:${escapeAttr(accent)}`);
+  }
+  if (paper) {
+    vars.push(`--color-paper:${escapeAttr(paper)}`);
+    vars.push(`--bg:${escapeAttr(paper)}`);
+  }
+  return vars.join(';');
+}
+
+function applyThemeToRenderedHtml(html, data) {
+  const styleVars = themeStyleString(data);
+  if (!styleVars || !html) return html;
+  const doc = new DOMParser().parseFromString(`<div id="__rf_theme_root">${html}</div>`, 'text/html');
+  const root = doc.getElementById('__rf_theme_root');
+  root.querySelectorAll('.page, [data-rf-template-root="true"], [data-template]').forEach(node => {
+    const existing = node.getAttribute('style') || '';
+    node.setAttribute('style', `${existing ? `${existing.replace(/;?$/, ';')}` : ''}${styleVars}`);
+  });
+  return Array.from(root.children).map(node => node.outerHTML || '').join('');
+}
+
 function renderPageHtml(data, templateId, pageIndex, pageCount, firstPage) {
   const definition = templateById[resolveTemplateId(templateId)] || { rendererKind: 'legacy' };
   const spec = getPageSpec(templateId);
@@ -334,7 +372,7 @@ function renderPageHtml(data, templateId, pageIndex, pageCount, firstPage) {
     if (data.sections.some(section => section?.__rfContinuation)) {
       html = html.replace(/<p class="(?:side-label|main-label)">\s*<\/p>/g, '');
     }
-    return markTemplatePageFrames(applyContinuationContract(html, templateId, !firstPage, pageIndex, pageCount));
+    return applyThemeToRenderedHtml(markTemplatePageFrames(applyContinuationContract(html, templateId, !firstPage, pageIndex, pageCount)), data);
   }
   return '<p class="empty-note">Template engine is still loading…</p>';
 }
@@ -356,6 +394,8 @@ function measureNaturalHeight(data, templateId, sections, firstPage) {
   holder.style.cssText = 'position:fixed;left:-20000px;top:0;width:210mm;height:auto;visibility:hidden;pointer-events:none;overflow:visible;background:transparent;z-index:-1000;';
   const liveRoot = document.getElementById('cv-root');
   copyInheritedCssVariables(holder, liveRoot);
+  const themeStyle = themeStyleString(data);
+  if (themeStyle) holder.setAttribute('style', `${holder.getAttribute('style') || ''};${themeStyle}`);
 
   const pageData = dataForSections(data, sections, firstPage);
 
