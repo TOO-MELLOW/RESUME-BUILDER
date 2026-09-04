@@ -51,16 +51,23 @@ const BLANK = {
 
 function sanitizeSections(sections) {
     if (!Array.isArray(sections)) return [];
-    const seen = new Set();
+    const seenIds = new Set();
+    const seenTypes = new Set();
     const result = [];
     for (const section of sections) {
         if (!section || typeof section !== 'object') continue;
         if (section.type === 'projects') continue;
+        // Ensure section has an id
         if (!section.id) section.id = genId(section.type || 'sec');
-        if (seen.has(section.id)) continue;
-        seen.add(section.id);
+        // Skip duplicate ids
+        if (seenIds.has(section.id)) continue;
+        seenIds.add(section.id);
+        // Skip duplicate types (keep the first occurrence)
+        if (seenTypes.has(section.type)) continue;
+        seenTypes.add(section.type);
         result.push(section);
     }
+    // Sort references to the end (unchanged)
     result.sort((a, b) => {
         const aRef = a.type === 'references' ? 1 : 0;
         const bRef = b.type === 'references' ? 1 : 0;
@@ -70,7 +77,6 @@ function sanitizeSections(sections) {
     result.forEach((section, index) => { section.order = index; });
     return result;
 }
-
 const allTemplateIds = TEMPLATE_CONFIGS.map(t => t.id);
 
 function getTemplateDefaultColor(tid) {
