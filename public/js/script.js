@@ -2111,13 +2111,11 @@ function scalePreviewToFit() {
 }
 
 function renderPreview(pageEl) {
-    // 🔧 If you want to bypass React and use the legacy renderer (to avoid duplication),
-    // keep the following block active. To re-enable React, comment out the block.
     const root = document.getElementById('cv-root');
     if (root && cvData) {
-        // Render the content using the legacy engine
+        // Render content via legacy engine (bypass React)
         const content = renderTemplateContent(cvData, currentTemplateId);
-        // Wrap it in the same A4 page structure that React uses (so styles apply)
+        // Wrap in A4 page structure for full styling
         root.innerHTML = `
             <div class="resume-pages">
                 <div class="rf-a4-page">
@@ -2131,7 +2129,7 @@ function renderPreview(pageEl) {
         return;
     }
 
-    // Original React-based preview (if React is re‑enabled)
+    // Fallback to React bridge (if you ever re-enable React)
     if (typeof window.__RF_SET_PREVIEW__ === 'function') {
         window.__RF_SET_PREVIEW__(cvData, currentTemplateId);
     }
