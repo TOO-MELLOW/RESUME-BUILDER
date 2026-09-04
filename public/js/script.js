@@ -1,14 +1,15 @@
 const ACCENT_COLORS = [
-    { label: "Teal",     v: "#2F6F63" }, { label: "Navy",     v: "#1B2A4A" },
-    { label: "Slate",    v: "#3B5BA9" }, { label: "Burgundy", v: "#7B2D3E" },
-    { label: "Forest",   v: "#264D3B" }, { label: "Rose",     v: "#C1447E" },
-    { label: "Sienna",   v: "#B2562F" }, { label: "Charcoal", v: "#3D3D3D" },
-    { label: "Olive",    v: "#4A5E2F" }, { label: "Amber",    v: "#B08D2E" },
-    { label: "Rust",     v: "#7A3A1B" }, { label: "Ocean",    v: "#2E5E88" }
+    { label: "Navy",        v: "#1F3A5F" },
+    { label: "Charcoal",    v: "#2F3437" },
+    { label: "Slate",       v: "#465A6E" },
+    { label: "Deep Teal",   v: "#236B67" },
+    { label: "Forest",      v: "#315B4C" },
+    { label: "Burgundy",    v: "#6B3038" },
+    { label: "Deep Plum",   v: "#55415F" },
+    { label: "Steel Blue",  v: "#52606D" }
 ];
 const PAPER_COLORS = [
-    "#FAF6EF","#EAEEE1","#F2E8D8","#EAE3DE","#F5E9C8",
-    "#E4EAD8","#E7DFD7","#F3DEDA","#FFFDF9","#F0EDE8"
+    "#FFFFFF", "#FAFAF8", "#F7F8FA", "#F3F4F6"
 ];
 function migrateTemplateId(data) {
     const rawId = data.meta.templateId || 'modern-01';
@@ -2398,7 +2399,7 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
 </div>`;
         });
         const currentAccent  = ov.primaryColor  || getTemplateDefaultColor(currentTemplateId);
-        const currentPaper   = ov.paperColor    || "";
+        const currentPaper   = ov.paperColor    || "#FFFFFF";
         const currentScale   = ov.fontSizeScale || 1;
         const currentSpacing = ov.spacingScale  || 1;
         return `
@@ -2410,10 +2411,6 @@ ${wc < 30 ? `<div class="weak-hint">💡 Aim for 40-80 words. Describe your expe
             <p class="design-t">Accent Colour</p>
             <div class="c-swatches">
                 ${ACCENT_COLORS.map(c => `<button class="c-sw ${currentAccent===c.v?"active":""}" style="background:${c.v}" title="${c.label}" onclick="setAccentColor('${c.v}')"></button>`).join("")}
-                <label title="Custom colour" style="cursor:pointer">
-                    <div class="c-sw" style="background:${currentAccent};border-style:dashed"></div>
-                    <input type="color" value="${currentAccent}" style="display:none" oninput="setAccentColor(this.value)">
-                </label>
             </div>
         </div>
         <div class="design-sec">
