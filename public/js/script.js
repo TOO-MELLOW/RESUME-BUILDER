@@ -474,31 +474,53 @@ function validateSectionCoverage(data, html) {
 }
 
 // ----------------------------------------------------------------------------
-//  4.  renderTemplateContent – no auto-repair
+//  4.  renderTemplateContent – no auto-repair, with a render-time dedup guard
 // ----------------------------------------------------------------------------
 function renderTemplateContent(data, tid) {
     const definition = typeof getTemplateDefinition === 'function'
         ? getTemplateDefinition(tid)
         : null;
-    let html;
 
-    if (definition?.templateMarkup) html = renderTemplateMarkup(data, definition.templateMarkup);
-    else if (tid === 'executive-02')       html = renderExecutive02(data);
-    else if (tid.startsWith('modern'))     html = renderModern(data, tid);
-    else if (tid.startsWith('ats'))       html = renderAts(data, tid);
-    else if (tid.startsWith('executive')) html = renderExecutive(data, tid);
-    else if (tid.startsWith('creative'))  html = renderCreative(data);
-    else if (tid.startsWith('split'))     html = renderSplit(data, tid);
-    else if (tid.startsWith('timeline'))  html = renderTimeline(data, tid);
-    else if (tid.startsWith('starter'))   html = renderStarter(data, tid);
-    else if (tid.startsWith('combined'))  html = renderCombined(data, tid);
-    else if (tid.startsWith('practical'))html = renderPractical(data, tid);
-    else if (tid.startsWith('functional'))html = renderFunctional(data, tid);
-    else if (tid.startsWith('trade'))     html = renderTrade(data, tid);
-    else if (tid.startsWith('mono'))      html = renderMonogram(data, tid);
-    else if (tid.startsWith('facet'))     html = renderFacet(data, tid);
-    else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
-    else html = renderModern(data, tid);
+    // Render-time guard: even if duplicate section objects of the same type
+    // slip past sanitizeSections (e.g. stale data loaded from an old save),
+    // make sure each section TYPE is only ever rendered once per call.
+    // We do this by temporarily wrapping the SR methods for the duration of
+    // this single render, then restoring them – no other function is touched.
+    const renderedTypes = new Set();
+    const originalSR = {};
+    Object.keys(SR).forEach(secType => {
+        originalSR[secType] = SR[secType];
+        SR[secType] = function guardedSectionRenderer(s, headingClass) {
+            const key = (s && s.type) || secType;
+            if (renderedTypes.has(key)) return "";
+            renderedTypes.add(key);
+            return originalSR[secType].call(SR, s, headingClass);
+        };
+    });
+
+    let html;
+    try {
+        if (definition?.templateMarkup) html = renderTemplateMarkup(data, definition.templateMarkup);
+        else if (tid === 'executive-02')       html = renderExecutive02(data);
+        else if (tid.startsWith('modern'))     html = renderModern(data, tid);
+        else if (tid.startsWith('ats'))       html = renderAts(data, tid);
+        else if (tid.startsWith('executive')) html = renderExecutive(data, tid);
+        else if (tid.startsWith('creative'))  html = renderCreative(data);
+        else if (tid.startsWith('split'))     html = renderSplit(data, tid);
+        else if (tid.startsWith('timeline'))  html = renderTimeline(data, tid);
+        else if (tid.startsWith('starter'))   html = renderStarter(data, tid);
+        else if (tid.startsWith('combined'))  html = renderCombined(data, tid);
+        else if (tid.startsWith('practical'))html = renderPractical(data, tid);
+        else if (tid.startsWith('functional'))html = renderFunctional(data, tid);
+        else if (tid.startsWith('trade'))     html = renderTrade(data, tid);
+        else if (tid.startsWith('mono'))      html = renderMonogram(data, tid);
+        else if (tid.startsWith('facet'))     html = renderFacet(data, tid);
+        else if (tid.startsWith('duo'))       html = renderDuotone(data, tid);
+        else html = renderModern(data, tid);
+    } finally {
+        // Always restore the original SR methods, even if a renderer threw.
+        Object.keys(originalSR).forEach(secType => { SR[secType] = originalSR[secType]; });
+    }
 
     validateSectionCoverage(data, html);
     return html;
@@ -2135,12 +2157,6 @@ function renderPreview(pageEl) {
     }
     updateStatusBar();
     updateMobilePreview();
-}
-function getTemplateDefaultColor(tid) {
-    const definition = typeof getTemplateDefinition === 'function'
-        ? getTemplateDefinition(tid)
-        : null;
-    return (definition && definition.accentColor) || "#2F6F63";
 }
 
 function setStep(n) {
