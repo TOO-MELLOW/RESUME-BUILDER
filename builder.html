@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Build Your Resume | Mellow CV Factory</title>
+    <title>Build Your Resume | MellowCV Factory</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -62,12 +62,10 @@
         [data-view=landing] #quick-fab-wrap { display: none; }
 
     </style>
-    <meta name="description" content="Create a polished, ATS-ready resume with live preview and writing tools.">
 </head>
 <body data-view="builder">
-  <div id="toast-container"></div>
 
-  <!-- QUICK FAB -->
+  <div id="toast-container"></div>
   <div class="quick-fab-wrap" id="quick-fab-wrap">
     <div class="quick-fab-menu" id="quick-fab-menu">
       <button class="qf-item" onclick="closeQuickFab();navigate('builder')">📄 Create CV</button>
@@ -77,261 +75,7 @@
     <button class="quick-fab" id="quick-fab" onclick="toggleQuickFab()" aria-label="Quick actions">+</button>
   </div>
 
-  <!-- ============================================================
-       LANDING VIEW
-       ============================================================ -->
-  <div id="view-landing" class="mellow-home">
-    <nav class="mc-nav" aria-label="Main navigation">
-      <a class="mc-brand" onclick="navigate('landing')" aria-label="MellowCV home">Mellow<span>CV</span></a>
-      <div class="mc-nav-links">
-        <a onclick="navigate('gallery')">Templates</a>
-        <a href="#how-it-works">How it works</a>
-        <a onclick="createNewCoverLetter()">Cover letter</a>
-      </div>
-      <button class="mc-nav-cta" onclick="navigate('manager')">My Resumes</button>
-    </nav>
-
-    <main>
-      <!-- HERO -->
-      <section class="mc-hero mc-section-pad mc-reveal">
-        <div class="mc-hero-copy">
-          <h1>A CV built to get you <em>the interview.</em></h1>
-          <p class="mc-hero-text">Create a clear, professional CV, strengthen the way your experience is written, and finish with a cover letter tailored to the role.</p>
-          <div class="mc-actions">
-            <button class="mc-button mc-button-primary" onclick="navigate('builder')">Create my CV</button>
-            <a class="mc-text-link" onclick="navigate('gallery')">View templates</a>
-          </div>
-          <p class="mc-microcopy">Start free · No account required to begin</p>
-        </div>
-        <div class="mc-hero-product mc-reveal mc-reveal-delay-1">
-          <div class="mc-product-heading">
-            <span>Live preview</span>
-            <span>01 / 01</span>
-          </div>
-          <div class="mc-cv-stage" id="mc-cv-stage">
-            <div class="hero-frame" id="hero-cv-frame">
-              <div class="hero-frame-inner" id="hero-cv-inner"></div>
-            </div>
-          </div>
-          <div class="mc-product-note">
-            <span class="mc-status-dot" aria-hidden="true"></span>
-            Your information stays editable while you build.
-          </div>
-        </div>
-      </section>
-
-      <!-- TRUST / BENEFITS STRIP -->
-      <section class="mc-trust mc-reveal mc-reveal-delay-1">
-        <div class="mc-trust-inner">
-          <div class="mc-trust-pills">
-            <span>
-              <svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              Professional templates
-            </span>
-            <span>
-              <svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              ATS-friendly
-            </span>
-            <span>
-              <svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              Easy to customize
-            </span>
-            <span>
-              <svg class="mc-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              PDF ready
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- TEMPLATE SHOWCASE -->
-      <section class="mc-templates mc-section-pad mc-reveal mc-reveal-delay-1" id="templates">
-        <div class="mc-section-intro mc-section-intro-row">
-          <div>
-            <p class="mc-kicker">Templates</p>
-            <h2>Professional designs.<br>Choose the one that feels like you.</h2>
-          </div>
-          <button class="mc-text-link" onclick="navigate('gallery')">View all templates</button>
-        </div>
-        <div class="mc-tpl-filters" id="mc-tpl-filters">
-          <button class="mc-tpl-filter active" data-filter="all" onclick="navigate('gallery')">All</button>
-          <button class="mc-tpl-filter" data-filter="modern" onclick="sessionStorage.setItem('mellow_gallery_filter','modern');navigate('gallery')">Modern</button>
-          <button class="mc-tpl-filter" data-filter="ats" onclick="sessionStorage.setItem('mellow_gallery_filter','ats');navigate('gallery')">ATS</button>
-          <button class="mc-tpl-filter" data-filter="executive" onclick="sessionStorage.setItem('mellow_gallery_filter','executive');navigate('gallery')">Executive</button>
-          <button class="mc-tpl-filter" data-filter="creative" onclick="sessionStorage.setItem('mellow_gallery_filter','creative');navigate('gallery')">Creative</button>
-        </div>
-        <div class="sc-strip mc-tpl-strip" id="sc-strip"></div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section class="mc-process mc-section-pad mc-section-light mc-reveal mc-reveal-delay-1" id="how-it-works">
-        <div class="mc-section-intro mc-section-intro-wide">
-          <p class="mc-kicker">How MellowCV works</p>
-          <h2>From blank page to ready‑to‑send.</h2>
-          <p>The workflow is designed around the decisions that matter when you're applying, not around features you have to learn.</p>
-        </div>
-        <div class="mc-process-steps mc-reveal-stagger">
-          <div class="mc-step-item">
-            <div class="mc-step-icon">1</div>
-            <div class="mc-step-content">
-              <h3>Build your CV</h3>
-              <p>Add your experience, education and skills. Keep the information yours; let the layout do the organising.</p>
-            </div>
-            <div class="mc-step-line" aria-hidden="true"></div>
-          </div>
-          <div class="mc-step-item">
-            <div class="mc-step-icon">2</div>
-            <div class="mc-step-content">
-              <h3>Strengthen the writing</h3>
-              <p>Improve weak descriptions, make achievements clearer, and keep important information easy to find.</p>
-            </div>
-            <div class="mc-step-line" aria-hidden="true"></div>
-          </div>
-          <div class="mc-step-item">
-            <div class="mc-step-icon">3</div>
-            <div class="mc-step-content">
-              <h3>Write the cover letter</h3>
-              <p>Connect your experience to the role instead of sending the same generic letter everywhere.</p>
-            </div>
-            <div class="mc-step-line" aria-hidden="true"></div>
-          </div>
-          <div class="mc-step-item">
-            <div class="mc-step-icon">4</div>
-            <div class="mc-step-content">
-              <h3>Check and send</h3>
-              <p>Choose your final design, review the result, and download your documents when they're ready.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- BEFORE / AFTER (Writing improvement) -->
-      <section class="mc-improve mc-section-pad mc-reveal mc-reveal-delay-1">
-        <div class="mc-improve-copy">
-          <p class="mc-kicker">Writing help</p>
-          <h2>A good CV is clearer, not louder.</h2>
-          <p>MellowCV helps with the places people usually struggle: what to say, what to leave out, how to organise it, and how to make the cover letter relevant to the job.</p>
-          <div class="mc-actions">
-            <button class="mc-button mc-button-primary" onclick="navigate('builder')">Improve your CV</button>
-          </div>
-        </div>
-        <div class="mc-before-after" role="group" aria-label="Example of stronger CV writing">
-          <div class="mc-example mc-example-before">
-            <span class="mc-example-label">Before</span>
-            <p>Responsible for social media and campaign support.</p>
-          </div>
-          <div class="mc-example-divider" aria-hidden="true">→</div>
-          <div class="mc-example mc-example-after">
-            <span class="mc-example-label">After</span>
-            <p>Managed social campaigns across three channels and supported weekly campaign reporting.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- FINAL CTA -->
-      <section class="mc-final mc-reveal mc-reveal-delay-1">
-        <div class="mc-final-inner">
-          <p class="mc-kicker">Ready when you are</p>
-          <h2>Let's make the next application easier.</h2>
-          <p>Build your CV, finish your cover letter, and leave with documents you can actually send.</p>
-          <div class="mc-actions mc-actions-center">
-            <button class="mc-button mc-button-light" onclick="navigate('builder')">Create my CV</button>
-            <button class="mc-button mc-button-ghost-light" onclick="createNewCoverLetter()">Write a cover letter</button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="mc-footer">
-      <div class="mc-footer-brand"><strong>Mellow<span>CV</span></strong><span>Build better applications.</span></div>
-      <div class="mc-footer-links">
-        <a onclick="navigate('gallery')">Templates</a>
-        <a onclick="navigate('builder')">Build a CV</a>
-        <a onclick="createNewCoverLetter()">Cover letter</a>
-        <a onclick="navigate('manager')">My documents</a>
-      </div>
-      <div class="mc-footer-copy">© 2026 MellowCV</div>
-    </footer>
-  </div>
-
-  <!-- ============================================================
-       GALLERY VIEW
-       ============================================================ -->
-  <div id="view-gallery">
-    <nav class="gnav">
-      <button class="gnav-back" onclick="navigate('landing')">← Back</button>
-      <div class="logo">Mellow<em>CV FACTORY</em></div>
-      <button class="btn btn-primary btn-sm" onclick="navigate('builder')">Start Building →</button>
-    </nav>
-    <div class="gallery-top">
-      <p class="sec-eye">Templates</p>
-      <h2 class="sec-title">Choose your template</h2>
-      <p class="sec-sub" style="max-width:460px;margin:0 auto">Pick a layout that matches your industry and style. All templates produce clean, ATS‑friendly output.</p>
-    </div>
-    <div class="gallery-filters" id="gallery-filters-cat">
-      <button class="f-btn active" data-role="cat" data-cat="all" onclick="setGalleryFilter('all',this)">All</button>
-      <button class="f-btn" data-role="cat" data-cat="modern" onclick="setGalleryFilter('modern',this)">Modern</button>
-      <button class="f-btn" data-role="cat" data-cat="ats" onclick="setGalleryFilter('ats',this)">ATS</button>
-      <button class="f-btn" data-role="cat" data-cat="executive" onclick="setGalleryFilter('executive',this)">Executive</button>
-      <button class="f-btn" data-role="cat" data-cat="creative" onclick="setGalleryFilter('creative',this)">Creative</button>
-      <button class="f-btn" data-role="cat" data-cat="student" onclick="setGalleryFilter('student',this)">Student</button>
-      <button class="f-btn" data-role="cat" data-cat="career-change" onclick="setGalleryFilter('career-change',this)">Career Change</button>
-      <button class="f-btn" data-role="cat" data-cat="trade" onclick="setGalleryFilter('trade',this)">Trade</button>
-      <button class="f-btn" data-role="cat" data-cat="elegant" onclick="setGalleryFilter('elegant',this)">Elegant</button>
-      <button class="f-btn" data-role="cat" data-cat="premium" onclick="setGalleryFilter('premium',this)">Premium</button>
-      <button class="f-btn" data-role="cat" data-cat="premium-sidebar" onclick="setGalleryFilter('premium-sidebar',this)">Sidebar</button>
-      <button class="f-btn" data-role="cat" data-cat="south-african" onclick="setGalleryFilter('south-african',this)">South African</button>
-    </div>
-    <div class="gallery-filters gallery-filters-attr" id="gallery-filters-attr">
-      <button class="f-btn" data-attr="ats" onclick="toggleGalleryAttrFilter('ats',this)">✓ ATS-friendly</button>
-      <button class="f-btn" data-attr="onePage" onclick="toggleGalleryAttrFilter('onePage',this)">One page</button>
-      <button class="f-btn" data-attr="twoPage" onclick="toggleGalleryAttrFilter('twoPage',this)">Two page</button>
-      <button class="f-btn" data-attr="photo" onclick="toggleGalleryAttrFilter('photo',this)">With photo</button>
-      <button class="f-btn" data-attr="noPhoto" onclick="toggleGalleryAttrFilter('noPhoto',this)">Without photo</button>
-      <span class="g-count" id="gallery-count"></span>
-    </div>
-    <div class="gallery-grid" id="gallery-grid"></div>
-  </div>
-
-  <!-- ============================================================
-       MANAGER VIEW
-       ============================================================ -->
-  <div id="view-manager">
-    <nav class="gnav">
-      <button class="gnav-back" onclick="navigate('landing')">← Back</button>
-      <div class="logo">Mellow<em>CV FACTORY</em></div>
-      <button class="btn btn-outline btn-sm" onclick="openImportModal()">📥 Import CV</button>
-      <button class="btn btn-primary btn-sm" onclick="createNewResume()">+ New Resume</button>
-    </nav>
-    <div style="max-width:1100px;margin:20px auto;padding:0 16px;">
-      <h2 style="font-family:var(--font-display);font-size:28px;margin:0 0 8px;">My Resumes</h2>
-      <p style="color:var(--t2);">You have <span id="resume-count">0</span> saved resumes.</p>
-    </div>
-    <div class="manager-grid" id="manager-grid"></div>
-
-    <div style="max-width:1100px;margin:36px auto 8px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:24px">
-      <div>
-        <h2 style="font-family:var(--font-display);font-size:24px;margin:0 0 4px;">My Cover Letters</h2>
-        <p style="color:var(--t2);margin:0">You have <span id="cl-count">0</span> saved cover letters.</p>
-      </div>
-      <button class="btn btn-primary btn-sm" onclick="createNewCoverLetter()">+ New Cover Letter</button>
-    </div>
-    <div class="manager-grid" id="cl-manager-grid"></div>
-  </div>
-
-  <!-- ============================================================
-       BUILDER VIEW
-       ============================================================ -->
-  <div id="view-builder">
+<div id="view-builder">
     <header class="bh">
       <div class="bh-l">
         <button class="bh-back" onclick="navigate('gallery')">← Templates</button>
@@ -413,35 +157,7 @@
       <div class="preview-slide-body" id="preview-slide-body"></div>
     </div>
   </div>
-
-  <!-- ============================================================
-       COVER LETTER BUILDER VIEW
-       ============================================================ -->
-  <div id="view-clbuilder">
-    <header class="bh">
-      <div class="bh-l">
-        <button class="bh-back" onclick="navigate('manager')">← Manager</button>
-        <div class="bh-logo">Mellow<em>CV FACTORY</em></div>
-      </div>
-      <div class="bh-r">
-        <span class="credit-badge" id="header-credit-badge-cl"></span>
-        <div class="autosave"><div class="save-dot" id="cl-save-dot"></div><span id="cl-autosave-label">Auto-saved</span></div>
-        <button class="btn btn-primary btn-sm" onclick="exportCoverLetterPDF()">⬇ Download PDF</button>
-      </div>
-    </header>
-    <div class="cl-body-row">
-      <div class="cl-form-panel" id="cl-form-panel"></div>
-      <div class="cl-preview-panel">
-        <div class="cl-page" id="cl-preview-root"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       MODALS & TEMPLATE STORAGE
-       ============================================================ -->
-
-  <!-- TIPS MODAL -->
+<!-- TIPS MODAL -->
   <div class="tips-modal" id="tips-modal">
     <div class="tips-modal-content">
       <button class="tips-close" onclick="closeTips()" aria-label="Close tips">✕</button>
@@ -575,14 +291,13 @@
     </div>
   </div>
 
-  <!-- ============================================================
-       SCRIPTS
-       ============================================================ -->
+  
   <script id="cv-data" type="application/json">{"meta":{"cvId":"cv_001","templateId":"modern-01","themeOverrides":{}},"personalDetails":{"fullName":"Jane Mokoena","jobTitle":"Frontend Developer","email":"jane@example.com","phone":"+27 82 123 4567","location":"Polokwane, South Africa","photo":null,"links":[],"summary":"Frontend developer with 3+ years of experience building responsive, accessible web applications. Skilled in JavaScript, HTML/CSS, and modern frameworks. Passionate about turning complex requirements into maintainable, user-friendly interfaces."},"sections":[{"type":"personal-info","title":"Personal Details","visible":true,"order":0,"items":[{"id":"pi_001","label":"Date of Birth","value":"12 June 1999"},{"id":"pi_002","label":"Nationality","value":"South African"},{"id":"pi_003","label":"Gender","value":"Female"},{"id":"pi_004","label":"Driver's License","value":"Code B"}]},{"type":"experience","title":"Experience","visible":true,"order":1,"items":[{"id":"exp_001","role":"Cashier","company":"Shoprite","location":"Polokwane","startDate":"2022-01","endDate":"2022-12","current":false,"bullets":["Assisted more than 150 customers daily while maintaining accurate cash handling and till balancing.","Trained 3 new hires on till procedures, customer service standards, and store policies.","Resolved an average of 10+ customer queries per shift, improving overall satisfaction scores by 15%."]},{"id":"exp_002","role":"Administrative Assistant","company":"Limpopo Department of Education","location":"Polokwane","startDate":"2023-01","endDate":"2024-06","current":false,"bullets":["Managed filing systems and digital records for 200+ employee files, reducing retrieval time by 30%.","Coordinated schedules and meeting logistics for department heads, handling confidential documents.","Assisted with data entry and reporting using Microsoft Excel, ensuring accuracy in monthly reports."]},{"id":"exp_003","role":"Junior Web Developer (Internship)","company":"Mellow Tech Services","location":"Remote","startDate":"2024-07","endDate":"2025-05","current":false,"bullets":["Built and maintained responsive company website using HTML, CSS, and JavaScript, achieving 98% Lighthouse performance score.","Collaborated with the design team to implement UI improvements that increased user engagement by 20%.","Integrated a contact form with email notifications using a serverless backend, reducing response time to client inquiries."]}]},{"type":"education","title":"Education","visible":true,"order":2,"items":[{"id":"edu_001","institution":"University of Limpopo","qualification":"BSc Computer Science","location":"Polokwane","startDate":"2019-01","endDate":"2022-12","current":false,"notes":"Relevant coursework: Data Structures, Web Development, Database Systems."},{"id":"edu_002","institution":"Capricorn High School","qualification":"National Senior Certificate (Matric)","location":"Polokwane","startDate":"2014-01","endDate":"2018-12","current":false,"notes":"Distinctions in Mathematics and Life Sciences."}]},{"type":"skills","title":"Skills","visible":true,"order":4,"items":[{"id":"skl_001","name":"JavaScript","level":"Advanced"},{"id":"skl_002","name":"HTML/CSS","level":"Advanced"},{"id":"skl_003","name":"React","level":"Intermediate"},{"id":"skl_004","name":"Git & GitHub","level":"Intermediate"},{"id":"skl_005","name":"Linux","level":"Intermediate"},{"id":"skl_006","name":"Microsoft Office","level":"Advanced"},{"id":"skl_007","name":"Customer Service","level":"Proficient"},{"id":"skl_008","name":"Problem Solving","level":"Proficient"},{"id":"skl_009","name":"Team Leadership","level":"Proficient"},{"id":"skl_010","name":"Figma","level":"Intermediate"},{"id":"skl_011","name":"Responsive Design","level":"Advanced"},{"id":"skl_012","name":"Time Management","level":"Proficient"}]},{"type":"languages","title":"Languages","visible":true,"order":5,"items":[{"id":"lng_001","name":"English","level":"Fluent"},{"id":"lng_002","name":"Sepedi","level":"Native"},{"id":"lng_003","name":"Afrikaans","level":"Basic"},{"id":"lng_004","name":"isiZulu","level":"Conversational"}]},{"type":"certificates","title":"Certificates","visible":true,"order":6,"items":[{"id":"cert_001","name":"CompTIA A+ (In Progress)"},{"id":"cert_002","name":"First Aid Level 1"},{"id":"cert_003","name":"Microsoft Office Specialist"},{"id":"cert_004","name":"Google IT Support Professional"}]},{"type":"references","title":"References","visible":true,"order":7,"items":[{"id":"ref_001","name":"Mr. Thomas Mabunda","title":"Store Manager, Shoprite","phone":"+27 82 987 6543","email":"thomas.mabunda@shoprite.co.za"},{"id":"ref_002","name":"Ms. Palesa Ndlovu","title":"Senior Developer, Mellow Tech","phone":"+27 72 345 6789","email":"palesa@mellowtech.co.za"}]},{"type":"interests","title":"Interests","visible":true,"order":8,"items":[{"id":"int_001","value":"Reading, Hiking, Chess, Community volunteering, Mobile photography"}]},{"type":"custom","title":"Professional Memberships","visible":true,"order":9,"items":[{"id":"cus_001","title":"SA Computer Society","bullets":["Student member since 2021"]}]}]}</script>
 
   <script id="cv-data-starter" type="application/json">{"meta":{"cvId":"cv_starter_001","templateId":"starter-01","themeOverrides":{}},"personalDetails":{"fullName":"Refilwe Maake","jobTitle":"Seeking Entry-Level Retail / Admin Role","email":"refilwe.maake@example.com","phone":"+27 71 234 5678","location":"Seshego, Polokwane","photo":null,"links":[],"summary":"Reliable and hardworking, looking for a first full-time opportunity in retail, admin support, or customer service. Comfortable working with the public, quick to learn new systems, and used to being on my feet in a fast-paced environment from working in a family shop. Available to start immediately."},"sections":[{"type":"personal-info","title":"Personal Details","visible":true,"order":0,"items":[{"id":"pi_001","label":"Date of Birth","value":"15 March 2002"},{"id":"pi_002","label":"Nationality","value":"South African"},{"id":"pi_003","label":"Driver's License","value":"Learner's (Code 8)"}]},{"type":"strengths","title":"Key Strengths","visible":true,"order":1,"items":[{"id":"str_001","value":"Reliable"},{"id":"str_002","value":"Hardworking"},{"id":"str_003","value":"Punctual"},{"id":"str_004","value":"Good with people"},{"id":"str_005","value":"Fast learner"},{"id":"str_006","value":"Team player"}]},{"type":"experience","title":"Experience","visible":true,"order":2,"items":[{"id":"exp_001","role":"Shop Assistant (Part-time)","company":"Maake Family Spaza Shop","location":"Seshego","startDate":"2023-01","endDate":"","current":true,"bullets":["Serve customers, handle cash, and restock shelves on weekends and school holidays.","Keep track of stock and let my uncle know when items are running low.","Open and close the shop safely, including counting the till."]},{"id":"exp_002","role":"Event Steward","company":"Local church youth event (once-off)","location":"Polokwane","startDate":"2024-06","endDate":"2024-06","current":false,"bullets":["Helped direct people to seating and kept entrances clear during a large weekend event.","Worked as part of a small team to set up and pack away chairs and equipment."]},{"id":"exp_003","role":"Volunteer","company":"Community food-parcel drive","location":"Seshego","startDate":"2023-11","endDate":"2023-12","current":false,"bullets":["Packed food parcels and helped hand them out to families in the area.","Assisted with keeping a simple list of who had already received a parcel."]}]},{"type":"education","title":"Education","visible":true,"order":3,"items":[{"id":"edu_001","institution":"Seshego Secondary School","qualification":"National Senior Certificate (Matric)","location":"Polokwane","startDate":"2018-01","endDate":"2022-12","current":false,"notes":"Subjects included Mathematical Literacy, English, Sepedi, Life Sciences, and Business Studies."}]},{"type":"skills","title":"Skills","visible":true,"order":4,"items":[{"id":"skl_001","name":"Customer Service","level":"Intermediate"},{"id":"skl_002","name":"Cash Handling","level":"Intermediate"},{"id":"skl_003","name":"Basic Computer Use","level":"Basic"},{"id":"skl_004","name":"Stock Taking","level":"Intermediate"},{"id":"skl_005","name":"Teamwork","level":"Advanced"},{"id":"skl_006","name":"WhatsApp / Basic Smartphone Use","level":"Advanced"}]},{"type":"languages","title":"Languages","visible":true,"order":5,"items":[{"id":"lng_001","name":"Sepedi","level":"Native"},{"id":"lng_002","name":"English","level":"Fluent"},{"id":"lng_003","name":"Afrikaans","level":"Basic"}]},{"type":"custom","title":"Other Activities","visible":true,"order":6,"items":[{"id":"cus_002","title":"Informal Tutoring","bullets":["Help two younger neighbours with Grade 8 Maths and English homework a few afternoons a week."]}]},{"type":"interests","title":"Interests","visible":true,"order":7,"items":[{"id":"int_001","value":"Soccer, church youth group, helping out in the community"}]},{"type":"references","title":"References","visible":true,"order":8,"items":[{"id":"ref_001","name":"Mr. Sipho Maake","title":"Shop Owner (Uncle)","phone":"+27 82 111 2222","email":""}]}]}</script>
 
   <script id="cv-data-trade" type="application/json">{"meta":{"cvId":"cv_trade_001","templateId":"trade-01","themeOverrides":{}},"personalDetails":{"fullName":"Thabo Sekgobela","jobTitle":"Electrician's Assistant / Aspiring Artisan","email":"thabo.sekgobela@example.com","phone":"+27 76 456 7890","location":"Polokwane, South Africa","photo":null,"links":[],"summary":"Hands-on and reliable, with three years of practical experience assisting a qualified electrician and helping out at a local panel-beating workshop. Comfortable working with basic hand tools and following instructions on-site. Looking to join a formal apprenticeship or entry-level artisan position to build toward a trade qualification."},"sections":[{"type":"personal-info","title":"Personal Details","visible":true,"order":0,"items":[{"id":"pi_001","label":"Date of Birth","value":"22 August 2000"},{"id":"pi_002","label":"Nationality","value":"South African"},{"id":"pi_003","label":"Driver's License","value":"Learner's (Code 8)"}]},{"type":"certificates","title":"Certificates & Training","visible":true,"order":1,"items":[{"id":"cert_001","name":"First Aid Level 1"},{"id":"cert_002","name":"Basic Health & Safety on Site"},{"id":"cert_003","name":"Learner's License (Code 8, in progress)"}]},{"type":"skills","title":"Tools & Equipment","visible":true,"order":2,"items":[{"id":"skl_001","name":"Hand Tools (spanners, pliers, screwdrivers)","level":"Advanced"},{"id":"skl_002","name":"Multimeter / Basic Testing","level":"Intermediate"},{"id":"skl_003","name":"Cable Running & Conduit","level":"Intermediate"},{"id":"skl_004","name":"Angle Grinder","level":"Intermediate"},{"id":"skl_005","name":"Basic Welding (supervised)","level":"Basic"},{"id":"skl_006","name":"Panel Beating Prep Work","level":"Intermediate"}]},{"type":"experience","title":"Experience","visible":true,"order":3,"items":[{"id":"exp_001","role":"Electrician's Assistant","company":"Self-employed / assisting M. Ledwaba Electrical","location":"Polokwane","startDate":"2022-03","endDate":"","current":true,"bullets":["Assist with running cable, fitting conduit, and installing plug points and light fittings on residential jobs.","Help test circuits using a multimeter under supervision.","Keep the work vehicle stocked and organised, and load/offload tools and materials on-site."]},{"id":"exp_002","role":"Workshop Helper","company":"Neighbourhood panel-beating workshop","location":"Polokwane","startDate":"2021-01","endDate":"2022-02","current":false,"bullets":["Prepared vehicle panels for repair, including sanding and masking.","Assisted with basic welding tasks under supervision.","Kept the workshop area clean and tools in order."]}]},{"type":"custom","title":"Areas of Strength","visible":true,"order":4,"items":[{"id":"cus_001","title":"Practical / Technical Ability","bullets":["Comfortable working with hand tools and basic electrical testing equipment.","Picks up new tasks quickly when shown once."]},{"id":"cus_002","title":"Reliability","bullets":["Three years of consistent, dependable work with the same electrician.","Punctual and safety-conscious on every job."]},{"id":"cus_003","title":"Willingness to Learn","bullets":["Actively looking to formalise skills through a registered apprenticeship.","Currently studying for a Code 8 learner's license."]}]},{"type":"education","title":"Education","visible":true,"order":5,"items":[{"id":"edu_001","institution":"Mankweng Secondary School","qualification":"Grade 11 (did not complete Matric)","location":"Polokwane","startDate":"2016-01","endDate":"2020-11","current":false,"notes":"Left school to help support family income; completed subjects including Mathematics and Technology."}]},{"type":"strengths","title":"Key Strengths","visible":true,"order":6,"items":[{"id":"str_001","value":"Reliable"},{"id":"str_002","value":"Safety-conscious"},{"id":"str_003","value":"Hands-on learner"},{"id":"str_004","value":"Punctual"},{"id":"str_005","value":"Physically fit"}]},{"type":"languages","title":"Languages","visible":true,"order":7,"items":[{"id":"lng_001","name":"Sepedi","level":"Native"},{"id":"lng_002","name":"English","level":"Conversational"}]},{"type":"references","title":"References","visible":true,"order":8,"items":[{"id":"ref_001","name":"Mr. M. Ledwaba","title":"Qualified Electrician","phone":"+27 82 333 4444","email":""}]}]}</script>
+
 
   <script src="/vendor/html2canvas.min.js"></script>
   <script src="/vendor/jspdf.umd.min.js"></script>
@@ -645,5 +360,6 @@
       });
     })();
   </script>
+
 </body>
 </html>

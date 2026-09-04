@@ -7,7 +7,9 @@
     "node": ">=18 <25"
   },
   "scripts": {
+    "predev": "node scripts/generate-mpa-pages.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/generate-mpa-pages.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "qa:syntax": "node tests/react-engine-syntax.cjs",
@@ -27,9 +29,7 @@
     "qa:premium-root-structure": "node tests/premium-root-structure.cjs",
     "qa:empty-pages": "node tests/empty-page-regression.cjs",
     "qa:dead-code": "node tests/dead-code-regression.cjs",
-    "qa:template-identity-scope": "node tests/template-identity-scope.cjs",
-    "predev": "node scripts/generate-mpa-pages.mjs",
-    "prebuild": "node scripts/generate-mpa-pages.mjs"
+    "qa:template-identity-scope": "node tests/template-identity-scope.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",

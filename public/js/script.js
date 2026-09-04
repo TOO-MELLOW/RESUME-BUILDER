@@ -1288,6 +1288,8 @@ function loadAllResumes() {
                     allResumes[id].sections = sanitizeSections(allResumes[id].sections);
                 }
             }
+            const preferredId = localStorage.getItem('Mellow CV_current_resume');
+            if (preferredId && allResumes[preferredId]) currentCvId = preferredId;
         } else {
             const def     = JSON.parse(document.getElementById('cv-data').textContent);
             const starter = JSON.parse(document.getElementById('cv-data-starter').textContent);
@@ -1309,10 +1311,12 @@ function saveAllResumes() { try { localStorage.setItem('Mellow CV_all_resumes', 
 function getCurrentResume() {
     if (!currentCvId || !allResumes[currentCvId]) {
         const ids = Object.keys(allResumes);
-        if (ids.length) currentCvId = ids[0];
+        const preferredId = localStorage.getItem('Mellow CV_current_resume');
+        if (preferredId && allResumes[preferredId]) currentCvId = preferredId;
+        else if (ids.length) currentCvId = ids[0];
         else { const def = JSON.parse(document.getElementById('cv-data').textContent);
                if (def.sections) def.sections = sanitizeSections(def.sections);
-               currentCvId = def.meta.cvId; allResumes[currentCvId] = def; saveAllResumes(); }
+               currentCvId = def.meta.cvId; allResumes[currentCvId] = def; localStorage.setItem('Mellow CV_current_resume', currentCvId); saveAllResumes(); }
     }
     return allResumes[currentCvId];
 }
@@ -1321,6 +1325,7 @@ function setCurrentResume(cvId) {
     if (allResumes[cvId]) {
         if (typeof editorHistoryClear === 'function') editorHistoryClear();
         currentCvId = cvId;
+        localStorage.setItem('Mellow CV_current_resume', cvId);
         cvData = allResumes[cvId];
         if (cvData.sections) cvData.sections = sanitizeSections(cvData.sections);
         currentTemplateId = migrateTemplateId(cvData);
@@ -1333,7 +1338,9 @@ function loadData() {
     loadAllResumes();
     const ids = Object.keys(allResumes);
     if (ids.length) {
-        currentCvId = ids[0];
+        const preferredId = localStorage.getItem('Mellow CV_current_resume');
+        currentCvId = preferredId && allResumes[preferredId] ? preferredId : ids[0];
+        localStorage.setItem('Mellow CV_current_resume', currentCvId);
         cvData = allResumes[currentCvId];
         if (cvData.sections) cvData.sections = sanitizeSections(cvData.sections);
         if (typeof editorHistoryClear === 'function') editorHistoryClear();
@@ -1342,7 +1349,7 @@ function loadData() {
     } else {
         const def = JSON.parse(document.getElementById('cv-data').textContent);
         if (def.sections) def.sections = sanitizeSections(def.sections);
-        currentCvId = def.meta.cvId; allResumes[currentCvId] = def; saveAllResumes();
+        currentCvId = def.meta.cvId; allResumes[currentCvId] = def; localStorage.setItem('Mellow CV_current_resume', currentCvId); saveAllResumes();
         cvData = def; currentTemplateId = migrateTemplateId(def); usingDemoData = true;
     }
 }
@@ -1492,7 +1499,9 @@ function createNewCoverLetter(sourceCvId) {
 }
 function setCurrentCoverLetter(clId) {
     if (!allCoverLetters[clId]) return;
-    currentClId = clId; clData = allCoverLetters[clId];
+    currentClId = clId;
+    localStorage.setItem('Mellow CV_current_coverletter', clId);
+    clData = allCoverLetters[clId];
     renderCLForm(); renderCoverLetterPreview(); autoSaveCoverLetter(); navigate('clbuilder');
 }
 function duplicateCoverLetter(id) {
@@ -1648,27 +1657,27 @@ const PAGE_META = {
   landing: {
     title: 'Mellow CV Factory | Professional Resume Builder',
     description: 'Build a professional, ATS-ready resume in minutes with expert templates and AI-powered writing assistance. Free, no account needed.',
-    url: 'https://resume-factory-brown.vercel.app/',
+    url: '/',
   },
   gallery: {
     title: 'Resume Templates | Mellow CV Factory',
     description: 'Browse 43 professional resume templates — modern, ATS-friendly, executive, creative, student, and trade layouts.',
-    url: 'https://resume-factory-brown.vercel.app/gallery',
+    url: '/gallery',
   },
   manager: {
     title: 'My Resumes | Mellow CV Factory',
     description: 'View, edit, and manage all your saved resumes and cover letters in one place.',
-    url: 'https://resume-factory-brown.vercel.app/manager',
+    url: '/manager',
   },
   builder: {
     title: 'Build Your Resume | Mellow CV Factory',
     description: 'Create a polished, ATS-ready resume with AI writing help, live preview, and one-click PDF download.',
-    url: 'https://resume-factory-brown.vercel.app/builder',
+    url: '/builder',
   },
   clbuilder: {
     title: 'Cover Letter Builder | Mellow CV Factory',
     description: 'Write a professional cover letter in minutes with AI assistance and a live preview.',
-    url: 'https://resume-factory-brown.vercel.app/cover-letter',
+    url: '/cover-letter',
   },
 };
 
@@ -1716,17 +1725,21 @@ function updatePageMeta(view) {
   canonical.href = meta.url;
 }
 
-function navigate(view, opts = {}) {
-  const targetPath = VIEW_TO_PATH[view] || '/';
+function navigate(view) {
+  const path = VIEW_TO_PATH[view] || '/';
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  const targetPath = path.replace(/\/$/, '') || '/';
 
-  // Public/app navigation is intentionally a real document navigation. The site
-  // is served as a multi-page app, so crossing between primary views must load
-  // the corresponding HTML document instead of only swapping hidden DOM views.
-  if (!opts.skipHistory && window.location.pathname !== targetPath) {
-    window.location.assign(targetPath);
+  // The public site is a true multi-page application. Cross-page navigation
+  // intentionally performs a real document navigation instead of swapping
+  // hidden views or mutating history in-place.
+  if (currentPath !== targetPath) {
+    window.location.assign(path);
     return;
   }
 
+  // Same-page navigation is still useful for code paths such as selecting
+  // the already-open builder. Only run page-local initialization here.
   closeMobilePreview();
   document.body.setAttribute('data-view', view);
   if (view === 'manager') renderManager();
@@ -1734,30 +1747,30 @@ function navigate(view, opts = {}) {
   if (view === 'clbuilder') {
     if (!clData) {
       const ids = Object.keys(allCoverLetters);
-      if (ids.length) { currentClId = ids[0]; clData = allCoverLetters[currentClId]; }
+      if (ids.length) {
+        const preferredId = localStorage.getItem('Mellow CV_current_coverletter');
+        currentClId = preferredId && allCoverLetters[preferredId] ? preferredId : ids[0];
+        clData = allCoverLetters[currentClId];
+      }
     }
     if (clData) { renderCLForm(); renderCoverLetterPreview(); updateAutosaveLabelCL(); }
-    else {
-      const fp = document.getElementById('cl-form-panel');
-      const pr = document.getElementById('cl-preview-root');
-      if (fp) fp.innerHTML = '<p style="padding:20px;color:var(--t3)">No cover letter selected. <a onclick="navigate(\'manager\')" style="cursor:pointer;color:var(--accent)">Go to My Resumes</a> to create one.</p>';
-      if (pr) pr.innerHTML = '';
-    }
   }
   if (view === 'gallery') renderGallery();
   if (view === 'landing') { renderHeroCv(); renderShowcaseStrip(); initMellowHomepageMotion(); }
   window.scrollTo(0, 0);
-  if (atsPanelOpen) { atsPanelOpen = false; document.getElementById('ats-panel').classList.remove('open'); }
+  if (atsPanelOpen) {
+    atsPanelOpen = false;
+    document.getElementById('ats-panel')?.classList.remove('open');
+  }
   closeTips();
   closeQuickFab();
   closeImportModal();
-  document.getElementById('preview-area').classList.remove('preview-full');
-
+  document.getElementById('preview-area')?.classList.remove('preview-full');
   updatePageMeta(view);
 }
 
 (function initViewFromURL() {
-  const view = PATH_TO_VIEW[window.location.pathname] || 'landing';
+  const view = PATH_TO_VIEW[window.location.pathname.replace(/\/$/, '') || '/'] || 'landing';
   document.body.setAttribute('data-view', view);
   updatePageMeta(view);
 })();
@@ -3756,17 +3769,36 @@ async function handlePaymentReturn() {
 
 // ---------- INIT ----------
 document.addEventListener('DOMContentLoaded', async () => {
-    loadData();
+    const initialView = PATH_TO_VIEW[window.location.pathname.replace(/\/$/, '') || '/'] || 'landing';
+    if (initialView === 'manager' || initialView === 'builder' || initialView === 'gallery') {
+        loadData();
+    }
     loadAllCoverLetters();
     lastSavedAt = Date.now();
-    if (!loadSharedResume()) {
-        const initialView = PATH_TO_VIEW[location.pathname] || 'landing';
-        navigate(initialView, { skipHistory: true });
-    }
     updateTemplateCatalogCount();
-    renderHeroCv();
-    renderShowcaseStrip();
-    initMellowHomepageMotion();
+    if (initialView === 'landing') {
+        renderHeroCv();
+        renderShowcaseStrip();
+        initMellowHomepageMotion();
+    }
+    if (initialView === 'gallery') renderGallery();
+    if (initialView === 'manager') renderManager();
+    if (initialView === 'builder') {
+        renderPreview();
+        setStep(currentStep);
+        updatePaLabel();
+    }
+    if (initialView === 'clbuilder') {
+        if (!clData) {
+            const ids = Object.keys(allCoverLetters);
+            if (ids.length) {
+        const preferredId = localStorage.getItem('Mellow CV_current_coverletter');
+        currentClId = preferredId && allCoverLetters[preferredId] ? preferredId : ids[0];
+        clData = allCoverLetters[currentClId];
+      }
+        }
+        if (clData) { renderCLForm(); renderCoverLetterPreview(); updateAutosaveLabelCL(); }
+    }
     updateGlobalCreditBadge();
     handlePaymentReturn();
 });
