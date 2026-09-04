@@ -629,57 +629,56 @@ const SIDEBAR_TEMPLATE_IDS = new Set(
     TEMPLATE_CONFIGS.filter(def => def.layout === 'two-column').map(def => def.id)
 );
 
-function wrapMain(title, inner, type = "") {
-    return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="main-label">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`;
+function wrapMain(title, inner, type = "", headingClass = "main-label") {
+    return `<section class="main-section" data-rf-section-type="${escHtml(type)}"><p class="${escHtml(headingClass)}">${escHtml(title)}</p>${inner||`<p class="empty-note">No entries yet.</p>`}</section>`;
 }
-function wrapSide(title, inner, type = "") {
-    return `<section class="side-section" data-rf-section-type="${escHtml(type)}"><p class="side-label">${escHtml(title)}</p>${inner||`<p class="empty-note">None added.</p>`}</section>`;
+function wrapSide(title, inner, type = "", headingClass = "side-label") {
+    return `<section class="side-section" data-rf-section-type="${escHtml(type)}"><p class="${escHtml(headingClass)}">${escHtml(title)}</p>${inner||`<p class="empty-note">None added.</p>`}</section>`;
 }
 
 const SR = {
-    experience(s) {
+    experience(s, headingClass) {
         const h = s.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.role)}</p><p class="entry-sub">${escHtml(it.company)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
-        return wrapMain(s.title, h, s.type);
+        return wrapMain(s.title, h, s.type, headingClass || 'main-label');
     },
-    education(s) {
+    education(s, headingClass) {
         const h = s.items.map(it => `<div class="entry"><div class="entry-header"><div><p class="entry-title">${escHtml(it.qualification)}</p><p class="entry-sub">${escHtml(it.institution)}${it.location?` · ${escHtml(it.location)}`:""}</p></div><span class="entry-date">${fmtDate(it.startDate,it.endDate,it.current)}</span></div>${it.notes?`<ul><li>${escHtml(it.notes)}</li></ul>`:""}</div>`).join("");
-        return wrapMain(s.title, h, s.type);
+        return wrapMain(s.title, h, s.type, headingClass || 'main-label');
     },
-    custom(s) {
+    custom(s, headingClass) {
         const h = s.items.map(it => `<div class="entry"><p class="entry-title">${escHtml(it.title||"")}</p>${it.bullets&&it.bullets.length?`<ul>${it.bullets.map(b=>`<li>${escHtml(b)}</li>`).join("")}</ul>`:""}</div>`).join("");
-        return wrapMain(s.title, h, s.type);
+        return wrapMain(s.title, h, s.type, headingClass || 'main-label');
     },
-    "personal-info"(s) {
+    "personal-info"(s, headingClass) {
         const h = s.items.map(it => `<div class="side-item">${escHtml(it.label)}: <span class="meta">${escHtml(it.value)}</span></div>`).join("");
-        return wrapSide(s.title, h, s.type);
+        return wrapSide(s.title, h, s.type, headingClass || 'side-label');
     },
-    skills(s) {
-        return wrapSide(s.title, s.items.map(it => `<span class="skill-tag">${escHtml(it.name)}</span>`).join(""), s.type);
+    skills(s, headingClass) {
+        return wrapSide(s.title, s.items.map(it => `<span class="skill-tag">${escHtml(it.name)}</span>`).join(""), s.type, headingClass || 'side-label');
     },
-    languages(s) {
-        return wrapSide(s.title, s.items.map(it => `<div class="side-item">${escHtml(it.name)} <span class="meta">— ${escHtml(it.level)}</span></div>`).join(""), s.type);
+    languages(s, headingClass) {
+        return wrapSide(s.title, s.items.map(it => `<div class="side-item">${escHtml(it.name)} <span class="meta">— ${escHtml(it.level)}</span></div>`).join(""), s.type, headingClass || 'side-label');
     },
-    certificates(s) {
-        return wrapSide(s.title, s.items.map(it => `<div class="side-item">${escHtml(it.name)}</div>`).join(""), s.type);
+    certificates(s, headingClass) {
+        return wrapSide(s.title, s.items.map(it => `<div class="side-item">${escHtml(it.name)}</div>`).join(""), s.type, headingClass || 'side-label');
     },
-    references(s) {
+    references(s, headingClass) {
         const h = s.items.map(it => {
             const phoneLine = it.phone ? `<div class="ref-contact-line"><span class="icon-inline" style="color:var(--color-accent)">${icoSVG("phone")}</span><span>${escHtml(it.phone)}</span></div>` : "";
             const emailLine = it.email ? `<div class="ref-contact-line"><span class="icon-inline" style="color:var(--color-accent)">${icoSVG("email")}</span><span>${escHtml(it.email)}</span></div>` : "";
             return `<div class="ref-item"><div class="ref-name">${escHtml(it.name)}</div><div class="ref-details">${escHtml(it.title)}</div><div class="ref-contact">${phoneLine}${emailLine}</div></div>`;
         }).join("");
-        return wrapSide(s.title, h, s.type);
+        return wrapSide(s.title, h, s.type, headingClass || 'side-label');
     },
-    interests(s) {
+    interests(s, headingClass) {
         const line = s.items.map(it => escHtml(it.value)).join(" · ");
-        return wrapSide(s.title, line ? `<p class="side-item" style="line-height:1.5">${line}</p>` : "", s.type);
+        return wrapSide(s.title, line ? `<p class="side-item" style="line-height:1.5">${line}</p>` : "", s.type, headingClass || 'side-label');
     },
-    strengths(s) {
+    strengths(s, headingClass) {
         const chips = s.items.filter(it => it.value && it.value.trim()).map(it => `<span class="strength-chip">${escHtml(it.value)}</span>`).join("");
-        return wrapSide(s.title, chips ? `<div class="strengths-row">${chips}</div>` : "", s.type);
+        return wrapSide(s.title, chips ? `<div class="strengths-row">${chips}</div>` : "", s.type, headingClass || 'side-label');
     }
 };
-
 function contactListHtml(p) {
     const items = [{icon:"email",val:p.email},{icon:"phone",val:p.phone},{icon:"location",val:p.location},...(p.links||[]).map(l=>({icon:"link",val:l.url,label:l.label}))];
     return items.filter(i => i.val).map(i => `<li><span class="icon-inline">${icoSVG(i.icon)}</span>${i.label?`<a href="${escHtml(i.val)}">${escHtml(i.label)}</a>`:escHtml(i.val)}</li>`).join("");
