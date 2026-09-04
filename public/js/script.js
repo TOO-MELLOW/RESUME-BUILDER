@@ -2811,6 +2811,38 @@ function coerceImportedItem(type, raw) {
     });
     return clean;
 }
+// --- SECTION SANITIZER (fixes duplication & ghost sections) ---
+function sanitizeSections(sections) {
+    if (!Array.isArray(sections)) return [];
+    const seen = new Set();
+    const result = [];
+    for (const section of sections) {
+        if (!section || typeof section !== 'object') continue;
+        // Projects are intentionally not part of the MellowCV document model.
+        // Strip legacy/demo project sections at the data boundary so preview,
+        // editor, autosave and the React renderer all see the same contract.
+        if (section.type === 'projects') continue;
+        // Ensure each section has an id; assign one if missing.
+        if (!section.id) section.id = genId(section.type || 'sec');
+        if (seen.has(section.id)) continue;
+        seen.add(section.id);
+        result.push(section);
+    }
+
+    // References are always the final document section. This is enforced at
+    // the data boundary so every renderer (premium, legacy, React, export)
+    // receives the same section order even when older saved data had references
+    // before interests or other trailing sections.
+    result.sort((a, b) => {
+        const aRef = a.type === 'references' ? 1 : 0;
+        const bRef = b.type === 'references' ? 1 : 0;
+        if (aRef !== bRef) return aRef - bRef;
+        return (a.order ?? 0) - (b.order ?? 0);
+    });
+    result.forEach((section, index) => { section.order = index; });
+
+    return result;
+}
 
 function finalizeImportedResume(parsed, truncated) {
     if (typeof editorHistoryClear === 'function') editorHistoryClear();
